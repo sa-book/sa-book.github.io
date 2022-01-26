@@ -1,0 +1,462 @@
+---
+title: "Describing & summarising sequence data"
+description: |
+  Chapter 2.3 Description of Sequence Data I: The Basics
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    highlight: haddock
+    highlight_downlit: true    
+---
+
+```{r setup, include=FALSE}
+# Load and download (if necessary) required packages ----
+
+# Save package names as a vector of strings
+pkgs <- c("colorspace", "glue", "here", "Hmisc", "htmltools", "kableExtra", 
+          "knitr", "magrittr", "patchwork", "pdftools", "RColorBrewer", "reshape2", 
+          "sjPlot", "tidyverse", "TraMineR", "TraMineRextras", "xaringanExtra") 
+
+# Options that might help to prevent some errors in the installation process
+options(install.packages.check.source = "no")
+options(install.packages.compile.from.source = "never")
+
+## Install uninstalled packages
+lapply(pkgs[!(pkgs %in% installed.packages())], 
+       install.packages, repos = getOption("repos")["CRAN"])
+
+## Load all packages to library and adjust options
+lapply(pkgs, library, character.only = TRUE)
+
+# Output options
+knitr::opts_chunk$set(eval=TRUE, echo=TRUE)
+options("kableExtra.html.bsTable" = T)
+
+# load data for Chapter 2
+load(here("data", "Chapter_02.RData"))
+
+```
+
+```{r, xaringanExtra-clipboard, echo=FALSE}
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clone fa-2x\" style=\"color: #301e64\"></i>",
+    success_text = "<i class=\"fa fa-check fa-2x\" style=\"color: #90BE6D\"></i>",
+    error_text = "<i class=\"fa fa-times fa-2x\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
+We use a simple alphabet differentiating four partnership states to illustrate `TraMineR`'s capabilities of producing simple descriptive statistics on our sequence data. The sequences cover the partnership biographies from age 18 to 40 (monthly data).
+The sequences are stored in the object `partner.month.seq`.
+
+
+```{r echo=FALSE}
+kable(tibble(state = longlab.partner, shortlabel = shortlab.partner), 
+      col.names = c("State", "Short Label")) %>%
+  kable_styling(bootstrap_options = c("responsive", "hover", "condensed"),
+                full_width = F)
+```
+
+
+\  
+
+
+## Time spent in different states & <br/>occurence of episodes 
+
+The function `seqmeant` computes the mean total time spent in each state of the alphabet. The arguments `serr = TRUE` and `prop = TRUE` provide standard errors and relative frequencies instead of the average number of months spent in each state.
+
+
+```{r, eval=FALSE, echo=TRUE}
+seqmeant(partner.month.seq, serr = TRUE)
+seqmeant(partner.month.seq, prop = TRUE)
+```
+
+We also can use `seqmeant` to identify the average number of episodes for each state of the alphabet by applying it to a sequence data object in the **DSS** format.
+
+```{r, eval=FALSE, echo=TRUE}
+seqmeant(seqdss(partner.month.seq),serr = TRUE)
+```
+
+Taken together these commands yield the results shown in Table 2.3.
+
+
+```{r, table-2-3, echo=FALSE}
+
+statemeandur <- as_tibble(round(seqmeant(partner.month.seq, serr = TRUE)[,c(1,3)],1), 
+                          rownames = "State")
+
+statemeandur <- statemeandur %>%
+  mutate(reltime = round(seqmeant(partner.month.seq, prop = TRUE),2))
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# seqdss & seqmeant
+# mean no of episodes by state
+
+sum_episodes <- as_tibble(round(seqmeant(seqdss(partner.month.seq), 
+                                         serr = TRUE)[,c(1,3)],1),
+                          rownames = "State") %>%
+  rename(ep_Mean = 2, ep_SD = 3)
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# The final table summarizing
+# mean time spent in each state & no of episodes
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# generate table containing both descriptives
+table1 <- statemeandur %>% inner_join(sum_episodes, by = "State")
+
+# print table
+kable(table1,
+      col.names = c("State", "Mean", "SD", "relative freq.", "Mean", "SD")) %>%
+  add_header_above(c(" ", "Time spent in months" = 3, "Number of episodes" = 2)) %>%
+  kable_styling(bootstrap_options =  c("responsive", "hover", "condensed"),
+                full_width = F)
+
+```
+
+
+## Number of transitions & transition matrix
+
+The person-specific number of transitions between states can be obtained by `seqtransn`. However, we are usually interested in the average number of transitions. We use `wtd.mean` and `wtd.var` from the `Hmisc` package to compute the weighted mean and standard deviation. The weights are stored in the variable `weight40` of the data frame `family` which served as source for generating the sequence object `partner.month.seq`.
+
+```{r, eval=FALSE, echo=TRUE}
+wtd.mean(seqtransn(partner.month.seq), family$weight40)
+sqrt(wtd.var(seqtransn(partner.month.seq), family$weight40))
+```
+
+We did the same computation for the sequence object `partner.year.seq` which comes with a *yearly* instead of a *monthly granularity* (see chapter 2.2).
+
+```{r, echo=FALSE}
+# 2.3.2 Transition Rates ----
+# Number of transitions 
+
+# monthly
+m1 <- round(wtd.mean(seqtransn(partner.month.seq), family$weight40),1)
+m2 <- round(sqrt(wtd.var(seqtransn(partner.month.seq), family$weight40)),1)
+
+# yearly
+y1 <- round(wtd.mean(seqtransn(partner.year.seq), family$weight40),1)
+y2 <- round(sqrt(wtd.var(seqtransn(partner.year.seq), family$weight40)),1)
+
+
+transfreq <- tibble(Granularity = c("Monthly data", "Yearly data"), 
+                    Mean = c(m1, y1), 
+                    SD = c(m2, y2))
+
+kable(transfreq) %>%
+  kable_styling(bootstrap_options = 
+                  c("responsive", "hover", "condensed"),
+                full_width = F) 
+```
+
+
+Transition rates between states can be computed by using `seqtrate`. Again, we display the transitions rates using sequences with monthly and yearly granularity (`partner.month.seq` and `partner.year.seq`). It is also possible to calculate transitions rates at specific positions of the sequence by typing `time.varying = TRUE`. This option is also used for generating the animated illustration below (**Table 2-4**).
+
+
+```{r, eval=FALSE, echo=TRUE}
+seqtrate(partner.month.seq)
+seqtrate(partner.year.seq)
+```
+
+```{r, echo=FALSE}
+# Transition matrices (Tables 2.4 & 2.5) ----
+
+# ... using monthly sequence data 
+transmat.month <- seqtrate(partner.month.seq)
+
+rownames(transmat.month) <- shortlab.partner
+colnames(transmat.month) <- shortlab.partner
+
+transmat.month.tbl <- as_tibble(round(transmat.month,2),
+                                rownames = "Origin")
+
+
+# ... using yearly sequence data 
+transmat.year <- seqtrate(partner.year.seq)
+
+rownames(transmat.year) <- shortlab.partner
+colnames(transmat.year) <- shortlab.partner
+
+transmat.year.tbl <- as_tibble(round(transmat.year,2),
+                               rownames = "Origin")
+
+# Table a - monthly
+transmat.month.tbl %>%
+  mutate(Origin = cell_spec(Origin, bold = TRUE, color = "black")) %>%
+  kable(col.names = c("State at t", "S", "LAT", "COH", "MAR"),
+        escape = FALSE) %>%
+  add_header_above(c(" ", "State at t+1" = 4)) %>%
+  add_header_above(c("Monthly granularity" = 5))  %>%
+  kable_styling(bootstrap_options = 
+                  c("responsive", "hover", "condensed"),
+                full_width = F) 
+
+# Table b - yearly
+transmat.year.tbl %>%
+  mutate(Origin = cell_spec(Origin, bold = TRUE, color = "black")) %>%
+  kable(col.names = c("State at t", "S", "LAT", "COH", "MAR"),
+        escape = FALSE) %>%
+  add_header_above(c(" ", "State at t+1" = 4)) %>%
+  add_header_above(c("Yearly granularity" = 5))  %>%
+  kable_styling(bootstrap_options = 
+                  c("responsive", "hover", "condensed"),
+                full_width = F)
+
+
+```
+
+Additional insights can be gained by using sequence data stored in the DSS format. A computation based on this format provides transition rates between episodes of distinct states. Note, that we only use monthly sequence data for this exercise in order to keep track of short lasting spells which might be obscured in the yearly data (**Table 2-5**).
+
+```{r, eval=FALSE, echo=TRUE}
+seqtrate(seqdss(partner.month.seq))
+```
+
+```{r, echo=FALSE}
+# ... using monthly sequence data converted to DSS format (spell perspective)
+transmat.dss <- seqtrate(seqdss(partner.month.seq))
+rownames(transmat.dss) <- shortlab.partner
+colnames(transmat.dss) <- shortlab.partner
+
+transmat.dss.tbl <- as_tibble(round(transmat.dss,2),
+                              rownames = "Origin")
+
+transmat.dss.tbl %>%
+  mutate(Origin = cell_spec(Origin, bold = TRUE, color = "black")) %>%
+  kable(col.names = c("State at t", "S", "LAT", "COH", "MAR"),
+        escape = FALSE) %>%
+  add_header_above(c(" ", "State at t+1" = 4)) %>%
+  kable_styling(bootstrap_options = 
+                  c("responsive", "hover", "condensed"),
+                full_width = F)
+```
+
+## State distribution at different positions <br/>(cross-sectional perspective)
+
+Among other things `seqstatd` computes the distribution of states at each position in the sequence. Usually this information is displayed in a graphical fashion (state distribution plot) rather than as a descriptive table.
+
+Usually the tabular presentation of the state distribution requires to extract the distribution for a selection of (meaningful) positions of the sequence. In the example below we display the distribution at age 18, 20, 24, 28, 32, 36, and 40. Note that time is measured in months. Hence, we do not extract the descriptives at positions 1 and 3 but at positions 1 and 24 to obtain the state distribution at age 18 and 20 (**Table 2-6**). 
+
+```{r, eval=FALSE, echo=TRUE}
+seqstatd(partner.month.seq)$Frequencies[,c(1, seq(24, 264, by = 48))]
+```
+
+```{r, echo=FALSE}
+# Table 2.6
+statedis <- seqstatd(partner.month.seq)$Frequencies
+
+statedis2 <- as_tibble(round(statedis[,c(1, seq(24, 264, by = 48))],2),
+                       rownames = "State")
+
+kable(statedis2,
+      col.names = c("State", 18, seq(20,40, by = 4))) %>%
+  add_header_above(c(" ", "State distribution at age" = 7)) %>%
+  kable_styling(bootstrap_options = 
+                  c("responsive", "hover", "condensed"),
+                full_width = F)
+```
+
+The following code extracts the corresponding cross-sectional values of the Shannon entropy for the same time points (**Table 2-7**).
+
+```{r, eval=FALSE, echo=TRUE}
+seqstatd(partner.month.seq)$Entropy[c(1, seq(24, 264, by = 48))]
+```
+
+```{r, echo=FALSE}
+# Table 2.7
+stateentropy <- seqstatd(partner.month.seq)$Entropy
+stateentropy2 <- round(stateentropy[c(1, seq(24, 264, by = 48))],2)
+
+stateentropy2 %>%
+  t(.) %>%
+  kable(.,col.names = c(18, seq(20,40, by = 4))) %>%
+  add_header_above(c("Shannon entropy at age ..." = 7)) %>%
+  kable_styling(bootstrap_options = 
+                  c("responsive", "hover", "condensed"),
+                full_width = F)
+```
+
+At age 28 the states are most evenly distributed. As a result the enropy value is highest at this age. 
+
+
+
+Finally, the `seqstatd` function can also be used to figure out how many cases never spent any time in specific states.
+
+```{r, eval=FALSE, echo=TRUE}
+as_tibble(seqistatd(partner.month.seq)) %>%
+  mutate_all(~case_when(. == 0 ~ 1,
+                        TRUE ~ 0)) %>%
+  summarise_all(~(weighted.mean(., w = family$weight40)))  
+```
+
+```{r, echo=FALSE}
+as_tibble(seqistatd(partner.month.seq)) %>%
+  mutate_all(~case_when(. == 0 ~ 1,
+                        TRUE ~ 0)) %>%
+  summarise_all(~(weighted.mean(., w = family$weight40))) %>%
+  kable(digits = 2) %>%
+  kable_styling(bootstrap_options = 
+                  c("responsive", "hover", "condensed"),
+                full_width = F)
+
+```
+
+According to the monthly partnership data 25% of the sample did not spend a single month in wedlock. Another 12% never were observed outside some sort of partnership. 
+
+
+## Modal and representative sequences
+
+The distribution above  indicates the dominance of the partnership states "Single" and "Married" at the beginning and ending of the sequence. This is also reflected in the sequence of modal states. The following commands extract the modal sequences using sequence data with monthly and yearly granularity (see chapter 2.2).
+
+```{r, echo=TRUE, eval=FALSE}
+modal.month.seq <- seqdef(as_tibble(seqmodst(partner.month.seq)))
+print(modal.month,seq, format = "SPS")
+
+modal.year.seq <- seqdef(as_tibble(seqmodst(partner.year.seq)))
+print(modal.year.seq, format = "SPS")
+
+```
+
+```{r, echo=FALSE, results='hide'}
+modal.month.seq <- seqdef(as_tibble(seqmodst(partner.month.seq)))
+mm <- print(modal.month.seq, format = "SPS")
+
+modal.year.seq <- seqdef(as_tibble(seqmodst(partner.year.seq)))
+my <- print(modal.year.seq, format = "SPS")
+
+modalseqs <- tibble(Granularity = c("Monthly data", "Yearly data"), 
+                    'Modal Sequence' = c(mm, my))
+```
+
+```{r, echo=FALSE}
+kable(modalseqs) %>%
+  kable_styling(bootstrap_options = 
+                  c("responsive", "hover", "condensed"),
+                full_width = F)
+
+```
+
+Usually the modal sequence is a hypothetical sequence that is not actually observed in the data. In contrast, `seqrep` aims at identifying those  sequences that represent the data best. Note that this approach requires the computation of a distance matrix. The following commands illustrate the identification of representative sequences using yearly sequences (`partner.year.seq`). For details on computing sequence distances (`seqdist`) see Chapter 3.
+
+```{r, echo=TRUE, eval=FALSE}
+partner.year.om <- seqdist(partner.year.seq, 
+                           method="OM", sm="CONSTANT")
+
+partner.year.rep <- seqrep(partner.year.seq, 
+                           diss = partner.year.om, 
+                           criterion="density")
+```
+
+The following command prints the sequences in the more accessible SPS format.
+
+```{r, echo=TRUE, eval=FALSE}
+print(partner.year.seq[attributes(partner.year.rep)$Index,], format = "SPS")
+
+```
+
+Descriptive statistics on the quality of the representative Sequence are stored in `attributes(partner.year.rep)$Statistics`. These can be easily accessed by typing:
+
+```{r, echo=TRUE, eval=FALSE}
+summary(partner.year.rep)
+
+```
+
+The table below presents a set of representative sequences (SPS format) and the corresponding coverage statistics. In addition, it shows how many cases are (more or less) represented by each the extracted sequences (**Table 2-8**):
+
+```{r, echo=FALSE, message=FALSE, results='hide'}
+# Table 2.8 -  Representative sequences ----
+# .... using yearly data
+
+partner.year.rep <- seqrep(partner.year.seq, 
+                           diss=partner.year.om, 
+                           criterion="density")
+
+regular.rows <- nrow(partner.year.rep)
+
+var1 <- c(print(partner.year.seq[attributes(partner.year.rep)$Index,], 
+                format = "SPS"), "Total Coverage")
+var2 <- attributes(partner.year.rep)$Statistics[,4]
+var3 <- attributes(partner.year.rep)$Statistics[,2]
+
+
+partner.year.rep <- tibble(Sequence = var1, 
+                           Coverage = round(var2,1),
+                           Assigned = round(var3,1)) %>%
+  mutate(Coverage = case_when(Coverage == max(Coverage) ~ (Coverage*-1),
+                              TRUE ~ Coverage)) %>%
+  arrange(desc(Coverage)) %>%
+  mutate(Coverage = case_when(Coverage == min(Coverage) ~ (Coverage*-1),
+                              TRUE ~ Coverage)) 
+```
+
+```{r, echo=FALSE}
+kable(partner.year.rep, format = "html", escape = F,
+      col.names = c("Sequence", "Coverage<br>(in %)", "Assigned<br>(in %)")) %>%
+  column_spec(1, bold = c(rep(FALSE,regular.rows), TRUE)) %>% 
+  kable_styling(bootstrap_options = c("responsive", "hover", "condensed"),
+                full_width = F)
+      
+```
+
+Finally, we conclude this chapter by identifying the medoid sequences of women and men using `TraMineRextras`'s `seqrep.grp`-function which allows to extract representative sequences for different subgroups.
+
+
+```{r, echo=TRUE, eval=FALSE}
+partner.year.sex.rep <- seqrep.grp(partner.year.seq,
+                                   group = family$sex,
+                                   diss=partner.year.om,
+                                   criterion="dist",
+                                   nrep=1,
+                                   ret = "both")
+
+# Medoid & coverage - men (family$sex = 0 = male)
+print(partner.year.sex.rep[[1]]$` 0`, format = "SPS")
+summary(partner.year.sex.rep[[1]]$` 0`)
+
+# Medoid & coverage - women (family$sex = 1 = female)
+print(partner.year.sex.rep[[1]]$` 1`, format = "SPS")
+summary(partner.year.sex.rep[[1]]$` 1`)
+```
+
+```{r, echo=FALSE, message=FALSE, results='hide'}
+# extracting medoid sequences by sex using yearly data
+partner.year.sex.rep <- seqrep.grp(partner.year.seq,
+                                   group = family$sex,
+                                   diss=partner.year.om,
+                                   criterion="dist",
+                                   nrep=1,
+                                   ret = "both")
+
+men <- partner.year.seq[family$sex==0,]
+men.rep <- men[attributes(partner.year.sex.rep[[1]]$` 0`)$Index,]
+men.cov <- attributes(partner.year.sex.rep[[1]]$` 0`)$Statistics[1,4]
+
+women <- partner.year.seq[family$sex==1,]
+women.rep <- women[attributes(partner.year.sex.rep[[1]]$` 1`)$Index,]
+women.cov <- attributes(partner.year.sex.rep[[1]]$` 1`)$Statistics[1,4]
+
+
+partner.year.sex.rep <- tibble(sex = c("Female", "Male"),
+                               Sequence = c(print(women.rep, 
+                                                  format = "SPS"),
+                                            print(men.rep, 
+                                                  format = "SPS")),
+                               Coverage = c(round(women.cov,2),
+                                            round(men.cov,2)))
+```
+
+```{r, echo=FALSE, message=FALSE}
+kable(partner.year.sex.rep, format = "html", escape = F,
+      col.names = c("Sex", "Sequence", "Coverage<br>(in %)")) %>%
+  kable_styling(bootstrap_options = c("responsive", "hover", "condensed"),
+                full_width = F)  
+
+```
+
+

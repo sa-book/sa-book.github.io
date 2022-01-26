@@ -1,0 +1,69 @@
+---
+title: "Sequence Analysis"
+description: |
+    Companion website for the little green book
+site: distill::distill_website
+author:
+  - name: Marcel Raab
+    url: https://marcelraab.de/
+    affiliation: State Institute for Family Research at the University of Bamberg (ifb)
+    affiliation_url: https://www.ifb.bayern.de/english/institute/index.php
+    orcid_id: 0000-0002-3097-1591
+  - name: Emanuela Struffolino
+    url: https://emanuela-struffolino.com/
+    affiliation: University of Milan, Department of Social and Political Sciences
+    affiliation_url: https://www.unimi.it/en/ugov/ou-structure/department-social-and-political-sciences
+    orcid_id: 0000-0002-6635-8748
+
+date: "`r Sys.Date()`"
+bibliography: Companion.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(icons)
+```
+
+This site is intended to enhance your use of the book **Sequence Analysis** by Marcel Raab & Emanuela Struffolino. On this webpage we provide accompanying material illustrating how to conduct sequence analysis in `r icon_style(fontawesome("r-project"), fill = "#384CB7")` using *TraMineR*, *TraMineRExtras* [@gabadinho2011] ^[also see <http://traminer.unige.ch>] , and *WeightedCluster* [@studer2013].
+
+
+Please note that most of the materials on this site are designed to be used in tandem with the book (which we strongly recommend to buy once it has been published).
+
+```{=html}
+<style>
+div.red { background-color:#CD0000; border-radius: 5px; padding: 20px;}
+</style>
+```
+::: red
+**Note:**<br> This site is under construction! We kindly ask you to cite us anyway, if you use the material shared on this page.
+:::
+
+
+
+## Citation {.appendix}
+
+For attribution, please cite this work as:
+
+<!-- <style>
+div.green { background-color:#8DCEA4; border-radius: 3px; padding: 10px;}
+</style>
+<div class = "green">
+**Raab, M. & Struffolino, E. (2022). Sequence Analysis. Thousand Oaks, CA: Sage.**
+</div> -->
+
+<pre class="citation-appendix short">
+Raab, M. & Struffolino, E. (2022). Sequence Analysis. Thousand Oaks, CA: Sage.
+</pre>
+
+<p>BibTeX citation</p>
+<pre class="citation-appendix long">@book{raabstruffolino2022,
+	author = {Raab, Marcel and Struffolino, Emanuela},
+	year = {2022},
+	title = {Sequence Analysis},
+	series = {Quantitative Applications in the Social Sciences},
+	number = {190},
+	publisher = {SAGE},
+	address = {Thousand Oaks, CA},
+	isbn = {X-Y-Z}
+}</pre>
+

@@ -1,0 +1,61 @@
+---
+title: "Chapter 02"
+description: |
+  Defining, Describing, and Visualizing Sequences
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(glue)
+library(gt)
+library(gtExtras)
+```
+
+| TOC                      | Content (click for jumping to examples)  |
+|-------------------------------------|-------------------------------|
+| 2.1  Basic Concepts and Terminology | [Sequence data formats](rChapter2-1.html) |
+| 2.2  Defining Sequences             | [Sequence length and granularity](rChapter2-2.html)     |
+| 2.3	Description of Sequence Data I  | [Basic Description](rChapter2-3.html) |
+| 2.4 Visualization of Sequence Data  | [Color palette: Grayscale Edition](rChapter2-4_grayscale.html)      |
+|                                     | [Color palette: Colored Edition](rChapter2-4_color.html)  |
+|                                     | [Data summarization graphs (chapter 2.4.1)](rChapter2-4-1.html)  |
+|                                     | [Data representation graphs (chapter 2.4.2)](rChapter2-4-2.html)  |
+| 2.5 Description of Sequence Data II | [Unidimensional and composite indices](rChapter2-5.html)    | 
+
+
+
+```{r}
+# tibble(TOC = c("2.1 &nbsp; Basic Concepts and Terminology",
+#                "2.2 &nbsp; Defining Sequences",
+#                "2.3 &nbsp; Description of Sequence Data I",
+#                "2.4 &nbsp; Visualization of Sequence Data",
+#                " ",
+#                " ",
+#                " ",
+#                "2.5 &nbsp; Description of Sequence Data II"),
+#        link = c("[Sequence data formats](rChapter2-1.html)",
+#                 "[Sequence length and granularity](rChapter2-2.html)",
+#                 "[Basic Description](rChapter2-3.html)",
+#                 "[Color palette: Grayscale Edition](rChapter2-4_grayscale.html)",
+#                 "[Color palette: Colored Edition](rChapter2-4_color.html)",
+#                 "[Data summarization graphs (chapter 2.4.1)](rChapter2-4-1.html)",
+#                 "[Data representation graphs (chapter 2.4.2)](rChapter2-4-2.html)",
+#                 "[Unidimensional and composite indices](rChapter2-5.html)")) %>%
+#   mutate(TOC = map(TOC, gt::md),
+#          link = map(link, gt::md)) %>% 
+#   rename(`Content (click for jumping to examples)` = link) %>% 
+#   gt() %>%
+#   gtExtras::gt_theme_espn() %>% 
+#   cols_align(align = "left")
+```
+
+
+Chapter 2 introduces the basic concepts and discusses how to define sequence data. The corresponding material provided on this site shows *TraMineR's* capabilites of processing different data formats. We further illustrate 
+how the alphabet and the granularity of sequences can be easily changed with *TraMineR's* built-in helper functions.
+
+With visualization being one of the key features of sequence analysis, we provide extensive material on optimizing the quality of figures by choosing appropriate color palettes. Although we highly recommend using colors for visualizing sequences, the associated print-costs are often prohibitively high (for instance, in the case of our book). We therefore provide some material illustrating how to produce acceptable results by using a grayscale color palette and by adding texture.
+
+We further show useful commands for a comprehensive description of the sequence data. Finally, we turn to more advanced composite measures of sequence complexity. These indices are not only interesting in themselves, but also because they can be used either as independent or as dependent variable in subsequent regression analyses. 

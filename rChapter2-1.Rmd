@@ -1,0 +1,129 @@
+---
+title: "Defining & printing sequence objects"
+description: |
+  Chapter 2.1 Basic Concepts and Terminology
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    highlight: haddock
+    highlight_downlit: true
+---
+
+```{r setup, include=FALSE}
+
+# Load and download (if necessary) required packages ----
+
+# Save package names as a vector of strings
+pkgs <- c("colorspace", "glue", "here", "Hmisc", "htmltools", "kableExtra", 
+          "knitr", "patchwork", "pdftools", "RColorBrewer", "reshape2", 
+          "sjPlot", "tidyverse", "TraMineR", "TraMineRextras", "xaringanExtra") 
+
+# Options that might help to prevent some errors in the installation process
+options(install.packages.check.source = "no")
+options(install.packages.compile.from.source = "never")
+
+## Install uninstalled packages
+lapply(pkgs[!(pkgs %in% installed.packages())], 
+       install.packages, repos = getOption("repos")["CRAN"])
+
+## Load all packages to library and adjust options
+lapply(pkgs, library, character.only = TRUE)
+
+
+
+knitr::opts_chunk$set(eval=TRUE, echo=TRUE)
+
+options("kableExtra.html.bsTable" = T)
+
+# load data for Chapter 2
+load(here("data", "Chapter_02.RData"))
+
+```
+
+```{r, xaringanExtra-clipboard, echo=FALSE}
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clone fa-2x\" style=\"color: #301e64\"></i>",
+    success_text = "<i class=\"fa fa-check fa-2x\" style=\"color: #90BE6D\"></i>",
+    error_text = "<i class=\"fa fa-times fa-2x\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
+In chapter 2.1, we introduce different notations of sequence data using example data on family biographies from age 18 to 40. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see [here](https://www.pairfam.de/en/).
+
+## Defining a state sequence object
+
+We generated the example dataset in Stata. Next to the sequence variables it comprises a few additional variables which will be used to analyze the sequences in later chapters.
+
+We import the data to R using the `read_dta` function from the [`haven`](https://haven.tidyverse.org/index.html) package and inspect the names of the imported variables.
+
+```{r, eval = FALSE}
+# import data
+family <- read_dta("PartnerBirthbio.dta")
+```
+
+<div class='pre-scrolly'>
+```{r, layout="l-body-outset"}
+# view variable names
+names(family)
+```
+</div>
+
+\  
+
+The sequence variables begin with the prefix `state`. The data comprise 264 sequence variables per person (wide data format). These variables include monthly information on family biographies covering a period of 22 years.
+Haven imports them as numeric variables with labels attached to them (`class = "haven_labelled"`). With the follwing commands we can take a look at the labels.
+
+```{r}
+str(family$state1) 
+attributes(family$state1)$labels
+```
+
+The first examples in the book are based on sequences with a reduced alphabet only distinguishing partnership states. The following code generates a data set (`seqvars.partner`) containing the recoded sequence variables using [`dplyr`](https://dplyr.tidyverse.org/index.html).
+
+```{r, eval=FALSE}
+# extracting and recoding the sequence variables (which all start with state)
+# recode to reduced state space capturing partnership status only 
+seqvars.partner <- family %>%
+  select(starts_with("state")) %>%
+  mutate_all(~(case_when(
+    . < 3 ~ 1,            # Single
+    . %in% c(3,4) ~ 2,    # LAT
+    . %in% c(5,6) ~ 3,    # Cohabiting
+    . > 6 ~ 4,)))         # Married
+```
+
+Then we define two vectors storing the long and short labels for the states in the newly defined alphabet. Once that is done, we can define the data as a state sequence object. Most [`TraMineR`](http://traminer.unige.ch/) functions for analyzing sequences require the data to have this format.
+
+```{r}
+
+shortlab.partner <- c("S", "LAT", "COH", "MAR")
+longlab.partner <-  c("Single", "LAT", "Cohabiting", "Married")
+
+# create state sequence object
+partner.month.seq <- seqdef(seqvars.partner,
+                            labels = longlab.partner,
+                            states = shortlab.partner,
+                            weights = family$weight40)
+
+```
+
+Note that the `seqdef` function can include many more optional arguments. Some of these arguments - most importantly `cpal` - affect the appearance of state sequence plots rendered with `seqplot` or `seqplot.rf`. We cover the definition of color palettes on two separate pages ([definition of color palettes](rChapter2-4_color.html); [definition of grayscale palettes](rChapter2-4_grayscale.html))  
+
+\  
+
+## Sequence data notation 
+
+In chapter 2.1, we introduce different notations for printing sequences. The following commands print the sequences in *STS*, *DSS*, and *SPS* format.
+
+
+```{r}
+print(partner.month.seq[8, ], format = "STS")
+seqdss(partner.month.seq[8, ])
+print(partner.month.seq[8, ], format = "SPS")
+```
+
