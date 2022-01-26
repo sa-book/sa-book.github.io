@@ -24,17 +24,26 @@ knitr::opts_chunk$set(echo = FALSE)
 library(icons)
 ```
 
-This site is intended to enhance your use of the book **Sequence Analysis** by Marcel Raab & Emanuela Struffolino. On this webpage we provide accompanying material illustrating how to conduct sequence analysis in `r icon_style(fontawesome("r-project"), fill = "#384CB7")` using *TraMineR*, *TraMineRExtras* [@gabadinho2011] ^[also see <http://traminer.unige.ch>] , and *WeightedCluster* [@studer2013].
+::: {.floatting}
 
+```{r out.width='25%', out.extra='style="float:right; padding:10px"'}
+knitr::include_graphics("images/QASS.png")
+```
+
+This site is intended to enhance your use of the book **Sequence Analysis** by Marcel Raab & Emanuela Struffolino. On this webpage we provide accompanying material illustrating how to conduct sequence analysis in `r icon_style(fontawesome("r-project"), fill = "#384CB7")` using *TraMineR*, *TraMineRExtras* [@gabadinho2011] ^[also see <http://traminer.unige.ch>] , and *WeightedCluster* [@studer2013].
 
 Please note that most of the materials on this site are designed to be used in tandem with the book (which we strongly recommend to buy once it has been published).
 
+:::
+
+
 ```{=html}
 <style>
-div.red { background-color:#CD0000; border-radius: 5px; padding: 20px;}
+div.green { background-color:#8DCEA4; border-radius: 5px; padding: 20px;}
 </style>
 ```
-::: red
+
+::: green
 **Note:**<br> This site is under construction! We kindly ask you to cite us anyway, if you use the material shared on this page.
 :::
 
@@ -64,6 +73,6 @@ Raab, M. & Struffolino, E. (2022). Sequence Analysis. Thousand Oaks, CA: Sage.
 	number = {190},
 	publisher = {SAGE},
 	address = {Thousand Oaks, CA},
-	isbn = {X-Y-Z}
+	isbn = {9781071801888}
 }</pre>
 

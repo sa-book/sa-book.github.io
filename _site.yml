@@ -4,6 +4,7 @@ theme: theme.css
 description: |
   Sequence Analysis
 output_dir: "docs"
+favicon: images/QASS.png
 navbar:
   right:
     - text: "Home"
