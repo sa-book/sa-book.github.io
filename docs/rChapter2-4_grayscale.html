@@ -85,62 +85,33 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
-<style>
-  div.csl-bib-body { }
-  div.csl-entry {
-    clear: both;
-    }
-  .hanging div.csl-entry {
-    margin-left:2em;
-    text-indent:-2em;
-  }
-  div.csl-left-margin {
-    min-width:2em;
-    float:left;
-  }
-  div.csl-right-inline {
-    margin-left:2em;
-    padding-left:1em;
-  }
-  div.csl-indent {
-    margin-left: 2em;
-  }
-</style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Sequence Analysis - Companion Site: Sequence Analysis</title>
+  <title>Sequence Analysis - Companion Site: Visualizing sequences</title>
 
-  <meta property="description" itemprop="description" content="Companion website for the little green book"/>
+  <meta property="description" itemprop="description" content="... without using colors - The grayscale edition"/>
 
   <link rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/"/>
   <link rel="icon" type="image/png" href="images/QASS.png"/>
 
-  <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2022-01-27"/>
-  <meta property="article:created" itemprop="dateCreated" content="2022-01-27"/>
-  <meta name="article:author" content="Marcel Raab"/>
-  <meta name="article:author" content="Emanuela Struffolino"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Sequence Analysis - Companion Site: Sequence Analysis"/>
+  <meta property="og:title" content="Sequence Analysis - Companion Site: Visualizing sequences"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Companion website for the little green book"/>
+  <meta property="og:description" content="... without using colors - The grayscale edition"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Sequence Analysis - Companion Site"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Sequence Analysis - Companion Site: Sequence Analysis"/>
-  <meta property="twitter:description" content="Companion website for the little green book"/>
+  <meta property="twitter:title" content="Sequence Analysis - Companion Site: Visualizing sequences"/>
+  <meta property="twitter:description" content="... without using colors - The grayscale edition"/>
 
   <!--/radix_placeholder_meta_tags-->
-  
-  <meta name="citation_reference" content="citation_title=Analyzing and Visualizing State Sequences in R with TraMineR;citation_publication_date=2011;citation_volume=40;citation_doi=10.18637/jss.v040.i04;citation_issn=1548-7660;citation_author=Alexis Gabadinho;citation_author=Gilbert Ritschard;citation_author=Nicolas S. Müller;citation_author=Matthias Studer"/>
-  <meta name="citation_reference" content="citation_title=WeightedCluster Library Manual: A practical guide to creating typologies of trajectories in the social sciences with R;citation_publication_date=2013;citation_doi=10.12682/LIVES.2296-1658.2013.24;citation_author=Matthias Studer"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","site","author","date","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Sequence Analysis"]},{"type":"character","attributes":{},"value":["Companion website for the little green book\n"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url","orcid_id"]}},"value":[{"type":"character","attributes":{},"value":["Marcel Raab"]},{"type":"character","attributes":{},"value":["https://marcelraab.de/"]},{"type":"character","attributes":{},"value":["State Institute for Family Research at the University of Bamberg (ifb)"]},{"type":"character","attributes":{},"value":["https://www.ifb.bayern.de/english/institute/index.php"]},{"type":"character","attributes":{},"value":["0000-0002-3097-1591"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url","orcid_id"]}},"value":[{"type":"character","attributes":{},"value":["Emanuela Struffolino"]},{"type":"character","attributes":{},"value":["https://emanuela-struffolino.com/"]},{"type":"character","attributes":{},"value":["University of Milan, Department of Social and Political Sciences"]},{"type":"character","attributes":{},"value":["https://www.unimi.it/en/ugov/ou-structure/department-social-and-political-sciences"]},{"type":"character","attributes":{},"value":["0000-0002-6635-8748"]}]}]},{"type":"character","attributes":{},"value":["2022-01-27"]},{"type":"character","attributes":{},"value":["Companion.bib"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Visualizing sequences"]},{"type":"character","attributes":{},"value":["... without using colors - The grayscale edition\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2416,6 +2387,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   }</style>
   <!--/radix_placeholder_distill-->
   <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+  <link href="site_libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+  <script src="site_libs/bsTable-3.3.7/bootstrapTable.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2435,7 +2410,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Sequence Analysis","description":"Companion website for the little green book","authors":[{"author":"Marcel Raab","authorURL":"https://marcelraab.de/","affiliation":"State Institute for Family Research at the University of Bamberg (ifb)","affiliationURL":"https://www.ifb.bayern.de/english/institute/index.php","orcidID":"0000-0002-3097-1591"},{"author":"Emanuela Struffolino","authorURL":"https://emanuela-struffolino.com/","affiliation":"University of Milan, Department of Social and Political Sciences","affiliationURL":"https://www.unimi.it/en/ugov/ou-structure/department-social-and-political-sciences","orcidID":"0000-0002-6635-8748"}],"publishedDate":"2022-01-27T00:00:00.000+01:00","citationText":"Raab & Struffolino, 2022"}
+{"title":"Visualizing sequences","description":"... without using colors - The grayscale edition","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2471,85 +2446,437 @@ Material for R
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Sequence Analysis</h1>
+<h1>Visualizing sequences</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Companion website for the little green book</p></p>
+<p><p>… without using colors - The grayscale edition</p></p>
 </div>
 
-<div class="d-byline">
-  Marcel Raab <a href="https://marcelraab.de/" class="uri">https://marcelraab.de/</a> (State Institute for Family Research at the University of Bamberg (ifb))<a href="https://www.ifb.bayern.de/english/institute/index.php" class="uri">https://www.ifb.bayern.de/english/institute/index.php</a>
-  
-,   Emanuela Struffolino <a href="https://emanuela-struffolino.com/" class="uri">https://emanuela-struffolino.com/</a> (University of Milan, Department of Social and Political Sciences)<a href="https://www.unimi.it/en/ugov/ou-structure/department-social-and-political-sciences" class="uri">https://www.unimi.it/en/ugov/ou-structure/department-social-and-political-sciences</a>
-  
-<br/>2022-01-27
-</div>
 
 <div class="d-article">
-<div class="floatting">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#defining-the-color-palette-shading-lines">Defining the “color” palette &amp; shading lines</a></li>
+<li><a href="#legend-link">Adjusting the legend</a></li>
+<li><a href="#sequence-index-plot-of-representative-sequences">Sequence index plot <br/>of representative sequences</a></li>
+<li><a href="#state-distribution-plots-using-yearly-monthly-sequence-data">State distribution plots using <br/>yearly &amp; monthly sequence data</a></li>
+</ul>
+</nav>
+</div>
+<p>Although the full potential of visualizing sequences can only be reached by using colored figures, some restrictions - particularly hight cost of colored printing - might require using grayscale figures and shaded lines. This page illustrates how to produce <em>acceptable</em> figures without using colors visualizing sequences with an alphabet of 9 states. Based on our own experience we consider an alphabet of size 12 as the upper limit when the usage of colors is not an option.</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><a href="https://us.sagepub.com/en-us/nam/sequence-analysis/book272086" target="_blank"><img src="images/QASS.png" width="25%" style="float:right; padding:10px" /></a></p>
+<table class="table table-responsive table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+State
+</th>
+<th style="text-align:left;">
+Short Label
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Single, no child
+</td>
+<td style="text-align:left;">
+S
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Single, child(ren)
+</td>
+<td style="text-align:left;">
+Sc
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LAT, no child
+</td>
+<td style="text-align:left;">
+LAT
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LAT, child(ren)
+</td>
+<td style="text-align:left;">
+LATc
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cohabiting, no child
+</td>
+<td style="text-align:left;">
+COH
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cohabiting, child(ren)
+</td>
+<td style="text-align:left;">
+COHc
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Married, no child
+</td>
+<td style="text-align:left;">
+MAR
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Married, 1 child
+</td>
+<td style="text-align:left;">
+MARc1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Married, 2+ children
+</td>
+<td style="text-align:left;">
+MARc2+
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p>This site is intended to enhance your use of the book <strong>Sequence Analysis</strong> by Marcel Raab &amp; Emanuela Struffolino. On this webpage we provide accompanying material illustrating how to conduct sequence analysis in <svg viewBox="0 0 581 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#384CB7;" xmlns="http://www.w3.org/2000/svg"> <path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> using <em>TraMineR</em>, <em>TraMineRExtras</em> <span class="citation" data-cites="gabadinho2011">(<a href="#ref-gabadinho2011" role="doc-biblioref">Gabadinho et al. 2011</a>)</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> , and <em>WeightedCluster</em> <span class="citation" data-cites="studer2013">(<a href="#ref-studer2013" role="doc-biblioref">Studer 2013</a>)</span>.</p>
-<p>Please note that most of the materials on this site are designed to be used in tandem with the book published by SAGE (<svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"/></svg> pre-order from <a href="https://us.sagepub.com/en-us/nam/sequence-analysis/book272086">SAGE</a> or <a href="https://www.amazon.com/dp/B09MJCBKC3/ref=cm_sw_em_r_mt_dp_YDSYM9W43ZEDWMZK27PV">Amazon</a>).</p>
+<h2 id="defining-the-color-palette-shading-lines">Defining the “color” palette &amp; shading lines</h2>
+<p>We use R’s inbuilt <code>gray.colors</code> function to choose grays approriate for our purpose. We apply the following strategy: (1) choose a “color” for each partnership state; (2) add shading lines for fertility information.</p>
+<p>We use a palette of nine grays to choose three different grays to represent the partnership states “LAT”, “Cohabitation”, and “Marriage”. The single status will be depicted by White (HEX = “#FFFFFF”).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/barplot.html'>barplot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>9</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/gray.colors.html'>gray.colors</a></span><span class='op'>(</span><span class='fl'>9</span><span class='op'>)</span>, axes <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</code></pre>
 </div>
-<aside>
-<p><br />
-</p>
-<blockquote>
-<p>“This book provides a comprehensive and updated introduction to sequence analysis, I highly recommend it for anyone who wants to learn the topic systematically.”</p>
-<footer>
-— Tim F. Liao (University of Illinois at Urbana-Champaign)
-</footer>
-</blockquote>
-<p><br />
-</p>
-</aside>
-<style>
-div.green { background-color:#8DCEA4; border-radius: 5px; padding: 20px;}
-</style>
-<div class="green">
-<p><strong>Note:</strong><br> This site is under construction! We kindly ask you to cite us anyway, if you use the material shared on this page.</p>
 </div>
-<h2 class="appendix" id="citation">Citation</h2>
-<p>For attribution, please cite this work as:</p>
-<!-- <style>
-div.green { background-color:#8DCEA4; border-radius: 3px; padding: 10px;}
-</style>
-<div class = "green">
-**Raab, M. & Struffolino, E. (2022). Sequence Analysis. Thousand Oaks, CA: Sage.**
-</div> -->
-<pre class="citation-appendix short">
-Raab, M. & Struffolino, E. (2022). Sequence Analysis. Thousand Oaks, CA: Sage.
-</pre>
-<p>
-BibTeX citation
-</p>
-<pre class="citation-appendix long">@book{raabstruffolino2022,
-    author = {Raab, Marcel and Struffolino, Emanuela},
-    year = {2022},
-    title = {Sequence Analysis},
-    series = {Quantitative Applications in the Social Sciences},
-    number = {190},
-    publisher = {SAGE},
-    address = {Thousand Oaks, CA},
-    isbn = {9781071801888}
-}</pre>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="rChapter2-4_grayscale_files/figure-html5/unnamed-chunk-3-1.png" width="576" /></p>
+</div>
+<p>We added labels to the figure above to illustrate which grays constitute our palette. With the following code we specify and illustrate our final palette.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>colgrey.partner.child</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"#FFFFFF"</span>,<span class='fl'>2</span><span class='op'>)</span>,
+                           <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/grDevices/gray.colors.html'>gray.colors</a></span><span class='op'>(</span><span class='fl'>9</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>8</span><span class='op'>]</span>,<span class='fl'>2</span><span class='op'>)</span>,
+                           <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/grDevices/gray.colors.html'>gray.colors</a></span><span class='op'>(</span><span class='fl'>9</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>5</span><span class='op'>]</span>,<span class='fl'>2</span><span class='op'>)</span>, 
+                           <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/grDevices/gray.colors.html'>gray.colors</a></span><span class='op'>(</span><span class='fl'>9</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>,<span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
+                           
+<span class='fu'><a href='https://rdrr.io/r/graphics/barplot.html'>barplot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>9</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='va'>colgrey.partner.child</span>, axes <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>                           
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="rChapter2-4_grayscale_files/figure-html5/unnamed-chunk-5-1.png" width="576" /></p>
+</div>
+<p>According to the definition of our alphabet we need two single states, two LAT states, two cohabitation states, and three marriage states. Adding shading lines allows for distinguishing different fertility levels. Shading lines are added by specifying vectors for <code>density</code> and <code>angle</code>. We use different angles (i.e., 0° and 45°) to separate the two parity states within marriage.</p>
+<p>Note that we have to create two overlapping graph objects by typing <code>par(new=TRUE)</code>. The first plot creates bars with the desired colors, the second one adds black shading lines.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/barplot.html'>barplot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>9</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='va'>colgrey.partner.child</span>, axes <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>                           
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>new<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/barplot.html'>barplot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>9</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='st'>"black"</span>, axes <span class='op'>=</span> <span class='cn'>FALSE</span>,
+        density<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>20</span><span class='op'>)</span>, 
+        angle<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span> 
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="rChapter2-4_grayscale_files/figure-html5/unnamed-chunk-7-1.png" width="576" /></p>
+</div>
+<h2 id="legend-link">Adjusting the legend</h2>
+<p>Based on the section above we draw a legend with the following standard code:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='cn'>NULL</span> ,xaxt<span class='op'>=</span><span class='st'>'n'</span>,yaxt<span class='op'>=</span><span class='st'>'n'</span>,bty<span class='op'>=</span><span class='st'>'n'</span>,ylab<span class='op'>=</span><span class='st'>''</span>,xlab<span class='op'>=</span><span class='st'>''</span>, xlim<span class='op'>=</span><span class='fl'>0</span><span class='op'>:</span><span class='fl'>1</span>, ylim<span class='op'>=</span><span class='fl'>0</span><span class='op'>:</span><span class='fl'>1</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/legend.html'>legend</a></span><span class='op'>(</span><span class='st'>"center"</span>, legend <span class='op'>=</span> <span class='va'>longlab.partner.child</span>,
+       ncol<span class='op'>=</span><span class='fl'>3</span>, fill<span class='op'>=</span><span class='va'>colgrey.partner.child</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>new<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'>legend_large_box</span><span class='op'>(</span><span class='st'>"center"</span>, legend <span class='op'>=</span> <span class='va'>longlab.partner.child</span>,
+                 ncol<span class='op'>=</span><span class='fl'>3</span>, bg <span class='op'>=</span> <span class='st'>"transparent"</span>,
+                 density<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>20</span><span class='op'>)</span>, 
+                 angle<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body-outset">
+<p><img src="rChapter2-4_grayscale_files/figure-html5/unnamed-chunk-9-1.png" width="768" /></p>
+</div>
+<p>Although the legend looks OK at first glance, it has two crucial drawbacks: (1) The grayscale boxes (with shading lines) are too small to be distinguished easily; (2) two different partnership states are appearing in the first two columns of the legend. Both issues call for some extra coding because they cannot be solved with the options available in the standard version of the legend function.</p>
+<p>Addressing the first issue we draw on a tweaked version of the legend suggested by <a href="http://ms.mcmaster.ca/~bolker/">Ben Bolker</a> and <a href="https://www.pauljhurtado.com/">Paul Hurtado</a> in a thread at <a href="https://stackoverflow.com/questions/13644149/increasing-the-size-of-the-coloured-squares-on-histogram-legends-in-r">Stack Overflow</a>.</p>
+<p>Here you can dowload the tweaked version of the legend function: <svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"></path></svg> <a href="source/legend_large_box.R">legend_large_box.R</a>.</p>
+<p>We include the function by sourcing the file within our R-script by typing:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/source.html'>source</a></span><span class='op'>(</span><span class='st'>"legend_large_box.R"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Next to changing the size of the colored boxes we want to re-arrange the labels of the legend. The new legend should have four columns each representing one partnership state. Each of the first three columns (“Single”, “LAT”, “Cohabitation”) has two entries (“childless”, “with child(ren)”). The last column (“Marriage”) has three entries (“no child”, “one child”, “2 or more children”).</p>
+<p>Typing <code>ncol=4</code> when specifying the legend would not do the trick. It would produce a four columns legend with three entries in the first three columns and zero entries in the last column.</p>
+<p>To obtain the desired result we have to add empty cells to the legend and adjust our “color” vector accordingly. This is accomplished by the following code:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Adding empty cells at the right positions</span>
+
+<span class='co'># add empty labels below Single, LAT, and Cohabitation</span>
+<span class='va'>longlab.partner.child2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/append.html'>append</a></span><span class='op'>(</span><span class='va'>longlab.partner.child</span>, <span class='st'>""</span>, after<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>  
+<span class='va'>longlab.partner.child2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/append.html'>append</a></span><span class='op'>(</span><span class='va'>longlab.partner.child2</span>, <span class='st'>""</span>, after<span class='op'>=</span><span class='fl'>5</span><span class='op'>)</span> 
+<span class='va'>longlab.partner.child2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/append.html'>append</a></span><span class='op'>(</span><span class='va'>longlab.partner.child2</span>, <span class='st'>""</span>, after<span class='op'>=</span><span class='fl'>8</span><span class='op'>)</span> 
+
+<span class='co'># add white colored cells below Single, LAT, and Cohabitation</span>
+<span class='va'>colgrey.partner.child2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/append.html'>append</a></span><span class='op'>(</span><span class='va'>colgrey.partner.child</span>,<span class='st'>"#FFFFFF"</span>,after<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>colgrey.partner.child2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/append.html'>append</a></span><span class='op'>(</span><span class='va'>colgrey.partner.child2</span>,<span class='st'>"#FFFFFF"</span>,after<span class='op'>=</span><span class='fl'>5</span><span class='op'>)</span>
+<span class='va'>colgrey.partner.child2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/append.html'>append</a></span><span class='op'>(</span><span class='va'>colgrey.partner.child2</span>,<span class='st'>"#FFFFFF"</span>,after<span class='op'>=</span><span class='fl'>8</span><span class='op'>)</span>
+
+<span class='co'># define border colors for the boxes in legend:</span>
+  <span class='co'># regular color = black</span>
+  <span class='co'># color for empty cells = white</span>
+<span class='va'>bordercol.partner.child</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"black"</span>,<span class='st'>"black"</span>,<span class='st'>"White"</span><span class='op'>)</span>,<span class='fl'>3</span><span class='op'>)</span>,
+                             <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"black"</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Finally, we can draw the tweaked legend box. Again, we have to create two overlapping plot objects to get both the desired “color” palette and the black shading lines.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='cn'>NULL</span> ,xaxt<span class='op'>=</span><span class='st'>'n'</span>,yaxt<span class='op'>=</span><span class='st'>'n'</span>,bty<span class='op'>=</span><span class='st'>'n'</span>,ylab<span class='op'>=</span><span class='st'>''</span>,xlab<span class='op'>=</span><span class='st'>''</span>, xlim<span class='op'>=</span><span class='fl'>0</span><span class='op'>:</span><span class='fl'>1</span>, ylim<span class='op'>=</span><span class='fl'>0</span><span class='op'>:</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>legend_large_box</span><span class='op'>(</span><span class='st'>"center"</span>, legend <span class='op'>=</span> <span class='va'>longlab.partner.child2</span>,
+                 ncol<span class='op'>=</span><span class='fl'>4</span>, fill<span class='op'>=</span><span class='va'>colgrey.partner.child2</span>, 
+                 border <span class='op'>=</span> <span class='va'>bordercol.partner.child</span>,
+                 box.cex<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4.5</span>,<span class='fl'>1.5</span><span class='op'>)</span>,  y.intersp<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>new<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'>legend_large_box</span><span class='op'>(</span><span class='st'>"center"</span>, legend <span class='op'>=</span> <span class='va'>longlab.partner.child2</span>,
+                 ncol<span class='op'>=</span><span class='fl'>4</span>, bg <span class='op'>=</span> <span class='st'>"transparent"</span>, 
+                 border <span class='op'>=</span> <span class='va'>bordercol.partner.child</span>,
+                 box.cex<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4.5</span>,<span class='fl'>1.5</span><span class='op'>)</span>,  y.intersp<span class='op'>=</span><span class='fl'>2</span>,
+                 density<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>20</span><span class='op'>)</span>, 
+                 angle<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body-outset">
+<p><img src="rChapter2-4_grayscale_files/figure-html5/unnamed-chunk-13-1.png" width="1152" /></p>
+</div>
+<h2 id="sequence-index-plot-of-representative-sequences">Sequence index plot <br/>of representative sequences</h2>
+<p>In the book we elaborate on the pros and cons of sequence index plots (see Chapter 2.4.2 in the book; the corresponding code can be found <a href="rChapter2-4-2.html">here</a>). Based on this discussion we recommend to abstain from standard index plots of all sequences in large data sets. This is even more true if colors are not available for visualization.</p>
+<p>Accordingly, the subsequent example plot only renders a selection of 10 representative sequences extracted by <code>seqrep</code> using sequences with a yearly granularity.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Identify 10 representative sequences</span>
+<span class='va'>partner.child.year.rep</span> <span class='op'>&lt;-</span> <span class='fu'>seqrep</span><span class='op'>(</span><span class='va'>partner.child.year.seq</span>, 
+                                 diss<span class='op'>=</span><span class='va'>partner.child.year.om</span>, 
+                                 criterion<span class='op'>=</span><span class='st'>"dist"</span>, nrep <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
+
+<span class='co'># Extract sequences to be plotted and save in object</span>
+<span class='va'>plot.seq</span> <span class='op'>&lt;-</span> <span class='va'>partner.child.year.seq</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='va'>partner.child.year.rep</span><span class='op'>)</span><span class='op'>$</span><span class='va'>Index</span>,<span class='op'>]</span>
+
+<span class='co'># extract same sequences from sequence data using reduced alphabet (partnership status only)</span>
+  <span class='co'># this will be used for sorting the index plots by the </span>
+  <span class='co'># first occurrence of the partnership status "MAR" (marriage)</span>
+<span class='va'>plot.aux</span> <span class='op'>&lt;-</span> <span class='va'>partner.year.seq</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='va'>partner.child.year.rep</span><span class='op'>)</span><span class='op'>$</span><span class='va'>Index</span>,<span class='op'>]</span>
+</code></pre>
+</div>
+</div>
+<p>Like in the previous examples two overlapping plots and legends have to be created in order to obtain the “color” palette and the shading lines. Note the differences in the specification of colors, <code>angle</code>, and <code>density</code> between the index plot and the legend. They result from the necessity to define extra empty cells in the legend (see <a href="#legend-link">section above</a>)</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Save final plot as png file</span>
+<span class='fu'><a href='https://rdrr.io/r/grDevices/png.html'>png</a></span><span class='op'>(</span>file <span class='op'>=</span> <span class='fu'>here</span><span class='op'>(</span><span class='st'>"images"</span>, <span class='st'>"rChapter2-4_iplot_grayYearly.png"</span><span class='op'>)</span>, 
+    width <span class='op'>=</span> <span class='fl'>900</span>, height <span class='op'>=</span> <span class='fl'>650</span>, res <span class='op'>=</span> <span class='fl'>90</span><span class='op'>)</span>
+
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>13</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>seqiplot</span><span class='op'>(</span><span class='va'>plot.seq</span>, 
+         border <span class='op'>=</span> <span class='cn'>TRUE</span>, 
+         with.legend <span class='op'>=</span> <span class='cn'>FALSE</span>, 
+         axes <span class='op'>=</span> <span class='cn'>FALSE</span>,
+         yaxis <span class='op'>=</span> <span class='cn'>FALSE</span>, ylab <span class='op'>=</span> <span class='cn'>NA</span>,
+         sortv <span class='op'>=</span> <span class='fu'>seqfpos</span><span class='op'>(</span><span class='va'>plot.aux</span>, <span class='st'>"MAR"</span><span class='op'>)</span>,
+         cpal <span class='op'>=</span> <span class='va'>colgrey.partner.child</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>new<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'>seqiplot</span><span class='op'>(</span><span class='va'>plot.seq</span>,  
+         border <span class='op'>=</span> <span class='cn'>TRUE</span>, 
+         with.legend <span class='op'>=</span> <span class='cn'>FALSE</span>, 
+         axes <span class='op'>=</span> <span class='cn'>FALSE</span>,
+         yaxis <span class='op'>=</span> <span class='cn'>FALSE</span>, ylab <span class='op'>=</span> <span class='cn'>NA</span>,
+         sortv <span class='op'>=</span> <span class='fu'>seqfpos</span><span class='op'>(</span><span class='va'>plot.aux</span>, <span class='st'>"MAR"</span><span class='op'>)</span>,
+         cpal<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"black"</span>,<span class='fl'>9</span><span class='op'>)</span>,
+         density<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>20</span><span class='op'>)</span>, 
+         angle<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/axis.html'>axis</a></span><span class='op'>(</span><span class='fl'>1</span>, at<span class='op'>=</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>22</span>, by <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>, labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>18</span>,<span class='fl'>40</span>, by <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/mtext.html'>mtext</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='st'>"Age"</span>,
+      side <span class='op'>=</span> <span class='fl'>1</span>,<span class='co'>#side 1 = bottom</span>
+      line <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>legend_large_box</span><span class='op'>(</span><span class='st'>"bottom"</span>, legend <span class='op'>=</span> <span class='va'>longlab.partner.child2</span>,
+                 ncol<span class='op'>=</span><span class='fl'>4</span>, fill <span class='op'>=</span><span class='va'>colgrey.partner.child2</span>, 
+                 border <span class='op'>=</span> <span class='va'>bordercol.partner.child</span>,
+                 box.cex<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>,<span class='fl'>1.5</span><span class='op'>)</span>,  y.intersp<span class='op'>=</span><span class='fl'>2</span>,
+                 inset<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='op'>-</span><span class='fl'>.4</span><span class='op'>)</span>, xpd<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>new<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'>legend_large_box</span><span class='op'>(</span><span class='st'>"bottom"</span>, legend <span class='op'>=</span> <span class='va'>longlab.partner.child2</span>,
+                 ncol<span class='op'>=</span><span class='fl'>4</span>, bg <span class='op'>=</span> <span class='st'>"transparent"</span>, 
+                 border <span class='op'>=</span> <span class='va'>bordercol.partner.child</span>,
+                 box.cex<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>,<span class='fl'>1.5</span><span class='op'>)</span>,  y.intersp<span class='op'>=</span><span class='fl'>2</span>,
+                 inset<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='op'>-</span><span class='fl'>.4</span><span class='op'>)</span>, xpd<span class='op'>=</span><span class='cn'>TRUE</span>,
+                 density<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>20</span><span class='op'>)</span>, 
+                 angle<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/grDevices/dev.html'>dev.off</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body-outset">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/include_graphics.html'>include_graphics</a></span><span class='op'>(</span><span class='st'>"images/rChapter2-4_iplot_grayYearly.png"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="images/rChapter2-4_iplot_grayYearly.png" width="450" /></p>
+</div>
+<h2 id="state-distribution-plots-using-yearly-monthly-sequence-data">State distribution plots using <br/>yearly &amp; monthly sequence data</h2>
+<p>Although they are often less insightful than sequence index plots state distribution plots are widely used and often falsely interpreted (see chapter 2-4-2). One reason for their popularity is that they are quite easy to render. Even with our alphabet of size nine and monthly sequence data of length 264 it is possible to produce accessible plots without using colors.</p>
+<p>Below we provide the code to produce the plots with yearly and monthly data. We again have to create overlapping plots and legends to add the shading lines.</p>
+<h3 id="yearly-sequence-data">Yearly sequence data</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/grDevices/png.html'>png</a></span><span class='op'>(</span>file <span class='op'>=</span> <span class='fu'>here</span><span class='op'>(</span><span class='st'>"images"</span>, <span class='st'>"rChapter2-4_dplot_grayYearly.png"</span><span class='op'>)</span>, 
+    width <span class='op'>=</span> <span class='fl'>900</span>, height <span class='op'>=</span> <span class='fl'>650</span>, res <span class='op'>=</span> <span class='fl'>90</span><span class='op'>)</span>
+
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>12</span>, <span class='fl'>4</span>, <span class='fl'>1</span>, <span class='fl'>4</span><span class='op'>)</span>, las <span class='op'>=</span> <span class='fl'>1</span>,
+    mgp<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>0</span>,<span class='op'>-</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>seqdplot</span><span class='op'>(</span><span class='va'>partner.child.year.seq</span>, 
+         ylab <span class='op'>=</span> <span class='st'>"Relative frequency"</span>,
+         with.legend <span class='op'>=</span> <span class='st'>"FALSE"</span> , axes <span class='op'>=</span> <span class='cn'>FALSE</span>,
+         cpal <span class='op'>=</span> <span class='va'>colgrey.partner.child</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>new<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'>seqdplot</span><span class='op'>(</span><span class='va'>partner.child.year.seq</span>, 
+         ylab <span class='op'>=</span> <span class='st'>"Relative frequency"</span>,
+         with.legend <span class='op'>=</span> <span class='st'>"FALSE"</span> , axes <span class='op'>=</span> <span class='cn'>FALSE</span>,
+         cpal<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"#000000"</span>,<span class='fl'>9</span><span class='op'>)</span>,
+         density<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>20</span><span class='op'>)</span>, 
+         angle<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mgp<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>1</span>,<span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/axis.html'>axis</a></span><span class='op'>(</span><span class='fl'>1</span>, at<span class='op'>=</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>22</span>, by <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>, labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>18</span>,<span class='fl'>40</span>, by <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/mtext.html'>mtext</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='st'>"Age"</span>,
+      side <span class='op'>=</span> <span class='fl'>1</span>,
+      line <span class='op'>=</span> <span class='fl'>2.5</span><span class='op'>)</span>
+
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>legend_large_box</span><span class='op'>(</span><span class='st'>"bottom"</span>, legend <span class='op'>=</span> <span class='va'>longlab.partner.child2</span>,
+                 ncol<span class='op'>=</span><span class='fl'>4</span>, fill<span class='op'>=</span><span class='va'>colgrey.partner.child2</span>, 
+                 border <span class='op'>=</span> <span class='va'>bordercol.partner.child</span>,
+                 box.cex<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4.5</span>,<span class='fl'>1.5</span><span class='op'>)</span>,  y.intersp<span class='op'>=</span><span class='fl'>2</span>,
+                 inset<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='op'>-</span><span class='fl'>.4</span><span class='op'>)</span>, xpd<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>new<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'>legend_large_box</span><span class='op'>(</span><span class='st'>"bottom"</span>, legend <span class='op'>=</span> <span class='va'>longlab.partner.child2</span>,
+                 ncol<span class='op'>=</span><span class='fl'>4</span>, bg <span class='op'>=</span> <span class='st'>"transparent"</span>, 
+                 border <span class='op'>=</span> <span class='va'>bordercol.partner.child</span>,
+                 box.cex<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4.5</span>,<span class='fl'>1.5</span><span class='op'>)</span>,  y.intersp<span class='op'>=</span><span class='fl'>2</span>,
+                 inset<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='op'>-</span><span class='fl'>.4</span><span class='op'>)</span>, xpd<span class='op'>=</span><span class='cn'>TRUE</span>,
+                 density<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>20</span><span class='op'>)</span>, 
+                 angle<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/grDevices/dev.html'>dev.off</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body-outset">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/include_graphics.html'>include_graphics</a></span><span class='op'>(</span><span class='st'>"images/rChapter2-4_dplot_grayYearly.png"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="images/rChapter2-4_dplot_grayYearly.png" width="450" /></p>
+</div>
+<h3 id="monthly-sequence-data">Monthly sequence data</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/grDevices/png.html'>png</a></span><span class='op'>(</span>file <span class='op'>=</span> <span class='fu'>here</span><span class='op'>(</span><span class='st'>"images"</span>, <span class='st'>"rChapter2-4_dplot_grayMonthly.png"</span><span class='op'>)</span>, 
+    width <span class='op'>=</span> <span class='fl'>900</span>, height <span class='op'>=</span> <span class='fl'>650</span>, res <span class='op'>=</span> <span class='fl'>90</span><span class='op'>)</span>
+
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>12</span>, <span class='fl'>4</span>, <span class='fl'>1</span>, <span class='fl'>4</span><span class='op'>)</span>, las <span class='op'>=</span> <span class='fl'>1</span>, 
+    mgp<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>0</span>,<span class='op'>-</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>seqdplot</span><span class='op'>(</span><span class='va'>partner.child.month.seq</span>, 
+         ylab <span class='op'>=</span> <span class='st'>"Relative frequency"</span>,
+         with.legend <span class='op'>=</span> <span class='st'>"FALSE"</span> , axes <span class='op'>=</span> <span class='cn'>FALSE</span>, border <span class='op'>=</span> <span class='cn'>NA</span>,
+         cpal <span class='op'>=</span> <span class='va'>colgrey.partner.child</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>new<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'>seqdplot</span><span class='op'>(</span><span class='va'>partner.child.month.seq</span>, 
+         ylab <span class='op'>=</span> <span class='st'>"Relative frequency"</span>,
+         with.legend <span class='op'>=</span> <span class='st'>"FALSE"</span> , axes <span class='op'>=</span> <span class='cn'>FALSE</span>, border <span class='op'>=</span> <span class='cn'>NA</span>,
+         cpal<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"#000000"</span>,<span class='fl'>9</span><span class='op'>)</span>,
+         density<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>20</span><span class='op'>)</span>, 
+         angle<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mgp<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>1</span>,<span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/axis.html'>axis</a></span><span class='op'>(</span><span class='fl'>1</span>, at<span class='op'>=</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>264</span>, by <span class='op'>=</span> <span class='fl'>24</span><span class='op'>)</span><span class='op'>)</span>, labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>18</span>,<span class='fl'>40</span>, by <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/mtext.html'>mtext</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='st'>"Age"</span>,
+      side <span class='op'>=</span> <span class='fl'>1</span>,
+      line <span class='op'>=</span> <span class='fl'>2.5</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>legend_large_box</span><span class='op'>(</span><span class='st'>"bottom"</span>, legend <span class='op'>=</span> <span class='va'>longlab.partner.child2</span>,
+                 ncol<span class='op'>=</span><span class='fl'>4</span>, fill<span class='op'>=</span><span class='va'>colgrey.partner.child2</span>, 
+                 border <span class='op'>=</span> <span class='va'>bordercol.partner.child</span>,
+                 box.cex<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4.5</span>,<span class='fl'>1.5</span><span class='op'>)</span>,  y.intersp<span class='op'>=</span><span class='fl'>2</span>,
+                 inset<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='op'>-</span><span class='fl'>.4</span><span class='op'>)</span>, xpd<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>new<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'>legend_large_box</span><span class='op'>(</span><span class='st'>"bottom"</span>, legend <span class='op'>=</span> <span class='va'>longlab.partner.child2</span>,
+                 ncol<span class='op'>=</span><span class='fl'>4</span>, bg <span class='op'>=</span> <span class='st'>"transparent"</span>, 
+                 border <span class='op'>=</span> <span class='va'>bordercol.partner.child</span>,
+                 box.cex<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4.5</span>,<span class='fl'>1.5</span><span class='op'>)</span>,  y.intersp<span class='op'>=</span><span class='fl'>2</span>,
+                 inset<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='op'>-</span><span class='fl'>.4</span><span class='op'>)</span>, xpd<span class='op'>=</span><span class='cn'>TRUE</span>,
+                 density<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>20</span>,<span class='fl'>20</span><span class='op'>)</span>, 
+                 angle<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>45</span>,<span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+
+
+<span class='fu'><a href='https://rdrr.io/r/grDevices/dev.html'>dev.off</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body-outset">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/include_graphics.html'>include_graphics</a></span><span class='op'>(</span><span class='st'>"images/rChapter2-4_dplot_grayMonthly.png"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="images/rChapter2-4_dplot_grayMonthly.png" width="450" /></p>
+</div>
+<p>Like the graph based on yearly data this figure might suggest that roughly 10% of the sample are permanent childless singles. Note, however, that state distribution plots just depict cross-sections at each position of the sequence. A simple tabulation of the occurence of states using <code>seqistatd</code> &amp; <code>freq</code> (table not shown) …</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Extract state frequency for being Single (without children)</span>
+<span class='va'>singlecount</span> <span class='op'>&lt;-</span> <span class='fu'>seqistatd</span><span class='op'>(</span><span class='va'>partner.child.year.seq</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>select</span><span class='op'>(</span><span class='va'>S</span><span class='op'>)</span>
+
+<span class='co'># use summarytools::freq for weighted frequency table</span>
+<span class='fu'>freq</span><span class='op'>(</span><span class='va'>singlecount</span>, weights <span class='op'>=</span> <span class='va'>family</span><span class='op'>$</span><span class='va'>weight40</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>…illustrates that only <strong>1.46%</strong> of the sample are permanent single.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-gabadinho2011" class="csl-entry" role="doc-biblioentry">
-Gabadinho, Alexis, Gilbert Ritschard, Nicolas S. Müller, and Matthias Studer. 2011. <span>“Analyzing and <span>Visualizing State Sequences</span> in <span>R</span> with <span>TraMineR</span>.”</span> <em>Journal of Statistical Software</em> 40 (4): 1–37. <a href="https://doi.org/10.18637/jss.v040.i04">https://doi.org/10.18637/jss.v040.i04</a>.
-</div>
-<div id="ref-studer2013" class="csl-entry" role="doc-biblioentry">
-Studer, Matthias. 2013. <span>“<span>WeightedCluster Library Manual</span>: A Practical Guide to Creating Typologies of Trajectories in the Social Sciences with <span>R</span>,”</span> <span>LIVES Working Papers</span>, no. 24. <a href="https://doi.org/10.12682/LIVES.2296-1658.2013.24">https://doi.org/10.12682/LIVES.2296-1658.2013.24</a>.
-</div>
-</div>
-<section class="footnotes" role="doc-endnotes">
-<hr />
-<ol>
-<li id="fn1" role="doc-endnote"><p>also see <a href="http://traminer.unige.ch" class="uri">http://traminer.unige.ch</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2562,8 +2889,6 @@ Studer, Matthias. 2013. <span>“<span>WeightedCluster Library Manual</span>: A 
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
 <div class="appendix-bottom">
-<h3 id="references">References</h3>
-<div id="references-listing"></div>
 <h3 id="updates-and-corrections">Corrections</h3>
 <p>If you see mistakes or want to suggest changes, please <a href="https://github.com/sa-book/sa-book.github.io/issues/new">create an issue</a> on the source repository.</p>
 <h3 id="reuse">Reuse</h3>

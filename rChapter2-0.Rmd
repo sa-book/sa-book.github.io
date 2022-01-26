@@ -19,7 +19,7 @@ library(gtExtras)
 | 2.1  Basic Concepts and Terminology | [Sequence data formats](rChapter2-1.html) |
 | 2.2  Defining Sequences             | [Sequence length and granularity](rChapter2-2.html)     |
 | 2.3	Description of Sequence Data I  | [Basic Description](rChapter2-3.html) |
-| 2.4 Visualization of Sequence Data  | [Color palette: Grayscale Edition](UnderConstruction.html)      |
+| 2.4 Visualization of Sequence Data  | [Color palette: Grayscale Edition](rChapter2-4_grayscale.html)      |
 |                                     | [Color palette: Colored Edition](UnderConstruction.html)  |
 |                                     | [Data summarization graphs (chapter 2.4.1)](UnderConstruction.html)  |
 |                                     | [Data representation graphs (chapter 2.4.2)](UnderConstruction.html)  |
