@@ -2863,9 +2863,9 @@ MARc2+
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Extract state frequency for being Single (without children)</span>
-<span class='va'>singlecount</span> <span class='op'>&lt;-</span> <span class='fu'>seqistatd</span><span class='op'>(</span><span class='va'>partner.child.year.seq</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>select</span><span class='op'>(</span><span class='va'>S</span><span class='op'>)</span>
+<span class='va'>singlecount</span> <span class='op'>&lt;-</span> <span class='fu'>seqistatd</span><span class='op'>(</span><span class='va'>partner.child.year.seq</span><span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>S</span><span class='op'>)</span>
 
 <span class='co'># use summarytools::freq for weighted frequency table</span>
 <span class='fu'>freq</span><span class='op'>(</span><span class='va'>singlecount</span>, weights <span class='op'>=</span> <span class='va'>family</span><span class='op'>$</span><span class='va'>weight40</span><span class='op'>)</span>
