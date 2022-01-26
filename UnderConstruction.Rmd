@@ -2,18 +2,10 @@
 title: "Under construction"
 description: |
   ... content will be added soon
-# author:
-#   - name: "Marcel Raab"
-#     url: http://marcelraab.de
-#     affiliation: University of Mannheim
-#     affiliation_url: https://www.uni-mannheim.de
-#   - name: "Emanuela Struffolino"
-#     url: https://www.wzb.eu/en/persons/emanuela-struffolino
-#     affiliation: WZB Berlin
-#     affiliation_url: https://www.wzb.eu
-# date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
   
-Currently, we only provide material for [chapter 2](rChapter2.html) and [chapter 3](rChapter3.html).
-Additional material will be added within the next months.
+
+This site is under construction and will be fully working once the book is released.
+Currently, only a few sub-pages of  [chapter 2](rChapter2-0.html) are fully functional.
+Additional material will be added within the next weeks.
