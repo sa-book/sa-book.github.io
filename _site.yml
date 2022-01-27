@@ -11,7 +11,7 @@ navbar:
       href: index.html
     - text: "Material for R"
       menu:
-        - text: "Overview"
+        - text: "Overview & Downloads"
           href: UnderConstruction.html
         - text: "Chapter 02"
           href: rChapter2-0.html
@@ -27,4 +27,5 @@ output: distill::distill_article
 creative_commons: CC BY-NC
 repository_url: https://github.com/sa-book/sa-book.github.io
 base_url: https://sa-book.github.io
+google_analytics: UA-88715028-2
   
