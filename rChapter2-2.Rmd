@@ -35,7 +35,7 @@ knitr::opts_chunk$set(eval=TRUE, echo=TRUE)
 options("kableExtra.html.bsTable" = T)
 
 # load data for Chapter 2
-load(here("data", "Chapter_02.RData"))
+load(here("data", "2-0_ChapterSetup.RData"))
 
 ```
 

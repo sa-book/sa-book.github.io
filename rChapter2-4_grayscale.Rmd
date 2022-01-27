@@ -2,16 +2,6 @@
 title: "Visualizing sequences"
 description: |
   ... without using colors - The grayscale edition
-# author:
-#   - name: "Marcel Raab"
-#     url: http://marcelraab.de
-#     affiliation: University of Mannheim
-#     affiliation_url: https://www.uni-mannheim.de
-#   - name: "Emanuela Struffolino"
-#     url: https://www.wzb.eu/en/persons/emanuela-struffolino
-#     affiliation: WZB Berlin
-#     affiliation_url: https://www.wzb.eu
-# date: "`r Sys.Date()`"
 output:
   distill::distill_article:
     toc: true
@@ -43,7 +33,7 @@ knitr::opts_chunk$set(eval=TRUE, echo=TRUE)
 options("kableExtra.html.bsTable" = T)
 
 # load data for Chapter 2
-load(here("data", "Chapter_02.RData"))
+load(here("data", "2-0_ChapterSetup.RData"))
 
 source(here("source", "legend_large_box.R"))
 
@@ -70,7 +60,7 @@ We use a palette of nine grays to choose three different grays to represent the 
 barplot(rep(1,9), col = gray.colors(9), axes = FALSE)
 ```
 
-```{r echo=FALSE, fig.height = 1, fig.width = 6}
+```{r nine-grays, echo=FALSE, fig.height = 1, fig.width = 6}
 par(mar = c(0, 4, 0, 2) + 0.1)
 barplot(rep(1,9), col = gray.colors(9), axes = FALSE)
 text(1.87, .3, "MAR",cex=.75,pos=3) 
@@ -90,7 +80,7 @@ colgrey.partner.child <- c(rep("#FFFFFF",2),
 barplot(rep(1,9), col = colgrey.partner.child, axes = FALSE)                           
 ```
 
-```{r, echo=FALSE, fig.height = 1, fig.width = 6}
+```{r white-to-gray, echo=FALSE, fig.height = 1, fig.width = 6}
 par(mar = c(0, 4, 0, 2) + 0.1)
 colgrey.partner.child <- c(rep("#FFFFFF",2),
                            rep(gray.colors(9)[8],2),
@@ -114,7 +104,7 @@ barplot(rep(1,9), col = "black", axes = FALSE,
 ```
 
 
-```{r, echo=FALSE, fig.height = 1, fig.width = 6}
+```{r nine-bars-shaded, echo=FALSE, fig.height = 1, fig.width = 6}
 par(mar = c(0, 4, 0, 2) + 0.1)
 barplot(rep(1,9), col = colgrey.partner.child, axes = FALSE)                           
 
@@ -141,7 +131,7 @@ legend_large_box("center", legend = longlab.partner.child,
                  angle=c(0,45,0,45,0,45,0,45,0))
 ```
 
-```{r, echo=FALSE, fig.height = 2, fig.width = 8, layout="l-body-outset"}
+```{r legend-small-boxes, echo=FALSE, fig.height = 2, fig.width = 8, layout="l-body-outset"}
 par(mar = c(0, 1, 0, 1) + 0.1)
 plot(NULL ,xaxt='n',yaxt='n',bty='n',ylab='',xlab='', xlim=0:1, ylim=0:1)
 
@@ -210,7 +200,7 @@ legend_large_box("center", legend = longlab.partner.child2,
                  angle=c(0,45,0,0,45,0,0,45,0,0,45,0))
 ```
 
-```{r, echo=FALSE, fig.height = 2, fig.width = 12, layout="l-body-outset"}
+```{r legend-large-boxes, echo=FALSE, fig.height = 2, fig.width = 12, layout="l-body-outset"}
 par(mar = c(0, 1, 0, 1) + 0.1)
 plot(NULL ,xaxt='n',yaxt='n',bty='n',ylab='',xlab='', xlim=0:1, ylim=0:1)
 legend_large_box("center", legend = longlab.partner.child2,
@@ -254,7 +244,7 @@ Like in the previous examples two overlapping plots and legends have to be creat
 
 ```{r, eval=TRUE, echo=TRUE, results='hide'}
 # Save final plot as png file
-png(file = here("images", "rChapter2-4_iplot_grayYearly.png"), 
+png(file = here("images", "Chapter2", "2-4-0_bonus_iplot_grayYearly.png"), 
     width = 900, height = 650, res = 90)
 
 
@@ -301,8 +291,8 @@ dev.off()
 ```
 
 
-```{r layout="l-body-outset"}
-knitr::include_graphics("images/rChapter2-4_iplot_grayYearly.png")
+```{r bonusplot, layout="l-body-outset"}
+knitr::include_graphics("images/Chapter2/2-4-0_bonus_iplot_grayYearly.png")
 ```
 
 
@@ -316,7 +306,7 @@ Below we provide the code to produce the plots with yearly and monthly data. We 
 ### Yearly sequence data
 
 ```{r, eval=TRUE, echo=TRUE, results='hide'}
-png(file = here("images", "rChapter2-4_dplot_grayYearly.png"), 
+png(file = here("images", "Chapter2", "2-4-0_bonus_dplot_grayYearly.png"), 
     width = 900, height = 650, res = 90)
 
 
@@ -359,13 +349,13 @@ dev.off()
 ```
 
 ```{r layout="l-body-outset"}
-knitr::include_graphics("images/rChapter2-4_dplot_grayYearly.png")
+knitr::include_graphics("images/Chapter2/2-4-0_bonus_dplot_grayYearly.png")
 ```
 
 ### Monthly sequence data
 
 ```{r, eval=TRUE, echo=TRUE, results='hide'}
-png(file = here("images", "rChapter2-4_dplot_grayMonthly.png"), 
+png(file = here("images", "Chapter2", "2-4-0_bonus_dplot_grayMonthly.png"), 
     width = 900, height = 650, res = 90)
 
 
@@ -409,7 +399,7 @@ dev.off()
 
 
 ```{r layout="l-body-outset"}
-knitr::include_graphics("images/rChapter2-4_dplot_grayMonthly.png")
+knitr::include_graphics("images/Chapter2/2-4-0_bonus_dplot_grayMonthly.png")
 ```
 
 Like the graph based on yearly data this figure might suggest that roughly 10% of the sample are permanent childless singles. Note, however, that state distribution plots just depict cross-sections at each position of the sequence. A simple tabulation of the occurence of states using `seqistatd` & `freq` (table not shown) ...

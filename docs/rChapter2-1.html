@@ -106,7 +106,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Defining & printing sequence objects"]},{"type":"character","attributes":{},"value":["Chapter 2.1 Basic Concepts and Terminology\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth","highlight","highlight_downlit"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"character","attributes":{},"value":["haddock"]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Defining & printing sequence objects"]},{"type":"character","attributes":{},"value":["Chapter 2.1 Basic Concepts and Terminology\n"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2225,6 +2225,19 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     overflow-y: auto;
   }
 
+  d-article p code {
+    color: #383838;
+    background: rgba(141,206,164,.35);
+    font-weight: 400;
+    font-size: 0.9em;
+  }
+
+
+  /* Change link appearance */
+  d-article a {
+      border-bottom: 2px solid rgba(141,206,164, 0.6);
+      text-decoration: none;
+  }
   </style>
   <style type="text/css">
   /* base style */
@@ -2475,19 +2488,13 @@ Material for R
 <p>We generated the example dataset in Stata. Next to the sequence variables it comprises a few additional variables which will be used to analyze the sequences in later chapters.</p>
 <p>We import the data to R using the <code>read_dta</code> function from the <a href="https://haven.tidyverse.org/index.html"><code>haven</code></a> package and inspect the names of the imported variables.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># import data</span>
-<span class='va'>family</span> <span class='op'>&lt;-</span> <span class='fu'>read_dta</span><span class='op'>(</span><span class='st'>"PartnerBirthbio.dta"</span><span class='op'>)</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>family <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">&quot;PartnerBirthbio.dta&quot;</span>)</span></code></pre></div>
 </div>
 <div class="pre-scrolly">
 <div class="layout-chunk" data-layout="l-body-outset">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># view variable names</span>
-<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>family</span><span class='op'>)</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view variable names</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(family)</span></code></pre></div>
 <pre><code>  [1] &quot;id&quot;             &quot;weight40&quot;       &quot;sex&quot;           
   [4] &quot;doby_gen&quot;       &quot;dob&quot;            &quot;ethni&quot;         
   [7] &quot;migstatus&quot;      &quot;yeduc&quot;          &quot;sat1i4&quot;        
@@ -2587,18 +2594,12 @@ Material for R
 <p> </p>
 <p>The sequence variables begin with the prefix <code>state</code>. The data comprise 264 sequence variables per person (wide data format). These variables include monthly information on family biographies covering a period of 22 years. Haven imports them as numeric variables with labels attached to them (<code>class = "haven_labelled"</code>). With the follwing commands we can take a look at the labels.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>family</span><span class='op'>$</span><span class='va'>state1</span><span class='op'>)</span> 
-</code></pre>
-</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(family<span class="sc">$</span>state1) </span></code></pre></div>
 <pre><code> dbl+lbl [1:1866] 5, 1, 5, 1, 3, 3, 1, 3, 1, 1, 1, 1, 1, 3, 1, 1,...
  @ format.stata: chr &quot;%22.0g&quot;
  @ labels      : Named num [1:9] 1 2 3 4 5 6 7 8 9
   ..- attr(*, &quot;names&quot;)= chr [1:9] &quot;Single, no child&quot; &quot;Single, child(ren)&quot; &quot;LAT, no child&quot; &quot;LAT, child(ren)&quot; ...</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='va'>family</span><span class='op'>$</span><span class='va'>state1</span><span class='op'>)</span><span class='op'>$</span><span class='va'>labels</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(family<span class="sc">$</span>state1)<span class="sc">$</span>labels</span></code></pre></div>
 <pre><code>      Single, no child     Single, child(ren)          LAT, no child 
                      1                      2                      3 
        LAT, child(ren)   Cohabiting, no child Cohabiting, child(ren) 
@@ -2608,58 +2609,42 @@ Material for R
 </div>
 <p>The first examples in the book are based on sequences with a reduced alphabet only distinguishing partnership states. The following code generates a data set (<code>seqvars.partner</code>) containing the recoded sequence variables using <a href="https://dplyr.tidyverse.org/index.html"><code>dplyr</code></a>.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># extracting and recoding the sequence variables (which all start with state)</span>
-<span class='co'># recode to reduced state space capturing partnership status only </span>
-<span class='va'>seqvars.partner</span> <span class='op'>&lt;-</span> <span class='va'>family</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>starts_with</a></span><span class='op'>(</span><span class='st'>"state"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate_all.html'>mutate_all</a></span><span class='op'>(</span><span class='op'>~</span><span class='op'>(</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span>
-    <span class='va'>.</span> <span class='op'>&lt;</span> <span class='fl'>3</span> <span class='op'>~</span> <span class='fl'>1</span>,            <span class='co'># Single</span>
-    <span class='va'>.</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>4</span><span class='op'>)</span> <span class='op'>~</span> <span class='fl'>2</span>,    <span class='co'># LAT</span>
-    <span class='va'>.</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5</span>,<span class='fl'>6</span><span class='op'>)</span> <span class='op'>~</span> <span class='fl'>3</span>,    <span class='co'># Cohabiting</span>
-    <span class='va'>.</span> <span class='op'>&gt;</span> <span class='fl'>6</span> <span class='op'>~</span> <span class='fl'>4</span>,<span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>         <span class='co'># Married</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extracting and recoding the sequence variables (which all start with state)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># recode to reduced state space capturing partnership status only </span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>seqvars.partner <span class="ot">&lt;-</span> family <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;state&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_all</span>(<span class="sc">~</span>(<span class="fu">case_when</span>(</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    . <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">1</span>,            <span class="co"># Single</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    . <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>) <span class="sc">~</span> <span class="dv">2</span>,    <span class="co"># LAT</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    . <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">6</span>) <span class="sc">~</span> <span class="dv">3</span>,    <span class="co"># Cohabiting</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    . <span class="sc">&gt;</span> <span class="dv">6</span> <span class="sc">~</span> <span class="dv">4</span>,)))         <span class="co"># Married</span></span></code></pre></div>
 </div>
 <p>Then we define two vectors storing the long and short labels for the states in the newly defined alphabet. Once that is done, we can define the data as a state sequence object. Most <a href="http://traminer.unige.ch/"><code>TraMineR</code></a> functions for analyzing sequences require the data to have this format.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>shortlab.partner</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"S"</span>, <span class='st'>"LAT"</span>, <span class='st'>"COH"</span>, <span class='st'>"MAR"</span><span class='op'>)</span>
-<span class='va'>longlab.partner</span> <span class='op'>&lt;-</span>  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Single"</span>, <span class='st'>"LAT"</span>, <span class='st'>"Cohabiting"</span>, <span class='st'>"Married"</span><span class='op'>)</span>
-
-<span class='co'># create state sequence object</span>
-<span class='va'>partner.month.seq</span> <span class='op'>&lt;-</span> <span class='fu'>seqdef</span><span class='op'>(</span><span class='va'>seqvars.partner</span>,
-                            labels <span class='op'>=</span> <span class='va'>longlab.partner</span>,
-                            states <span class='op'>=</span> <span class='va'>shortlab.partner</span>,
-                            weights <span class='op'>=</span> <span class='va'>family</span><span class='op'>$</span><span class='va'>weight40</span><span class='op'>)</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>shortlab.partner <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;S&quot;</span>, <span class="st">&quot;LAT&quot;</span>, <span class="st">&quot;COH&quot;</span>, <span class="st">&quot;MAR&quot;</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>longlab.partner <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">&quot;Single&quot;</span>, <span class="st">&quot;LAT&quot;</span>, <span class="st">&quot;Cohabiting&quot;</span>, <span class="st">&quot;Married&quot;</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create state sequence object</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>partner.month.seq <span class="ot">&lt;-</span> <span class="fu">seqdef</span>(seqvars.partner,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">labels =</span> longlab.partner,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">states =</span> shortlab.partner,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                            <span class="at">weights =</span> family<span class="sc">$</span>weight40)</span></code></pre></div>
 </div>
 <p>Note that the <code>seqdef</code> function can include many more optional arguments. Some of these arguments - most importantly <code>cpal</code> - affect the appearance of state sequence plots rendered with <code>seqplot</code> or <code>seqplot.rf</code>. We cover the definition of color palettes on two separate pages (<a href="rChapter2-4_color.html">definition of color palettes</a>; <a href="rChapter2-4_grayscale.html">definition of grayscale palettes</a>)</p>
 <p> </p>
 <h2 id="sequence-data-notation">Sequence data notation</h2>
 <p>In chapter 2.1, we introduce different notations for printing sequences. The following commands print the sequences in <em>STS</em>, <em>DSS</em>, and <em>SPS</em> format.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>partner.month.seq</span><span class='op'>[</span><span class='fl'>8</span>, <span class='op'>]</span>, format <span class='op'>=</span> <span class='st'>"STS"</span><span class='op'>)</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(partner.month.seq[<span class="dv">8</span>, ], <span class="at">format =</span> <span class="st">&quot;STS&quot;</span>)</span></code></pre></div>
 <pre><code>  Sequence                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 8 LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-S-S-S-S-S-S-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-S-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-LAT-COH-COH-COH-COH-COH-COH-COH-COH-COH-COH-COH-COH-COH-COH-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR-MAR</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>seqdss</span><span class='op'>(</span><span class='va'>partner.month.seq</span><span class='op'>[</span><span class='fl'>8</span>, <span class='op'>]</span><span class='op'>)</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seqdss</span>(partner.month.seq[<span class="dv">8</span>, ])</span></code></pre></div>
 <pre><code>  Sequence                     
 8 LAT-S-LAT-S-LAT-S-LAT-COH-MAR</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>partner.month.seq</span><span class='op'>[</span><span class='fl'>8</span>, <span class='op'>]</span>, format <span class='op'>=</span> <span class='st'>"SPS"</span><span class='op'>)</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(partner.month.seq[<span class="dv">8</span>, ], <span class="at">format =</span> <span class="st">&quot;SPS&quot;</span>)</span></code></pre></div>
 <pre><code>  Sequence                                                                 
 8 (LAT,13)-(S,6)-(LAT,33)-(S,24)-(LAT,41)-(S,35)-(LAT,10)-(COH,14)-(MAR,88)</code></pre>
 </div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

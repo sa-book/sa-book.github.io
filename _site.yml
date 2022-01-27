@@ -23,9 +23,14 @@ navbar:
           href: UnderConstruction.html
     - text: "About the Authors"
       href: about.html
-output: distill::distill_article
+output: 
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    highlight: haddock
+    highlight_downlit: false
 creative_commons: CC BY-NC
 repository_url: https://github.com/sa-book/sa-book.github.io
 base_url: https://sa-book.github.io
 google_analytics: UA-88715028-2
-  

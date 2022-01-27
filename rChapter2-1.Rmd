@@ -2,13 +2,7 @@
 title: "Defining & printing sequence objects"
 description: |
   Chapter 2.1 Basic Concepts and Terminology
-output:
-  distill::distill_article:
-    toc: true
-    toc_float: true
-    toc_depth: 2
-    highlight: haddock
-    highlight_downlit: true
+output: distill::distill_article
 ---
 
 ```{r setup, include=FALSE}
@@ -38,7 +32,7 @@ knitr::opts_chunk$set(eval=TRUE, echo=TRUE)
 options("kableExtra.html.bsTable" = T)
 
 # load data for Chapter 2
-load(here("data", "Chapter_02.RData"))
+load(here("data", "2-0_ChapterSetup.RData"))
 
 ```
 

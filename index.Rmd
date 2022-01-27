@@ -45,10 +45,10 @@ lapply(pkgs, library, character.only = TRUE)
 knitr::include_graphics("images/QASS.png")
 ```
 
-This site is intended to enhance your use of the book **Sequence Analysis** by Marcel Raab & Emanuela Struffolino. On this webpage we provide accompanying material illustrating how to conduct sequence analysis in `r icon_style(fontawesome("r-project"), fill = "#384CB7")` using *TraMineR*, *TraMineRExtras* [@gabadinho2011] ^[also see <http://traminer.unige.ch>] , and *WeightedCluster* [@studer2013].
+This site is intended to enhance your use of the book **Sequence Analysis** by Marcel Raab & Emanuela Struffolino. On this webpage we provide accompanying material illustrating how to conduct sequence analysis in `r icon_style(fontawesome("r-project"), fill = "#384CB7")` using `{TraMineR}`, `{TraMineRExtras}` [@gabadinho2011] ^[visit [`r fontawesome::fa("link")` `{TraMineR}` website](http://traminer.unige.ch){target="_blank"} for further information ] , and `{WeightedCluster}` [@studer2013].
 
 
-Please note that most of the materials on this site are designed to be used in tandem with the book published by SAGE (`r fontawesome::fa("shopping-cart")` pre-order from [SAGE](https://us.sagepub.com/en-us/nam/sequence-analysis/book272086) or [Amazon](https://www.amazon.com/dp/B09MJCBKC3/ref=cm_sw_em_r_mt_dp_YDSYM9W43ZEDWMZK27PV)). 
+Please note that most of the materials on this site are designed to be used in tandem with the book published by SAGE (`r fontawesome::fa("shopping-cart")` pre-order from [SAGE](https://us.sagepub.com/en-us/nam/sequence-analysis/book272086){target="_blank"} or [Amazon](https://www.amazon.com/dp/B09MJCBKC3/ref=cm_sw_em_r_mt_dp_YDSYM9W43ZEDWMZK27PV){target="_blank"}). 
 
 :::
 
@@ -70,7 +70,7 @@ Please note that most of the materials on this site are designed to be used in t
 
 ```{=html}
 <style>
-div.green { background-color:#8DCEA4; border-radius: 5px; padding: 20px;}
+div.green {background-color:#8DCEA4; border-radius: 5px; padding: 20px;}
 </style>
 ```
 
