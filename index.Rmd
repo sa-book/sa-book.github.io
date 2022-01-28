@@ -2,7 +2,9 @@
 title: "Sequence Analysis"
 description: |
     Companion website for the little green book
-site: distill::distill_website
+output:
+  distill::distill_article:
+    toc: false
 author:
   - name: Marcel Raab
     url: https://marcelraab.de/
