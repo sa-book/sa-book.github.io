@@ -106,7 +106,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Describing & summarising sequence data"]},{"type":"character","attributes":{},"value":["Chapter 2.3 Description of Sequence Data I: The Basics\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth","highlight","highlight_downlit"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"character","attributes":{},"value":["haddock"]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Describing & summarising sequence data"]},{"type":"character","attributes":{},"value":["Chapter 2.3 Description of Sequence Data I: The Basics\n"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2489,7 +2489,7 @@ Material for R
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<p>We use a simple alphabet differentiating four partnership states to illustrate <code>TraMineR</code>’s capabilities of producing simple descriptive statistics on our sequence data. The sequences cover the partnership biographies from age 18 to 40 (monthly data). The sequences are stored in the object <code>partner.month.seq</code>.</p>
+<p>We use a simple alphabet differentiating four partnership states to illustrate <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineR}</code></a>’s capabilities of producing simple descriptive statistics on our sequence data. The sequences cover the partnership biographies from age 18 to 40 (monthly data). The sequences are stored in the object <code>partner.month.seq</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <table class="table table-responsive table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -2542,18 +2542,12 @@ MAR
 <h2 id="time-spent-in-different-states-occurence-of-episodes">Time spent in different states &amp; <br/>occurence of episodes</h2>
 <p>The function <code>seqmeant</code> computes the mean total time spent in each state of the alphabet. The arguments <code>serr = TRUE</code> and <code>prop = TRUE</code> provide standard errors and relative frequencies instead of the average number of months spent in each state.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>seqmeant</span><span class='op'>(</span><span class='va'>partner.month.seq</span>, serr <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='fu'>seqmeant</span><span class='op'>(</span><span class='va'>partner.month.seq</span>, prop <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seqmeant</span>(partner.month.seq, <span class="at">serr =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seqmeant</span>(partner.month.seq, <span class="at">prop =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <p>We also can use <code>seqmeant</code> to identify the average number of episodes for each state of the alphabet by applying it to a sequence data object in the <strong>DSS</strong> format.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>seqmeant</span><span class='op'>(</span><span class='fu'>seqdss</span><span class='op'>(</span><span class='va'>partner.month.seq</span><span class='op'>)</span>,serr <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seqmeant</span>(<span class="fu">seqdss</span>(partner.month.seq),<span class="at">serr =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <p>Taken together these commands yield the results shown in Table 2.3.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2679,13 +2673,10 @@ MAR
 </table>
 </div>
 <h2 id="number-of-transitions-transition-matrix">Number of transitions &amp; transition matrix</h2>
-<p>The person-specific number of transitions between states can be obtained by <code>seqtransn</code>. However, we are usually interested in the average number of transitions. We use <code>wtd.mean</code> and <code>wtd.var</code> from the <code>Hmisc</code> package to compute the weighted mean and standard deviation. The weights are stored in the variable <code>weight40</code> of the data frame <code>family</code> which served as source for generating the sequence object <code>partner.month.seq</code>.</p>
+<p>The person-specific number of transitions between states can be obtained by <code>seqtransn</code>. However, we are usually interested in the average number of transitions. We use <code>wtd.mean</code> and <code>wtd.var</code> from the <a href="https://hbiostat.org/R/Hmisc/" target="_blank"><code>{Hmisc}</code></a> package to compute the weighted mean and standard deviation. The weights are stored in the variable <code>weight40</code> of the data frame <code>family</code> which served as source for generating the sequence object <code>partner.month.seq</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>wtd.mean</span><span class='op'>(</span><span class='fu'>seqtransn</span><span class='op'>(</span><span class='va'>partner.month.seq</span><span class='op'>)</span>, <span class='va'>family</span><span class='op'>$</span><span class='va'>weight40</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'>wtd.var</span><span class='op'>(</span><span class='fu'>seqtransn</span><span class='op'>(</span><span class='va'>partner.month.seq</span><span class='op'>)</span>, <span class='va'>family</span><span class='op'>$</span><span class='va'>weight40</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wtd.mean</span>(<span class="fu">seqtransn</span>(partner.month.seq), family<span class="sc">$</span>weight40)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">wtd.var</span>(<span class="fu">seqtransn</span>(partner.month.seq), family<span class="sc">$</span>weight40))</span></code></pre></div>
 </div>
 <p>We did the same computation for the sequence object <code>partner.year.seq</code> which comes with a <em>yearly</em> instead of a <em>monthly granularity</em> (see chapter 2.2).</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2729,13 +2720,10 @@ Yearly data
 </tbody>
 </table>
 </div>
-<p>Transition rates between states can be computed by using <code>seqtrate</code>. Again, we display the transitions rates using sequences with monthly and yearly granularity (<code>partner.month.seq</code> and <code>partner.year.seq</code>). It is also possible to calculate transitions rates at specific positions of the sequence by typing <code>time.varying = TRUE</code>. This option is also used for generating the animated illustration below (<strong>Table 2-4</strong>).</p>
+<p>Transition rates between states can be computed by using <code>seqtrate</code>. Again, we display the transitions rates using sequences with monthly and yearly granularity (<code>partner.month.seq</code> and <code>partner.year.seq</code>). It is also possible to calculate transitions rates at specific positions of the sequence by typing <code>time.varying = TRUE</code>. This option is also used for generating the animated illustration below (<strong>Table 2.4</strong>).</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>seqtrate</span><span class='op'>(</span><span class='va'>partner.month.seq</span><span class='op'>)</span>
-<span class='fu'>seqtrate</span><span class='op'>(</span><span class='va'>partner.year.seq</span><span class='op'>)</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seqtrate</span>(partner.month.seq)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seqtrate</span>(partner.year.seq)</span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <table class="table table-responsive table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -2953,12 +2941,9 @@ MAR
 </tbody>
 </table>
 </div>
-<p>Additional insights can be gained by using sequence data stored in the DSS format. A computation based on this format provides transition rates between episodes of distinct states. Note, that we only use monthly sequence data for this exercise in order to keep track of short lasting spells which might be obscured in the yearly data (<strong>Table 2-5</strong>).</p>
+<p>Additional insights can be gained by using sequence data stored in the DSS format. A computation based on this format provides transition rates between episodes of distinct states. Note, that we only use monthly sequence data for this exercise in order to keep track of short lasting spells which might be obscured in the yearly data (<strong>Table 2.5</strong>).</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>seqtrate</span><span class='op'>(</span><span class='fu'>seqdss</span><span class='op'>(</span><span class='va'>partner.month.seq</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seqtrate</span>(<span class="fu">seqdss</span>(partner.month.seq))</span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <table class="table table-responsive table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -3064,12 +3049,9 @@ MAR
 </div>
 <h2 id="state-distribution-at-different-positions-cross-sectional-perspective">State distribution at different positions <br/>(cross-sectional perspective)</h2>
 <p>Among other things <code>seqstatd</code> computes the distribution of states at each position in the sequence. Usually this information is displayed in a graphical fashion (state distribution plot) rather than as a descriptive table.</p>
-<p>Usually the tabular presentation of the state distribution requires to extract the distribution for a selection of (meaningful) positions of the sequence. In the example below we display the distribution at age 18, 20, 24, 28, 32, 36, and 40. Note that time is measured in months. Hence, we do not extract the descriptives at positions 1 and 3 but at positions 1 and 24 to obtain the state distribution at age 18 and 20 (<strong>Table 2-6</strong>).</p>
+<p>Usually the tabular presentation of the state distribution requires to extract the distribution for a selection of (meaningful) positions of the sequence. In the example below we display the distribution at age 18, 20, 24, 28, 32, 36, and 40. Note that time is measured in months. Hence, we do not extract the descriptives at positions 1 and 3 but at positions 1 and 24 to obtain the state distribution at age 18 and 20 (<strong>Table 2.6</strong>).</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>seqstatd</span><span class='op'>(</span><span class='va'>partner.month.seq</span><span class='op'>)</span><span class='op'>$</span><span class='va'>Frequencies</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>24</span>, <span class='fl'>264</span>, by <span class='op'>=</span> <span class='fl'>48</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seqstatd</span>(partner.month.seq)<span class="sc">$</span>Frequencies[,<span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">seq</span>(<span class="dv">24</span>, <span class="dv">264</span>, <span class="at">by =</span> <span class="dv">48</span>))]</span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <table class="table table-responsive table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -3218,12 +3200,9 @@ MAR
 </tbody>
 </table>
 </div>
-<p>The following code extracts the corresponding cross-sectional values of the Shannon entropy for the same time points (<strong>Table 2-7</strong>).</p>
+<p>The following code extracts the corresponding cross-sectional values of the Shannon entropy for the same time points (<strong>Table 2.7</strong>).</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>seqstatd</span><span class='op'>(</span><span class='va'>partner.month.seq</span><span class='op'>)</span><span class='op'>$</span><span class='va'>Entropy</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>24</span>, <span class='fl'>264</span>, by <span class='op'>=</span> <span class='fl'>48</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seqstatd</span>(partner.month.seq)<span class="sc">$</span>Entropy[<span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">seq</span>(<span class="dv">24</span>, <span class="dv">264</span>, <span class="at">by =</span> <span class="dv">48</span>))]</span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <table class="table table-responsive table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -3289,13 +3268,10 @@ Shannon entropy at age …
 <p>At age 28 the states are most evenly distributed. As a result the enropy value is highest at this age.</p>
 <p>Finally, the <code>seqstatd</code> function can also be used to figure out how many cases never spent any time in specific states.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>as_tibble</span><span class='op'>(</span><span class='fu'>seqistatd</span><span class='op'>(</span><span class='va'>partner.month.seq</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>mutate_all</span><span class='op'>(</span><span class='op'>~</span><span class='fu'>case_when</span><span class='op'>(</span><span class='va'>.</span> <span class='op'>==</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='fl'>1</span>,
-                        <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>summarise_all</span><span class='op'>(</span><span class='op'>~</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/weighted.mean.html'>weighted.mean</a></span><span class='op'>(</span><span class='va'>.</span>, w <span class='op'>=</span> <span class='va'>family</span><span class='op'>$</span><span class='va'>weight40</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>  
-</code></pre>
-</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(<span class="fu">seqistatd</span>(partner.month.seq)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_all</span>(<span class="sc">~</span><span class="fu">case_when</span>(. <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(<span class="sc">~</span>(<span class="fu">weighted.mean</span>(., <span class="at">w =</span> family<span class="sc">$</span>weight40)))  </span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <table class="table table-responsive table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -3337,14 +3313,11 @@ MAR
 <h2 id="modal-and-representative-sequences">Modal and representative sequences</h2>
 <p>The distribution above indicates the dominance of the partnership states “Single” and “Married” at the beginning and ending of the sequence. This is also reflected in the sequence of modal states. The following commands extract the modal sequences using sequence data with monthly and yearly granularity (see chapter 2.2).</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>modal.month.seq</span> <span class='op'>&lt;-</span> <span class='fu'>seqdef</span><span class='op'>(</span><span class='fu'>as_tibble</span><span class='op'>(</span><span class='fu'>seqmodst</span><span class='op'>(</span><span class='va'>partner.month.seq</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>modal.month</span>,<span class='va'>seq</span>, format <span class='op'>=</span> <span class='st'>"SPS"</span><span class='op'>)</span>
-
-<span class='va'>modal.year.seq</span> <span class='op'>&lt;-</span> <span class='fu'>seqdef</span><span class='op'>(</span><span class='fu'>as_tibble</span><span class='op'>(</span><span class='fu'>seqmodst</span><span class='op'>(</span><span class='va'>partner.year.seq</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>modal.year.seq</span>, format <span class='op'>=</span> <span class='st'>"SPS"</span><span class='op'>)</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>modal.month.seq <span class="ot">&lt;-</span> <span class="fu">seqdef</span>(<span class="fu">as_tibble</span>(<span class="fu">seqmodst</span>(partner.month.seq)))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(modal.month,seq, <span class="at">format =</span> <span class="st">&quot;SPS&quot;</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>modal.year.seq <span class="ot">&lt;-</span> <span class="fu">seqdef</span>(<span class="fu">as_tibble</span>(<span class="fu">seqmodst</span>(partner.year.seq)))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(modal.year.seq, <span class="at">format =</span> <span class="st">&quot;SPS&quot;</span>)</span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 
@@ -3383,31 +3356,22 @@ Yearly data
 </div>
 <p>Usually the modal sequence is a hypothetical sequence that is not actually observed in the data. In contrast, <code>seqrep</code> aims at identifying those sequences that represent the data best. Note that this approach requires the computation of a distance matrix. The following commands illustrate the identification of representative sequences using yearly sequences (<code>partner.year.seq</code>). For details on computing sequence distances (<code>seqdist</code>) see Chapter 3.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>partner.year.om</span> <span class='op'>&lt;-</span> <span class='fu'>seqdist</span><span class='op'>(</span><span class='va'>partner.year.seq</span>, 
-                           method<span class='op'>=</span><span class='st'>"OM"</span>, sm<span class='op'>=</span><span class='st'>"CONSTANT"</span><span class='op'>)</span>
-
-<span class='va'>partner.year.rep</span> <span class='op'>&lt;-</span> <span class='fu'>seqrep</span><span class='op'>(</span><span class='va'>partner.year.seq</span>, 
-                           diss <span class='op'>=</span> <span class='va'>partner.year.om</span>, 
-                           criterion<span class='op'>=</span><span class='st'>"density"</span><span class='op'>)</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>partner.year.om <span class="ot">&lt;-</span> <span class="fu">seqdist</span>(partner.year.seq, </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">method=</span><span class="st">&quot;OM&quot;</span>, <span class="at">sm=</span><span class="st">&quot;CONSTANT&quot;</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>partner.year.rep <span class="ot">&lt;-</span> <span class="fu">seqrep</span>(partner.year.seq, </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">diss =</span> partner.year.om, </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">criterion=</span><span class="st">&quot;density&quot;</span>)</span></code></pre></div>
 </div>
 <p>The following command prints the sequences in the more accessible SPS format.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>partner.year.seq</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='va'>partner.year.rep</span><span class='op'>)</span><span class='op'>$</span><span class='va'>Index</span>,<span class='op'>]</span>, format <span class='op'>=</span> <span class='st'>"SPS"</span><span class='op'>)</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(partner.year.seq[<span class="fu">attributes</span>(partner.year.rep)<span class="sc">$</span>Index,], <span class="at">format =</span> <span class="st">&quot;SPS&quot;</span>)</span></code></pre></div>
 </div>
 <p>Descriptive statistics on the quality of the representative Sequence are stored in <code>attributes(partner.year.rep)$Statistics</code>. These can be easily accessed by typing:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>partner.year.rep</span><span class='op'>)</span>
-</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(partner.year.rep)</span></code></pre></div>
 </div>
-</div>
-<p>The table below presents a set of representative sequences (SPS format) and the corresponding coverage statistics. In addition, it shows how many cases are (more or less) represented by each the extracted sequences (<strong>Table 2-8</strong>):</p>
+<p>The table below presents a set of representative sequences (SPS format) and the corresponding coverage statistics. In addition, it shows how many cases are (more or less) represented by each the extracted sequences (<strong>Table 2.8</strong>):</p>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
@@ -3529,25 +3493,22 @@ Total Coverage
 </tbody>
 </table>
 </div>
-<p>Finally, we conclude this chapter by identifying the medoid sequences of women and men using <code>TraMineRextras</code>’s <code>seqrep.grp</code>-function which allows to extract representative sequences for different subgroups.</p>
+<p>Finally, we conclude this chapter by identifying the medoid sequences of women and men using <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineRextras}</code></a>’s <code>seqrep.grp</code>-function which allows to extract representative sequences for different subgroups.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>partner.year.sex.rep</span> <span class='op'>&lt;-</span> <span class='fu'>seqrep.grp</span><span class='op'>(</span><span class='va'>partner.year.seq</span>,
-                                   group <span class='op'>=</span> <span class='va'>family</span><span class='op'>$</span><span class='va'>sex</span>,
-                                   diss<span class='op'>=</span><span class='va'>partner.year.om</span>,
-                                   criterion<span class='op'>=</span><span class='st'>"dist"</span>,
-                                   nrep<span class='op'>=</span><span class='fl'>1</span>,
-                                   ret <span class='op'>=</span> <span class='st'>"both"</span><span class='op'>)</span>
-
-<span class='co'># Medoid &amp; coverage - men (family$sex = 0 = male)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>partner.year.sex.rep</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>$</span><span class='va'>` 0`</span>, format <span class='op'>=</span> <span class='st'>"SPS"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>partner.year.sex.rep</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>$</span><span class='va'>` 0`</span><span class='op'>)</span>
-
-<span class='co'># Medoid &amp; coverage - women (family$sex = 1 = female)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>partner.year.sex.rep</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>$</span><span class='va'>` 1`</span>, format <span class='op'>=</span> <span class='st'>"SPS"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>partner.year.sex.rep</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>$</span><span class='va'>` 1`</span><span class='op'>)</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>partner.year.sex.rep <span class="ot">&lt;-</span> <span class="fu">seqrep.grp</span>(partner.year.seq,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">group =</span> family<span class="sc">$</span>sex,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">diss=</span>partner.year.om,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">criterion=</span><span class="st">&quot;dist&quot;</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">nrep=</span><span class="dv">1</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">ret =</span> <span class="st">&quot;both&quot;</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Medoid &amp; coverage - men (family$sex = 0 = male)</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(partner.year.sex.rep[[<span class="dv">1</span>]]<span class="sc">$</span><span class="st">`</span><span class="at"> 0</span><span class="st">`</span>, <span class="at">format =</span> <span class="st">&quot;SPS&quot;</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(partner.year.sex.rep[[<span class="dv">1</span>]]<span class="sc">$</span><span class="st">`</span><span class="at"> 0</span><span class="st">`</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Medoid &amp; coverage - women (family$sex = 1 = female)</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(partner.year.sex.rep[[<span class="dv">1</span>]]<span class="sc">$</span><span class="st">`</span><span class="at"> 1</span><span class="st">`</span>, <span class="at">format =</span> <span class="st">&quot;SPS&quot;</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(partner.year.sex.rep[[<span class="dv">1</span>]]<span class="sc">$</span><span class="st">`</span><span class="at"> 1</span><span class="st">`</span>)</span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 
@@ -3593,7 +3554,6 @@ Male
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

@@ -26,7 +26,6 @@ lapply(pkgs[!(pkgs %in% installed.packages())],
 lapply(pkgs, library, character.only = TRUE)
 
 
-
 knitr::opts_chunk$set(eval=TRUE, echo=TRUE)
 
 options("kableExtra.html.bsTable" = T)
@@ -47,13 +46,13 @@ htmltools::tagList(
 )
 ```
 
-In chapter 2.1, we introduce different notations of sequence data using example data on family biographies from age 18 to 40. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see [here](https://www.pairfam.de/en/).
+In chapter 2.1, we introduce different notations of sequence data using example data on family biographies from age 18 to 40. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see [here](https://www.pairfam.de/en/){target="_blank"}.
 
 ## Defining a state sequence object
 
 We generated the example dataset in Stata. Next to the sequence variables it comprises a few additional variables which will be used to analyze the sequences in later chapters.
 
-We import the data to R using the `read_dta` function from the [`haven`](https://haven.tidyverse.org/index.html) package and inspect the names of the imported variables.
+We import the data to R using the `read_dta` function from the [`{haven}`](https://haven.tidyverse.org/index.html){target="_blank"} package and inspect the names of the imported variables.
 
 ```{r, eval = FALSE}
 # import data
@@ -77,7 +76,7 @@ str(family$state1)
 attributes(family$state1)$labels
 ```
 
-The first examples in the book are based on sequences with a reduced alphabet only distinguishing partnership states. The following code generates a data set (`seqvars.partner`) containing the recoded sequence variables using [`dplyr`](https://dplyr.tidyverse.org/index.html).
+The first examples in the book are based on sequences with a reduced alphabet only distinguishing partnership states. The following code generates a data set (`seqvars.partner`) containing the recoded sequence variables using [`{dplyr}`](https://dplyr.tidyverse.org/index.html){target="_blank"}.
 
 ```{r, eval=FALSE}
 # extracting and recoding the sequence variables (which all start with state)
@@ -91,7 +90,7 @@ seqvars.partner <- family %>%
     . > 6 ~ 4,)))         # Married
 ```
 
-Then we define two vectors storing the long and short labels for the states in the newly defined alphabet. Once that is done, we can define the data as a state sequence object. Most [`TraMineR`](http://traminer.unige.ch/) functions for analyzing sequences require the data to have this format.
+Then we define two vectors storing the long and short labels for the states in the newly defined alphabet. Once that is done, we can define the data as a state sequence object. Most [`{TraMineR}`](http://traminer.unige.ch/){target="_blank"} functions for analyzing sequences require the data to have this format.
 
 ```{r}
 

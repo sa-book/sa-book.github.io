@@ -2,8 +2,9 @@
 title: "Chapter 02"
 description: |
   Defining, Describing, and Visualizing Sequences
-date: "`r Sys.Date()`"
-output: distill::distill_article
+output:
+  distill::distill_article:
+    toc: false
 ---
 
 ```{r setup, include=FALSE}

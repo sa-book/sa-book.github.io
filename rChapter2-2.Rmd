@@ -2,13 +2,7 @@
 title: "Sequence length and granularity"
 description: |
   Chapter 2.2 Defining sequences
-output:
-  distill::distill_article:
-    toc: true
-    toc_float: true
-    toc_depth: 2
-    highlight: haddock
-    highlight_downlit: true    
+output: distill::distill_article    
 ---
 
 ```{r setup, include=FALSE}
@@ -88,7 +82,7 @@ partner.month.seq2 <- seqdef(seqvars2.partner,
 
 ```
 
--   The second strategy changes the granularity of the sequence data from monthly to yearly. That is, twelve states from the original sequence are condensed to one state in the new sequence by applying the `seqgranularity` function from the `TraMineRextras` package.
+-   The second strategy changes the granularity of the sequence data from monthly to yearly. That is, twelve states from the original sequence are condensed to one state in the new sequence by applying the `seqgranularity` function from the `{TraMineRextras}` package.
 
 ```{r}
 # change granularity --> years instead of months (using modal values)
@@ -96,7 +90,7 @@ partner.year.seq <- seqgranularity(partner.month.seq,
                                tspan=12, method="mostfreq")
 ```
 
-Now we can produce **Table 2.2** from the book which shows a small selction of four sequences using the three different specifications.
+Now we can produce **Table 2.2** from the book which shows a small selection of four sequences using the three different specifications.
 
 
 ```{r, eval=FALSE}

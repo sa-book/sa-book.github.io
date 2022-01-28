@@ -2,13 +2,7 @@
 title: "Describing & summarising sequence data"
 description: |
   Chapter 2.3 Description of Sequence Data I: The Basics
-output:
-  distill::distill_article:
-    toc: true
-    toc_float: true
-    toc_depth: 2
-    highlight: haddock
-    highlight_downlit: true    
+output: distill::distill_article
 ---
 
 ```{r setup, include=FALSE}
@@ -50,7 +44,7 @@ htmltools::tagList(
 )
 ```
 
-We use a simple alphabet differentiating four partnership states to illustrate `TraMineR`'s capabilities of producing simple descriptive statistics on our sequence data. The sequences cover the partnership biographies from age 18 to 40 (monthly data).
+We use a simple alphabet differentiating four partnership states to illustrate [`{TraMineR}`](http://traminer.unige.ch){target="_blank"}'s capabilities of producing simple descriptive statistics on our sequence data. The sequences cover the partnership biographies from age 18 to 40 (monthly data).
 The sequences are stored in the object `partner.month.seq`.
 
 
@@ -124,7 +118,7 @@ kable(table1,
 
 ## Number of transitions & transition matrix
 
-The person-specific number of transitions between states can be obtained by `seqtransn`. However, we are usually interested in the average number of transitions. We use `wtd.mean` and `wtd.var` from the `Hmisc` package to compute the weighted mean and standard deviation. The weights are stored in the variable `weight40` of the data frame `family` which served as source for generating the sequence object `partner.month.seq`.
+The person-specific number of transitions between states can be obtained by `seqtransn`. However, we are usually interested in the average number of transitions. We use `wtd.mean` and `wtd.var` from the [`{Hmisc}`](https://hbiostat.org/R/Hmisc/){target="_blank"} package to compute the weighted mean and standard deviation. The weights are stored in the variable `weight40` of the data frame `family` which served as source for generating the sequence object `partner.month.seq`.
 
 ```{r, eval=FALSE, echo=TRUE}
 wtd.mean(seqtransn(partner.month.seq), family$weight40)
@@ -157,7 +151,7 @@ kable(transfreq) %>%
 ```
 
 
-Transition rates between states can be computed by using `seqtrate`. Again, we display the transitions rates using sequences with monthly and yearly granularity (`partner.month.seq` and `partner.year.seq`). It is also possible to calculate transitions rates at specific positions of the sequence by typing `time.varying = TRUE`. This option is also used for generating the animated illustration below (**Table 2-4**).
+Transition rates between states can be computed by using `seqtrate`. Again, we display the transitions rates using sequences with monthly and yearly granularity (`partner.month.seq` and `partner.year.seq`). It is also possible to calculate transitions rates at specific positions of the sequence by typing `time.varying = TRUE`. This option is also used for generating the animated illustration below (**Table 2.4**).
 
 
 ```{r, eval=FALSE, echo=TRUE}
@@ -212,7 +206,7 @@ transmat.year.tbl %>%
 
 ```
 
-Additional insights can be gained by using sequence data stored in the DSS format. A computation based on this format provides transition rates between episodes of distinct states. Note, that we only use monthly sequence data for this exercise in order to keep track of short lasting spells which might be obscured in the yearly data (**Table 2-5**).
+Additional insights can be gained by using sequence data stored in the DSS format. A computation based on this format provides transition rates between episodes of distinct states. Note, that we only use monthly sequence data for this exercise in order to keep track of short lasting spells which might be obscured in the yearly data (**Table 2.5**).
 
 ```{r, eval=FALSE, echo=TRUE}
 seqtrate(seqdss(partner.month.seq))
@@ -241,7 +235,7 @@ transmat.dss.tbl %>%
 
 Among other things `seqstatd` computes the distribution of states at each position in the sequence. Usually this information is displayed in a graphical fashion (state distribution plot) rather than as a descriptive table.
 
-Usually the tabular presentation of the state distribution requires to extract the distribution for a selection of (meaningful) positions of the sequence. In the example below we display the distribution at age 18, 20, 24, 28, 32, 36, and 40. Note that time is measured in months. Hence, we do not extract the descriptives at positions 1 and 3 but at positions 1 and 24 to obtain the state distribution at age 18 and 20 (**Table 2-6**). 
+Usually the tabular presentation of the state distribution requires to extract the distribution for a selection of (meaningful) positions of the sequence. In the example below we display the distribution at age 18, 20, 24, 28, 32, 36, and 40. Note that time is measured in months. Hence, we do not extract the descriptives at positions 1 and 3 but at positions 1 and 24 to obtain the state distribution at age 18 and 20 (**Table 2.6**). 
 
 ```{r, eval=FALSE, echo=TRUE}
 seqstatd(partner.month.seq)$Frequencies[,c(1, seq(24, 264, by = 48))]
@@ -262,7 +256,7 @@ kable(statedis2,
                 full_width = F)
 ```
 
-The following code extracts the corresponding cross-sectional values of the Shannon entropy for the same time points (**Table 2-7**).
+The following code extracts the corresponding cross-sectional values of the Shannon entropy for the same time points (**Table 2.7**).
 
 ```{r, eval=FALSE, echo=TRUE}
 seqstatd(partner.month.seq)$Entropy[c(1, seq(24, 264, by = 48))]
@@ -367,7 +361,7 @@ summary(partner.year.rep)
 
 ```
 
-The table below presents a set of representative sequences (SPS format) and the corresponding coverage statistics. In addition, it shows how many cases are (more or less) represented by each the extracted sequences (**Table 2-8**):
+The table below presents a set of representative sequences (SPS format) and the corresponding coverage statistics. In addition, it shows how many cases are (more or less) represented by each the extracted sequences (**Table 2.8**):
 
 ```{r, echo=FALSE, message=FALSE, results='hide'}
 # Table 2.8 -  Representative sequences ----
@@ -404,7 +398,7 @@ kable(partner.year.rep, format = "html", escape = F,
       
 ```
 
-Finally, we conclude this chapter by identifying the medoid sequences of women and men using `TraMineRextras`'s `seqrep.grp`-function which allows to extract representative sequences for different subgroups.
+Finally, we conclude this chapter by identifying the medoid sequences of women and men using [`{TraMineRextras}`](http://traminer.unige.ch){target="_blank"}'s `seqrep.grp`-function which allows to extract representative sequences for different subgroups.
 
 
 ```{r, echo=TRUE, eval=FALSE}

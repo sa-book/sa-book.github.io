@@ -106,7 +106,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Sequence length and granularity"]},{"type":"character","attributes":{},"value":["Chapter 2.2 Defining sequences\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth","highlight","highlight_downlit"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"character","attributes":{},"value":["haddock"]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Sequence length and granularity"]},{"type":"character","attributes":{},"value":["Chapter 2.2 Defining sequences\n"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2533,67 +2533,55 @@ MAR
 <li>The first alternative aims at reducing the complexity of the original data by imposing a threshold rule that defines a minimum length for partnership spells. If a spell falls below this threshold value, it would be discounted and the respective states coded as being single rather than in a relationship. The data manipulation required for this alternative sequence specification was done in Stata. Hence, we only have to import the dataset from Stata and define it a sequence object using similar code than in <a href="rChapter2-1.html">Chapter 2-1</a>.</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># import alternative version of sequence data </span>
-<span class='va'>family2</span> <span class='op'>&lt;-</span> <span class='fu'>read_dta</span><span class='op'>(</span><span class='st'>"partnerRecodedThreshold12.dta"</span><span class='op'>)</span>
-
-<span class='co'># store sequence variables in a separate object</span>
-<span class='va'>seqvars2.partner</span> <span class='op'>&lt;-</span> <span class='va'>family2</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>select</span><span class='op'>(</span><span class='fu'>starts_with</span><span class='op'>(</span><span class='st'>"state"</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='co'># define long and short labels</span>
-<span class='va'>shortlab.partner</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"S"</span>, <span class='st'>"LAT"</span>, <span class='st'>"COH"</span>, <span class='st'>"MAR"</span><span class='op'>)</span>
-<span class='va'>longlab.partner</span> <span class='op'>&lt;-</span>  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Single"</span>, <span class='st'>"LAT"</span>, <span class='st'>"Cohabiting"</span>, <span class='st'>"Married"</span><span class='op'>)</span>
-
-<span class='co'># define sequence object using monthly data</span>
-<span class='va'>partner.month.seq2</span> <span class='op'>&lt;-</span> <span class='fu'>seqdef</span><span class='op'>(</span><span class='va'>seqvars2.partner</span>,
-                             states <span class='op'>=</span> <span class='va'>shortlab.partner</span>,
-                             labels <span class='op'>=</span> <span class='va'>longlab.partner</span>,
-                             weights <span class='op'>=</span> <span class='va'>family2</span><span class='op'>$</span><span class='va'>weight40</span><span class='op'>)</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import alternative version of sequence data </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>family2 <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">&quot;partnerRecodedThreshold12.dta&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># store sequence variables in a separate object</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>seqvars2.partner <span class="ot">&lt;-</span> family2 <span class="sc">%&gt;%</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;state&quot;</span>))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># define long and short labels</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>shortlab.partner <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;S&quot;</span>, <span class="st">&quot;LAT&quot;</span>, <span class="st">&quot;COH&quot;</span>, <span class="st">&quot;MAR&quot;</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>longlab.partner <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">&quot;Single&quot;</span>, <span class="st">&quot;LAT&quot;</span>, <span class="st">&quot;Cohabiting&quot;</span>, <span class="st">&quot;Married&quot;</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># define sequence object using monthly data</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>partner.month.seq2 <span class="ot">&lt;-</span> <span class="fu">seqdef</span>(seqvars2.partner,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                             <span class="at">states =</span> shortlab.partner,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                             <span class="at">labels =</span> longlab.partner,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                             <span class="at">weights =</span> family2<span class="sc">$</span>weight40)</span></code></pre></div>
 </div>
 <ul>
-<li>The second strategy changes the granularity of the sequence data from monthly to yearly. That is, twelve states from the original sequence are condensed to one state in the new sequence by applying the <code>seqgranularity</code> function from the <code>TraMineRextras</code> package.</li>
+<li>The second strategy changes the granularity of the sequence data from monthly to yearly. That is, twelve states from the original sequence are condensed to one state in the new sequence by applying the <code>seqgranularity</code> function from the <code>{TraMineRextras}</code> package.</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># change granularity --&gt; years instead of months (using modal values)</span>
-<span class='va'>partner.year.seq</span> <span class='op'>&lt;-</span> <span class='fu'>seqgranularity</span><span class='op'>(</span><span class='va'>partner.month.seq</span>, 
-                               tspan<span class='op'>=</span><span class='fl'>12</span>, method<span class='op'>=</span><span class='st'>"mostfreq"</span><span class='op'>)</span>
-</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change granularity --&gt; years instead of months (using modal values)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>partner.year.seq <span class="ot">&lt;-</span> <span class="fu">seqgranularity</span>(partner.month.seq, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">tspan=</span><span class="dv">12</span>, <span class="at">method=</span><span class="st">&quot;mostfreq&quot;</span>)</span></code></pre></div>
 </div>
-</div>
-<p>Now we can produce <strong>Table 2.2</strong> from the book which shows a small selction of four sequences using the three different specifications.</p>
+<p>Now we can produce <strong>Table 2.2</strong> from the book which shows a small selection of four sequences using the three different specifications.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
-<span class='co'># Table 2.2 - Different alternatives of defining sequences ----</span>
-<span class='co'># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
-
-<span class='co'># Using original Sequence data (monthly granularity) (column 1)</span>
-<span class='va'>col1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>partner.month.seq</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>8</span>, <span class='fl'>16</span>, <span class='fl'>21</span><span class='op'>)</span>, <span class='op'>]</span>, format <span class='op'>=</span> <span class='st'>"SPS"</span><span class='op'>)</span>
-
-<span class='co'># Using recoded monthly data only considering</span>
-<span class='co'># spells lasting at least 12 months (column 2)</span>
-<span class='va'>col2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>partner.month.seq2</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>8</span>, <span class='fl'>16</span>, <span class='fl'>21</span><span class='op'>)</span>, <span class='op'>]</span>, format <span class='op'>=</span> <span class='st'>"SPS"</span><span class='op'>)</span>
-
-<span class='co'># Using sequences with yearly granularity (Column 3)</span>
-<span class='va'>col3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>partner.year.seq</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>8</span>, <span class='fl'>16</span>, <span class='fl'>21</span><span class='op'>)</span>, <span class='op'>]</span>, format <span class='op'>=</span> <span class='st'>"SPS"</span><span class='op'>)</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Table 2.2 - Different alternatives of defining sequences ----</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Using original Sequence data (monthly granularity) (column 1)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>col1 <span class="ot">&lt;-</span> <span class="fu">print</span>(partner.month.seq[<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">21</span>), ], <span class="at">format =</span> <span class="st">&quot;SPS&quot;</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Using recoded monthly data only considering</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># spells lasting at least 12 months (column 2)</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>col2 <span class="ot">&lt;-</span> <span class="fu">print</span>(partner.month.seq2[<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">21</span>), ], <span class="at">format =</span> <span class="st">&quot;SPS&quot;</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Using sequences with yearly granularity (Column 3)</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>col3 <span class="ot">&lt;-</span> <span class="fu">print</span>(partner.year.seq[<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">21</span>), ], <span class="at">format =</span> <span class="st">&quot;SPS&quot;</span>)</span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-page">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Print selection of sequences from differently specified sequence data</span>
-<span class='fu'>tibble</span><span class='op'>(</span><span class='va'>col1</span>, <span class='va'>col2</span>, <span class='va'>col3</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>kable</span><span class='op'>(</span>col.names <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Original sequence"</span>, 
-                      <span class='st'>"Strategy 1 – recode"</span>, 
-                      <span class='st'>"Strategy 2 – aggregate"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>kable_styling</span><span class='op'>(</span>bootstrap_options <span class='op'>=</span> 
-                  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"striped"</span>, <span class='st'>"hover"</span>, <span class='st'>"condensed"</span>, <span class='st'>"responsive"</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print selection of sequences from differently specified sequence data</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(col1, col2, col3) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Original sequence&quot;</span>, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;Strategy 1 – recode&quot;</span>, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;Strategy 2 – aggregate&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;condensed&quot;</span>, <span class="st">&quot;responsive&quot;</span>))</span></code></pre></div>
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -2656,7 +2644,6 @@ Strategy 2 – aggregate
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
