@@ -1,0 +1,25 @@
+---
+title: "Chapter 05"
+description: |
+  Multidimensional Sequence Analysis
+output:
+  distill::distill_article:
+    toc: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+
+| TOC                      | Content (click for jumping to examples)  |
+|-------------------------------------|---------------------------------------------|
+| 5.1	Accounting for simultaneous temporal processes                   | [No code for this section] |
+| 5.2	Expanding the alphabet                                           |  [no code for this section] |
+| 5.3	Cross-tabulation of groups from different dissimilarity matrices |  [Cross-tabulation of clusters](rChapter5-3.html) |
+| 3.4 Combine domain-specific dissimilarities                          | [Summation and averaging](rChapter5-4.html) |
+| 3.5	Multichannel sequence analysis                                   | [Dissimilarity matrix and clustering](rChapter5-6.html) | 
+
+
+This chapter introduces techniques to test for the correlation between two domains (channels). We further discuss different ways to account for multidimensional processes. Finally, we apply what we have learned so far on computing dissimilarity between one-dimensional sequences (e.g., family biographies or individual voting behavior) to the case of multichannel sequence analysis, which allows researchers to calculate dissimilarities for multiple sets of sequences simultaneously (e.g., for employment and family trajectories or for the electoral behavior of spouses). [to be finalized]

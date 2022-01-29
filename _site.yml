@@ -16,10 +16,12 @@ navbar:
         - text: "Chapter 02"
           href: rChapter2-0.html
         - text: "Chapter 03"
-          href: UnderConstruction.html
+          href: rChapter3-0.html
         - text: "Chapter 04"
-          href: UnderConstruction.html
+          href: rChapter4-0.html
         - text: "Chapter 05"
+          href: rChapter5-0.html
+        - text: "Chapter 06"
           href: UnderConstruction.html
     - text: "About the Authors"
       href: about.html

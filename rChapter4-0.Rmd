@@ -1,0 +1,29 @@
+---
+title: "Chapter 04"
+description: |
+  Identifying Groups in Data: Analyses Based on Dissimilarities Between Sequences
+output:
+  distill::distill_article:
+    toc: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+| TOC                           | Content (click for jumping to examples)  |
+|-------------------------------------|---------------------------------------------|
+| 4.1	Clustering sequences to uncover typologies                              | [Crisp (or hard) clustering algorithms](rChapter4-1.html) | 
+|                                                                             | [Partitional clustering](rChapter4-1.html) | 
+|                                                                             | [Cluster quality indices](rChapter4-1.html) | 
+| 4.2	Illustrative application                                                | [Hierarchical clustering: Ward’s linkage](rChapter4-2.html) | 
+|                                                                             | [Partitional clustering: PAM](rChapter4-2.html) |
+|                                                                             | [Visualizing clustering options with MDS](rChapter4-2.html) |
+|                                                                             | [Comparison between different time granularities](rChapter4-2.html) |
+| 4.3	“Construct validity” for typologies from cluster analysis to sequences  | No code for this section |
+| 4.4	Using typologies as dependent and independent variables                 | [Clusters as outcomes](rChapter4-3.html) | 
+|                                                                             | [Clusters as predictors](rChapter4-4.html) | 
+
+
+Chapter 4 considers how to use the dissimilarity matrices to identify groups in data by using different clustering techniques. The resulting typology is further analyzed either as a categorical independent or dependent variable within a regression framework.  [to be finalized]
