@@ -14,13 +14,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat');
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
 
 
 
 html {
   /*-- Main font sizes --*/
   --title-size:      50px;
-  --body-size:       1.06rem;
+  --body-size:       1.05rem;
   --code-size:       14px;
   --aside-size:      12px;
   --fig-cap-size:    13px;
@@ -33,8 +34,8 @@ html {
   /*-- Specify custom fonts ~~~ must be imported above   --*/
   --heading-font:    'Lato', sans-serif;         /* edited */
   --mono-font:       'Fira Code', monospace;     /* edited */
-  --body-font:       'Lato', sans-serif;         /* edited */
-  --navbar-font:     'Roboto', sans-serif;   /* edited */
+  --body-font:       'Poppins', sans-serif;         /* edited */
+  --navbar-font:     'Lato', sans-serif;   /* edited */
 }
 
 /*-- ARTICLE METADATA --*/

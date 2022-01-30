@@ -1,0 +1,80 @@
+---
+title: "Overview & Downloads"
+output:
+  distill::distill_article:
+    toc: false
+bibliography: Companion.bib
+csl: https://www.zotero.org/styles/apa
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+options("kableExtra.html.bsTable" = T)
+
+# Load and download (if necessary) required packages ----
+# Save package names as a vector of strings
+pkgs <- c("fontawesome", "glue", "gt", "kableExtra", "knitr", "tidyverse") 
+
+# Options that might help to prevent some errors in the installation process
+options(install.packages.check.source = "no")
+options(install.packages.compile.from.source = "never")
+
+## Install uninstalled packages
+lapply(pkgs[!(pkgs %in% installed.packages())], 
+       install.packages, repos = getOption("repos")["CRAN"])
+
+## Load all packages to library and adjust options
+lapply(pkgs, library, character.only = TRUE)
+
+```
+
+Below you find the data and R scripts to replicate all examples from the book. The material was created using R (`version 4.1.2`) and RStudio (`version 2021.09.0+351`).
+
+The files in each zip file are organized in a chapter-specific RStudio project and we use relative paths when referring to the different directories. The top-level directory (reference point for the relative paths) contains most R-Scripts and the `.Rproj` file which can be used to open the project in RStudio. If you change the directory structure or the names of directories you might need adjust the scripts accordingly. It might be also necessary to install additional libraries and (free) software to run some the scripts. 
+
+<style>
+div.green {background-color:#8DCEA4; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "green">
+**For further instructions on how to work with the zip files we refer to the `readme.html` pages of each archive.**
+</div>
+
+<p></p>
+
+Please note that this website also contains additional material providing commented code and instructions as well as some bonus material introducing further examples and analytical tools. To access this material please turn to the chapter-specific sub.pages. 
+
+<br>
+
+```{r}
+aux <- 2:6
+tibble(`Table of Contents (with link to subpage)` = c("Chapter 1 - Introduction",
+               "[Chapter 2 - Describing and Visualizing Sequences](rChapter2-0.html)",
+               "[Chapter 3 - Comparing Sequences](rChapter3-0.html)",
+               "[Chapter 4 - Identifying Groups In Sequence Data](rChapter4-0.html)",
+               "[Chapter 5 - Multidimensional Sequence Analysis](rChapter5-0.html)",
+               "[Chapter 6 - Examining Group Differences Without Cluster Analysis](rChapter6-0.html)", 
+               "Chapter 7 - Combining SA With Other Explanatory Methods", 
+               "Chapter 8 - Conclusions"),
+       `Download link (*.zip)` = c("*No code*", 
+                glue('[{fontawesome::fa("far fa-file-archive")} Chapter 0{aux}.zip](source/Chapter0{aux}.zip)'), 
+                "*No code*", "*No code*")) %>% 
+  mutate(`Download link (*.zip)` = map(`Download link (*.zip)`, md)) %>%
+  kable(escape = F) %>%
+  kable_styling()
+  
+```
+
+<br>
+
+## Data source
+The data for examples come from the German Family Panel (pairfam), release 10.0 @ZA5678. A description of the study can be found in @Huinink2011. 
+
+We gratefully acknowledge the permission of the pairfam team to share a reduced version of their data to illustrate all techniques presented in the book with real-world survey data.
+
+If you are interested in using the complete data sets please turn to: <https://www.pairfam.de/en/>
+
+
+## How to cite
+
+If you are re-using our code for your own projects we kindly ask you to cite our book.
