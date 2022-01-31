@@ -27,7 +27,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Load and download (if necessary) required packages ----
 # Save package names as a vector of strings
-pkgs <- c("fontawesome", "icons", "knitr", "tufte") 
+pkgs <- c("fontawesome", "icons", "knitr", "metathis", "tufte") 
 
 # Options that might help to prevent some errors in the installation process
 options(install.packages.check.source = "no")
@@ -40,6 +40,22 @@ lapply(pkgs[!(pkgs %in% installed.packages())],
 ## Load all packages to library and adjust options
 lapply(pkgs, library, character.only = TRUE)
 
+```
+
+```{r, include=FALSE, results='asis'}
+library(metathis)
+
+meta() %>%
+  meta_social(
+    title = "Sequence Analysis",
+    description = "Companion website for the little green book",
+    url = "https://sa-book.github.io/",
+    image = "https://sa-book.github.io/images/QASS.png",
+    image_alt = "Book cover of the QASS book on Sequence Analysis by Raab & Struffolino",
+    og_type = "website",
+    og_author = c("Marcel Raab", "Emanuela Struffolino"),
+    twitter_card_type = "summary"
+  )
 ```
 
 ::: {.floatting}
