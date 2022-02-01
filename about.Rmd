@@ -7,6 +7,18 @@ output:
     toc_depth: 2
 ---
 
+```{css, echo=FALSE}
+.img-circle {
+  width:100px;
+  border-radius: 50%;
+  filter: gray;
+  filter: grayscale(100%);
+}
+
+```
+
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```

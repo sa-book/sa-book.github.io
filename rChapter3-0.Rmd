@@ -15,8 +15,9 @@ knitr::opts_chunk$set(echo = FALSE)
 
 | TOC                             | Content (click for jumping to examples)  |
 |-------------------------------------|-------------------------------|
-| 3.1 Dissimilarity measures to compare sequences                  | [Create example sequences](rChapter3-1.html) |
-| 3.2 Alignment techniques                                         | [Optimal matching (OM)](rChapter3-2.html) |
+| 3.1 Dissimilarity measures to compare sequences                  | No code for this section |
+| 3.2 Alignment techniques                                         | [Create example sequences](rChapter3-2.html) |
+|                                                                  | [Optimal matching (OM)](rChapter3-2.html) |
 |                                                                  | [Assigning costs to the alignment operations](rChapter3-2.html) |
 | 3.3 Alignment-based extensions of OM                             | [Alternative OM-bases metrics to align sequences](rChapter3-3.html) |
 | 3.4 Nonalignment techniques                                      | [Alternative metrics to align sequences](rChapter3-4.html) |

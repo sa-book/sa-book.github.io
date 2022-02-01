@@ -1,0 +1,159 @@
+---
+title: "Create example sequences & calculate the pairwise dissimilarity matrix using different aligment techniques"
+description: |
+  Chapter 3.2 Alignment techniques
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+
+# Load required packages
+library(here)
+source(here("source", "load_libraries.R"))
+
+# Output options
+knitr::opts_chunk$set(eval=TRUE, echo=TRUE)
+options("kableExtra.html.bsTable" = T)
+
+# load data for Chapter 3
+load(here("data", "3-0_ChapterSetup.RData"))
+
+```
+
+
+```{r, xaringanExtra-clipboard, echo=FALSE}
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clone fa-2x\" style=\"color: #301e64\"></i>",
+    success_text = "<i class=\"fa fa-check fa-2x\" style=\"color: #90BE6D\"></i>",
+    error_text = "<i class=\"fa fa-times fa-2x\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
+<details><summary>**Click here to get instructions...**</summary>
+
+- Please download and unzip the replication files for Chapter 3
+([`r fontawesome::fa("far fa-file-archive")` Chapter03.zip](source/Chapter03.zip)). 
+- Read `readme.html` and run `3-0_ChapterSetup.R`. This will create `3-0_ChapterSetup.RData` in the sub folder `data/R`. This file contains the data required to produce the plots shown below. 
+- You also have to add the function `legend_large_box` to your environment in order to render the tweaked version of the legend described below. You find this file in the `source` folder of the unzipped Chapter 3 archive.
+- We also recommend to load the libraries listed in Chapter 3's `LoadInstallPackages.R`
+
+```{r, eval=FALSE}
+# assuming you are working within .Rproj environment
+library(here)
+
+# install (if necessary) and load other required packages
+source(here("source", "load_libraries.R"))
+
+# load environment generated in "3-0_ChapterSetup.R"
+load(here("data", "R", "3-0_ChapterSetup.RData"))
+
+```
+</details>
+
+\
+
+In chapter 3.2, we introduces techniques to compare whole sequences. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see [here](https://www.pairfam.de/en/){target="_blank"}.
+
+
+## Create example sequences
+
+We first create two vectors 6-element-long (of equal length). Each element is coded with a letter: A, B, or C.  
+
+```{r, eval=TRUE, echo=TRUE}
+ch3.ex1 <- c("A-B-B-C-C-C", "A-B-B-B-B-B")
+```
+
+We then display the two vectors:
+
+```{r, eval=TRUE, echo=FALSE}
+ch3.ex1 
+```
+
+We create sequence objects from the three vectors:
+
+```{r, eval=TRUE, echo=TRUE}
+ch3.ex1.seq <- seqdef(ch3.ex1)
+```
+
+The three resulting sequences are then displayed:
+
+```{r, eval=TRUE, echo=TRUE}
+ch3.ex1.seq
+```
+
+## Optimal matching (OM)
+
+In this case sequences are short and few in number, so that we immediately recognize that they are not the identical In case of longer and more complex sequences, one might want to know if two sequences are the identical but doing that visually might not be feasible. The following code allows you to do that as it returns [TRUE] if the sequences are the same and [FALSE] if they are not. In this case we compare sequence 1 and 2 above:
+
+```{r, eval=TRUE, echo=TRUE}
+seqcomp(ch3.ex1.seq[1,],ch3.ex1.seq[2,])
+```
+
+However, the two sequences might have some similarity although they are not exaclty the same. To obtain the number of matching positions between the two sequences, we can use the code: 
+
+```{r, eval=TRUE, echo=TRUE}
+seqmpos(ch3.ex1.seq[1,],ch3.ex1.seq[2,])
+```
+
+We now know that sequence 1 and sequence 2 shares 3 matching positions.
+
+Alternatively, we can compute the length of the longest common subsequence (elements composed of tokens - states and combinations of subsequent states - that occur in the same order along the sequence) of two sequences:
+
+```{r, eval=TRUE, echo=TRUE}
+seqLLCS(ch3.ex1.seq[1,],ch3.ex1.seq[2,])
+```
+
+We now know that the longest common subsequence between sequence 1 and sequence 2 is 3-elements long.
+
+Aligning them pairwise to make them the same. Optimal Matching (OM) does so by changing the order of the states or the length of a spell. In classical OM applications, alignment can be achieved by conducting two basic operations: insertion/deletion of a state (indel) and substitution of a state with another one. Different combinations of operations are possible to "match" the sequences pairwise. Each operation is assigned a “cost”: the sum of the costs of all operations will be regarded as the degree of dissimilarity between the two sequences. The matching is "optimal" as the algorithm finds the "cheapest" solution to align the sequences given a set of costs for the indel and substitution operations. 
+
+In the simplest example possible, both indel and substitution operations can be assigned the same cost of 1 (Levenshtein I). 
+We first generate a substitution costs matrix to be used in the next steps:
+
+```{r, eval=TRUE, echo=TRUE}
+costs1 <- matrix(
+  c(0,1,1,
+    1,0,1,
+    1,1,0
+    ),
+  nrow = 3, ncol = 3, byrow = TRUE)
+```
+
+We can display it:
+
+```{r, eval=TRUE, echo=FALSE}
+costs1
+```
+
+We then use the following code to obtain a summary of the optimal number and costs of operations the OM identifies as the cheapest to align the two sequences. `indel` and `sm`) require the indel cost and the substitution cost matrix respectively to be specified. In what follows, we use `seqalign` command:
+
+```{r, eval=TRUE, echo=TRUE}
+al.ch3.1.2 <- seqalign(ch3.ex1.seq, 1:2, indel=1, sm=costs1)
+print(al.ch3.1.2)
+
+```
+
+
+## Assigning costs to the alignment operations
+
+Let's consider 3 example sequences
+
+```{r, eval=TRUE, echo=TRUE}
+ch3.ex2 <- c("A-B-B-C-C-C", "A-B-B-B-B-B", "B-C-C-C-B-B")
+```
+
+...define them as sequences objects...
+
+```{r, eval=TRUE, echo=TRUE}
+ch3.ex2.seq <- seqdef(ch3.ex2)
+```
+
+...and display them:
+
+```{r, eval=TRUE, echo=TRUE}
+ch3.ex2.seq
+```
+

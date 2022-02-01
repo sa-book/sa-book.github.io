@@ -6,23 +6,9 @@ output: distill::distill_article
 ---
 
 ```{r setup, include=FALSE}
-# Load and download (if necessary) required packages ----
-
-# Save package names as a vector of strings
-pkgs <- c("colorspace", "glue", "here", "Hmisc", "htmltools", "kableExtra", 
-          "knitr", "patchwork", "pdftools", "RColorBrewer", "reshape2", 
-          "sjPlot", "tidyverse", "TraMineR", "TraMineRextras", "xaringanExtra") 
-
-# Options that might help to prevent some errors in the installation process
-options(install.packages.check.source = "no")
-options(install.packages.compile.from.source = "never")
-
-## Install uninstalled packages
-lapply(pkgs[!(pkgs %in% installed.packages())], 
-       install.packages, repos = getOption("repos")["CRAN"])
-
-## Load all packages to library and adjust options
-lapply(pkgs, library, character.only = TRUE)
+# Load required packages
+library(here)
+source(here("source", "load_libraries.R"))
 
 # Output options
 knitr::opts_chunk$set(eval=TRUE, echo=TRUE)
@@ -44,6 +30,28 @@ htmltools::tagList(
 )
 ```
 
+<details><summary>**Click here to get instructions...**</summary>
+
+- Please download and unzip the replication files for Chapter 2
+([`r fontawesome::fa("far fa-file-archive")` Chapter02.zip](source/Chapter02.zip)). 
+- Read `readme.html` and run `2-0_ChapterSetup.R`. This will create `2-0_ChapterSetup.RData` in the sub folder `data/R`. This file contains the data required to produce the plots shown below. 
+- We also recommend to load the libraries listed in the Chapter 2's `LoadInstallPackages.R`
+
+```{r, eval=FALSE}
+# assuming you are working within .Rproj environment
+library(here)
+
+# install (if necessary) and load other required packages
+source(here("source", "load_libraries.R"))
+
+# load environment generated in "2-0_ChapterSetup.R"
+load(here("data", "R", "2-0_ChapterSetup.RData"))
+
+```
+</details>
+
+\
+
 **Table 2.2** in Chapter 2.2 compares different approaches towards defining sequence data.
 
 The sequences consist of monthly information on respondents' partnership status between age 18 to 40 (monthly data). The sequences are stored in the object `partner.month.seq` and distinguish four states:
@@ -58,33 +66,12 @@ kable() %>%
 
 
 
-In addition to simply using the original data, two alternative approaches of defining the sequences are discussed:
+In addition to using the original data, two alternative approaches of defining the sequences are discussed:
 
--   The first alternative aims at reducing the complexity of the original data by imposing a threshold rule that defines a minimum length for partnership spells. If a spell falls below this threshold value, it would be discounted and the respective states coded as being single rather than in a relationship. The data manipulation required for this alternative sequence specification was done in Stata. Hence, we only have to import the dataset from Stata and define it a sequence object using similar code than in [Chapter 2-1](rChapter2-1.html).
+-   The first alternative aims at reducing the complexity of the original data by imposing a threshold rule that defines a minimum length for partnership spells. If a spell falls below this threshold value, it would be discounted and the respective states coded as being single rather than in a relationship. The sequence object based on this manipulated data set is stored in `partner.month.seq2` which was created in the same way as `partner.month.seq` (see [Chapter 2-1](rChapter2-1.html) or `2-0_ChapterSetup.R`).
+-   The second strategy changes the granularity of the sequence data from monthly to yearly. That is, twelve states from the original sequence are condensed to one state in the new sequence by applying the `seqgranularity` function from the `{TraMineRextras}` package. The resulting object (already stored in `2-0_ChapterSetup.RData`) was created with the following code
 
-```{r, eval = FALSE}
-# import alternative version of sequence data 
-family2 <- read_dta("partnerRecodedThreshold12.dta")
-
-# store sequence variables in a separate object
-seqvars2.partner <- family2 %>%
-  select(starts_with("state"))
-
-# define long and short labels
-shortlab.partner <- c("S", "LAT", "COH", "MAR")
-longlab.partner <-  c("Single", "LAT", "Cohabiting", "Married")
-
-# define sequence object using monthly data
-partner.month.seq2 <- seqdef(seqvars2.partner,
-                             states = shortlab.partner,
-                             labels = longlab.partner,
-                             weights = family2$weight40)
-
-```
-
--   The second strategy changes the granularity of the sequence data from monthly to yearly. That is, twelve states from the original sequence are condensed to one state in the new sequence by applying the `seqgranularity` function from the `{TraMineRextras}` package.
-
-```{r}
+```{r, eval=FALSE}
 # change granularity --> years instead of months (using modal values)
 partner.year.seq <- seqgranularity(partner.month.seq, 
                                tspan=12, method="mostfreq")
@@ -93,7 +80,7 @@ partner.year.seq <- seqgranularity(partner.month.seq,
 Now we can produce **Table 2.2** from the book which shows a small selection of four sequences using the three different specifications.
 
 
-```{r, eval=FALSE}
+```{r, eval=TRUE,results='hide'}
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Table 2.2 - Different alternatives of defining sequences ----

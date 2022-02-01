@@ -1,0 +1,64 @@
+---
+title: "Alternative metrics to align sequences"
+description: |
+  Chapter 3.4 Nonalignment techniques
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+
+# Load required packages
+library(here)
+source(here("source", "load_libraries.R"))
+
+# Output options
+knitr::opts_chunk$set(eval=TRUE, echo=TRUE)
+options("kableExtra.html.bsTable" = T)
+
+# load data for Chapter 3
+load(here("data", "3-0_ChapterSetup.RData"))
+
+```
+
+
+```{r, xaringanExtra-clipboard, echo=FALSE}
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clone fa-2x\" style=\"color: #301e64\"></i>",
+    success_text = "<i class=\"fa fa-check fa-2x\" style=\"color: #90BE6D\"></i>",
+    error_text = "<i class=\"fa fa-times fa-2x\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
+
+
+<details><summary>**Click here to get instructions...**</summary>
+
+- Please download and unzip the replication files for Chapter 3
+([`r fontawesome::fa("far fa-file-archive")` Chapter03.zip](source/Chapter03.zip)). 
+- Read `readme.html` and run `3-0_ChapterSetup.R`. This will create `3-0_ChapterSetup.RData` in the sub folder `data/R`. This file contains the data required to produce the plots shown below. 
+- You also have to add the function `legend_large_box` to your environment in order to render the tweaked version of the legend described below. You find this file in the `source` folder of the unzipped Chapter 3 archive.
+- We also recommend to load the libraries listed in Chapter 3's `LoadInstallPackages.R`
+
+```{r, eval=FALSE}
+# assuming you are working within .Rproj environment
+library(here)
+
+# install (if necessary) and load other required packages
+source(here("source", "LoadInstallPackages.R"))
+
+# load environment generated in "3-0_ChapterSetup.R"
+load(here("data", "R", "3-0_ChapterSetup.RData"))
+
+```
+</details>
+
+\
+
+
+In chapter 3.4, we introduce so-called nonalignment techniques, that is techniques not based on OM but on the identification of subsequences that occur in the same order along the sequence. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see [here](https://www.pairfam.de/en/){target="_blank"}.
+
+
+## 

@@ -6,28 +6,12 @@ output: distill::distill_article
 ---
 
 ```{r setup, include=FALSE}
+# Load required packages
+library(here)
+source(here("source", "load_libraries.R"))
 
-# Load and download (if necessary) required packages ----
-
-# Save package names as a vector of strings
-pkgs <- c("colorspace", "glue", "here", "Hmisc", "htmltools", "kableExtra", 
-          "knitr", "patchwork", "pdftools", "RColorBrewer", "reshape2", 
-          "sjPlot", "tidyverse", "TraMineR", "TraMineRextras", "xaringanExtra") 
-
-# Options that might help to prevent some errors in the installation process
-options(install.packages.check.source = "no")
-options(install.packages.compile.from.source = "never")
-
-## Install uninstalled packages
-lapply(pkgs[!(pkgs %in% installed.packages())], 
-       install.packages, repos = getOption("repos")["CRAN"])
-
-## Load all packages to library and adjust options
-lapply(pkgs, library, character.only = TRUE)
-
-
+# Output options
 knitr::opts_chunk$set(eval=TRUE, echo=TRUE)
-
 options("kableExtra.html.bsTable" = T)
 
 # load data for Chapter 2
@@ -46,6 +30,24 @@ htmltools::tagList(
 )
 ```
 
+<details><summary>**Click here to get instructions...**</summary>
+
+- Please download and unzip the replication files for Chapter 2
+([`r fontawesome::fa("far fa-file-archive")` Chapter02.zip](source/Chapter02.zip)). 
+- Read `readme.html`
+- You don't have to run `2-0_ChapterSetup.R` for this tutorial because we start with importing the raw data stored in the .dta format (Stata)
+- We also recommend to load the libraries listed in the Chapter 2's `LoadInstallPackages.R`
+
+
+```{r, eval=FALSE}
+# assuming you are working within .Rproj environment
+library(here)
+
+# install (if necessary) and load other required packages
+source(here("source", "LoadInstallPackages.R"))
+```
+</details>
+
 In chapter 2.1, we introduce different notations of sequence data using example data on family biographies from age 18 to 40. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see [here](https://www.pairfam.de/en/){target="_blank"}.
 
 ## Defining a state sequence object
@@ -56,7 +58,7 @@ We import the data to R using the `read_dta` function from the [`{haven}`](https
 
 ```{r, eval = FALSE}
 # import data
-family <- read_dta("PartnerBirthbio.dta")
+family <- read_dta(here("data", "Stata", "PartnerBirthbio.dta"))
 ```
 
 <div class='pre-scrolly'>

@@ -9,24 +9,9 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-# Load and download (if necessary) required packages ----
-
-# Save package names as a vector of strings
-pkgs <- c("colorspace", "glue", "here", "Hmisc", "htmltools", "icons", "kableExtra", 
-          "knitr", "magrittr", "patchwork", "pdftools", "RColorBrewer", "reshape2", 
-          "sjPlot", "summarytools", "tidyverse", "TraMineR", "TraMineRextras", 
-          "xaringanExtra") 
-
-# Options that might help to prevent some errors in the installation process
-options(install.packages.check.source = "no")
-options(install.packages.compile.from.source = "never")
-
-## Install uninstalled packages
-lapply(pkgs[!(pkgs %in% installed.packages())], 
-       install.packages, repos = getOption("repos")["CRAN"])
-
-## Load all packages to library and adjust options
-lapply(pkgs, library, character.only = TRUE)
+# Load required packages
+library(here)
+source(here("source", "load_libraries.R"))
 
 # Output options
 knitr::opts_chunk$set(eval=TRUE, echo=TRUE)
@@ -35,9 +20,36 @@ options("kableExtra.html.bsTable" = T)
 # load data for Chapter 2
 load(here("data", "2-0_ChapterSetup.RData"))
 
+# Load tweaked legend function
 source(here("source", "legend_large_box.R"))
 
 ```
+
+<details><summary>**Click here to get instructions...**</summary>
+
+- Please download and unzip the replication files for Chapter 2
+([`r fontawesome::fa("far fa-file-archive")` Chapter02.zip](source/Chapter02.zip)). 
+- Read `readme.html` and run `2-0_ChapterSetup.R`. This will create `2-0_ChapterSetup.RData` in the sub folder `data/R`. This file contains the data required to produce the plots shown below. 
+- You also have to add the function `legend_large_box` to your environment in order to render the tweaked version of the legend described below. You find this file in the `source` folder of the unzipped Chapter 2 archive.
+- We also recommend to load the libraries listed in the Chapter 2's `LoadInstallPackages.R`
+
+```{r, eval=FALSE}
+# assuming you are working within .Rproj environment
+library(here)
+
+# adjusted version of the legend function
+source(here("source", "legend_large_box.R"))
+
+# install (if necessary) and load other required packages
+source(here("source", "load_libraries.R"))
+
+# load environment generated in "2-0_ChapterSetup.R"
+load(here("data", "R", "2-0_ChapterSetup.RData"))
+
+```
+</details>
+
+\
 
 Although the full potential of visualizing sequences can only be reached by using colored figures, some restrictions - particularly hight cost of colored printing - might require using grayscale figures and shaded lines. This page illustrates how to produce *acceptable* figures without using colors visualizing sequences with an alphabet of 9 states. Based on our own experience we consider an alphabet of size 12 as the upper limit when the usage of colors is not an option.
 

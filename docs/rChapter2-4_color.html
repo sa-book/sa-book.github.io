@@ -18,34 +18,117 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; } /* Alert */
+code span.an { color: #008000; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #0000ff; } /* ControlFlow */
+code span.ch { color: #008080; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #008000; } /* Comment */
+code span.cv { color: #008000; } /* CommentVar */
+code span.do { color: #008000; } /* Documentation */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.im { } /* Import */
+code span.in { color: #008000; } /* Information */
+code span.kw { color: #0000ff; } /* Keyword */
+code span.op { } /* Operator */
+code span.ot { color: #ff4000; } /* Other */
+code span.pp { color: #ff4000; } /* Preprocessor */
+code span.sc { color: #008080; } /* SpecialChar */
+code span.ss { color: #008080; } /* SpecialString */
+code span.st { color: #008080; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #008080; } /* VerbatimString */
+code span.wa { color: #008000; font-weight: bold; } /* Warning */
+</style>
 
+<style>
+  div.csl-bib-body { }
+  div.csl-entry {
+    clear: both;
+    }
+  .hanging div.csl-entry {
+    margin-left:2em;
+    text-indent:-2em;
+  }
+  div.csl-left-margin {
+    min-width:2em;
+    float:left;
+  }
+  div.csl-right-inline {
+    margin-left:2em;
+    padding-left:1em;
+  }
+  div.csl-indent {
+    margin-left: 2em;
+  }
+</style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Sequence Analysis - Companion Site: Chapter 02</title>
+  <title>Sequence Analysis - Companion Site: Visualizing sequences</title>
 
-  <meta property="description" itemprop="description" content="Defining, Describing, and Visualizing Sequences"/>
+  <meta property="description" itemprop="description" content="... using (predefined) color palettes for setting colors."/>
 
   <link rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/"/>
   <link rel="icon" type="image/png" href="images/QASS.png"/>
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Sequence Analysis - Companion Site: Chapter 02"/>
+  <meta property="og:title" content="Sequence Analysis - Companion Site: Visualizing sequences"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Defining, Describing, and Visualizing Sequences"/>
+  <meta property="og:description" content="... using (predefined) color palettes for setting colors."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Sequence Analysis - Companion Site"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Sequence Analysis - Companion Site: Chapter 02"/>
-  <meta property="twitter:description" content="Defining, Describing, and Visualizing Sequences"/>
+  <meta property="twitter:title" content="Sequence Analysis - Companion Site: Visualizing sequences"/>
+  <meta property="twitter:description" content="... using (predefined) color palettes for setting colors."/>
 
   <!--/radix_placeholder_meta_tags-->
+  
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Chapter 02"]},{"type":"character","attributes":{},"value":["Defining, Describing, and Visualizing Sequences\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output","bibliography","csl"]}},"value":[{"type":"character","attributes":{},"value":["Visualizing sequences"]},{"type":"character","attributes":{},"value":["... using (predefined) color palettes for setting colors.\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]}]}]},{"type":"character","attributes":{},"value":["Companion.bib"]},{"type":"character","attributes":{},"value":["https://www.zotero.org/styles/apa"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2335,6 +2418,10 @@
   }</style>
   <!--/radix_placeholder_distill-->
   <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+  <link href="site_libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+  <script src="site_libs/bsTable-3.3.7/bootstrapTable.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2361,7 +2448,7 @@
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Chapter 02","description":"Defining, Describing, and Visualizing Sequences","authors":[]}
+{"title":"Visualizing sequences","description":"... using (predefined) color palettes for setting colors.","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2398,59 +2485,210 @@ Material for R
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Chapter 02</h1>
+<h1>Visualizing sequences</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Defining, Describing, and Visualizing Sequences</p></p>
+<p><p>… using (predefined) color palettes for setting colors.</p></p>
 </div>
 
 
 <div class="d-article">
-<table>
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#defining-the-sequence-color-palette">Defining the sequence color palette</a></li>
+<li><a href="#choosing-colors-with-rcolorbrewer">Choosing colors with <code>{RColorBrewer}</code></a></li>
+<li><a href="#choosing-colors-with-colorspace">Choosing colors with <code>{colorspace}</code></a></li>
+<li><a href="#comparison-of-the-two-different-color-palettes">Comparison of the two different color palettes</a></li>
+</ul>
+</nav>
+</div>
+<p>The community of <svg viewBox="0 0 581 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#384CB7;" xmlns="http://www.w3.org/2000/svg"> <path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> developers provides you with plenty of tools for finding suitable colors for sequence visualization. We illustrate how to use <a href="https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf" target="_blank"><code>{RColorBrewer}</code></a> (which is also used by <code>TraMiner::seqdef</code>) and <a href="http://colorspace.r-forge.r-project.org/index.html" target="_blank"><code>{colorspace}</code></a> to choose colors. If you are using R Studio you also might want to consider the very helpful package <a href="https://github.com/daattali/colourpicker" target="_blank"><code>{colourpicker}</code></a>.</p>
+<p>For a brief introduction to “Selecting Colors for Statistical Graphics” we recommend the paper by Zeileis et al. 2009 <span class="citation" data-cites="zeileis2009">(<a href="#ref-zeileis2009" role="doc-biblioref">2009</a>)</span>. For a more detailed discussion of color palettes based on the HCL (Hue-Chroma-Luminance) color space using R we refer to Zeileis et al. 2020 <span class="citation" data-cites="zeileis2020">(<a href="#ref-zeileis2020" role="doc-biblioref">2020</a>)</span>.</p>
+<p>For color palette enthusiast we also highly recommend the <a href="https://github.com/EmilHvitfeldt/r-color-palettes" target="_blank">comprehensive list of color palettes in R</a> as well as the very handy <a href="https://emilhvitfeldt.github.io/paletteer/"><code>{paletteer}</code></a> package by <a href="https://www.emilhvitfeldt.com/" target="_blank">Emil Hvitfeldt</a>.</p>
+<p>In our example presented below we want to find a suitable color palette for visualizing sequences with the following state space (alphabet):</p>
+<div class="layout-chunk" data-layout="l-body">
+<table class="table table-striped table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
-<tr class="header">
-<th>TOC</th>
-<th>Content (click for jumping to examples)</th>
+<tr>
+<th style="text-align:left;">
+State
+</th>
+<th style="text-align:left;">
+Short Label
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td>2.1 Basic Concepts and Terminology</td>
-<td><a href="rChapter2-1.html">Sequence data formats</a></td>
+<tr>
+<td style="text-align:left;">
+Single, no child
+</td>
+<td style="text-align:left;">
+S
+</td>
 </tr>
-<tr class="even">
-<td>2.2 Defining Sequences</td>
-<td><a href="rChapter2-2.html">Sequence length and granularity</a></td>
+<tr>
+<td style="text-align:left;">
+Single, child(ren)
+</td>
+<td style="text-align:left;">
+Sc
+</td>
 </tr>
-<tr class="odd">
-<td>2.3 Description of Sequence Data I</td>
-<td><a href="rChapter2-3.html">Basic Description</a></td>
+<tr>
+<td style="text-align:left;">
+LAT, no child
+</td>
+<td style="text-align:left;">
+LAT
+</td>
 </tr>
-<tr class="even">
-<td>2.4 Visualization of Sequence Data</td>
-<td><a href="rChapter2-4_grayscale.html">Color palette: Grayscale Edition</a></td>
+<tr>
+<td style="text-align:left;">
+LAT, child(ren)
+</td>
+<td style="text-align:left;">
+LATc
+</td>
 </tr>
-<tr class="odd">
-<td></td>
-<td><a href="rChapter2-4_color.html">Color palette: Colored Edition</a></td>
+<tr>
+<td style="text-align:left;">
+Cohabiting, no child
+</td>
+<td style="text-align:left;">
+COH
+</td>
 </tr>
-<tr class="even">
-<td></td>
-<td><a href="UnderConstruction.html">Data summarization graphs (chapter 2.4.1)</a></td>
+<tr>
+<td style="text-align:left;">
+Cohabiting, child(ren)
+</td>
+<td style="text-align:left;">
+COHc
+</td>
 </tr>
-<tr class="odd">
-<td></td>
-<td><a href="UnderConstruction.html">Data representation graphs (chapter 2.4.2)</a></td>
+<tr>
+<td style="text-align:left;">
+Married, no child
+</td>
+<td style="text-align:left;">
+MAR
+</td>
 </tr>
-<tr class="even">
-<td>2.5 Description of Sequence Data II</td>
-<td><a href="UnderConstruction.html">Unidimensional and composite indices</a></td>
+<tr>
+<td style="text-align:left;">
+Married, 1 child
+</td>
+<td style="text-align:left;">
+MARc1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Married, 2+ children
+</td>
+<td style="text-align:left;">
+MARc2+
+</td>
 </tr>
 </tbody>
 </table>
-<p>Chapter 2 introduces the basic concepts and discusses how to define sequence data. The corresponding material provided on this site shows <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineR}</code></a>’s capabilites of processing different data formats. We further illustrate how the alphabet and the granularity of sequences can be easily changed with <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineR}</code></a>’s built-in helper functions.</p>
-<p>With visualization being one of the key features of sequence analysis, we provide extensive material on optimizing the quality of figures by choosing appropriate color palettes. Although we highly recommend using colors for visualizing sequences, the associated print-costs are often prohibitively high (for instance, in the case of our book). We therefore provide some material illustrating how to produce acceptable results by using a grayscale color palette and by adding texture.</p>
-<p>We further show useful commands for a comprehensive description of the sequence data. Finally, we turn to more advanced composite measures of sequence complexity. These indices are not only interesting in themselves, but also because they can be used either as independent or as dependent variable in subsequent regression analyses.</p>
+</div>
+<p> </p>
+<h2 id="defining-the-sequence-color-palette">Defining the sequence color palette</h2>
+<p>The state space is a combination of partnership status and fertility. For each partnership state we assign a unique color using pre-defined color palettes.</p>
+<ul>
+<li>Single = Blue</li>
+<li>LAT = Green</li>
+<li>Cohabitation = Orange</li>
+<li>Marriage = Purple/Magenta</li>
+</ul>
+<p>In order to indicate differences in fertility within partnership states we increase the chroma of the respective color.</p>
+<p> </p>
+<h2 id="choosing-colors-with-rcolorbrewer">Choosing colors with <code>{RColorBrewer}</code></h2>
+<p>Typing <code>display.brewer.all()</code> provides you with an overview of the pre-defined color palettes available in the <code>{RColorBrewer}</code> package.</p>
+<div class="layout-chunk" data-layout="l-body-outset">
+<p><img src="images/Chapter2/2-4-0_bonus_brewer_palettes.png" width="500" /></p>
+</div>
+<p>Knowing the names of the palettes we want to use (<code>"Blues", "Greens", "Oranges", "RdPu"</code>) we can continue by choosing specific colors from these palettes. Usually this is an iterative process which involves inspecting multiple palettes.</p>
+<p>For example, <code>{RColorBrewer}</code> gives us different sets of Blues when we inspect sequential palettes of different length. It is up to you to decide which colors fit your purposes best and to extract them for your sequence color palette.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">display.brewer.pal</span>(<span class="dv">3</span>, <span class="st">&quot;Blues&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">display.brewer.pal</span>(<span class="dv">7</span>, <span class="st">&quot;Blues&quot;</span>)</span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-4-1.png" width="672" /><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-4-2.png" width="672" /></p>
+</div>
+<p>This is the code for extracting the colors and creating a vector that contains the colors in the desired order:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>col1 <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">3</span>, <span class="st">&quot;Blues&quot;</span>)[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]   <span class="co"># Single states</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>col2 <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">3</span>, <span class="st">&quot;Greens&quot;</span>)[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]  <span class="co"># LAT states</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>col3 <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">3</span>, <span class="st">&quot;Oranges&quot;</span>)[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="co"># Cohabitation states</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>col4 <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">7</span>, <span class="st">&quot;RdPu&quot;</span>)[<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>] <span class="co"># Marriage states</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># define complete color palette</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>colspace1 <span class="ot">&lt;-</span> <span class="fu">c</span>(col1, col2, col3, col4)</span></code></pre></div>
+</div>
+<p>The resulting color palette can be inspected using the <code>swatchplot</code> function of the <code>{colorspace}</code> package.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">swatchplot</span>(colspace1)</span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<h2 id="choosing-colors-with-colorspace">Choosing colors with <code>{colorspace}</code></h2>
+<p>Like in the previous step we start by plotting the pre-defined color palettes available in the package:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hcl_palettes</span>(<span class="at">plot =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body-outset">
+<p><img src="images/Chapter2/2-4-0_bonus_hcl_palettes.png" width="500" /></p>
+</div>
+<p>Again, we continue with inspecting the suitable palettes.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">swatchplot</span>(<span class="fu">sequential_hcl</span>(<span class="dv">5</span>, <span class="at">palette =</span> <span class="st">&quot;Blues&quot;</span>))</span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<p>Note that the resulting color vector starts with the darkest blue, whereas our intended color palette should start with a light blue. Accordingly, the colors must be extracted in reverse order (as in the code below) or one could change the order of the vector by adding the option <code>rev = TRUE</code> when running <code>sequential_hcl</code>.</p>
+<p>This is our final choice using the palettes provided by <code>{colorspace}</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>col1 <span class="ot">&lt;-</span> <span class="fu">sequential_hcl</span>(<span class="dv">5</span>, <span class="at">palette =</span> <span class="st">&quot;Blues&quot;</span>)[<span class="dv">3</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>col2 <span class="ot">&lt;-</span> <span class="fu">sequential_hcl</span>(<span class="dv">5</span>, <span class="at">palette =</span> <span class="st">&quot;Greens&quot;</span>)[<span class="dv">2</span><span class="sc">:</span><span class="dv">1</span>]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>col3 <span class="ot">&lt;-</span> <span class="fu">sequential_hcl</span>(<span class="dv">5</span>, <span class="at">palette =</span> <span class="st">&quot;Oranges&quot;</span>)[<span class="dv">3</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>col4 <span class="ot">&lt;-</span> <span class="fu">sequential_hcl</span>(<span class="dv">5</span>, <span class="at">palette =</span> <span class="st">&quot;magenta&quot;</span>)[<span class="dv">3</span><span class="sc">:</span><span class="dv">1</span>]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>colspace2 <span class="ot">&lt;-</span> <span class="fu">c</span>(col1, col2, col3, col4)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">swatchplot</span>(colspace2)</span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+<h2 id="comparison-of-the-two-different-color-palettes">Comparison of the two different color palettes</h2>
+<p>Both approaches produce satisfactory results:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">swatchplot</span>(<span class="st">&quot;RColorBrewer&quot;</span> <span class="ot">=</span> colspace1,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;colorspace&quot;</span> <span class="ot">=</span> colspace2)</span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+<p>For our final decision we compare the palettes by inspecting the state distribution plots of our example data using the <code>seqdplot</code> function (see <a href="rChapter2-4-1.html">Chapter 2.4.1</a>). We prefer the solution obtained by <code>{colorspace}</code> and will proceed with the respective color palette.</p>
+<div class="layout-chunk" data-layout="l-body-outset">
+<p><img src="images/Chapter2/2-4-0_bonus_dplot_colorpalsMonthly.png" width="400" /></p>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="doc-bibliography">
+<div id="ref-zeileis2020" class="csl-entry" role="doc-biblioentry">
+Zeileis, A., Fisher, J. C., Hornik, K., Ihaka, R., McWhite, C. D., Murrell, P., Stauffer, R., &amp; Wilke, C. O. (2020). Colorspace: A <span>Toolbox</span> for <span>Manipulating</span> and <span>Assessing Colors</span> and <span>Palettes</span>. <em>Journal of Statistical Software</em>, <em>96</em>(1), 1–49. <a href="https://doi.org/10.18637/jss.v096.i01">https://doi.org/10.18637/jss.v096.i01</a>
+</div>
+<div id="ref-zeileis2009" class="csl-entry" role="doc-biblioentry">
+Zeileis, A., Hornik, K., &amp; Murrell, P. (2009). Escaping <span>RGBland</span>: Selecting colors for statistical graphics. <em>Computational Statistics &amp; Data Analysis</em>, <em>53</em>(9), 3259–3270. <a href="https://doi.org/10.1016/j.csda.2008.11.033">https://doi.org/10.1016/j.csda.2008.11.033</a>
+</div>
+</div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2463,6 +2701,8 @@ Material for R
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
 <div class="appendix-bottom">
+<h3 id="references">References</h3>
+<div id="references-listing"></div>
 <h3 id="updates-and-corrections">Corrections</h3>
 <p>If you see mistakes or want to suggest changes, please <a href="https://github.com/sa-book/sa-book.github.io/issues/new">create an issue</a> on the source repository.</p>
 <h3 id="reuse">Reuse</h3>

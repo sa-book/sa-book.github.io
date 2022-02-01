@@ -25,20 +25,9 @@ csl: https://www.zotero.org/styles/apa
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 
-# Load and download (if necessary) required packages ----
-# Save package names as a vector of strings
-pkgs <- c("fontawesome", "icons", "knitr", "metathis", "tufte") 
-
-# Options that might help to prevent some errors in the installation process
-options(install.packages.check.source = "no")
-options(install.packages.compile.from.source = "never")
-
-## Install uninstalled packages
-lapply(pkgs[!(pkgs %in% installed.packages())], 
-       install.packages, repos = getOption("repos")["CRAN"])
-
-## Load all packages to library and adjust options
-lapply(pkgs, library, character.only = TRUE)
+# Load required packages
+library(here)
+source(here("source", "load_libraries.R"))
 
 ```
 

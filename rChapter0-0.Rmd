@@ -12,21 +12,9 @@ knitr::opts_chunk$set(echo = FALSE)
 
 options("kableExtra.html.bsTable" = T)
 
-# Load and download (if necessary) required packages ----
-# Save package names as a vector of strings
-pkgs <- c("fontawesome", "glue", "gt", "kableExtra", "knitr", "tidyverse") 
-
-# Options that might help to prevent some errors in the installation process
-options(install.packages.check.source = "no")
-options(install.packages.compile.from.source = "never")
-
-## Install uninstalled packages
-lapply(pkgs[!(pkgs %in% installed.packages())], 
-       install.packages, repos = getOption("repos")["CRAN"])
-
-## Load all packages to library and adjust options
-lapply(pkgs, library, character.only = TRUE)
-
+# Load required packages
+library(here)
+source(here("source", "load_libraries.R"))
 ```
 
 Below you find the data and R scripts to replicate all examples from the book. The material was created using R (`version 4.1.2`) and RStudio (`version 2021.09.0+351`).
