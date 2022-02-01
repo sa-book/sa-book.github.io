@@ -55,8 +55,7 @@ load(here("data", "R", "3-0_ChapterSetup.RData"))
 
 \
 
-In chapter 3.2, we introduces techniques to compare whole sequences. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see [here](https://www.pairfam.de/en/){target="_blank"}.
-
+In chapter 3.2, we introduces techniques to compare whole sequences.
 
 ## Create example sequences
 
@@ -128,7 +127,7 @@ We can display it:
 costs1
 ```
 
-We then use the following code to obtain a summary of the optimal number and costs of operations the OM identifies as the cheapest to align the two sequences. `indel` and `sm`) require the indel cost and the substitution cost matrix respectively to be specified. In what follows, we use `seqalign` command:
+We then use the following code to obtain a summary of the optimal number and costs of operations the OM identifies as the cheapest to align the two sequences. `indel` and `sm`) require the indel cost and the substitution cost matrix respectively to be specified. In what follows, we use ?seqalign command:
 
 ```{r, eval=TRUE, echo=TRUE}
 al.ch3.1.2 <- seqalign(ch3.ex1.seq, 1:2, indel=1, sm=costs1)
@@ -157,3 +156,140 @@ ch3.ex2.seq <- seqdef(ch3.ex2)
 ch3.ex2.seq
 ```
 
+We now generate a substitution costs matrix with the following costs to be used in the next step: `indel` = 1, `sm` = 1 - which corresponds to Levenshtein I. Note that in this case the pairwise dissimilarity equals to the number of non-matched positions
+
+```{r, eval=TRUE, echo=TRUE}
+
+costsL1 <- matrix(
+  c(0,1,1,
+    1,0,1,
+    1,1,0
+  ),
+  nrow = 3, ncol = 3, byrow = TRUE)
+```
+
+One can display the newly-generated matrix:
+
+```{r, eval=TRUE, echo=TRUE}
+costsL1
+```
+
+Using the ?seqalign command we obtain a summary of the optimal number and costs of operations: the OM identifies as the cheapest to align the three sequences pairwise:
+
+```{r, eval=TRUE, echo=TRUE}
+al1.L1 <- seqalign(ch3.ex2.seq, 1:2, indel=1, sm=costsL1)
+print(al1.L1)
+```
+
+```{r, eval=TRUE, echo=TRUE}
+al2.L1 <- seqalign(ch3.ex2.seq, c(1,3), indel=1, sm=costsL1)
+print(al2.L1)
+```
+
+```{r, eval=TRUE, echo=TRUE}
+al3.L1 <- seqalign(ch3.ex2.seq, 2:3, indel=1, sm=costsL1)
+print(al3.L1)
+```
+
+We now generate an alternative a substitution costs matrix with the following costs: `indel` = 1, `sm` = 4  - which corresponds to Levenshtein II. Note that
+indel costs are lower than half of the minimum substitution cost, so that only indel operations will be used by the OM.
+
+```{r, eval=TRUE, echo=TRUE}
+costsL2 <- matrix(
+  c(0,4,4,
+    4,0,4,
+    4,4,0
+  ),
+  nrow = 3, ncol = 3, byrow = TRUE)
+```
+
+One can display the newly-generated matrix:
+
+```{r, eval=TRUE, echo=TRUE}
+costsL2
+```
+
+Using the ?seqalign` command, we obtain a summary of the optimal number and costs of operations: the OM identifies as the cheapest to align the three sequences pairwise:
+
+```{r, eval=TRUE, echo=TRUE}
+al1.L2  <- seqalign(ch3.ex2.seq, 1:2, indel=1, sm=costsL2)
+print(al1.L2)
+```
+
+```{r, eval=TRUE, echo=TRUE}
+al2.L2 <- seqalign(ch3.ex2.seq, c(1,3), indel=1, sm=costsL2)
+print(al2.L2)
+```
+
+```{r, eval=TRUE, echo=TRUE}
+al3.L2 <- seqalign(ch3.ex2.seq, 2:3, indel=1, sm=costsL2)
+print(al3.L2)
+```
+
+The next test correspond to the Hamming distance setting, that is, only substitution costs are used. The costs setting will be: `indel` = NA, `sm` = 1. As above, we generate a substitution costs matrix:
+
+```{r, eval=TRUE, echo=TRUE}
+costsHAM <- matrix(
+  c(0,1,1,
+    1,0,1,
+    1,1,0
+  ),
+  nrow = 3, ncol = 3, byrow = TRUE)
+```
+ 
+...and display it:
+
+```{r, eval=TRUE, echo=TRUE}
+costsHAM
+```
+
+Using the ?seqalign command, we obtain a summary of the optimal number and costs of operations: the OM identifies as the cheapest to align the three sequences pairwise. Note that here we have to specify `indel`=4 (very high) just to make sure that the algorithm does not use them as with `seqalign` is not possible to specify directly `dist`=HAM
+
+```{r, eval=TRUE, echo=TRUE}
+al1.HAM <- seqalign(ch3.ex2.seq, 1:2, indel=4, sm=costsHAM)
+print(al1.HAM)
+```
+
+```{r, eval=TRUE, echo=TRUE}
+al2.HAM <- seqalign(ch3.ex2.seq, c(1,3), indel=4, sm=costsHAM)
+print(al2.HAM)
+```
+
+```{r, eval=TRUE, echo=TRUE}
+al3.HAM <- seqalign(ch3.ex2.seq, 2:3, indel=4, sm=costsHAM)
+print(al3.HAM) 
+```
+
+We now try the option with the following costs: `indel` = 1, `substitution` = 2, generating the substitution costs matrix firs:
+
+```{r, eval=TRUE, echo=TRUE}
+costsOMcl <- matrix(
+  c(0,2,2,
+    2,0,2,
+    2,2,0
+  ),
+  nrow = 3, ncol = 3, byrow = TRUE)
+```
+
+We display the resulting matrix of substitution costs:
+
+```{r, eval=TRUE, echo=TRUE}
+costsOMcl
+```
+
+Using the ?seqalign command, we obtain a summary of the optimal number and costs of operations: the OM identifies as the cheapest to align the three sequences pairwise.
+
+```{r, eval=TRUE, echo=TRUE}
+al1.OMcl <- seqalign(ch3.ex2.seq, 1:2, indel=1, sm=costsOMcl)
+print(al1.OMcl)
+```
+
+```{r, eval=TRUE, echo=TRUE}
+al2.OMcl <- seqalign(ch3.ex2.seq, c(1,3), indel=1, sm=costsOMcl)
+print(al2.OMcl)
+```
+
+```{r, eval=TRUE, echo=TRUE}
+al3.OMcl <- seqalign(ch3.ex2.seq, 2:3, indel=1, sm=costsOMcl)
+print(al3.OMcl)
+```

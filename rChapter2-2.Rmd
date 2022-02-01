@@ -34,7 +34,7 @@ htmltools::tagList(
 
 - Please download and unzip the replication files for Chapter 2
 ([`r fontawesome::fa("far fa-file-archive")` Chapter02.zip](source/Chapter02.zip)). 
-- Read `readme.html` and run `2-0_ChapterSetup.R`. This will create `2-0_ChapterSetup.RData` in the sub folder `data/R`. This file contains the data required to produce the plots shown below. 
+- Read `readme.html` and run `2-0_ChapterSetup.R`. This will create `2-0_ChapterSetup.RData` in the sub folder `data/R`. This file contains the data required to produce the table shown at the bottom of this page. 
 - We also recommend to load the libraries listed in the Chapter 2's `LoadInstallPackages.R`
 
 ```{r, eval=FALSE}
@@ -65,11 +65,10 @@ kable() %>%
 ```
 
 
-
 In addition to using the original data, two alternative approaches of defining the sequences are discussed:
 
 -   The first alternative aims at reducing the complexity of the original data by imposing a threshold rule that defines a minimum length for partnership spells. If a spell falls below this threshold value, it would be discounted and the respective states coded as being single rather than in a relationship. The sequence object based on this manipulated data set is stored in `partner.month.seq2` which was created in the same way as `partner.month.seq` (see [Chapter 2-1](rChapter2-1.html) or `2-0_ChapterSetup.R`).
--   The second strategy changes the granularity of the sequence data from monthly to yearly. That is, twelve states from the original sequence are condensed to one state in the new sequence by applying the `seqgranularity` function from the `{TraMineRextras}` package. The resulting object (already stored in `2-0_ChapterSetup.RData`) was created with the following code
+-   The second strategy changes the granularity of the sequence data from monthly to yearly. That is, twelve states from the original sequence are condensed to one state in the new sequence by applying the `seqgranularity` function from the [`{TraMineRExtras}`](http://traminer.unige.ch){target="_blank"} package. The resulting object (already stored in `2-0_ChapterSetup.RData`) was created with the following code
 
 ```{r, eval=FALSE}
 # change granularity --> years instead of months (using modal values)

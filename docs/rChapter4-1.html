@@ -82,31 +82,31 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>Sequence Analysis - Companion Site: Create example sequences &amp; calculate the pairwise dissimilarity matrix using different aligment techniques</title>
+  <title>Sequence Analysis - Companion Site: Crisp clustering algorithms and cluster quality indeces</title>
 
-  <meta property="description" itemprop="description" content="Chapter 3.2 Alignment techniques"/>
+  <meta property="description" itemprop="description" content="Chapter 4.1	Clustering sequences to uncover typologies"/>
 
   <link rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/"/>
   <link rel="icon" type="image/png" href="images/QASS.png"/>
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Sequence Analysis - Companion Site: Create example sequences &amp; calculate the pairwise dissimilarity matrix using different aligment techniques"/>
+  <meta property="og:title" content="Sequence Analysis - Companion Site: Crisp clustering algorithms and cluster quality indeces"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Chapter 3.2 Alignment techniques"/>
+  <meta property="og:description" content="Chapter 4.1	Clustering sequences to uncover typologies"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Sequence Analysis - Companion Site"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Sequence Analysis - Companion Site: Create example sequences &amp; calculate the pairwise dissimilarity matrix using different aligment techniques"/>
-  <meta property="twitter:description" content="Chapter 3.2 Alignment techniques"/>
+  <meta property="twitter:title" content="Sequence Analysis - Companion Site: Crisp clustering algorithms and cluster quality indeces"/>
+  <meta property="twitter:description" content="Chapter 4.1	Clustering sequences to uncover typologies"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Create example sequences & calculate the pairwise dissimilarity matrix using different aligment techniques"]},{"type":"character","attributes":{},"value":["Chapter 3.2 Alignment techniques\n"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Crisp clustering algorithms and cluster quality indeces"]},{"type":"character","attributes":{},"value":["Chapter 4.1\tClustering sequences to uncover typologies\n"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2428,7 +2428,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Create example sequences & calculate the pairwise dissimilarity matrix using different aligment techniques","description":"Chapter 3.2 Alignment techniques","authors":[]}
+{"title":"Crisp clustering algorithms and cluster quality indeces","description":"Chapter 4.1\tClustering sequences to uncover typologies","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2465,10 +2465,10 @@ Material for R
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Create example sequences &amp; calculate the pairwise dissimilarity matrix using different aligment techniques</h1>
+<h1>Crisp clustering algorithms and cluster quality indeces</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Chapter 3.2 Alignment techniques</p></p>
+<p><p>Chapter 4.1 Clustering sequences to uncover typologies</p></p>
 </div>
 
 
@@ -2477,9 +2477,7 @@ Material for R
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#create-example-sequences">Create example sequences</a></li>
-<li><a href="#optimal-matching-om">Optimal matching (OM)</a></li>
-<li><a href="#assigning-costs-to-the-alignment-operations">Assigning costs to the alignment operations</a></li>
+<li><a href="#section"></a></li>
 </ul>
 </nav>
 </div>
@@ -2491,10 +2489,10 @@ Material for R
 <strong>Click here to get instructions…</strong>
 </summary>
 <ul>
-<li>Please download and unzip the replication files for Chapter 3 (<a href="source/Chapter03.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter03.zip</a>).</li>
-<li>Read <code>readme.html</code> and run <code>3-0_ChapterSetup.R</code>. This will create <code>3-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to produce the plots shown below.</li>
-<li>You also have to add the function <code>legend_large_box</code> to your environment in order to render the tweaked version of the legend described below. You find this file in the <code>source</code> folder of the unzipped Chapter 3 archive.</li>
-<li>We also recommend to load the libraries listed in Chapter 3’s <code>LoadInstallPackages.R</code></li>
+<li>Please download and unzip the replication files for Chapter 4 (<a href="source/Chapter03.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter04.zip</a>).</li>
+<li>Read <code>readme.html</code> and run <code>4-0_ChapterSetup.R</code>. This will create <code>4-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to produce the plots shown below.</li>
+<li>You also have to add the function <code>legend_large_box</code> to your environment in order to render the tweaked version of the legend described below. You find this file in the <code>source</code> folder of the unzipped Chapter 4 archive.</li>
+<li>We also recommend to load the libraries listed in Chapter 4’s <code>LoadInstallPackages.R</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming you are working within .Rproj environment</span></span>
@@ -2509,294 +2507,11 @@ Material for R
 </details>
 <p><br />
 </p>
-<p>In chapter 3.2, we introduces techniques to compare whole sequences.</p>
-<h2 id="create-example-sequences">Create example sequences</h2>
-<p>We first create two vectors 6-element-long (of equal length). Each element is coded with a letter: A, B, or C.</p>
+<p>In chapter 4.1, we introduce….</p>
+<h2 id="section"></h2>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ch3.ex1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A-B-B-C-C-C&quot;</span>, <span class="st">&quot;A-B-B-B-B-B&quot;</span>)</span></code></pre></div>
-</div>
-<p>We then display the two vectors:</p>
-<div class="layout-chunk" data-layout="l-body">
-<pre><code>[1] &quot;A-B-B-C-C-C&quot; &quot;A-B-B-B-B-B&quot;</code></pre>
-</div>
-<p>We create sequence objects from the three vectors:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ch3.ex1.seq <span class="ot">&lt;-</span> <span class="fu">seqdef</span>(ch3.ex1)</span></code></pre></div>
-</div>
-<p>The three resulting sequences are then displayed:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ch3.ex1.seq</span></code></pre></div>
-<pre><code>    Sequence   
-[1] A-B-B-C-C-C
-[2] A-B-B-B-B-B</code></pre>
-</div>
-<h2 id="optimal-matching-om">Optimal matching (OM)</h2>
-<p>In this case sequences are short and few in number, so that we immediately recognize that they are not the identical In case of longer and more complex sequences, one might want to know if two sequences are the identical but doing that visually might not be feasible. The following code allows you to do that as it returns [TRUE] if the sequences are the same and [FALSE] if they are not. In this case we compare sequence 1 and 2 above:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seqcomp</span>(ch3.ex1.seq[<span class="dv">1</span>,],ch3.ex1.seq[<span class="dv">2</span>,])</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span></span></code></pre></div>
 <pre><code>[1] FALSE</code></pre>
-</div>
-<p>However, the two sequences might have some similarity although they are not exaclty the same. To obtain the number of matching positions between the two sequences, we can use the code:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seqmpos</span>(ch3.ex1.seq[<span class="dv">1</span>,],ch3.ex1.seq[<span class="dv">2</span>,])</span></code></pre></div>
-<pre><code>[1] 3</code></pre>
-</div>
-<p>We now know that sequence 1 and sequence 2 shares 3 matching positions.</p>
-<p>Alternatively, we can compute the length of the longest common subsequence (elements composed of tokens - states and combinations of subsequent states - that occur in the same order along the sequence) of two sequences:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seqLLCS</span>(ch3.ex1.seq[<span class="dv">1</span>,],ch3.ex1.seq[<span class="dv">2</span>,])</span></code></pre></div>
-<pre><code>[1] 3</code></pre>
-</div>
-<p>We now know that the longest common subsequence between sequence 1 and sequence 2 is 3-elements long.</p>
-<p>Aligning them pairwise to make them the same. Optimal Matching (OM) does so by changing the order of the states or the length of a spell. In classical OM applications, alignment can be achieved by conducting two basic operations: insertion/deletion of a state (indel) and substitution of a state with another one. Different combinations of operations are possible to “match” the sequences pairwise. Each operation is assigned a “cost”: the sum of the costs of all operations will be regarded as the degree of dissimilarity between the two sequences. The matching is “optimal” as the algorithm finds the “cheapest” solution to align the sequences given a set of costs for the indel and substitution operations.</p>
-<p>In the simplest example possible, both indel and substitution operations can be assigned the same cost of 1 (Levenshtein I). We first generate a substitution costs matrix to be used in the next steps:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>costs1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-</div>
-<p>We can display it:</p>
-<div class="layout-chunk" data-layout="l-body">
-<pre><code>     [,1] [,2] [,3]
-[1,]    0    1    1
-[2,]    1    0    1
-[3,]    1    1    0</code></pre>
-</div>
-<p>We then use the following code to obtain a summary of the optimal number and costs of operations the OM identifies as the cheapest to align the two sequences. <code>indel</code> and <code>sm</code>) require the indel cost and the substitution cost matrix respectively to be specified. In what follows, we use ?seqalign command:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>al.ch3.<span class="fl">1.2</span> <span class="ot">&lt;-</span> <span class="fu">seqalign</span>(ch3.ex1.seq, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">indel=</span><span class="dv">1</span>, <span class="at">sm=</span>costs1)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(al.ch3.<span class="fl">1.2</span>)</span></code></pre></div>
-<pre><code>           1 2 3 4 5 6
-Seq 1      A B B C C C
-Operations E E E S S S
-Costs      0 0 0 1 1 1
-Seq 2      A B B B B B
-
-OM distance between sequences: 3 </code></pre>
-</div>
-<h2 id="assigning-costs-to-the-alignment-operations">Assigning costs to the alignment operations</h2>
-<p>Let’s consider 3 example sequences</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ch3.ex2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A-B-B-C-C-C&quot;</span>, <span class="st">&quot;A-B-B-B-B-B&quot;</span>, <span class="st">&quot;B-C-C-C-B-B&quot;</span>)</span></code></pre></div>
-</div>
-<p>…define them as sequences objects…</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ch3.ex2.seq <span class="ot">&lt;-</span> <span class="fu">seqdef</span>(ch3.ex2)</span></code></pre></div>
-</div>
-<p>…and display them:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ch3.ex2.seq</span></code></pre></div>
-<pre><code>    Sequence   
-[1] A-B-B-C-C-C
-[2] A-B-B-B-B-B
-[3] B-C-C-C-B-B</code></pre>
-</div>
-<p>We now generate a substitution costs matrix with the following costs to be used in the next step: <code>indel</code> = 1, <code>sm</code> = 1 - which corresponds to Levenshtein I. Note that in this case the pairwise dissimilarity equals to the number of non-matched positions</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>costsL1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-</div>
-<p>One can display the newly-generated matrix:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>costsL1</span></code></pre></div>
-<pre><code>     [,1] [,2] [,3]
-[1,]    0    1    1
-[2,]    1    0    1
-[3,]    1    1    0</code></pre>
-</div>
-<p>Using the ?seqalign command we obtain a summary of the optimal number and costs of operations: the OM identifies as the cheapest to align the three sequences pairwise:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>al1.L1 <span class="ot">&lt;-</span> <span class="fu">seqalign</span>(ch3.ex2.seq, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">indel=</span><span class="dv">1</span>, <span class="at">sm=</span>costsL1)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(al1.L1)</span></code></pre></div>
-<pre><code>           1 2 3 4 5 6
-Seq 1      A B B C C C
-Operations E E E S S S
-Costs      0 0 0 1 1 1
-Seq 2      A B B B B B
-
-OM distance between sequences: 3 </code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>al2.L1 <span class="ot">&lt;-</span> <span class="fu">seqalign</span>(ch3.ex2.seq, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="at">indel=</span><span class="dv">1</span>, <span class="at">sm=</span>costsL1)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(al2.L1)</span></code></pre></div>
-<pre><code>           1 2 3 4 5 6 7
-Seq 1      A B B C C - C
-Operations D E S E E I S
-Costs      1 0 1 0 0 1 1
-Seq 2      - B C C C B B
-
-OM distance between sequences: 4 </code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>al3.L1 <span class="ot">&lt;-</span> <span class="fu">seqalign</span>(ch3.ex2.seq, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">indel=</span><span class="dv">1</span>, <span class="at">sm=</span>costsL1)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(al3.L1)</span></code></pre></div>
-<pre><code>           1 2 3 4 5 6
-Seq 1      A B B B B B
-Operations S S S S E E
-Costs      1 1 1 1 0 0
-Seq 2      B C C C B B
-
-OM distance between sequences: 4 </code></pre>
-</div>
-<p>We now generate an alternative a substitution costs matrix with the following costs: <code>indel</code> = 1, <code>sm</code> = 4 - which corresponds to Levenshtein II. Note that indel costs are lower than half of the minimum substitution cost, so that only indel operations will be used by the OM.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>costsL2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">4</span>,</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">4</span>,</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">0</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-</div>
-<p>One can display the newly-generated matrix:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>costsL2</span></code></pre></div>
-<pre><code>     [,1] [,2] [,3]
-[1,]    0    4    4
-[2,]    4    0    4
-[3,]    4    4    0</code></pre>
-</div>
-<p>Using the ?seqalign` command, we obtain a summary of the optimal number and costs of operations: the OM identifies as the cheapest to align the three sequences pairwise:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>al1.L2  <span class="ot">&lt;-</span> <span class="fu">seqalign</span>(ch3.ex2.seq, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">indel=</span><span class="dv">1</span>, <span class="at">sm=</span>costsL2)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(al1.L2)</span></code></pre></div>
-<pre><code>           1 2 3 4 5 6 7 8 9
-Seq 1      A B B C C C - - -
-Operations E E E D D D I I I
-Costs      0 0 0 1 1 1 1 1 1
-Seq 2      A B B - - - B B B
-
-OM distance between sequences: 6 </code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>al2.L2 <span class="ot">&lt;-</span> <span class="fu">seqalign</span>(ch3.ex2.seq, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="at">indel=</span><span class="dv">1</span>, <span class="at">sm=</span>costsL2)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(al2.L2)</span></code></pre></div>
-<pre><code>           1 2 3 4 5 6 7 8
-Seq 1      A B B C C C - -
-Operations D D E E E E I I
-Costs      1 1 0 0 0 0 1 1
-Seq 2      - - B C C C B B
-
-OM distance between sequences: 4 </code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>al3.L2 <span class="ot">&lt;-</span> <span class="fu">seqalign</span>(ch3.ex2.seq, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">indel=</span><span class="dv">1</span>, <span class="at">sm=</span>costsL2)</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(al3.L2)</span></code></pre></div>
-<pre><code>           1 2 3 4 5 6 7 8 9
-Seq 1      A B B B - - - B B
-Operations D D D E I I I E E
-Costs      1 1 1 0 1 1 1 0 0
-Seq 2      - - - B C C C B B
-
-OM distance between sequences: 6 </code></pre>
-</div>
-<p>The next test correspond to the Hamming distance setting, that is, only substitution costs are used. The costs setting will be: <code>indel</code> = NA, <code>sm</code> = 1. As above, we generate a substitution costs matrix:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>costsHAM <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-</div>
-<p>…and display it:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>costsHAM</span></code></pre></div>
-<pre><code>     [,1] [,2] [,3]
-[1,]    0    1    1
-[2,]    1    0    1
-[3,]    1    1    0</code></pre>
-</div>
-<p>Using the ?seqalign command, we obtain a summary of the optimal number and costs of operations: the OM identifies as the cheapest to align the three sequences pairwise. Note that here we have to specify <code>indel</code>=4 (very high) just to make sure that the algorithm does not use them as with <code>seqalign</code> is not possible to specify directly <code>dist</code>=HAM</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>al1.HAM <span class="ot">&lt;-</span> <span class="fu">seqalign</span>(ch3.ex2.seq, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">indel=</span><span class="dv">4</span>, <span class="at">sm=</span>costsHAM)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(al1.HAM)</span></code></pre></div>
-<pre><code>           1 2 3 4 5 6
-Seq 1      A B B C C C
-Operations E E E S S S
-Costs      0 0 0 1 1 1
-Seq 2      A B B B B B
-
-OM distance between sequences: 3 </code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>al2.HAM <span class="ot">&lt;-</span> <span class="fu">seqalign</span>(ch3.ex2.seq, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="at">indel=</span><span class="dv">4</span>, <span class="at">sm=</span>costsHAM)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(al2.HAM)</span></code></pre></div>
-<pre><code>           1 2 3 4 5 6
-Seq 1      A B B C C C
-Operations S S S E S S
-Costs      1 1 1 0 1 1
-Seq 2      B C C C B B
-
-OM distance between sequences: 5 </code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>al3.HAM <span class="ot">&lt;-</span> <span class="fu">seqalign</span>(ch3.ex2.seq, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">indel=</span><span class="dv">4</span>, <span class="at">sm=</span>costsHAM)</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(al3.HAM) </span></code></pre></div>
-<pre><code>           1 2 3 4 5 6
-Seq 1      A B B B B B
-Operations S S S S E E
-Costs      1 1 1 1 0 0
-Seq 2      B C C C B B
-
-OM distance between sequences: 4 </code></pre>
-</div>
-<p>We now try the option with the following costs: <code>indel</code> = 1, <code>substitution</code> = 2, generating the substitution costs matrix firs:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>costsOMcl <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">2</span>,</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>,</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">0</span></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-</div>
-<p>We display the resulting matrix of substitution costs:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>costsOMcl</span></code></pre></div>
-<pre><code>     [,1] [,2] [,3]
-[1,]    0    2    2
-[2,]    2    0    2
-[3,]    2    2    0</code></pre>
-</div>
-<p>Using the ?seqalign command, we obtain a summary of the optimal number and costs of operations: the OM identifies as the cheapest to align the three sequences pairwise.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>al1.OMcl <span class="ot">&lt;-</span> <span class="fu">seqalign</span>(ch3.ex2.seq, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">indel=</span><span class="dv">1</span>, <span class="at">sm=</span>costsOMcl)</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(al1.OMcl)</span></code></pre></div>
-<pre><code>           1 2 3 4 5 6
-Seq 1      A B B C C C
-Operations E E E S S S
-Costs      0 0 0 2 2 2
-Seq 2      A B B B B B
-
-OM distance between sequences: 6 </code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>al2.OMcl <span class="ot">&lt;-</span> <span class="fu">seqalign</span>(ch3.ex2.seq, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="at">indel=</span><span class="dv">1</span>, <span class="at">sm=</span>costsOMcl)</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(al2.OMcl)</span></code></pre></div>
-<pre><code>           1 2 3 4 5 6 7 8
-Seq 1      A B B C C C - -
-Operations D D E E E E I I
-Costs      1 1 0 0 0 0 1 1
-Seq 2      - - B C C C B B
-
-OM distance between sequences: 4 </code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>al3.OMcl <span class="ot">&lt;-</span> <span class="fu">seqalign</span>(ch3.ex2.seq, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">indel=</span><span class="dv">1</span>, <span class="at">sm=</span>costsOMcl)</span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(al3.OMcl)</span></code></pre></div>
-<pre><code>           1 2 3 4 5 6 7
-Seq 1      A B - B B B B
-Operations D E I S S E E
-Costs      1 0 1 2 2 0 0
-Seq 2      - B C C C B B
-
-OM distance between sequences: 6 </code></pre>
 </div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

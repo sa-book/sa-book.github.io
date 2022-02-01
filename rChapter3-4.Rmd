@@ -58,7 +58,30 @@ load(here("data", "R", "3-0_ChapterSetup.RData"))
 \
 
 
-In chapter 3.4, we introduce so-called nonalignment techniques, that is techniques not based on OM but on the identification of subsequences that occur in the same order along the sequence. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see [here](https://www.pairfam.de/en/){target="_blank"}.
+In chapter 3.4, we consider the so-called nonalignment techniques, that is techniques not based on OM but on the identification of subsequences that occur in the same order along the sequence. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see [here](https://www.pairfam.de/en/){target="_blank"}.
 
 
-## 
+## Longest common subsequence (LCS)
+
+For illustrative purpose, we use three example sequences (6 time-points, 3 states: A, B, C)
+
+```{r, eval=TRUE, echo=TRUE}
+ch3.ex2 <- c("A-B-B-C-C-C", "A-B-B-B-B-B", "B-C-C-C-B-B")
+
+ch3.ex2.seq <- seqdef(ch3.ex2)
+```
+
+We compute the dissimilarity matrix between these three example sequences using the longest common subsequence method for substitution costs: 
+
+```{r, eval=TRUE, echo=TRUE}
+lcs.diss<-seqdist(ch3.ex2.seq, method="LCS")
+```
+
+...and display the LCS-based dissimilarity matrix for three example sequences:
+
+```{r, eval=TRUE, echo=TRUE}
+lcs.diss
+```
+
+
+

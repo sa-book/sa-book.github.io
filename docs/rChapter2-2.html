@@ -2486,7 +2486,7 @@ Material for R
 </summary>
 <ul>
 <li>Please download and unzip the replication files for Chapter 2 (<a href="source/Chapter02.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter02.zip</a>).</li>
-<li>Read <code>readme.html</code> and run <code>2-0_ChapterSetup.R</code>. This will create <code>2-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to produce the plots shown below.</li>
+<li>Read <code>readme.html</code> and run <code>2-0_ChapterSetup.R</code>. This will create <code>2-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to produce the table shown at the bottom of this page.</li>
 <li>We also recommend to load the libraries listed in the Chapter 2’s <code>LoadInstallPackages.R</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
@@ -2555,7 +2555,7 @@ MAR
 <p>In addition to using the original data, two alternative approaches of defining the sequences are discussed:</p>
 <ul>
 <li>The first alternative aims at reducing the complexity of the original data by imposing a threshold rule that defines a minimum length for partnership spells. If a spell falls below this threshold value, it would be discounted and the respective states coded as being single rather than in a relationship. The sequence object based on this manipulated data set is stored in <code>partner.month.seq2</code> which was created in the same way as <code>partner.month.seq</code> (see <a href="rChapter2-1.html">Chapter 2-1</a> or <code>2-0_ChapterSetup.R</code>).</li>
-<li>The second strategy changes the granularity of the sequence data from monthly to yearly. That is, twelve states from the original sequence are condensed to one state in the new sequence by applying the <code>seqgranularity</code> function from the <code>{TraMineRextras}</code> package. The resulting object (already stored in <code>2-0_ChapterSetup.RData</code>) was created with the following code</li>
+<li>The second strategy changes the granularity of the sequence data from monthly to yearly. That is, twelve states from the original sequence are condensed to one state in the new sequence by applying the <code>seqgranularity</code> function from the <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineRExtras}</code></a> package. The resulting object (already stored in <code>2-0_ChapterSetup.RData</code>) was created with the following code</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change granularity --&gt; years instead of months (using modal values)</span></span>

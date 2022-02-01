@@ -2418,6 +2418,12 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   }</style>
   <!--/radix_placeholder_distill-->
   <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
+  <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+  <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+  <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clone fa-2x\" style=\"color: #c58dce\"><\/i>","success":"<i class=\"fa fa-check fa-2x\" style=\"color: #90BE6D\"><\/i>","error":"<i class=\"fa fa-times fa-2x\" style=\"color: #F94144\"><\/i>"})</script>
+  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
   <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
   <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
   <link href="site_libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -2499,11 +2505,35 @@ Material for R
 <ul>
 <li><a href="#defining-the-sequence-color-palette">Defining the sequence color palette</a></li>
 <li><a href="#choosing-colors-with-rcolorbrewer">Choosing colors with <code>{RColorBrewer}</code></a></li>
-<li><a href="#choosing-colors-with-colorspace">Choosing colors with <code>{colorspace}</code></a></li>
+<li><a href="#choosing-colors-with-colorspace">Choosing colors with <span><code>{colorspace}</code></span></a></li>
 <li><a href="#comparison-of-the-two-different-color-palettes">Comparison of the two different color palettes</a></li>
 </ul>
 </nav>
 </div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<details>
+<summary>
+<strong>Click here to get instructions…</strong>
+</summary>
+<ul>
+<li>Please download and unzip the replication files for Chapter 2 (<a href="source/Chapter02.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter02.zip</a>).</li>
+<li>Read <code>readme.html</code> and run <code>2-0_ChapterSetup.R</code>. This will create <code>2-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to produce the state distribution plot shown below.</li>
+<li>We also recommend to load the libraries listed in the Chapter 2’s <code>LoadInstallPackages.R</code></li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming you are working within .Rproj environment</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install (if necessary) and load other required packages</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">&quot;source&quot;</span>, <span class="st">&quot;load_libraries.R&quot;</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># load environment generated in &quot;2-0_ChapterSetup.R&quot;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;R&quot;</span>, <span class="st">&quot;2-0_ChapterSetup.RData&quot;</span>))</span></code></pre></div>
+</div>
+</details>
+<p> </p>
 <p>The community of <svg viewBox="0 0 581 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#384CB7;" xmlns="http://www.w3.org/2000/svg"> <path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> developers provides you with plenty of tools for finding suitable colors for sequence visualization. We illustrate how to use <a href="https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf" target="_blank"><code>{RColorBrewer}</code></a> (which is also used by <code>TraMiner::seqdef</code>) and <a href="http://colorspace.r-forge.r-project.org/index.html" target="_blank"><code>{colorspace}</code></a> to choose colors. If you are using R Studio you also might want to consider the very helpful package <a href="https://github.com/daattali/colourpicker" target="_blank"><code>{colourpicker}</code></a>.</p>
 <p>For a brief introduction to “Selecting Colors for Statistical Graphics” we recommend the paper by Zeileis et al. 2009 <span class="citation" data-cites="zeileis2009">(<a href="#ref-zeileis2009" role="doc-biblioref">2009</a>)</span>. For a more detailed discussion of color palettes based on the HCL (Hue-Chroma-Luminance) color space using R we refer to Zeileis et al. 2020 <span class="citation" data-cites="zeileis2020">(<a href="#ref-zeileis2020" role="doc-biblioref">2020</a>)</span>.</p>
 <p>For color palette enthusiast we also highly recommend the <a href="https://github.com/EmilHvitfeldt/r-color-palettes" target="_blank">comprehensive list of color palettes in R</a> as well as the very handy <a href="https://emilhvitfeldt.github.io/paletteer/"><code>{paletteer}</code></a> package by <a href="https://www.emilhvitfeldt.com/" target="_blank">Emil Hvitfeldt</a>.</p>
@@ -2608,76 +2638,76 @@ MARc2+
 <p>In order to indicate differences in fertility within partnership states we increase the chroma of the respective color.</p>
 <p> </p>
 <h2 id="choosing-colors-with-rcolorbrewer">Choosing colors with <code>{RColorBrewer}</code></h2>
-<p>Typing <code>display.brewer.all()</code> provides you with an overview of the pre-defined color palettes available in the <code>{RColorBrewer}</code> package.</p>
+<p>Typing <code>display.brewer.all()</code> provides you with an overview of the pre-defined color palettes available in the <a href="https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf" target="_blank"><code>{RColorBrewer}</code></a> package.</p>
 <div class="layout-chunk" data-layout="l-body-outset">
 <p><img src="images/Chapter2/2-4-0_bonus_brewer_palettes.png" width="500" /></p>
 </div>
 <p>Knowing the names of the palettes we want to use (<code>"Blues", "Greens", "Oranges", "RdPu"</code>) we can continue by choosing specific colors from these palettes. Usually this is an iterative process which involves inspecting multiple palettes.</p>
-<p>For example, <code>{RColorBrewer}</code> gives us different sets of Blues when we inspect sequential palettes of different length. It is up to you to decide which colors fit your purposes best and to extract them for your sequence color palette.</p>
+<p>For example, <a href="https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf" target="_blank"><code>{RColorBrewer}</code></a> gives us different sets of Blues when we inspect sequential palettes of different length. It is up to you to decide which colors fit your purposes best and to extract them for your sequence color palette.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">display.brewer.pal</span>(<span class="dv">3</span>, <span class="st">&quot;Blues&quot;</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">display.brewer.pal</span>(<span class="dv">7</span>, <span class="st">&quot;Blues&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">display.brewer.pal</span>(<span class="dv">3</span>, <span class="st">&quot;Blues&quot;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">display.brewer.pal</span>(<span class="dv">7</span>, <span class="st">&quot;Blues&quot;</span>)</span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-4-1.png" width="672" /><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-4-2.png" width="672" /></p>
+<p><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-5-1.png" width="672" /><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-5-2.png" width="672" /></p>
 </div>
 <p>This is the code for extracting the colors and creating a vector that contains the colors in the desired order:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>col1 <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">3</span>, <span class="st">&quot;Blues&quot;</span>)[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]   <span class="co"># Single states</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>col2 <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">3</span>, <span class="st">&quot;Greens&quot;</span>)[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]  <span class="co"># LAT states</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>col3 <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">3</span>, <span class="st">&quot;Oranges&quot;</span>)[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="co"># Cohabitation states</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>col4 <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">7</span>, <span class="st">&quot;RdPu&quot;</span>)[<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>] <span class="co"># Marriage states</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># define complete color palette</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>colspace1 <span class="ot">&lt;-</span> <span class="fu">c</span>(col1, col2, col3, col4)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>col1 <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">3</span>, <span class="st">&quot;Blues&quot;</span>)[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]   <span class="co"># Single states</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>col2 <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">3</span>, <span class="st">&quot;Greens&quot;</span>)[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]  <span class="co"># LAT states</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>col3 <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">3</span>, <span class="st">&quot;Oranges&quot;</span>)[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="co"># Cohabitation states</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>col4 <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">7</span>, <span class="st">&quot;RdPu&quot;</span>)[<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>] <span class="co"># Marriage states</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># define complete color palette</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>colspace1 <span class="ot">&lt;-</span> <span class="fu">c</span>(col1, col2, col3, col4)</span></code></pre></div>
 </div>
-<p>The resulting color palette can be inspected using the <code>swatchplot</code> function of the <code>{colorspace}</code> package.</p>
+<p>The resulting color palette can be inspected using the <code>swatchplot</code> function of the <a href="http://colorspace.r-forge.r-project.org/index.html" target="_blank"><code>{colorspace}</code></a> package.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">swatchplot</span>(colspace1)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">swatchplot</span>(colspace1)</span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
-<h2 id="choosing-colors-with-colorspace">Choosing colors with <code>{colorspace}</code></h2>
+<h2 id="choosing-colors-with-colorspace">Choosing colors with <a href="http://colorspace.r-forge.r-project.org/index.html" target="_blank"><code>{colorspace}</code></a></h2>
 <p>Like in the previous step we start by plotting the pre-defined color palettes available in the package:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hcl_palettes</span>(<span class="at">plot =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hcl_palettes</span>(<span class="at">plot =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body-outset">
 <p><img src="images/Chapter2/2-4-0_bonus_hcl_palettes.png" width="500" /></p>
 </div>
 <p>Again, we continue with inspecting the suitable palettes.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">swatchplot</span>(<span class="fu">sequential_hcl</span>(<span class="dv">5</span>, <span class="at">palette =</span> <span class="st">&quot;Blues&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">swatchplot</span>(<span class="fu">sequential_hcl</span>(<span class="dv">5</span>, <span class="at">palette =</span> <span class="st">&quot;Blues&quot;</span>))</span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-12-1.png" width="672" /></p>
 </div>
 <p>Note that the resulting color vector starts with the darkest blue, whereas our intended color palette should start with a light blue. Accordingly, the colors must be extracted in reverse order (as in the code below) or one could change the order of the vector by adding the option <code>rev = TRUE</code> when running <code>sequential_hcl</code>.</p>
-<p>This is our final choice using the palettes provided by <code>{colorspace}</code>:</p>
+<p>This is our final choice using the palettes provided by <a href="http://colorspace.r-forge.r-project.org/index.html" target="_blank"><code>{colorspace}</code></a>:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>col1 <span class="ot">&lt;-</span> <span class="fu">sequential_hcl</span>(<span class="dv">5</span>, <span class="at">palette =</span> <span class="st">&quot;Blues&quot;</span>)[<span class="dv">3</span><span class="sc">:</span><span class="dv">2</span>]</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>col2 <span class="ot">&lt;-</span> <span class="fu">sequential_hcl</span>(<span class="dv">5</span>, <span class="at">palette =</span> <span class="st">&quot;Greens&quot;</span>)[<span class="dv">2</span><span class="sc">:</span><span class="dv">1</span>]</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>col3 <span class="ot">&lt;-</span> <span class="fu">sequential_hcl</span>(<span class="dv">5</span>, <span class="at">palette =</span> <span class="st">&quot;Oranges&quot;</span>)[<span class="dv">3</span><span class="sc">:</span><span class="dv">2</span>]</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>col4 <span class="ot">&lt;-</span> <span class="fu">sequential_hcl</span>(<span class="dv">5</span>, <span class="at">palette =</span> <span class="st">&quot;magenta&quot;</span>)[<span class="dv">3</span><span class="sc">:</span><span class="dv">1</span>]</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>colspace2 <span class="ot">&lt;-</span> <span class="fu">c</span>(col1, col2, col3, col4)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">swatchplot</span>(colspace2)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>col1 <span class="ot">&lt;-</span> <span class="fu">sequential_hcl</span>(<span class="dv">5</span>, <span class="at">palette =</span> <span class="st">&quot;Blues&quot;</span>)[<span class="dv">3</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>col2 <span class="ot">&lt;-</span> <span class="fu">sequential_hcl</span>(<span class="dv">5</span>, <span class="at">palette =</span> <span class="st">&quot;Greens&quot;</span>)[<span class="dv">2</span><span class="sc">:</span><span class="dv">1</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>col3 <span class="ot">&lt;-</span> <span class="fu">sequential_hcl</span>(<span class="dv">5</span>, <span class="at">palette =</span> <span class="st">&quot;Oranges&quot;</span>)[<span class="dv">3</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>col4 <span class="ot">&lt;-</span> <span class="fu">sequential_hcl</span>(<span class="dv">5</span>, <span class="at">palette =</span> <span class="st">&quot;magenta&quot;</span>)[<span class="dv">3</span><span class="sc">:</span><span class="dv">1</span>]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>colspace2 <span class="ot">&lt;-</span> <span class="fu">c</span>(col1, col2, col3, col4)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">swatchplot</span>(colspace2)</span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-14-1.png" width="672" /></p>
 </div>
 <h2 id="comparison-of-the-two-different-color-palettes">Comparison of the two different color palettes</h2>
 <p>Both approaches produce satisfactory results:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">swatchplot</span>(<span class="st">&quot;RColorBrewer&quot;</span> <span class="ot">=</span> colspace1,</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;colorspace&quot;</span> <span class="ot">=</span> colspace2)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">swatchplot</span>(<span class="st">&quot;RColorBrewer&quot;</span> <span class="ot">=</span> colspace1,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;colorspace&quot;</span> <span class="ot">=</span> colspace2)</span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-16-1.png" width="672" /></p>
 </div>
-<p>For our final decision we compare the palettes by inspecting the state distribution plots of our example data using the <code>seqdplot</code> function (see <a href="rChapter2-4-1.html">Chapter 2.4.1</a>). We prefer the solution obtained by <code>{colorspace}</code> and will proceed with the respective color palette.</p>
+<p>For our final decision we compare the palettes by inspecting the state distribution plots of our example data using the <code>seqdplot</code> function (see <a href="rChapter2-4-1.html">Chapter 2.4.1</a>). We prefer the solution obtained by <a href="http://colorspace.r-forge.r-project.org/index.html" target="_blank"><code>{colorspace}</code></a> and will proceed with the respective color palette.</p>
 <div class="layout-chunk" data-layout="l-body-outset">
 <p><img src="images/Chapter2/2-4-0_bonus_dplot_colorpalsMonthly.png" width="400" /></p>
 </div>

@@ -2477,7 +2477,7 @@ Material for R
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#section"></a></li>
+<li><a href="#longest-common-subsequence-lcs">Longest common subsequence (LCS)</a></li>
 </ul>
 </nav>
 </div>
@@ -2507,8 +2507,26 @@ Material for R
 </details>
 <p><br />
 </p>
-<p>In chapter 3.4, we introduce so-called nonalignment techniques, that is techniques not based on OM but on the identification of subsequences that occur in the same order along the sequence. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see <a href="https://www.pairfam.de/en/" target="_blank">here</a>.</p>
-<h2 id="section"></h2>
+<p>In chapter 3.4, we consider the so-called nonalignment techniques, that is techniques not based on OM but on the identification of subsequences that occur in the same order along the sequence. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see <a href="https://www.pairfam.de/en/" target="_blank">here</a>.</p>
+<h2 id="longest-common-subsequence-lcs">Longest common subsequence (LCS)</h2>
+<p>For illustrative purpose, we use three example sequences (6 time-points, 3 states: A, B, C)</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ch3.ex2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A-B-B-C-C-C&quot;</span>, <span class="st">&quot;A-B-B-B-B-B&quot;</span>, <span class="st">&quot;B-C-C-C-B-B&quot;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ch3.ex2.seq <span class="ot">&lt;-</span> <span class="fu">seqdef</span>(ch3.ex2)</span></code></pre></div>
+</div>
+<p>We compute the dissimilarity matrix between these three example sequences using the longest common subsequence method for substitution costs:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>lcs.diss<span class="ot">&lt;-</span><span class="fu">seqdist</span>(ch3.ex2.seq, <span class="at">method=</span><span class="st">&quot;LCS&quot;</span>)</span></code></pre></div>
+</div>
+<p>…and display the LCS-based dissimilarity matrix for three example sequences:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>lcs.diss</span></code></pre></div>
+<pre><code>    [1] [2] [3]
+[1]   0   6   4
+[2]   6   0   6
+[3]   4   6   0</code></pre>
+</div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

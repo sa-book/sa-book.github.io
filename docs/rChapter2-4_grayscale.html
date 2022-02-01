@@ -2396,6 +2396,12 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   }</style>
   <!--/radix_placeholder_distill-->
   <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
+  <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+  <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+  <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clone fa-2x\" style=\"color: #c58dce\"><\/i>","success":"<i class=\"fa fa-check fa-2x\" style=\"color: #90BE6D\"><\/i>","error":"<i class=\"fa fa-times fa-2x\" style=\"color: #F94144\"><\/i>"})</script>
+  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
   <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
   <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
   <link href="site_libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -2478,9 +2484,11 @@ Material for R
 <li><a href="#defining-the-color-palette-shading-lines">Defining the “color” palette &amp; shading lines</a></li>
 <li><a href="#legend-link">Adjusting the legend</a></li>
 <li><a href="#sequence-index-plot-of-representative-sequences">Sequence index plot <br/>of representative sequences</a></li>
-<li><a href="#state-distribution-plots-using-yearly-monthly-sequence-data">State distribution plots using <br/>yearly &amp; monthly sequence data</a></li>
 </ul>
 </nav>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
 </div>
 <details>
 <summary>
@@ -2618,7 +2626,7 @@ MARc2+
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="rChapter2-4_grayscale_files/figure-html5/white-to-gray-1.png" width="576" /></p>
 </div>
-<p>According to the definition of our alphabet we need two single states, two LAT states, two cohabitation states, and three marriage states. Adding shading lines allows for distinguishing different fertility levels. Shading lines are added by specifying vectors for <code>density</code> and <code>angle</code>. We use different angles (i.e., 0° and 45°) to separate the two parity states within marriage.</p>
+<p>According to the definition of our alphabet we need two single states, two LAT states, two cohabitation states, and three marriage states. Adding shading lines allows for distinguishing different fertility levels. Shading lines are added by specifying vectors for <code>density</code> and <code>angle</code>. We use different angles (i.e., 0° and 45°) to separate the two parity states within marriage. Specifying zero for the <code>density</code> parameter ensures that no shading lines are added for the four “childless” states.</p>
 <p>Note that we have to create two overlapping graph objects by typing <code>par(new=TRUE)</code>. The first plot creates bars with the desired colors, the second one adds black shading lines.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">9</span>), <span class="at">col =</span> colgrey.partner.child, <span class="at">axes =</span> <span class="cn">FALSE</span>)                           </span>
@@ -2648,11 +2656,11 @@ MARc2+
 <p><img src="rChapter2-4_grayscale_files/figure-html5/legend-small-boxes-1.png" width="768" /></p>
 </div>
 <p>Although the legend looks OK at first glance, it has two crucial drawbacks: (1) The grayscale boxes (with shading lines) are too small to be distinguished easily; (2) two different partnership states are appearing in the first two columns of the legend. Both issues call for some extra coding because they cannot be solved with the options available in the standard version of the legend function.</p>
-<p>Addressing the first issue we draw on a tweaked version of the legend suggested by <a href="http://ms.mcmaster.ca/~bolker/">Ben Bolker</a> and <a href="https://www.pauljhurtado.com/">Paul Hurtado</a> in a thread at <a href="https://stackoverflow.com/questions/13644149/increasing-the-size-of-the-coloured-squares-on-histogram-legends-in-r">Stack Overflow</a>.</p>
-<p>Here you can dowload the tweaked version of the legend function: <svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"></path></svg> <a href="source/legend_large_box.R">legend_large_box.R</a>.</p>
+<p>Addressing the first issue we draw on a tweaked version of the legend suggested by <a href="http://ms.mcmaster.ca/~bolker/" target="_blank">Ben Bolker</a> and <a href="https://www.pauljhurtado.com/" target="_blank">Paul Hurtado</a> in a thread at <a href="https://stackoverflow.com/questions/13644149/increasing-the-size-of-the-coloured-squares-on-histogram-legends-in-r" target="_blank">Stack Overflow</a>.</p>
+<p>Here you can download the tweaked version of the legend function: <a href="source/legend_large_box.R"><svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"></path></svg> legend_large_box.R</a>.</p>
 <p>We include the function by sourcing the file within our R-script by typing:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;legend_large_box.R&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">&quot;source&quot;</span>, <span class="st">&quot;legend_large_box.R&quot;</span>))</span></code></pre></div>
 </div>
 <p>Next to changing the size of the colored boxes we want to re-arrange the labels of the legend. The new legend should have four columns each representing one partnership state. Each of the first three columns (“Single”, “LAT”, “Cohabitation”) has two entries (“childless”, “with child(ren)”). The last column (“Marriage”) has three entries (“no child”, “one child”, “2 or more children”).</p>
 <p>Typing <code>ncol=4</code> when specifying the legend would not do the trick. It would produce a four columns legend with three entries in the first three columns and zero entries in the last column.</p>
@@ -2695,8 +2703,8 @@ MARc2+
 <p><img src="rChapter2-4_grayscale_files/figure-html5/legend-large-boxes-1.png" width="1152" /></p>
 </div>
 <h2 id="sequence-index-plot-of-representative-sequences">Sequence index plot <br/>of representative sequences</h2>
-<p>In the book we elaborate on the pros and cons of sequence index plots (see Chapter 2.4.2 in the book; the corresponding code can be found <a href="rChapter2-4-2.html">here</a>). Based on this discussion we recommend to abstain from standard index plots of all sequences in large data sets. This is even more true if colors are not available for visualization.</p>
-<p>Accordingly, the subsequent example plot only renders a selection of 10 representative sequences extracted by <code>seqrep</code> using sequences with a yearly granularity.</p>
+<p>In the book we elaborate on the pros and cons of sequence index plots (see Chapter 2.4.2 in the book; the corresponding code can be found <a href="rChapter2-4-2.html">here</a>). Based on this discussion we recommend to abstain from standard index plots of all sequences when working with large data sets. This is even more true if colors are not available for visualization.</p>
+<p>In the subsequent example we therefore illustrate how to produce grayscale plots with <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineR}</code></a>’s <code>seqplot</code> function rendering a selection of 10 representative sequences extracted by <code>seqrep</code> using sequences with a yearly granularity.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify 10 representative sequences</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>partner.child.year.rep <span class="ot">&lt;-</span> <span class="fu">seqrep</span>(partner.child.year.seq, </span>
@@ -2711,10 +2719,10 @@ MARc2+
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># first occurrence of the partnership status &quot;MAR&quot; (marriage)</span></span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>plot.aux <span class="ot">&lt;-</span> partner.year.seq[<span class="fu">attributes</span>(partner.child.year.rep)<span class="sc">$</span>Index,]</span></code></pre></div>
 </div>
-<p>Like in the previous examples two overlapping plots and legends have to be created in order to obtain the “color” palette and the shading lines. Note the differences in the specification of colors, <code>angle</code>, and <code>density</code> between the index plot and the legend. They result from the necessity to define extra empty cells in the legend (see <a href="#legend-link">section above</a>)</p>
+<p>Like in the previous examples two overlapping plots and legends have to be created in order to obtain the “color” palette and the shading lines. Note the differences in the specification of colors, <code>angle</code>, and <code>density</code> between the index plot and the legend. They result from the necessity to define extra empty cells in the legend (see <a href="#legend-link">section above</a>). We also adjusted the default margin sizes (<code>par(mar=c(bottom, left, top, right))</code>) to ensure enough space for the enlarged legend. Note that the appearance of your plot depends on both the specification of the parameters of the <code>png</code> function (<code>width</code>, <code>height</code>, <code>res</code>) and the graphical parameters defined by <code>par</code>. An alternative approach to arrange multiple plots (e.g., index plot and legend plot) using the <code>layout</code> function is shown in the example code for chapters <a href="rChapter2-4-1.html">2.4.1</a> &amp; <a href="rChapter2-4-2.html">2.4.2</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save final plot as png file</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;images&quot;</span>, <span class="st">&quot;Chapter2&quot;</span>, <span class="st">&quot;2-4-0_bonus_iplot_grayYearly.png&quot;</span>), </span>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save plot as png file</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;figures&quot;</span>, <span class="st">&quot;2-4-0_bonus_iplot_grayYearly.png&quot;</span>), </span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">900</span>, <span class="at">height =</span> <span class="dv">650</span>, <span class="at">res =</span> <span class="dv">90</span>)</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
@@ -2742,7 +2750,7 @@ MARc2+
 <span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">side =</span> <span class="dv">1</span>,<span class="co">#side 1 = bottom</span></span>
 <span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">line =</span> <span class="dv">2</span>)</span>
 <span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">1</span>))</span>
 <span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="fu">legend_large_box</span>(<span class="st">&quot;bottom&quot;</span>, <span class="at">legend =</span> longlab.partner.child2,</span>
 <span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">fill =</span>colgrey.partner.child2, </span>
 <span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>                 <span class="at">border =</span> bordercol.partner.child,</span>
@@ -2760,120 +2768,8 @@ MARc2+
 <span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body-outset">
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;images/Chapter2/2-4-0_bonus_iplot_grayYearly.png&quot;</span>)</span></code></pre></div>
 <p><img src="images/Chapter2/2-4-0_bonus_iplot_grayYearly.png" width="450" /></p>
 </div>
-<h2 id="state-distribution-plots-using-yearly-monthly-sequence-data">State distribution plots using <br/>yearly &amp; monthly sequence data</h2>
-<p>Although they are often less insightful than sequence index plots state distribution plots are widely used and often falsely interpreted (see chapter 2-4-2). One reason for their popularity is that they are quite easy to render. Even with our alphabet of size nine and monthly sequence data of length 264 it is possible to produce accessible plots without using colors.</p>
-<p>Below we provide the code to produce the plots with yearly and monthly data. We again have to create overlapping plots and legends to add the shading lines.</p>
-<h3 id="yearly-sequence-data">Yearly sequence data</h3>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;images&quot;</span>, <span class="st">&quot;Chapter2&quot;</span>, <span class="st">&quot;2-4-0_bonus_dplot_grayYearly.png&quot;</span>), </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">900</span>, <span class="at">height =</span> <span class="dv">650</span>, <span class="at">res =</span> <span class="dv">90</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">4</span>), <span class="at">las =</span> <span class="dv">1</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mgp=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">0</span>,<span class="sc">-</span><span class="dv">1</span>))</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">seqdplot</span>(partner.child.year.seq, </span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylab =</span> <span class="st">&quot;Relative frequency&quot;</span>,</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">with.legend =</span> <span class="st">&quot;FALSE&quot;</span> , <span class="at">axes =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">cpal =</span> colgrey.partner.child)</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span><span class="cn">TRUE</span>)</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="fu">seqdplot</span>(partner.child.year.seq, </span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylab =</span> <span class="st">&quot;Relative frequency&quot;</span>,</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">with.legend =</span> <span class="st">&quot;FALSE&quot;</span> , <span class="at">axes =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">cpal=</span><span class="fu">rep</span>(<span class="st">&quot;#000000&quot;</span>,<span class="dv">9</span>),</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">density=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">20</span>), </span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">angle=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>))</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mgp=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="fl">0.5</span>))</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at=</span>(<span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">22</span>, <span class="at">by =</span> <span class="dv">2</span>)), <span class="at">labels =</span> <span class="fu">seq</span>(<span class="dv">18</span>,<span class="dv">40</span>, <span class="at">by =</span> <span class="dv">2</span>))</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="at">text =</span> <span class="st">&quot;Age&quot;</span>,</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">side =</span> <span class="dv">1</span>,</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">line =</span> <span class="fl">2.5</span>)</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="fu">legend_large_box</span>(<span class="st">&quot;bottom&quot;</span>, <span class="at">legend =</span> longlab.partner.child2,</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">fill=</span>colgrey.partner.child2, </span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>                 <span class="at">border =</span> bordercol.partner.child,</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>                 <span class="at">box.cex=</span><span class="fu">c</span>(<span class="fl">4.5</span>,<span class="fl">1.5</span>),  <span class="at">y.intersp=</span><span class="dv">2</span>,</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>                 <span class="at">inset=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="sc">-</span>.<span class="dv">4</span>), <span class="at">xpd=</span><span class="cn">TRUE</span>)</span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span><span class="cn">TRUE</span>)</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="fu">legend_large_box</span>(<span class="st">&quot;bottom&quot;</span>, <span class="at">legend =</span> longlab.partner.child2,</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">bg =</span> <span class="st">&quot;transparent&quot;</span>, </span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>                 <span class="at">border =</span> bordercol.partner.child,</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>                 <span class="at">box.cex=</span><span class="fu">c</span>(<span class="fl">4.5</span>,<span class="fl">1.5</span>),  <span class="at">y.intersp=</span><span class="dv">2</span>,</span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>                 <span class="at">inset=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="sc">-</span>.<span class="dv">4</span>), <span class="at">xpd=</span><span class="cn">TRUE</span>,</span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>                 <span class="at">density=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">20</span>), </span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>                 <span class="at">angle=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>))</span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
-</div>
-<div class="layout-chunk" data-layout="l-body-outset">
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;images/Chapter2/2-4-0_bonus_dplot_grayYearly.png&quot;</span>)</span></code></pre></div>
-<p><img src="images/Chapter2/2-4-0_bonus_dplot_grayYearly.png" width="450" /></p>
-</div>
-<h3 id="monthly-sequence-data">Monthly sequence data</h3>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;images&quot;</span>, <span class="st">&quot;Chapter2&quot;</span>, <span class="st">&quot;2-4-0_bonus_dplot_grayMonthly.png&quot;</span>), </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">900</span>, <span class="at">height =</span> <span class="dv">650</span>, <span class="at">res =</span> <span class="dv">90</span>)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">4</span>), <span class="at">las =</span> <span class="dv">1</span>, </span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mgp=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">0</span>,<span class="sc">-</span><span class="dv">1</span>))</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">seqdplot</span>(partner.child.month.seq, </span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylab =</span> <span class="st">&quot;Relative frequency&quot;</span>,</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">with.legend =</span> <span class="st">&quot;FALSE&quot;</span> , <span class="at">axes =</span> <span class="cn">FALSE</span>, <span class="at">border =</span> <span class="cn">NA</span>,</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">cpal =</span> colgrey.partner.child)</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span><span class="cn">TRUE</span>)</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">seqdplot</span>(partner.child.month.seq, </span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylab =</span> <span class="st">&quot;Relative frequency&quot;</span>,</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">with.legend =</span> <span class="st">&quot;FALSE&quot;</span> , <span class="at">axes =</span> <span class="cn">FALSE</span>, <span class="at">border =</span> <span class="cn">NA</span>,</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">cpal=</span><span class="fu">rep</span>(<span class="st">&quot;#000000&quot;</span>,<span class="dv">9</span>),</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">density=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">20</span>), </span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">angle=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>))</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mgp=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="fl">0.5</span>))</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at=</span>(<span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">264</span>, <span class="at">by =</span> <span class="dv">24</span>)), <span class="at">labels =</span> <span class="fu">seq</span>(<span class="dv">18</span>,<span class="dv">40</span>, <span class="at">by =</span> <span class="dv">2</span>))</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="at">text =</span> <span class="st">&quot;Age&quot;</span>,</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">side =</span> <span class="dv">1</span>,</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">line =</span> <span class="fl">2.5</span>)</span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="fu">legend_large_box</span>(<span class="st">&quot;bottom&quot;</span>, <span class="at">legend =</span> longlab.partner.child2,</span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">fill=</span>colgrey.partner.child2, </span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>                 <span class="at">border =</span> bordercol.partner.child,</span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>                 <span class="at">box.cex=</span><span class="fu">c</span>(<span class="fl">4.5</span>,<span class="fl">1.5</span>),  <span class="at">y.intersp=</span><span class="dv">2</span>,</span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>                 <span class="at">inset=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="sc">-</span>.<span class="dv">4</span>), <span class="at">xpd=</span><span class="cn">TRUE</span>)</span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span><span class="cn">TRUE</span>)</span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="fu">legend_large_box</span>(<span class="st">&quot;bottom&quot;</span>, <span class="at">legend =</span> longlab.partner.child2,</span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">bg =</span> <span class="st">&quot;transparent&quot;</span>, </span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>                 <span class="at">border =</span> bordercol.partner.child,</span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>                 <span class="at">box.cex=</span><span class="fu">c</span>(<span class="fl">4.5</span>,<span class="fl">1.5</span>),  <span class="at">y.intersp=</span><span class="dv">2</span>,</span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>                 <span class="at">inset=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="sc">-</span>.<span class="dv">4</span>), <span class="at">xpd=</span><span class="cn">TRUE</span>,</span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>                 <span class="at">density=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">20</span>), </span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>                 <span class="at">angle=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>))</span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
-</div>
-<div class="layout-chunk" data-layout="l-body-outset">
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;images/Chapter2/2-4-0_bonus_dplot_grayMonthly.png&quot;</span>)</span></code></pre></div>
-<p><img src="images/Chapter2/2-4-0_bonus_dplot_grayMonthly.png" width="450" /></p>
-</div>
-<p>Like the graph based on yearly data this figure might suggest that roughly 10% of the sample are permanent childless singles. Note, however, that state distribution plots just depict cross-sections at each position of the sequence. A simple tabulation of the occurence of states using <code>seqistatd</code> &amp; <code>freq</code> (table not shown) …</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract state frequency for being Single (without children)</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>singlecount <span class="ot">&lt;-</span> <span class="fu">seqistatd</span>(partner.child.year.seq) <span class="sc">%&gt;%</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(S)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># use summarytools::freq for weighted frequency table</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(singlecount, <span class="at">weights =</span> family<span class="sc">$</span>weight40)</span></code></pre></div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-
-</div>
-<p>…illustrates that only <strong>1.46%</strong> of the sample are permanent single.</p>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

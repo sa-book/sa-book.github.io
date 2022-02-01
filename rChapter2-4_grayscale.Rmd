@@ -25,6 +25,17 @@ source(here("source", "legend_large_box.R"))
 
 ```
 
+```{r, xaringanExtra-clipboard, echo=FALSE}
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clone fa-2x\" style=\"color: #c58dce\"></i>",
+    success_text = "<i class=\"fa fa-check fa-2x\" style=\"color: #90BE6D\"></i>",
+    error_text = "<i class=\"fa fa-times fa-2x\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
 <details><summary>**Click here to get instructions...**</summary>
 
 - Please download and unzip the replication files for Chapter 2
@@ -102,7 +113,7 @@ colgrey.partner.child <- c(rep("#FFFFFF",2),
 barplot(rep(1,9), col = colgrey.partner.child, axes = FALSE)                           
 ```
 
-According to the definition of our alphabet we need two single states, two LAT states, two cohabitation states, and three marriage states. Adding shading lines allows for distinguishing different fertility levels. Shading lines are added by specifying vectors for `density` and `angle`. We use different angles (i.e., 0° and 45°) to separate the two parity states within marriage.
+According to the definition of our alphabet we need two single states, two LAT states, two cohabitation states, and three marriage states. Adding shading lines allows for distinguishing different fertility levels. Shading lines are added by specifying vectors for `density` and `angle`. We use different angles (i.e., 0° and 45°) to separate the two parity states within marriage. Specifying zero for the `density` parameter ensures that no shading lines are added for the four "childless" states. 
 
 Note that we have to create two overlapping graph objects by typing `par(new=TRUE)`. The first plot creates bars with the desired colors, the second one adds black shading lines.
 
@@ -159,14 +170,15 @@ legend_large_box("center", legend = longlab.partner.child,
 
 Although the legend looks OK at first glance, it has two crucial drawbacks: (1) The grayscale boxes (with shading lines) are too small to be distinguished easily; (2) two different partnership states are appearing in the first two columns of the legend. Both issues call for some extra coding because they cannot be solved with the options available in the standard version of the legend function. 
 
-Addressing the first issue we draw on a tweaked version of the legend suggested by [Ben Bolker](http://ms.mcmaster.ca/~bolker/) and [Paul Hurtado](https://www.pauljhurtado.com/) in a thread at [Stack Overflow](https://stackoverflow.com/questions/13644149/increasing-the-size-of-the-coloured-squares-on-histogram-legends-in-r).
+Addressing the first issue we draw on a tweaked version of the legend suggested by [Ben Bolker](http://ms.mcmaster.ca/~bolker/){target="_blank"} and [Paul Hurtado](https://www.pauljhurtado.com/){target="_blank"} in a thread at [Stack Overflow](https://stackoverflow.com/questions/13644149/increasing-the-size-of-the-coloured-squares-on-histogram-legends-in-r){target="_blank"}.
 
-Here you can dowload the tweaked version of the legend function: `r icons::fontawesome("download")` [legend_large_box.R](source/legend_large_box.R). 
+Here you can download the tweaked version of the legend function: 
+[`r icons::fontawesome("download")` legend_large_box.R](source/legend_large_box.R). 
 
 We include the function by sourcing the file within our R-script by typing:
 
 ```{r eval=FALSE, echo =TRUE}
-source("legend_large_box.R")
+source(here("source", "legend_large_box.R"))
 ```
 
 Next to changing the size of the colored boxes we want to re-arrange the labels of the legend. The new legend should have four columns each representing one partnership state. Each of the first three columns ("Single", "LAT", "Cohabitation") has two entries ("childless", "with child(ren)"). The last column ("Marriage") has three entries ("no child", "one child", "2 or more children").
@@ -231,9 +243,9 @@ legend_large_box("center", legend = longlab.partner.child2,
 
 ## Sequence index plot <br/>of representative sequences
 
-In the book we elaborate on the pros and cons of sequence index plots (see Chapter 2.4.2 in the book; the corresponding code can be found [here](rChapter2-4-2.html)). Based on this discussion we recommend to abstain from standard index plots of all sequences in large data sets. This is even more true if colors are not available for visualization.
+In the book we elaborate on the pros and cons of sequence index plots (see Chapter 2.4.2 in the book; the corresponding code can be found [here](rChapter2-4-2.html)). Based on this discussion we recommend to abstain from standard index plots of all sequences when working with large data sets. This is even more true if colors are not available for visualization.
 
-Accordingly, the subsequent example plot only renders a selection of 10 representative sequences extracted by `seqrep` using sequences with a yearly granularity.
+In the subsequent example we therefore illustrate how to produce grayscale plots with [`{TraMineR}`](http://traminer.unige.ch){target="_blank"}'s `seqplot` function rendering a selection of 10 representative sequences extracted by `seqrep` using sequences with a yearly granularity. 
 
 
 ```{r, eval=TRUE, echo=TRUE}
@@ -251,12 +263,13 @@ plot.seq <- partner.child.year.seq[attributes(partner.child.year.rep)$Index,]
 plot.aux <- partner.year.seq[attributes(partner.child.year.rep)$Index,]
 ```
 
-Like in the previous examples two overlapping plots and legends have to be created in order to obtain the "color" palette and the shading lines. Note the differences in the specification of colors, `angle`, and `density` between the index plot and the legend. They result from the necessity to define extra empty cells in the legend (see [section above](#legend-link))
+Like in the previous examples two overlapping plots and legends have to be created in order to obtain the "color" palette and the shading lines. Note the differences in the specification of colors, `angle`, and `density` between the index plot and the legend. They result from the necessity to define extra empty cells in the legend (see [section above](#legend-link)). We also adjusted the default margin  sizes (`par(mar=c(bottom, left, top, right))`) to ensure enough space for the enlarged legend. Note that the appearance of your plot depends on both the specification of the parameters of the `png` function (`width`, `height`, `res`) and the graphical parameters defined by `par`. An alternative approach to arrange multiple plots (e.g., index plot and legend plot) using the `layout` function is shown in the example code for chapters [2.4.1](rChapter2-4-1.html) & [2.4.2](rChapter2-4-2.html).
 
 
-```{r, eval=TRUE, echo=TRUE, results='hide'}
-# Save final plot as png file
-png(file = here("images", "Chapter2", "2-4-0_bonus_iplot_grayYearly.png"), 
+
+```{r, eval=FALSE, echo=TRUE}
+# Save plot as png file
+png(file = here("figures", "2-4-0_bonus_iplot_grayYearly.png"), 
     width = 900, height = 650, res = 90)
 
 
@@ -284,7 +297,7 @@ mtext(text = "Age",
       side = 1,#side 1 = bottom
       line = 2)
 
-par(mar=c(0, 1, 0, 1))
+par(mar=c(0, 1, 5, 1))
 legend_large_box("bottom", legend = longlab.partner.child2,
                  ncol=4, fill =colgrey.partner.child2, 
                  border = bordercol.partner.child,
@@ -303,137 +316,6 @@ dev.off()
 ```
 
 
-```{r bonusplot, layout="l-body-outset"}
+```{r bonusplot, layout="l-body-outset", echo=FALSE}
 knitr::include_graphics("images/Chapter2/2-4-0_bonus_iplot_grayYearly.png")
 ```
-
-
-## State distribution plots using <br/>yearly & monthly sequence data
-
-Although they are often less insightful than sequence index plots state distribution plots are widely used and often falsely interpreted (see chapter 2-4-2). One reason for their popularity is that they are quite easy to render. Even with our alphabet of size nine and monthly sequence data of length 264 it is possible to produce accessible plots without using colors. 
-
-Below we provide the code to produce the plots with yearly and monthly data. We again have to create overlapping plots and legends to add the shading lines.
-
-
-### Yearly sequence data
-
-```{r, eval=TRUE, echo=TRUE, results='hide'}
-png(file = here("images", "Chapter2", "2-4-0_bonus_dplot_grayYearly.png"), 
-    width = 900, height = 650, res = 90)
-
-
-par(mar=c(12, 4, 1, 4), las = 1,
-    mgp=c(2,0,-1))
-seqdplot(partner.child.year.seq, 
-         ylab = "Relative frequency",
-         with.legend = "FALSE" , axes = FALSE,
-         cpal = colgrey.partner.child)
-par(new=TRUE)
-seqdplot(partner.child.year.seq, 
-         ylab = "Relative frequency",
-         with.legend = "FALSE" , axes = FALSE,
-         cpal=rep("#000000",9),
-         density=c(0,20,0,20,0,20,0,20,20), 
-         angle=c(0,45,0,45,0,45,0,45,0))
-par(mgp=c(3,1,0.5))
-axis(1, at=(seq(0,22, by = 2)), labels = seq(18,40, by = 2))
-mtext(text = "Age",
-      side = 1,
-      line = 2.5)
-
-
-par(mar=c(0, 1, 0, 1))
-legend_large_box("bottom", legend = longlab.partner.child2,
-                 ncol=4, fill=colgrey.partner.child2, 
-                 border = bordercol.partner.child,
-                 box.cex=c(4.5,1.5),  y.intersp=2,
-                 inset=c(0,-.4), xpd=TRUE)
-par(new=TRUE)
-legend_large_box("bottom", legend = longlab.partner.child2,
-                 ncol=4, bg = "transparent", 
-                 border = bordercol.partner.child,
-                 box.cex=c(4.5,1.5),  y.intersp=2,
-                 inset=c(0,-.4), xpd=TRUE,
-                 density=c(0,20,0,0,20,0,0,20,0,0,20,20), 
-                 angle=c(0,45,0,0,45,0,0,45,0,0,45,0))
-
-dev.off()
-```
-
-```{r layout="l-body-outset"}
-knitr::include_graphics("images/Chapter2/2-4-0_bonus_dplot_grayYearly.png")
-```
-
-### Monthly sequence data
-
-```{r, eval=TRUE, echo=TRUE, results='hide'}
-png(file = here("images", "Chapter2", "2-4-0_bonus_dplot_grayMonthly.png"), 
-    width = 900, height = 650, res = 90)
-
-
-par(mar=c(12, 4, 1, 4), las = 1, 
-    mgp=c(2,0,-1))
-seqdplot(partner.child.month.seq, 
-         ylab = "Relative frequency",
-         with.legend = "FALSE" , axes = FALSE, border = NA,
-         cpal = colgrey.partner.child)
-par(new=TRUE)
-seqdplot(partner.child.month.seq, 
-         ylab = "Relative frequency",
-         with.legend = "FALSE" , axes = FALSE, border = NA,
-         cpal=rep("#000000",9),
-         density=c(0,20,0,20,0,20,0,20,20), 
-         angle=c(0,45,0,45,0,45,0,45,0))
-par(mgp=c(3,1,0.5))
-axis(1, at=(seq(0,264, by = 24)), labels = seq(18,40, by = 2))
-mtext(text = "Age",
-      side = 1,
-      line = 2.5)
-
-par(mar=c(0, 1, 0, 1))
-legend_large_box("bottom", legend = longlab.partner.child2,
-                 ncol=4, fill=colgrey.partner.child2, 
-                 border = bordercol.partner.child,
-                 box.cex=c(4.5,1.5),  y.intersp=2,
-                 inset=c(0,-.4), xpd=TRUE)
-par(new=TRUE)
-legend_large_box("bottom", legend = longlab.partner.child2,
-                 ncol=4, bg = "transparent", 
-                 border = bordercol.partner.child,
-                 box.cex=c(4.5,1.5),  y.intersp=2,
-                 inset=c(0,-.4), xpd=TRUE,
-                 density=c(0,20,0,0,20,0,0,20,0,0,20,20), 
-                 angle=c(0,45,0,0,45,0,0,45,0,0,45,0))
-
-
-dev.off()
-```
-
-
-```{r layout="l-body-outset"}
-knitr::include_graphics("images/Chapter2/2-4-0_bonus_dplot_grayMonthly.png")
-```
-
-Like the graph based on yearly data this figure might suggest that roughly 10% of the sample are permanent childless singles. Note, however, that state distribution plots just depict cross-sections at each position of the sequence. A simple tabulation of the occurence of states using `seqistatd` & `freq` (table not shown) ...
-
-```{r, eval=FALSE, echo=TRUE}
-# Extract state frequency for being Single (without children)
-singlecount <- seqistatd(partner.child.year.seq) %>%
-  as_tibble() %>%
-  select(S)
-
-# use summarytools::freq for weighted frequency table
-freq(singlecount, weights = family$weight40)
-```
-
-```{r, eval=TRUE, echo=FALSE}
-# Extract state frequency for being Single (without children)
-singlecount <- seqistatd(partner.child.year.seq) %>%
-  as_tibble() %>%
-  select(S)
-
-# use summarytools::freq for weighted frequency table
-singlefreq <- freq(singlecount, weights = family$weight40)
-```
-
-...illustrates that only  **`r round(as.numeric(singlefreq[23,2]),2)`%** of the sample are permanent single.

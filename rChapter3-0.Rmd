@@ -26,4 +26,4 @@ knitr::opts_chunk$set(echo = FALSE)
 | 3.7	Beyond the standard full-sample pairwise sequence comparison | [Alternative options to compare sequences](rChapter3-7.html) |
 
 
-Chapter 3 introduces techniques to compare whole sequences. After having reviewed the available options, we offer a tool to compare across the dissimilarity matrices that result from the use of different dissimilarity measures... [to be finalized]
+Chapter 3 introduces techniques to compare whole sequences. After having reviewed the available options, we offer a tool to compare across the dissimilarity matrices that result from the use of different dissimilarity measures. Finally, we discuss a selection of options to compare sequences in the sample to a reference sequence.
