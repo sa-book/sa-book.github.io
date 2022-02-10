@@ -55,7 +55,7 @@ knitr::include_graphics("images/QASS.png")
 
 This site is intended to enhance your use of the book **Sequence Analysis** by Marcel Raab & Emanuela Struffolino. On this webpage we provide accompanying material illustrating how to conduct sequence analysis in `r icon_style(fontawesome("r-project"), fill = "#384CB7")` using [`{TraMineR}`](http://traminer.unige.ch){target="_blank"} [@gabadinho2011], [`{TraMineRExtras}`](http://traminer.unige.ch){target="_blank"} [@Ritschard2021], and [`{WeightedCluster}`](http://mephisto.unige.ch/weightedcluster){target="_blank"} [@studer2013].
 
-If you simply want to download the data and code required for reproducing the results can access the chapter-specific zip files on this [`r fontawesome::fa("link")` overview page](rOverview.html). In addition to these zip files, the chapter-specific sub-pages provide instructions and some bonus material introducing additional examples and analytical tools.
+If you simply want to download the data and code required for reproducing the results can access the chapter-specific zip files on this [`r fontawesome::fa("link")` overview page](rChapter0-0.html). In addition to these zip files, the chapter-specific sub-pages provide instructions and some bonus material introducing additional examples and analytical tools.
 
 
 Please note that most of the materials on this site are designed to be used in tandem with the book published by SAGE (`r fontawesome::fa("shopping-cart")` pre-order from [SAGE](https://us.sagepub.com/en-us/nam/sequence-analysis/book272086){target="_blank"},  [Amazon](https://www.amazon.com/dp/B09MJCBKC3/ref=cm_sw_em_r_mt_dp_YDSYM9W43ZEDWMZK27PV){target="_blank"}, or your `r fontawesome::fa("heart")` local bookstore). 
