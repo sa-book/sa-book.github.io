@@ -6,6 +6,8 @@ output:
   distill::distill_article:
     toc: true
     toc_depth: 3
+bibliography: Companion.bib
+csl: https://www.zotero.org/styles/apa    
 ---
 
 ```{r setup, include=FALSE}
@@ -67,7 +69,7 @@ seqY <- c("S","LAT","COH","S")
 ex1.seq <- seqdef(rbind(seqX,seqY), alphabet = seqX)
 ```
 
-The number of transitions can be obtained with the `seqtransn` function, the number of **distinct** subsequences is computed with `seqsubsn`. Both functions are part of the `TraMineR` package..
+The number of transitions can be obtained with the `seqtransn` function, the number of **distinct** subsequences is computed with `seqsubsn`. Both functions are part of the [`{TraMineR}`](http://traminer.unige.ch){target="_blank"} package.
 
 ```{r}
 # Number of transitions
@@ -217,7 +219,7 @@ example.sps <- print(example.seq, format = "SPS")
 
 ### A survey of unidimensional & composite indices
 
-**Table 2-10** in the book presents several unidimensional and composite measures for these sequences. Two of the more recent indices require to specify some sort of qualitative hierarchy of states. Whereas the the quality index proposed by [Manzoni and Mooi-Reci (2018)](https://doi.org/10.1007/978-3-319-95420-2_15) only allows for dichotomous differentiation (success vs failure) the precarity index suggested by [Ritschard et al. (2018)](https://doi.org/10.1007/978-3-319-95420-2_16) allows for a more nuanced differentiation. For the purpose of this example we take a traditionalist's perspective and impose the folowing hierarchy of partnership states $\text{MAR} > \text{COH} > \text{LAT} > \text{S}$, i.e. the elements of the alphabet in reversed order. Accordingly, we specify the `state.order` argument of the `seqprecarity` function as `rev(alphabet(example.seq))`. For the quality index we only consider the state of marriage as a success.
+**Table 2-10** in the book presents several unidimensional and composite measures for these sequences. Two of the more recent indices require to specify some sort of qualitative hierarchy of states. Whereas the the quality index proposed by Manzoni and Mooi-Reci [-@Manzoni2018] only allows for dichotomous differentiation (success vs failure) the precarity index suggested by Ritschard et al. [-@Ritschard2018] allows for a more nuanced differentiation. For the purpose of this example we take a traditionalist's perspective and impose the folowing hierarchy of partnership states $\text{MAR} > \text{COH} > \text{LAT} > \text{S}$, i.e. the elements of the alphabet in reversed order. Accordingly, we specify the `state.order` argument of the `seqprecarity` function as `rev(alphabet(example.seq))`. For the quality index we only consider the state of marriage as a success.
 
 ```{r}
 
@@ -265,7 +267,7 @@ kable(tab2.10, digits = 2) %>%
 
 ### Bonus material: Sequence quality index I
 
-We wrote a function (`seqquality`) to implement the sequence quality index proposed by [Manzoni and Mooi-Reci (2018)](https://doi.org/10.1007/978-3-319-95420-2_15) before it was implemented in `{TraMiner}`. Other than `{TraMiner}`'s `seqici` function allows to obtain the quality index for multiple weighting factors simultaneously or for a time-varying computation of the index (as demonstrated in Manzoni and Mooi-Reci (2018)). In addition `seqquality` also allows to compute a generalized version of the quality index ([see below](#GenSeqQual).
+We wrote a function (`seqquality`) to implement the sequence quality index proposed by Manzoni and Mooi-Reci [-@Manzoni2018] before it was implemented in [`{TraMineR}`](http://traminer.unige.ch){target="_blank"}. Other than [`{TraMineR}`](http://traminer.unige.ch){target="_blank"}'s `seqici` function allows to obtain the quality index for multiple weighting factors simultaneously or for a time-varying computation of the index (as demonstrated in Manzoni and Mooi-Reci [-@Manzoni2018]). In addition `seqquality` also allows to compute a generalized version of the quality index ([see below](#GenSeqQual).
 
 
 We wrapped the `seqquality` function in a small R package which can be downloaded via [`r fontawesome::fa("github")` Github](https://github.com/maraab23/seqquality){target="_blank"}:
@@ -292,7 +294,7 @@ seqquality(example.seq,
 
 ```
 
-The time-varying version of the quality index for each sequence position $i$ can be computed by the argument `time.varying = TRUE`. The resulting variable could be used for estimating panel regressions (see [Manzoni and Mooi-Reci (2018)](https://doi.org/10.1007/978-3-319-95420-2_15) for an application). In addition to showcasing the `time.varying` option the following code also demonstrates  that multiple states of the alphabet can be jointly defined as success either by providing their numeric values. In the example below, we specify cohabitation and marriage as success. 
+The time-varying version of the quality index for each sequence position $i$ can be computed by the argument `time.varying = TRUE`. The resulting variable could be used for estimating panel regressions (see Manzoni and Mooi-Reci [-@Manzoni2018] for an application). In addition to showcasing the `time.varying` option the following code also demonstrates  that multiple states of the alphabet can be jointly defined as success either by providing their numeric values. In the example below, we specify cohabitation and marriage as success. 
 
 ```{r, eval=FALSE}
 seqquality(example.seq,
@@ -428,13 +430,3 @@ kable(bonus) %>%
 ```
 
 The generalized index allows to obtain more fine-grained results than the original quality index, but requires more analytical choices, i.e. the definition of a state hierarchy which assigns metric weights to each state. The function for the generalized sequence quality index requires further testing and should be considered work in progress. 
-
-## References {.appendix}
-
-Manzoni, A., & Mooi-Reci, I. (2018). *Measuring Sequence Quality*. In G. Ritschard & M. Studer (Eds.), Sequence Analysis and Related Approaches (pp. 261–278). doi: 10.1007/978-3-319-95420-2_15
-
-Ritschard, G., Bussi, M., & O’Reilly, J. (2018). *An Index of Precarity for Measuring Early Employment Insecurity*. In G. Ritschard & M. Studer (Eds.), Sequence Analysis and Related Approaches (pp. 279–295). doi: 10.1007/978-3-319-95420-2_16
-
-
-
-

@@ -1,0 +1,259 @@
+---
+title: "Using clusters in a regression framework"
+description: |
+  Chapter 4.4	Using typologies as dependent and independent variables
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+
+# Load required packages
+library(here)
+source(here("source", "load_libraries.R"))
+
+# Output options
+knitr::opts_chunk$set(eval=TRUE, echo=TRUE)
+options("kableExtra.html.bsTable" = T)
+
+# load data for Chapter 4
+load(here("data", "4-0_ChapterSetup.RData"))
+
+```
+
+
+```{r, xaringanExtra-clipboard, echo=FALSE}
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clone fa-2x\" style=\"color: #301e64\"></i>",
+    success_text = "<i class=\"fa fa-check fa-2x\" style=\"color: #90BE6D\"></i>",
+    error_text = "<i class=\"fa fa-times fa-2x\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
+<details><summary>**Click here to get instructions...**</summary>
+
+- Please download and unzip the replication files for Chapter 4
+([`r fontawesome::fa("far fa-file-archive")` Chapter04.zip](source/Chapter03.zip)). 
+- Read `readme.html` and run `4-0_ChapterSetup.R`. This will create `4-0_ChapterSetup.RData` in the sub folder `data/R`. This file contains the data required to produce the plots shown below. 
+- You also have to add the function `legend_large_box` to your environment in order to render the tweaked version of the legend described below. You find this file in the `source` folder of the unzipped Chapter 4 archive.
+- We also recommend to load the libraries listed in Chapter 4's `LoadInstallPackages.R`
+
+```{r, eval=FALSE}
+# assuming you are working within .Rproj environment
+library(here)
+
+# install (if necessary) and load other required packages
+source(here("source", "load_libraries.R"))
+
+# load environment generated in "4-0_ChapterSetup.R"
+load(here("data", "R", "4-0_ChapterSetup.RData"))
+
+```
+</details>
+
+\
+
+In chapter 4.4, we use clusters as outcomes or predictors in a regression framework. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see [here](https://www.pairfam.de/en/){target="_blank"}.
+
+## Preparatory work
+
+We first need to extract a typology from the initial sample. Here we use PAM with results from Ward to initializing the algorithm.
+We use the ?hclust for hierarchical cluster analysis, with non-squared dissimilarities and using weights.
+
+```{r, eval=TRUE, echo=TRUE}
+fam.ward1 <- hclust(as.dist(partner.child.year.om), 
+                    method = "ward.D", 
+                    members = family$weight40)
+```
+
+We then use the ?wcKMedRange command for PAM cluster analysis, with weights and the output of the previous ?hclust as initializing points.
+
+```{r, eval=TRUE, echo=TRUE}
+fam.pam.ward <- wcKMedRange(partner.child.year.om, 
+                            weights = family$weight40, 
+                            kvals = 2:10,
+                            initialclust = fam.ward1)
+```
+
+5 clusters are extracted (see previous sections/the relevant chapters in the book for how to make a decision on the number of clusters): we generate a vector with the info on the cluster assingment for each case in the sample
+
+```{r, eval=TRUE, echo=TRUE}
+fam.pam.ward.5cl<-fam.pam.ward$clustering$cluster5
+```
+
+... and attach it to the main `data.frame` family:
+
+```{r, eval=TRUE, echo=TRUE}
+family$fam.pam.ward.5cl<-fam.pam.ward.5cl
+```
+
+For practical reasons, we re-label clusters from 1 to 5 instead of keeping the medoid idenfiers:
+
+```{r, eval=TRUE, echo=TRUE}
+family$fam.pam.ward.5cl<-car::recode(family$fam.pam.ward.5cl, 
+                                     "982=1; 790=2; 373=3; 1643=4; 985=5")
+```
+
+... and create labels for the clusters (note that one needs to inspect the clusters visually to do this) and attach them to the vector containing the cluster assignments. To do that, we need to transform the vector into a factor:
+
+```{r, eval=TRUE, echo=TRUE}
+fam.pam.ward.lab.5cl <- c("Early parenthood in cohabitation", 
+                          "LAT and long-lasting cohabitation without children",
+                          "Early marriage with 1 child", 
+                          "Long-lasting singleness and childlessness", 
+                          "Early marriage with 2+ children")
+
+fam.pam.ward.factor.5cl <- factor(family$fam.pam.ward.5cl, 
+                                  levels = c(1,2,3,4,5), 
+                                  labels=fam.pam.ward.lab.5cl)
+```
+
+... and attach (with labels) to the main `data.frame`:
+
+```{r, eval=TRUE, echo=TRUE}
+family$cluster<-fam.pam.ward.factor.5cl
+```
+
+For sake of visualization, we also retain a variable with the clusters without labels:
+
+```{r, eval=TRUE, echo=TRUE}
+family$cluster.nolab<-family$fam.pam.ward.5cl
+```
+
+Next, we need to store the variables we want to include in the regression models as factors and make sure they are attached to the main `data.frame` family. For a substantive presentation of these variables see Chapter 4.4 of the book.
+
+```{r, eval=TRUE, echo=TRUE}
+family$east.f <- factor(family$east)
+
+family$sex.f <- factor(family$sex)
+
+family$highschool.f <- factor(family$highschool)
+
+family$cluster.nolab.f <- factor(family$cluster.nolab)
+
+```
+
+We make sure that the main covariate of interest (east) is labelled:
+
+```{r, eval=TRUE, echo=TRUE}
+family$east.f <- factor(family$east.f,
+                      levels = c(0,1),
+                      labels = c("West", "East"))
+```                      
+
+## Clusters as outcomes
+
+We first want to get a cross-tab of the cluster variable with the covariate of interest with a focus on row percentages. We store the results in an object named row...
+
+```{r, eval=TRUE, echo=FALSE}
+row<-crosstab(family$cluster.nolab, 
+               family$east.f, 
+               weight=family$weight40, 
+               prop.r = TRUE)
+```
+
+...and print it:
+
+```{r, eval=TRUE, echo=TRUE}
+row
+```
+
+We do the same for column percentages, storing the results in an object called col...
+
+```{r, eval=TRUE, echo=TRUE}
+col<-crosstab(family$cluster.nolab, 
+               family$east.f, 
+               weight=family$weight40, 
+               prop.c = TRUE)
+```
+
+... and print it:
+
+```{r, eval=TRUE, echo=TRUE}
+col
+```
+
+We can now estimate a multinomial logit model by using the ?multinom command. Notice that we have to specify the main dataset (see the `data` option) and where the weights are (see the `w` option). We store the results in an object called cluster.outcomes...
+
+```{r, eval=TRUE, echo=TRUE}
+cluster.outcomes <- multinom(cluster.nolab ~ 
+                              sex.f + 
+                              east.f + 
+                              highschool.f, 
+                              data=family, 
+                              w=family$weight40)
+```
+
+...and print its content:
+
+```{r, eval=TRUE, echo=TRUE}
+cluster.outcomes
+```
+
+To ease the interpretation of the results, we estimate predicted probabilities for the assignment to each cluster as a function of being born in East or West Germany by using the ?Effect command: we have to specify the covariate for which estimating the predicted probabilities (east.f) and the object where the regression results are stored (here: cluster.outcomes). Also in this case, we store the predictions in an object that we call pred.east:
+
+```{r, eval=TRUE, echo=TRUE}
+pred.east <- Effect("east.f", cluster.outcomes)
+```
+
+We can print the linear predictions: 
+
+```{r, eval=TRUE, echo=TRUE}
+pred.east
+```
+
+One can store the predictions and the upper and lower confidence intervals values as a data frame:
+
+```{r, eval=TRUE, echo=TRUE}
+tidy.pred<-data.frame(pred.east$prob, 
+                      pred.east$lower.prob, 
+                      pred.east$upper.prob)
+```
+
+## Clusters as predictors
+
+Here we consider satisfaction with family life (a continuous variable sat1i4 in the family dataset, measured at the end of the observational window covered by the sequences) as dependent variable in a model where clusters are the main predictors. We first generate summary statistics of sat1i4 by cluster by using the ?describeBy command. Note that we have to specify the `group`, that is the variable by which the summary description has to be displayed - here the cluster variable included in the family dataset. We store the summary in an object called sat.clu ...
+
+```{r, eval=TRUE, echo=TRUE}
+sat.clu<-describeBy(family$sat1i4, group=family$cluster)
+```
+
+...and print it:
+
+```{r, eval=TRUE, echo=TRUE}
+sat.clu
+```
+
+We can now estimate a linear model for satisfaction with family life by using the ?lm command. Notice that we have to specify the main dataset (see the `data` option) and where the weights are (see the `w` option). We store the results in an object called cluster.predictors...
+
+```{r, eval=TRUE, echo=TRUE}
+cluster.predictors <- lm(sat1i4 ~ 
+                           cluster.nolab.f + 
+                           sex.f + 
+                           highschool.f + 
+                           east.f, 
+                           data=family, 
+                           w=family$weight40)
+```
+
+...and print the results:
+
+```{r, eval=TRUE, echo=TRUE}
+cluster.predictors
+```
+
+To arrange the results nicely, we use the ?tidy command and store the predictions in an object called tidy.predictors ...
+
+```{r, eval=TRUE, echo=TRUE}
+tidy.predictors <- tidy(cluster.predictors)
+```
+
+...and print it:
+
+```{r, eval=TRUE, echo=TRUE}
+tidy.predictors
+```
+
+

@@ -2606,7 +2606,11 @@ MARc2+
 </table>
 </div>
 <h2 id="defining-the-color-palette-shading-lines">Defining the “color” palette &amp; shading lines</h2>
-<p>We use R’s inbuilt <code>gray.colors</code> function to choose grays approriate for our purpose. We apply the following strategy: (1) choose a “color” for each partnership state; (2) add shading lines for fertility information.</p>
+<p>We use base R’s <code>gray.colors</code> function to choose grays appropriate for our purpose. We apply the following strategy:</p>
+<ol type="1">
+<li>choose a “color” for each partnership state;</li>
+<li>add shading lines for fertility information.</li>
+</ol>
 <p>We use a palette of nine grays to choose three different grays to represent the partnership states “LAT”, “Cohabitation”, and “Marriage”. The single status will be depicted by White (HEX = “#FFFFFF”).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">9</span>), <span class="at">col =</span> <span class="fu">gray.colors</span>(<span class="dv">9</span>), <span class="at">axes =</span> <span class="cn">FALSE</span>)</span></code></pre></div>

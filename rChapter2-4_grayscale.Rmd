@@ -75,7 +75,10 @@ kable(tibble(state = longlab.partner.child, shortlabel = shortlab.partner.child)
 
 ## Defining the "color" palette & shading lines
 
-We use R's inbuilt `gray.colors` function to choose grays approriate for our purpose. We apply the following strategy: (1) choose a "color" for each partnership state; (2) add shading lines for fertility information.
+We use base R's `gray.colors` function to choose grays appropriate for our purpose. We apply the following strategy: 
+
+(1) choose a "color" for each partnership state; 
+(2) add shading lines for fertility information.
 
 We use a palette of nine grays to choose three different grays to represent the partnership states "LAT", "Cohabitation", and "Marriage". The single status will be depicted by White (HEX = "#FFFFFF"). 
 
@@ -317,5 +320,5 @@ dev.off()
 
 
 ```{r bonusplot, layout="l-body-outset", echo=FALSE}
-knitr::include_graphics("images/Chapter2/2-4-0_bonus_iplot_grayYearly.png")
+include_graphics("images/Chapter2/2-4-0_bonus_iplot_grayYearly.png")
 ```

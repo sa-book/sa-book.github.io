@@ -3313,7 +3313,7 @@ MAR
 </div>
 <p>According to the monthly partnership data 25% of the sample did not spend a single month in wedlock. Another 12% never were observed outside some sort of partnership.</p>
 <h2 id="modal-and-representative-sequences">Modal and representative sequences</h2>
-<p>The distribution above indicates the dominance of the partnership states “Single” and “Married” at the beginning and ending of the sequence. This is also reflected in the sequence of modal states. The following commands extract the modal sequences using sequence data with monthly and yearly granularity (see chapter 2.2).</p>
+<p>The distribution above indicates the dominance of the partnership states “Single” and “Married” at the beginning and ending of the sequence. This is also reflected in the sequence of modal states. The following commands extract the modal sequences using sequence data with monthly and yearly granularity (see <strong>Chapter 2.2</strong>).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>modal.month.seq <span class="ot">&lt;-</span> <span class="fu">seqdef</span>(<span class="fu">as_tibble</span>(<span class="fu">seqmodst</span>(partner.month.seq)))</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(modal.month,seq, <span class="at">format =</span> <span class="st">&quot;SPS&quot;</span>)</span>
@@ -3356,7 +3356,7 @@ Yearly data
 </tbody>
 </table>
 </div>
-<p>Usually the modal sequence is a hypothetical sequence that is not actually observed in the data. In contrast, <code>seqrep</code> aims at identifying those sequences that represent the data best. Note that this approach requires the computation of a distance matrix. The following commands illustrate the identification of representative sequences using yearly sequences (<code>partner.year.seq</code>). For details on computing sequence distances (<code>seqdist</code>) see Chapter 3.</p>
+<p>Usually the modal sequence is a hypothetical sequence that is not actually observed in the data. In contrast, <code>seqrep</code> aims at identifying those sequences that represent the data best. Note that this approach requires the computation of a distance matrix. The following commands illustrate the identification of representative sequences using yearly sequences (<code>partner.year.seq</code>). For details on computing sequence distances (<code>seqdist</code>) see <strong>Chapter 3</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>partner.year.om <span class="ot">&lt;-</span> <span class="fu">seqdist</span>(partner.year.seq, </span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">method=</span><span class="st">&quot;OM&quot;</span>, <span class="at">sm=</span><span class="st">&quot;CONSTANT&quot;</span>)</span>

@@ -19,12 +19,12 @@ knitr::opts_chunk$set(echo = FALSE)
 | 2.3	Description of Sequence Data I  | [Basic Description](rChapter2-3.html) |
 | 2.4 Visualization of Sequence Data  | [Color palette: Grayscale Edition](rChapter2-4_grayscale.html)      |
 |                                     | [Color palette: Colored Edition](rChapter2-4_color.html)  |
-|                                     | [Data summarization graphs (chapter 2.4.1)](UnderConstruction.html)  |
-|                                     | [Data representation graphs (chapter 2.4.2)](UnderConstruction.html)  |
+|                                     | [Data summarization graphs (chapter 2.4.1)](rChapter2-4-1.html)  |
+|                                     | [Data representation graphs (chapter 2.4.2)](rChapter2-4-2.html)  |
 | 2.5 Description of Sequence Data II | [Unidimensional and composite indices](rChapter2-5.html)    | 
 
 
-Chapter 2 introduces the basic concepts and discusses how to define sequence data. The corresponding material provided on this site shows [`{TraMineR}`](http://traminer.unige.ch){target="_blank"}'s capabilites of processing different data formats. We further illustrate 
+Chapter 2 introduces the basic concepts and discusses how to define sequence data. The corresponding material provided on this site shows [`{TraMineR}`](http://traminer.unige.ch){target="_blank"}'s capabilities of processing different data formats. We further illustrate 
 how the alphabet and the granularity of sequences can be easily changed with [`{TraMineR}`](http://traminer.unige.ch){target="_blank"}'s built-in helper functions.
 
 With visualization being one of the key features of sequence analysis, we provide extensive material on optimizing the quality of figures by choosing appropriate color palettes. Although we highly recommend using colors for visualizing sequences, the associated print-costs are often prohibitively high (for instance, in the case of our book). We therefore provide some material illustrating how to produce acceptable results by using a grayscale color palette and by adding texture.

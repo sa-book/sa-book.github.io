@@ -47,17 +47,41 @@ library(here)
 # install (if necessary) and load other required packages
 source(here("source", "load_libraries.R"))
 
-# load environment generated in "3-0_ChapterSetup.R"
-load(here("data", "R", "3-0_ChapterSetup.RData"))
+# load environment generated in "4-0_ChapterSetup.R"
+load(here("data", "R", "4-0_ChapterSetup.RData"))
 
 ```
 </details>
 
 \
 
-In chapter 4.1, we introduce....
+In chapter 4.1, we introduce crisp/hard clustering algorithms and cluster quality indeces to be considered when making decisions on the number of clusters to extract from the initial sample. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see [here](https://www.pairfam.de/en/){target="_blank"}.
 
-## 
+## Crisp (or hard) clustering algorithms
+
+We apply a hierarchical cluster analysis by using the command ?hclust to the dissimilarity matrix partner.child.year.om for the family formation sequences, computed based on OM with `indel`=1 and substitution=2. With use non-squared dissimilarities (see the `method` option) and weights (see the `members` option, where we have to specify to which `data.frame` the vector with the weights belongs to). 
 
 ```{r, eval=TRUE, echo=TRUE}
+fam.ward1 <- hclust(as.dist(partner.child.year.om), 
+                    method = "ward.D", 
+                    members = family$weight40)
+```                
+
+The nested structure emerging from the hierarchical clustering algorithm can be displayed using a dendrogram:
+
+```{r, eval=FALSE, echo=TRUE}
+par(mar = c(3, 10, 3, 3))
+plot(fam.ward1, labels = FALSE, 
+     main ="", 
+     ylab="",
+     xlab="", sub="",
+     cex.axis=2.5,
+     cex.lab=2.5)
+mtext("Dissimilarity threshold", side = 2, line = 5, cex = 3)
+
+dev.off()
+```
+
+```{r fig.width=3, fig.height=3,echo=FALSE, echo=FALSE}
+include_graphics("images/Chapter4/4-1-2_Fig4-2_dendrogram_gray.png")
 ```

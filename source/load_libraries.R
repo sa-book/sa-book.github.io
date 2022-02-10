@@ -6,11 +6,12 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # list of required libraries 
-pkgs <- c("Cairo", "cluster", "colorspace", "corrplot", "fontawesome", "glue", 
+pkgs <- c("broom", "Cairo", "cluster", "colorspace", "corrplot", "descr", "effects", 
+          "factoextra", "fontawesome", "glue", 
           "grDevices", "gt", "haven", "Hmisc", "htmltools", "icons",
-          "knitr", "kableExtra", "magrittr", "metathis", "OpenMx", 
-          "patchwork", "pdftools", "RColorBrewer", "sjPlot", "summarytools",
-          "tidyverse", "TraMineR", "TraMineRextras", 
+          "knitr", "kableExtra", "magrittr", "metathis", "nnet", "OpenMx", 
+          "patchwork", "pdftools", "psych", "RColorBrewer", "seqquality", "sjPlot", 
+          "stats", "summarytools", "tidyr", "tidyverse", "TraMineR", "TraMineRextras", 
           "tufte", "reshape2", "WeightedCluster", "xaringanExtra") 
 
 

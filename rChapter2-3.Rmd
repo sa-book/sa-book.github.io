@@ -276,10 +276,12 @@ as_tibble(seqistatd(partner.month.seq)) %>%
 ```
 
 ```{r, echo=FALSE}
-as_tibble(seqistatd(partner.month.seq)) %>%
+never_ever <- as_tibble(seqistatd(partner.month.seq)) %>%
   mutate_all(~case_when(. == 0 ~ 1,
                         TRUE ~ 0)) %>%
-  summarise_all(~(weighted.mean(., w = family$weight40))) %>%
+  summarise_all(~(weighted.mean(., w = family$weight40))) 
+
+never_ever %>% 
   kable(digits = 2) %>%
   kable_styling(bootstrap_options = 
                   c("responsive", "hover", "condensed"),
@@ -287,12 +289,12 @@ as_tibble(seqistatd(partner.month.seq)) %>%
 
 ```
 
-According to the monthly partnership data 25% of the sample did not spend a single month in wedlock. Another 12% never were observed outside some sort of partnership. 
+According to the monthly partnership data `r glue("{round(never_ever$MAR,2)*100}%")` of the sample did not spend a single month in wedlock. Another `r glue("{round(never_ever$S,2)*100}%")` never were observed outside some sort of partnership. 
 
 
 ## Modal and representative sequences
 
-The distribution above  indicates the dominance of the partnership states "Single" and "Married" at the beginning and ending of the sequence. This is also reflected in the sequence of modal states. The following commands extract the modal sequences using sequence data with monthly and yearly granularity (see chapter 2.2).
+The distribution above  indicates the dominance of the partnership states "Single" and "Married" at the beginning and ending of the sequence. This is also reflected in the sequence of modal states. The following commands extract the modal sequences using sequence data with monthly and yearly granularity (see **Chapter 2.2**).
 
 ```{r, echo=TRUE, eval=FALSE}
 modal.month.seq <- seqdef(as_tibble(seqmodst(partner.month.seq)))
@@ -322,7 +324,7 @@ kable(modalseqs) %>%
 
 ```
 
-Usually the modal sequence is a hypothetical sequence that is not actually observed in the data. In contrast, `seqrep` aims at identifying those  sequences that represent the data best. Note that this approach requires the computation of a distance matrix. The following commands illustrate the identification of representative sequences using yearly sequences (`partner.year.seq`). For details on computing sequence distances (`seqdist`) see Chapter 3.
+Usually the modal sequence is a hypothetical sequence that is not actually observed in the data. In contrast, `seqrep` aims at identifying those  sequences that represent the data best. Note that this approach requires the computation of a distance matrix. The following commands illustrate the identification of representative sequences using yearly sequences (`partner.year.seq`). For details on computing sequence distances (`seqdist`) see **Chapter 3**.
 
 ```{r, echo=TRUE, eval=FALSE}
 partner.year.om <- seqdist(partner.year.seq, 
