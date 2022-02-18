@@ -78,27 +78,10 @@ Please note that most of the materials on this site are designed to be used in t
  
 
 
-```{=html}
-<style>
-div.green {background-color:#8DCEA4; border-radius: 5px; padding: 20px;}
-</style>
-```
-
-::: green
-**Note:**<br> This site is under construction! We kindly ask you to cite us anyway, if you use the material shared on this page.
-:::
-
 
 ## Citation {.appendix}
 
 For attribution, please cite this work as:
-
-<!-- <style>
-div.green { background-color:#8DCEA4; border-radius: 3px; padding: 10px;}
-</style>
-<div class = "green">
-**Raab, M. & Struffolino, E. (2022). Sequence Analysis. Thousand Oaks, CA: Sage.**
-</div> -->
 
 <pre class="citation-appendix short">
 Raab, M. & Struffolino, E. (2022). Sequence Analysis. Thousand Oaks, CA: Sage.
