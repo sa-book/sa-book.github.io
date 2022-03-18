@@ -14,15 +14,10 @@ knitr::opts_chunk$set(echo = FALSE)
 
 | TOC                      | Content (click for jumping to examples)  |
 |-------------------------------------|-------------------------------|
-| 6.1  Comparing Within-Group Discrepancies | [Sequence data formats](rChapter2-1.html) |
+| 6.1  Comparing Within-Group Discrepancies | [Group-specific discrepancies (chapter 6.1)](rChapter6-1.html) |
 | 6.2 Measuring Associations Between Sequences and Covariates   | [Discrepancy Framework (chapter 6.2.1)](rChapter6-2-1.html)  |  
 |                                                               | [BIC and LRT (chapter 6.2.2)](rChapter6-2-2.html)  |
 | 6.3 Statistical Implicative Analysis | [Plotting the implicative statistic](rChapter6-3.html)    | 
 
 
-Chapter 2 introduces the basic concepts and discusses how to define sequence data. The corresponding material provided on this site shows [`{TraMineR}`](http://traminer.unige.ch){target="_blank"}'s capabilities of processing different data formats. We further illustrate 
-how the alphabet and the granularity of sequences can be easily changed with [`{TraMineR}`](http://traminer.unige.ch){target="_blank"}'s built-in helper functions.
-
-With visualization being one of the key features of sequence analysis, we provide extensive material on optimizing the quality of figures by choosing appropriate color palettes. Although we highly recommend using colors for visualizing sequences, the associated print-costs are often prohibitively high (for instance, in the case of our book). We therefore provide some material illustrating how to produce acceptable results by using a grayscale color palette and by adding texture.
-
-We further show useful commands for a comprehensive description of the sequence data. Finally, we turn to more advanced composite measures of sequence complexity. These indices are not only interesting in themselves, but also because they can be used either as independent or as dependent variable in subsequent regression analyses. 
+ 

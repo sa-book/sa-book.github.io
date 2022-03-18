@@ -1,7 +1,7 @@
 ---
-title: "Discrepancy Analysis I"
+title: "Exploring group-specific discrepancies"
 description: |
-  Chapter 2.2 Comparing Within-Group Discrepancies
+  Chapter 6.1 Comparing Within-Group Discrepancies
 output: distill::distill_article    
 ---
 

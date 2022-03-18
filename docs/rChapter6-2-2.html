@@ -80,27 +80,6 @@ code span.vs { color: #008080; } /* VerbatimString */
 code span.wa { color: #008000; font-weight: bold; } /* Warning */
 </style>
 
-<style>
-  div.csl-bib-body { }
-  div.csl-entry {
-    clear: both;
-    }
-  .hanging div.csl-entry {
-    margin-left:2em;
-    text-indent:-2em;
-  }
-  div.csl-left-margin {
-    min-width:2em;
-    float:left;
-  }
-  div.csl-right-inline {
-    margin-left:2em;
-    padding-left:1em;
-  }
-  div.csl-indent {
-    margin-left: 2em;
-  }
-</style>
 
   <!--radix_placeholder_meta_tags-->
   <title>Sequence Analysis - Companion Site: Measuring Associations Between Sequences and Covariates II</title>
@@ -2417,7 +2396,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
   <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
   <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
   <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
@@ -2524,7 +2503,7 @@ Material for R
 </details>
 <p><br />
 </p>
-<p><strong>Table 6.4</strong> in Chapter 6.2.2 presents group comparisons based on a discrepancy analysis and an alternative approach recently proposed by Liao and Fasang <span class="citation" data-cites="LiaoFasang2021">(<a href="#ref-LiaoFasang2021" role="doc-biblioref">2021</a>)</span>. In this example we examine the labor market trajectories stored in <code>activity.year.seq</code>. The group comparisons are using dummy variables stored in <code>activity</code>: <code>east</code> (living in East vs West Germany), <code>sex</code> (male vs. female), <code>highschool</code> (at least highschool degree: yes vs. no).</p>
+<p><strong>Table 6.4</strong> in Chapter 6.2.2 presents group comparisons based on a discrepancy analysis and an alternative approach recently proposed by Liao and Fasang <span class="citation" data-cites="LiaoFasang2021">(<a href="#ref-LiaoFasang2021" role="doc-biblioref"><strong>LiaoFasang2021?</strong></a>)</span>. In this example we examine the labor market trajectories stored in <code>activity.year.seq</code>. The group comparisons are using dummy variables stored in <code>activity</code>: <code>east</code> (living in East vs West Germany), <code>sex</code> (male vs. female), <code>highschool</code> (at least highschool degree: yes vs. no).</p>
 <p>The analysis are done with <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineR}</code></a>’s <code>dissassoc</code> function and the <code>seqCompare</code> function from the <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineRextras}</code></a> package.</p>
 <p>In the book we present the following table (note that we highlighted one line we are going to elborate on in the following paragraphs):</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2990,11 +2969,6 @@ Total
 </table>
 </div>
 <p>For the more complex subsetting including all groups shown in <strong>Table 6.4</strong> we refer you to the script <code>6-2_Table_6-4_Discrepancies-BIC.R</code>. There we also illustrate how to extract, arrange, and format the outputs from <code>dissassoc</code> and <code>seqCompare</code> to produce the table shown at the beginning of this page.</p>
-<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="doc-bibliography">
-<div id="ref-LiaoFasang2021" class="csl-entry" role="doc-biblioentry">
-Liao, T. F., &amp; Fasang, A. E. (2021). Comparing groups of life-course sequences using the bayesian information criterion and the likelihood-ratio test. <em>Sociological Methodology</em>, <em>51</em>(1), 44–85. <a href="https://doi.org/10.1177/0081175020959401">https://doi.org/10.1177/0081175020959401</a>
-</div>
-</div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
