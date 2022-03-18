@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 | TOC                      | Content (click for jumping to examples)  |
 |-------------------------------------|-------------------------------|
-| 6.1  Comparing Within-Group Discrepancies | [Group-specific discrepancies (chapter 6.1)](rChapter6-1.html) |
+| 6.1  Comparing Within-Group Discrepancies | [Group-specific discrepancies](rChapter6-1.html) |
 | 6.2 Measuring Associations Between Sequences and Covariates   | [Discrepancy Framework (chapter 6.2.1)](rChapter6-2-1.html)  |  
 |                                                               | [BIC and LRT (chapter 6.2.2)](rChapter6-2-2.html)  |
 | 6.3 Statistical Implicative Analysis | [Plotting the implicative statistic](rChapter6-3.html)    | 
