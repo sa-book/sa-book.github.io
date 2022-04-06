@@ -19,8 +19,9 @@ knitr::opts_chunk$set(echo = FALSE)
 | 2.3	Description of Sequence Data I  | [Basic Description](rChapter2-3.html) |
 | 2.4 Visualization of Sequence Data  | [Color palette: Grayscale Edition](rChapter2-4_grayscale.html)      |
 |                                     | [Color palette: Colored Edition](rChapter2-4_color.html)  |
-|                                     | [Data summarization graphs (chapter 2.4.1)](rChapter2-4-1.html)  |
-|                                     | [Data representation graphs (chapter 2.4.2)](rChapter2-4-2.html)  |
+|                                     | [2.4.1 Data summarization graphs](rChapter2-4-1.html)  |
+|                                     | [2.4.2 Data representation graphs](rChapter2-4-2.html)  |
+|                                     | [ggplotify sequence data plots (bonus material)](rChapter2-4_ggseqplot.html)  |
 | 2.5 Description of Sequence Data II | [Unidimensional and composite indices](rChapter2-5.html)    | 
 
 
