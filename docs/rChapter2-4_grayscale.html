@@ -2395,7 +2395,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
   <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
   <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
   <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
@@ -2481,9 +2481,11 @@ Material for R
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#defining-the-color-palette-shading-lines">Defining the “color” palette &amp; shading lines</a></li>
+<li><a href="#defining-the-color-palette-shading-lines">Defining the
+“color” palette &amp; shading lines</a></li>
 <li><a href="#legend-link">Adjusting the legend</a></li>
-<li><a href="#sequence-index-plot-of-representative-sequences">Sequence index plot <br/>of representative sequences</a></li>
+<li><a href="#sequence-index-plot-of-representative-sequences">Sequence
+index plot <br/>of representative sequences</a></li>
 </ul>
 </nav>
 </div>
@@ -2495,10 +2497,20 @@ Material for R
 <strong>Click here to get instructions…</strong>
 </summary>
 <ul>
-<li>Please download and unzip the replication files for Chapter 2 (<a href="source/Chapter02.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter02.zip</a>).</li>
-<li>Read <code>readme.html</code> and run <code>2-0_ChapterSetup.R</code>. This will create <code>2-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to produce the plots shown below.</li>
-<li>You also have to add the function <code>legend_large_box</code> to your environment in order to render the tweaked version of the legend described below. You find this file in the <code>source</code> folder of the unzipped Chapter 2 archive.</li>
-<li>We also recommend to load the libraries listed in the Chapter 2’s <code>LoadInstallPackages.R</code></li>
+<li>Please download and unzip the replication files for Chapter 2 (<a
+href="source/Chapter02.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg>
+Chapter02.zip</a>).</li>
+<li>Read <code>readme.html</code> and run
+<code>2-0_ChapterSetup.R</code>. This will create
+<code>2-0_ChapterSetup.RData</code> in the sub folder
+<code>data/R</code>. This file contains the data required to produce the
+plots shown below.</li>
+<li>You also have to add the function <code>legend_large_box</code> to
+your environment in order to render the tweaked version of the legend
+described below. You find this file in the <code>source</code> folder of
+the unzipped Chapter 2 archive.</li>
+<li>We also recommend to load the libraries listed in the Chapter 2’s
+<code>LoadInstallPackages.R</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming you are working within .Rproj environment</span></span>
@@ -2516,7 +2528,13 @@ Material for R
 </details>
 <p><br />
 </p>
-<p>Although the full potential of visualizing sequences can only be reached by using colored figures, some restrictions - particularly hight cost of colored printing - might require using grayscale figures and shaded lines. This page illustrates how to produce <em>acceptable</em> figures without using colors visualizing sequences with an alphabet of 9 states. Based on our own experience we consider an alphabet of size 12 as the upper limit when the usage of colors is not an option.</p>
+<p>Although the full potential of visualizing sequences can only be
+reached by using colored figures, some restrictions - particularly hight
+cost of colored printing - might require using grayscale figures and
+shaded lines. This page illustrates how to produce <em>acceptable</em>
+figures without using colors visualizing sequences with an alphabet of 9
+states. Based on our own experience we consider an alphabet of size 12
+as the upper limit when the usage of colors is not an option.</p>
 <div class="layout-chunk" data-layout="l-body">
 <table class="table table-responsive table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -2605,20 +2623,26 @@ MARc2+
 </tbody>
 </table>
 </div>
-<h2 id="defining-the-color-palette-shading-lines">Defining the “color” palette &amp; shading lines</h2>
-<p>We use base R’s <code>gray.colors</code> function to choose grays appropriate for our purpose. We apply the following strategy:</p>
+<h2 id="defining-the-color-palette-shading-lines">Defining the “color”
+palette &amp; shading lines</h2>
+<p>We use base R’s <code>gray.colors</code> function to choose grays
+appropriate for our purpose. We apply the following strategy:</p>
 <ol type="1">
 <li>choose a “color” for each partnership state;</li>
 <li>add shading lines for fertility information.</li>
 </ol>
-<p>We use a palette of nine grays to choose three different grays to represent the partnership states “LAT”, “Cohabitation”, and “Marriage”. The single status will be depicted by White (HEX = “#FFFFFF”).</p>
+<p>We use a palette of nine grays to choose three different grays to
+represent the partnership states “LAT”, “Cohabitation”, and “Marriage”.
+The single status will be depicted by White (HEX = “#FFFFFF”).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">9</span>), <span class="at">col =</span> <span class="fu">gray.colors</span>(<span class="dv">9</span>), <span class="at">axes =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="rChapter2-4_grayscale_files/figure-html5/nine-grays-1.png" width="576" /></p>
 </div>
-<p>We added labels to the figure above to illustrate which grays constitute our palette. With the following code we specify and illustrate our final palette.</p>
+<p>We added labels to the figure above to illustrate which grays
+constitute our palette. With the following code we specify and
+illustrate our final palette.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>colgrey.partner.child <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;#FFFFFF&quot;</span>,<span class="dv">2</span>),</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">rep</span>(<span class="fu">gray.colors</span>(<span class="dv">9</span>)[<span class="dv">8</span>],<span class="dv">2</span>),</span>
@@ -2630,8 +2654,17 @@ MARc2+
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="rChapter2-4_grayscale_files/figure-html5/white-to-gray-1.png" width="576" /></p>
 </div>
-<p>According to the definition of our alphabet we need two single states, two LAT states, two cohabitation states, and three marriage states. Adding shading lines allows for distinguishing different fertility levels. Shading lines are added by specifying vectors for <code>density</code> and <code>angle</code>. We use different angles (i.e., 0° and 45°) to separate the two parity states within marriage. Specifying zero for the <code>density</code> parameter ensures that no shading lines are added for the four “childless” states.</p>
-<p>Note that we have to create two overlapping graph objects by typing <code>par(new=TRUE)</code>. The first plot creates bars with the desired colors, the second one adds black shading lines.</p>
+<p>According to the definition of our alphabet we need two single
+states, two LAT states, two cohabitation states, and three marriage
+states. Adding shading lines allows for distinguishing different
+fertility levels. Shading lines are added by specifying vectors for
+<code>density</code> and <code>angle</code>. We use different angles
+(i.e., 0° and 45°) to separate the two parity states within marriage.
+Specifying zero for the <code>density</code> parameter ensures that no
+shading lines are added for the four “childless” states.</p>
+<p>Note that we have to create two overlapping graph objects by typing
+<code>par(new=TRUE)</code>. The first plot creates bars with the desired
+colors, the second one adds black shading lines.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">9</span>), <span class="at">col =</span> colgrey.partner.child, <span class="at">axes =</span> <span class="cn">FALSE</span>)                           </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2644,7 +2677,8 @@ MARc2+
 <p><img src="rChapter2-4_grayscale_files/figure-html5/nine-bars-shaded-1.png" width="576" /></p>
 </div>
 <h2 id="legend-link">Adjusting the legend</h2>
-<p>Based on the section above we draw a legend with the following standard code:</p>
+<p>Based on the section above we draw a legend with the following
+standard code:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NULL</span> ,<span class="at">xaxt=</span><span class="st">&#39;n&#39;</span>,<span class="at">yaxt=</span><span class="st">&#39;n&#39;</span>,<span class="at">bty=</span><span class="st">&#39;n&#39;</span>,<span class="at">ylab=</span><span class="st">&#39;&#39;</span>,<span class="at">xlab=</span><span class="st">&#39;&#39;</span>, <span class="at">xlim=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">ylim=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2659,16 +2693,40 @@ MARc2+
 <div class="layout-chunk" data-layout="l-body-outset">
 <p><img src="rChapter2-4_grayscale_files/figure-html5/legend-small-boxes-1.png" width="768" /></p>
 </div>
-<p>Although the legend looks OK at first glance, it has two crucial drawbacks: (1) The grayscale boxes (with shading lines) are too small to be distinguished easily; (2) two different partnership states are appearing in the first two columns of the legend. Both issues call for some extra coding because they cannot be solved with the options available in the standard version of the legend function.</p>
-<p>Addressing the first issue we draw on a tweaked version of the legend suggested by <a href="http://ms.mcmaster.ca/~bolker/" target="_blank">Ben Bolker</a> and <a href="https://www.pauljhurtado.com/" target="_blank">Paul Hurtado</a> in a thread at <a href="https://stackoverflow.com/questions/13644149/increasing-the-size-of-the-coloured-squares-on-histogram-legends-in-r" target="_blank">Stack Overflow</a>.</p>
-<p>Here you can download the tweaked version of the legend function: <a href="source/legend_large_box.R"><svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"></path></svg> legend_large_box.R</a>.</p>
-<p>We include the function by sourcing the file within our R-script by typing:</p>
+<p>Although the legend looks OK at first glance, it has two crucial
+drawbacks: (1) The grayscale boxes (with shading lines) are too small to
+be distinguished easily; (2) two different partnership states are
+appearing in the first two columns of the legend. Both issues call for
+some extra coding because they cannot be solved with the options
+available in the standard version of the legend function.</p>
+<p>Addressing the first issue we draw on a tweaked version of the legend
+suggested by <a href="http://ms.mcmaster.ca/~bolker/"
+target="_blank">Ben Bolker</a> and <a
+href="https://www.pauljhurtado.com/" target="_blank">Paul Hurtado</a> in
+a thread at <a
+href="https://stackoverflow.com/questions/13644149/increasing-the-size-of-the-coloured-squares-on-histogram-legends-in-r"
+target="_blank">Stack Overflow</a>.</p>
+<p>Here you can download the tweaked version of the legend function: <a
+href="source/legend_large_box.R"><svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"></path></svg>
+legend_large_box.R</a>.</p>
+<p>We include the function by sourcing the file within our R-script by
+typing:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">&quot;source&quot;</span>, <span class="st">&quot;legend_large_box.R&quot;</span>))</span></code></pre></div>
 </div>
-<p>Next to changing the size of the colored boxes we want to re-arrange the labels of the legend. The new legend should have four columns each representing one partnership state. Each of the first three columns (“Single”, “LAT”, “Cohabitation”) has two entries (“childless”, “with child(ren)”). The last column (“Marriage”) has three entries (“no child”, “one child”, “2 or more children”).</p>
-<p>Typing <code>ncol=4</code> when specifying the legend would not do the trick. It would produce a four columns legend with three entries in the first three columns and zero entries in the last column.</p>
-<p>To obtain the desired result we have to add empty cells to the legend and adjust our “color” vector accordingly. This is accomplished by the following code:</p>
+<p>Next to changing the size of the colored boxes we want to re-arrange
+the labels of the legend. The new legend should have four columns each
+representing one partnership state. Each of the first three columns
+(“Single”, “LAT”, “Cohabitation”) has two entries (“childless”, “with
+child(ren)”). The last column (“Marriage”) has three entries (“no
+child”, “one child”, “2 or more children”).</p>
+<p>Typing <code>ncol=4</code> when specifying the legend would not do
+the trick. It would produce a four columns legend with three entries in
+the first three columns and zero entries in the last column.</p>
+<p>To obtain the desired result we have to add empty cells to the legend
+and adjust our “color” vector accordingly. This is accomplished by the
+following code:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding empty cells at the right positions</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2688,7 +2746,9 @@ MARc2+
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>bordercol.partner.child <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;black&quot;</span>,<span class="st">&quot;black&quot;</span>,<span class="st">&quot;White&quot;</span>),<span class="dv">3</span>),</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">rep</span>(<span class="st">&quot;black&quot;</span>, <span class="dv">3</span>))</span></code></pre></div>
 </div>
-<p>Finally, we can draw the tweaked legend box. Again, we have to create two overlapping plot objects to get both the desired “color” palette and the black shading lines.</p>
+<p>Finally, we can draw the tweaked legend box. Again, we have to create
+two overlapping plot objects to get both the desired “color” palette and
+the black shading lines.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NULL</span> ,<span class="at">xaxt=</span><span class="st">&#39;n&#39;</span>,<span class="at">yaxt=</span><span class="st">&#39;n&#39;</span>,<span class="at">bty=</span><span class="st">&#39;n&#39;</span>,<span class="at">ylab=</span><span class="st">&#39;&#39;</span>,<span class="at">xlab=</span><span class="st">&#39;&#39;</span>, <span class="at">xlim=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">ylim=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">legend_large_box</span>(<span class="st">&quot;center&quot;</span>, <span class="at">legend =</span> longlab.partner.child2,</span>
@@ -2706,9 +2766,19 @@ MARc2+
 <div class="layout-chunk" data-layout="l-body-outset">
 <p><img src="rChapter2-4_grayscale_files/figure-html5/legend-large-boxes-1.png" width="1152" /></p>
 </div>
-<h2 id="sequence-index-plot-of-representative-sequences">Sequence index plot <br/>of representative sequences</h2>
-<p>In the book we elaborate on the pros and cons of sequence index plots (see Chapter 2.4.2 in the book; the corresponding code can be found <a href="rChapter2-4-2.html">here</a>). Based on this discussion we recommend to abstain from standard index plots of all sequences when working with large data sets. This is even more true if colors are not available for visualization.</p>
-<p>In the subsequent example we therefore illustrate how to produce grayscale plots with <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineR}</code></a>’s <code>seqplot</code> function rendering a selection of 10 representative sequences extracted by <code>seqrep</code> using sequences with a yearly granularity.</p>
+<h2 id="sequence-index-plot-of-representative-sequences">Sequence index
+plot <br/>of representative sequences</h2>
+<p>In the book we elaborate on the pros and cons of sequence index plots
+(see Chapter 2.4.2 in the book; the corresponding code can be found <a
+href="rChapter2-4-2.html">here</a>). Based on this discussion we
+recommend to abstain from standard index plots of all sequences when
+working with large data sets. This is even more true if colors are not
+available for visualization.</p>
+<p>In the subsequent example we therefore illustrate how to produce
+grayscale plots with <a href="http://traminer.unige.ch"
+target="_blank"><code>{TraMineR}</code></a>’s <code>seqplot</code>
+function rendering a selection of 10 representative sequences extracted
+by <code>seqrep</code> using sequences with a yearly granularity.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify 10 representative sequences</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>partner.child.year.rep <span class="ot">&lt;-</span> <span class="fu">seqrep</span>(partner.child.year.seq, </span>
@@ -2723,7 +2793,23 @@ MARc2+
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># first occurrence of the partnership status &quot;MAR&quot; (marriage)</span></span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>plot.aux <span class="ot">&lt;-</span> partner.year.seq[<span class="fu">attributes</span>(partner.child.year.rep)<span class="sc">$</span>Index,]</span></code></pre></div>
 </div>
-<p>Like in the previous examples two overlapping plots and legends have to be created in order to obtain the “color” palette and the shading lines. Note the differences in the specification of colors, <code>angle</code>, and <code>density</code> between the index plot and the legend. They result from the necessity to define extra empty cells in the legend (see <a href="#legend-link">section above</a>). We also adjusted the default margin sizes (<code>par(mar=c(bottom, left, top, right))</code>) to ensure enough space for the enlarged legend. Note that the appearance of your plot depends on both the specification of the parameters of the <code>png</code> function (<code>width</code>, <code>height</code>, <code>res</code>) and the graphical parameters defined by <code>par</code>. An alternative approach to arrange multiple plots (e.g., index plot and legend plot) using the <code>layout</code> function is shown in the example code for chapters <a href="rChapter2-4-1.html">2.4.1</a> &amp; <a href="rChapter2-4-2.html">2.4.2</a>.</p>
+<p>Like in the previous examples two overlapping plots and legends have
+to be created in order to obtain the “color” palette and the shading
+lines. Note the differences in the specification of colors,
+<code>angle</code>, and <code>density</code> between the index plot and
+the legend. They result from the necessity to define extra empty cells
+in the legend (see <a href="#legend-link">section above</a>). We also
+adjusted the default margin sizes
+(<code>par(mar=c(bottom, left, top, right))</code>) to ensure enough
+space for the enlarged legend. Note that the appearance of your plot
+depends on both the specification of the parameters of the
+<code>png</code> function (<code>width</code>, <code>height</code>,
+<code>res</code>) and the graphical parameters defined by
+<code>par</code>. An alternative approach to arrange multiple plots
+(e.g., index plot and legend plot) using the <code>layout</code>
+function is shown in the example code for chapters <a
+href="rChapter2-4-1.html">2.4.1</a> &amp; <a
+href="rChapter2-4-2.html">2.4.2</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save plot as png file</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;figures&quot;</span>, <span class="st">&quot;2-4-0_bonus_iplot_grayYearly.png&quot;</span>), </span>

@@ -2396,7 +2396,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
   <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
   <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
   <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
@@ -2484,9 +2484,16 @@ Material for R
 <strong>Click here to get instructions…</strong>
 </summary>
 <ul>
-<li>Please download and unzip the replication files for Chapter 6 (<a href="source/Chapter06.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter06.zip</a>).</li>
-<li>Read <code>readme.html</code> and run <code>6-0_ChapterSetup.R</code>. This will create <code>6-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to produce the table shown at the bottom of this page.</li>
-<li>We also recommend to load the libraries listed in the Chapter 6’s <code>LoadInstallPackages.R</code></li>
+<li>Please download and unzip the replication files for Chapter 6 (<a
+href="source/Chapter06.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg>
+Chapter06.zip</a>).</li>
+<li>Read <code>readme.html</code> and run
+<code>6-0_ChapterSetup.R</code>. This will create
+<code>6-0_ChapterSetup.RData</code> in the sub folder
+<code>data/R</code>. This file contains the data required to produce the
+table shown at the bottom of this page.</li>
+<li>We also recommend to load the libraries listed in the Chapter 6’s
+<code>LoadInstallPackages.R</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming you are working within .Rproj environment</span></span>
@@ -2501,8 +2508,21 @@ Material for R
 </details>
 <p><br />
 </p>
-<p><strong>Figure 6.2</strong> in Chapter 6.3 visualizes the typical states in the labor market sequences of men and women. This type of visualization is based on the implicative statistic framework which was introduced to the sequence analysis literature by Studer <span class="citation" data-cites="studer2015">(<a href="#ref-studer2015" role="doc-biblioref"><strong>studer2015?</strong></a>)</span>.</p>
-<p>The figure is based on an analysis of labor market sequences with a reduced alphabet distinguishing 5 instead of 8 states. We define the new sequence object by recoding the original sequence object <code>activity.year.seq</code> stored in <code>6-0_ChapterSetup.RData</code> with <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineR}</code></a>’s <code>seqrecode</code> function. Note that you have to take care of the labels after you defined a new sequence object with <code>seqrecode</code>.</p>
+<p><strong>Figure 6.2</strong> in Chapter 6.3 visualizes the typical
+states in the labor market sequences of men and women. This type of
+visualization is based on the implicative statistic framework which was
+introduced to the sequence analysis literature by Studer <span
+class="citation" data-cites="studer2015">(<a href="#ref-studer2015"
+role="doc-biblioref"><strong>studer2015?</strong></a>)</span>.</p>
+<p>The figure is based on an analysis of labor market sequences with a
+reduced alphabet distinguishing 5 instead of 8 states. We define the new
+sequence object by recoding the original sequence object
+<code>activity.year.seq</code> stored in
+<code>6-0_ChapterSetup.RData</code> with <a
+href="http://traminer.unige.ch"
+target="_blank"><code>{TraMineR}</code></a>’s <code>seqrecode</code>
+function. Note that you have to take care of the labels after you
+defined a new sequence object with <code>seqrecode</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the original alphabet</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">alphabet</span>(activity.year.seq)</span></code></pre></div>
@@ -2522,21 +2542,57 @@ Material for R
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                                           <span class="st">&quot;part-time&quot;</span>, <span class="st">&quot;full-time&quot;</span>,</span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                                           <span class="st">&quot;parental leave&quot;</span>, <span class="st">&quot;other&quot;</span>)</span></code></pre></div>
 </div>
-<p>The position wise typical states are identified with the <code>seqimplic</code> function from the <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineRextras}</code></a> package. The function requires a sequence object and a grouping indicator as an input. In our example we use the labor market sequence object defined above (<code>activity.year.seq2</code>) and gender (<code>activity$sex</code>) as a grouping variable.</p>
+<p>The position wise typical states are identified with the
+<code>seqimplic</code> function from the <a
+href="http://traminer.unige.ch"
+target="_blank"><code>{TraMineRextras}</code></a> package. The function
+requires a sequence object and a grouping indicator as an input. In our
+example we use the labor market sequence object defined above
+(<code>activity.year.seq2</code>) and gender (<code>activity$sex</code>)
+as a grouping variable.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sex.implic <span class="ot">&lt;-</span> <span class="fu">seqimplic</span>(activity.year.seq2,</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">group =</span> activity<span class="sc">$</span>sex)</span></code></pre></div>
 </div>
-<p>Even though the output <code>seqimplic</code> shows only a selection of the 220 implication scores it contains (22 sequence positions (<span class="math inline">\(k=22\)</span>) <span class="math inline">\(\times\)</span> 5 states <span class="math inline">\(\times\)</span> 2 groups), it is a little bit overwhelming. We therefore turn to the visualization of the results which can be obtained by:</p>
+<p>Even though the output <code>seqimplic</code> shows only a selection
+of the 220 implication scores it contains (22 sequence positions (<span
+class="math inline">\(k=22\)</span>) <span
+class="math inline">\(\times\)</span> 5 states <span
+class="math inline">\(\times\)</span> 2 groups), it is a little bit
+overwhelming. We therefore turn to the visualization of the results
+which can be obtained by:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sex.implic, <span class="at">lwd=</span><span class="dv">3</span>)</span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-page">
 <p><img src="images/Chapter6/6-3_Figure_6-2_ImplicStat_color.png" width="1620" /></p>
 </div>
-<p>Although, the initial figure is already very informative it requires some adjustments to be considered publication-ready. Given our restricted R skills and the fact that the appearance of the plot is partly hard coded in <code>seqimplic</code> it is not straightforward to revise the plot according to our wishes.</p>
-<p>Hence, we turn to <a href="https://ggplot2.tidyverse.org/" target="_blank"><code>{ggplot2}</code></a> for re-rendering the figure. This requires to reshape the results stored in <code>sex.implic</code>. The implication scores have to be stored in the long format with one row for each combination of gender (Men vs. Women), sequence position (Age 18 to 39), and state (“EDU,” “PT,” “FT,” “PLEAVE,” “OTHER” ). The scores are stored in a three-dimensional array <code>sex.implic$indices</code> ([1:2, 1:5, 1:22]). With <a href="https://purrr.tidyverse.org/" target="_blank"><code>{purrr}</code></a>’s <code>map</code> function we first extract the scores for men (<code>sex.implic$indices[1, ,]</code>) iterating 22 times over each of the five states and attaching the values to each other rowwise (<code>bind_rows()</code>). We then repeat the procedure for women. Both resulting objects are joined by <code>bind_rows</code>.</p>
-<p>To improve readability the plot displayed above shows the opposite values of the implicative statistic. We re-built this behavior by multiplying the values with <span class="math inline">\(-1\)</span> (<code>mutate(value = value * -1)</code>). The original plot does not display negative values. Accordingly, we recoded negative values to missings (<code>mutate(value = ifelse(value &lt; 0, NA, value))</code>) and only plot values <code>&gt;=0</code>.</p>
+<p>Although, the initial figure is already very informative it requires
+some adjustments to be considered publication-ready. Given our
+restricted R skills and the fact that the appearance of the plot is
+partly hard coded in <code>seqimplic</code> it is not straightforward to
+revise the plot according to our wishes.</p>
+<p>Hence, we turn to <a href="https://ggplot2.tidyverse.org/"
+target="_blank"><code>{ggplot2}</code></a> for re-rendering the figure.
+This requires to reshape the results stored in <code>sex.implic</code>.
+The implication scores have to be stored in the long format with one row
+for each combination of gender (Men vs. Women), sequence position (Age
+18 to 39), and state (“EDU”, “PT”, “FT”, “PLEAVE”, “OTHER” ). The scores
+are stored in a three-dimensional array <code>sex.implic$indices</code>
+([1:2, 1:5, 1:22]). With <a href="https://purrr.tidyverse.org/"
+target="_blank"><code>{purrr}</code></a>’s <code>map</code> function we
+first extract the scores for men (<code>sex.implic$indices[1, ,]</code>)
+iterating 22 times over each of the five states and attaching the values
+to each other rowwise (<code>bind_rows()</code>). We then repeat the
+procedure for women. Both resulting objects are joined by
+<code>bind_rows</code>.</p>
+<p>To improve readability the plot displayed above shows the opposite
+values of the implicative statistic. We re-built this behavior by
+multiplying the values with <span class="math inline">\(-1\)</span>
+(<code>mutate(value = value * -1)</code>). The original plot does not
+display negative values. Accordingly, we recoded negative values to
+missings (<code>mutate(value = ifelse(value &lt; 0, NA, value))</code>)
+and only plot values <code>&gt;=0</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Store men&#39;s implication scores in long format</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>men <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="sc">~</span><span class="fu">as_tibble</span>(sex.implic<span class="sc">$</span>indices[<span class="dv">1</span>,.x,]) <span class="sc">%&gt;%</span></span>
@@ -2568,7 +2624,10 @@ Material for R
   </script>
 </div>
 </div>
-<p>As usual the code for producing the plot with <code>ggplot</code> is quite verbose but also very easy to customize. We start with a colored figure. The figure is much more appealing than the one we showed above (but also required much more code).</p>
+<p>As usual the code for producing the plot with <code>ggplot</code> is
+quite verbose but also very easy to customize. We start with a colored
+figure. The figure is much more appealing than the one we showed above
+(but also required much more code).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sex.implic.long <span class="sc">%&gt;%</span> </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Age, <span class="at">y=</span>value, <span class="at">group=</span>state)) <span class="sc">+</span></span>
@@ -2592,7 +2651,13 @@ Material for R
 <div class="layout-chunk" data-layout="l-page">
 <p><img src="images/Chapter6/6-3_Figure_6-2_ImplicStat_color_ggplot.png" width="1800" /></p>
 </div>
-<p>The following example illustrates how easily the code can be adjusted to produce a grayscale version of the figure. We apply a gray “color” palette (<code>scale_color_manual(values=brewer.pal(7, "Greys")[3:7])</code>) and different line types (<code>linetype = state</code> argument in <code>geom_line</code> and <code>scale_linetype_manual</code>) to distinguish the states of the alphabet.</p>
+<p>The following example illustrates how easily the code can be adjusted
+to produce a grayscale version of the figure. We apply a gray “color”
+palette
+(<code>scale_color_manual(values=brewer.pal(7, "Greys")[3:7])</code>)
+and different line types (<code>linetype = state</code> argument in
+<code>geom_line</code> and <code>scale_linetype_manual</code>) to
+distinguish the states of the alphabet.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Age, <span class="at">y=</span>value, <span class="at">group=</span>state)) <span class="sc">+</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>group) <span class="sc">+</span></span>

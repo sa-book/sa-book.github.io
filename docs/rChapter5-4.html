@@ -2395,7 +2395,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
   <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
   <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
   <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
@@ -2479,7 +2479,8 @@ Material for R
 <ul>
 <li><a href="#summation">Summation</a></li>
 <li><a href="#averaging">Averaging</a></li>
-<li><a href="#inspection-of-the-matrices">Inspection of the matrices</a></li>
+<li><a href="#inspection-of-the-matrices">Inspection of the
+matrices</a></li>
 </ul>
 </nav>
 </div>
@@ -2491,10 +2492,20 @@ Material for R
 <strong>Click here to get instructions…</strong>
 </summary>
 <ul>
-<li>Please download and unzip the replication files for Chapter 5 (<a href="source/Chapter03.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter04.zip</a>).</li>
-<li>Read <code>readme.html</code> and run <code>5-0_ChapterSetup.R</code>. This will create <code>5-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to produce the plots shown below.</li>
-<li>You also have to add the function <code>legend_large_box</code> to your environment in order to render the tweaked version of the legend described below. You find this file in the <code>source</code> folder of the unzipped Chapter 5 archive.</li>
-<li>We also recommend to load the libraries listed in Chapter 5’s <code>LoadInstallPackages.R</code></li>
+<li>Please download and unzip the replication files for Chapter 5 (<a
+href="source/Chapter03.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg>
+Chapter04.zip</a>).</li>
+<li>Read <code>readme.html</code> and run
+<code>5-0_ChapterSetup.R</code>. This will create
+<code>5-0_ChapterSetup.RData</code> in the sub folder
+<code>data/R</code>. This file contains the data required to produce the
+plots shown below.</li>
+<li>You also have to add the function <code>legend_large_box</code> to
+your environment in order to render the tweaked version of the legend
+described below. You find this file in the <code>source</code> folder of
+the unzipped Chapter 5 archive.</li>
+<li>We also recommend to load the libraries listed in Chapter 5’s
+<code>LoadInstallPackages.R</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming you are working within .Rproj environment</span></span>
@@ -2509,43 +2520,66 @@ Material for R
 </details>
 <p><br />
 </p>
-<p>In chapter 5.3, we introduce another option to account for the parallel unfolding of temporal processes: the clustering on a dissimilarity matrix that results from the summation or the averaging of pairwise dissimilarity matrices computed on separately on two (or more) pools of sequences representing the trajectories in different domains. We are now using the data-frame multidim, which contains both family formation and labour market sequences. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see <a href="https://www.pairfam.de/en/" target="_blank">here</a>.</p>
+<p>In chapter 5.3, we introduce another option to account for the
+parallel unfolding of temporal processes: the clustering on a
+dissimilarity matrix that results from the summation or the averaging of
+pairwise dissimilarity matrices computed on separately on two (or more)
+pools of sequences representing the trajectories in different domains.
+We are now using the data-frame multidim, which contains both family
+formation and labour market sequences. The data come from a sub-sample
+of the German Family Panel - pairfam. For further information on the
+study and on how to access the full scientific use file see <a
+href="https://www.pairfam.de/en/" target="_blank">here</a>.</p>
 <h2 id="summation">Summation</h2>
-<p>We first have to construct an object X that contains the dissimilarity matrices in a sequence:</p>
+<p>We first have to construct an object X that contains the
+dissimilarity matrices in a sequence:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">list</span>(mc.fam.year.om, mc.act.year.om)</span></code></pre></div>
 </div>
-<p>We then use the ?cbind command to combine the X object in rows and columns and generate the object Y:</p>
+<p>We then use the ?cbind command to combine the X object in rows and
+columns and generate the object Y:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">do.call</span>(cbind, X)</span></code></pre></div>
 </div>
-<p>We overwrite Y by using the ?array command to give the right dimensions to the object so that the next steps can be performed:</p>
+<p>We overwrite Y by using the ?array command to give the right
+dimensions to the object so that the next steps can be performed:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">array</span>(Y, <span class="at">dim=</span><span class="fu">c</span>(<span class="fu">dim</span>(X[[<span class="dv">1</span>]]), <span class="fu">length</span>(X)))</span></code></pre></div>
 </div>
-<p>We finally use the ?apply command to apply a summation function (option <code>sum</code>) to the two dimensions of the object Y (1 and 2). We store the resulting dissimilarity matrix in an object called mc.summation:</p>
+<p>We finally use the ?apply command to apply a summation function
+(option <code>sum</code>) to the two dimensions of the object Y (1 and
+2). We store the resulting dissimilarity matrix in an object called
+mc.summation:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mc.summation<span class="ot">&lt;-</span><span class="fu">apply</span>(Y, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <h2 id="averaging">Averaging</h2>
-<p>For sake of clarity, we construct another object Z that contains the dissimilarity matrices in a sequence as for the case of summation above:</p>
+<p>For sake of clarity, we construct another object Z that contains the
+dissimilarity matrices in a sequence as for the case of summation
+above:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">&lt;-</span> <span class="fu">list</span>(mc.act.year.om, mc.fam.year.om)</span></code></pre></div>
 </div>
-<p>We then use the ?cbind command to combine the Z object in rows and columns and generate the object W:</p>
+<p>We then use the ?cbind command to combine the Z object in rows and
+columns and generate the object W:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">do.call</span>(cbind, Z)</span></code></pre></div>
 </div>
-<p>We overwrite Y by using the ?array command to give the right dimensions to the object so that the next steps can be performed:</p>
+<p>We overwrite Y by using the ?array command to give the right
+dimensions to the object so that the next steps can be performed:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">array</span>(W, <span class="at">dim=</span><span class="fu">c</span>(<span class="fu">dim</span>(X[[<span class="dv">1</span>]]), <span class="fu">length</span>(X)))</span></code></pre></div>
 </div>
-<p>We finally use the ?apply command to apply a averaging function (option <code>mean</code>) to the two dimensions of the object W (1 and 2). We store the resulting dissimilarity matrix in an object called mc.summation:</p>
+<p>We finally use the ?apply command to apply a averaging function
+(option <code>mean</code>) to the two dimensions of the object W (1 and
+2). We store the resulting dissimilarity matrix in an object called
+mc.summation:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mc.average<span class="ot">&lt;-</span><span class="fu">apply</span>(W, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <h2 id="inspection-of-the-matrices">Inspection of the matrices</h2>
-<p>Let’s first display the dissimilarity matrix between the first three sequences in the sample</p>
+<p>Let’s first display the dissimilarity matrix between the first three
+sequences in the sample</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mc.fam.year.om[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>   1  2  3
@@ -2560,7 +2594,8 @@ Material for R
 2 28  0 10
 3 26 10  0</code></pre>
 </div>
-<p>We now inspect the dissimilarity matrix between the first three sequences in the sample after summation….</p>
+<p>We now inspect the dissimilarity matrix between the first three
+sequences in the sample after summation….</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mc.summation[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>     [,1] [,2] [,3]

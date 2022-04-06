@@ -2417,7 +2417,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
   <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
   <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
   <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
@@ -2503,10 +2503,14 @@ Material for R
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#defining-the-sequence-color-palette">Defining the sequence color palette</a></li>
-<li><a href="#choosing-colors-with-rcolorbrewer">Choosing colors with <span><code>{RColorBrewer}</code></span></a></li>
-<li><a href="#choosing-colors-with-colorspace">Choosing colors with <span><code>{colorspace}</code></span></a></li>
-<li><a href="#comparison-of-the-two-different-color-palettes">Comparison of the two different color palettes</a></li>
+<li><a href="#defining-the-sequence-color-palette">Defining the sequence
+color palette</a></li>
+<li><a href="#choosing-colors-with-rcolorbrewer">Choosing colors with
+<span><code>{RColorBrewer}</code></span></a></li>
+<li><a href="#choosing-colors-with-colorspace">Choosing colors with
+<span><code>{colorspace}</code></span></a></li>
+<li><a href="#comparison-of-the-two-different-color-palettes">Comparison
+of the two different color palettes</a></li>
 </ul>
 </nav>
 </div>
@@ -2518,9 +2522,16 @@ Material for R
 <strong>Click here to get instructions…</strong>
 </summary>
 <ul>
-<li>Please download and unzip the replication files for Chapter 2 (<a href="source/Chapter02.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter02.zip</a>).</li>
-<li>Read <code>readme.html</code> and run <code>2-0_ChapterSetup.R</code>. This will create <code>2-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to produce the state distribution plot shown below.</li>
-<li>We also recommend to load the libraries listed in the Chapter 2’s <code>LoadInstallPackages.R</code></li>
+<li>Please download and unzip the replication files for Chapter 2 (<a
+href="source/Chapter02.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg>
+Chapter02.zip</a>).</li>
+<li>Read <code>readme.html</code> and run
+<code>2-0_ChapterSetup.R</code>. This will create
+<code>2-0_ChapterSetup.RData</code> in the sub folder
+<code>data/R</code>. This file contains the data required to produce the
+state distribution plot shown below.</li>
+<li>We also recommend to load the libraries listed in the Chapter 2’s
+<code>LoadInstallPackages.R</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming you are working within .Rproj environment</span></span>
@@ -2534,10 +2545,37 @@ Material for R
 </div>
 </details>
 <p> </p>
-<p>The community of <svg viewBox="0 0 581 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#384CB7;" xmlns="http://www.w3.org/2000/svg"> <path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> developers provides you with plenty of tools for finding suitable colors for sequence visualization. We illustrate how to use <a href="https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf" target="_blank"><code>{RColorBrewer}</code></a> (which is also used by <code>TraMiner::seqdef</code>) and <a href="http://colorspace.r-forge.r-project.org/index.html" target="_blank"><code>{colorspace}</code></a> to choose colors. If you are using R Studio you also might want to consider the very helpful package <a href="https://github.com/daattali/colourpicker" target="_blank"><code>{colourpicker}</code></a>.</p>
-<p>For a brief introduction to “Selecting Colors for Statistical Graphics” we recommend the paper by Zeileis et al. 2009 <span class="citation" data-cites="zeileis2009">(<a href="#ref-zeileis2009" role="doc-biblioref">2009</a>)</span>. For a more detailed discussion of color palettes based on the HCL (Hue-Chroma-Luminance) color space using R we refer to Zeileis et al. 2020 <span class="citation" data-cites="zeileis2020">(<a href="#ref-zeileis2020" role="doc-biblioref">2020</a>)</span>.</p>
-<p>For color palette enthusiast we also highly recommend the <a href="https://github.com/EmilHvitfeldt/r-color-palettes" target="_blank">comprehensive list of color palettes in R</a> as well as the very handy <a href="https://emilhvitfeldt.github.io/paletteer/"><code>{paletteer}</code></a> package by <a href="https://www.emilhvitfeldt.com/" target="_blank">Emil Hvitfeldt</a>.</p>
-<p>In our example presented below we want to find a suitable color palette for visualizing sequences with the following state space (alphabet):</p>
+<p>The community of
+<svg viewBox="0 0 581 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#384CB7;" xmlns="http://www.w3.org/2000/svg">
+<path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg>
+developers provides you with plenty of tools for finding suitable colors
+for sequence visualization. We illustrate how to use <a
+href="https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf"
+target="_blank"><code>{RColorBrewer}</code></a> (which is also used by
+<code>TraMiner::seqdef</code>) and <a
+href="http://colorspace.r-forge.r-project.org/index.html"
+target="_blank"><code>{colorspace}</code></a> to choose colors. If you
+are using R Studio you also might want to consider the very helpful
+package <a href="https://github.com/daattali/colourpicker"
+target="_blank"><code>{colourpicker}</code></a>.</p>
+<p>For a brief introduction to “Selecting Colors for Statistical
+Graphics” we recommend the paper by Zeileis et al. 2009 <span
+class="citation" data-cites="zeileis2009">(<a href="#ref-zeileis2009"
+role="doc-biblioref">2009</a>)</span>. For a more detailed discussion of
+color palettes based on the HCL (Hue-Chroma-Luminance) color space using
+R we refer to Zeileis et al. 2020 <span class="citation"
+data-cites="zeileis2020">(<a href="#ref-zeileis2020"
+role="doc-biblioref">2020</a>)</span>.</p>
+<p>For color palette enthusiast we also highly recommend the <a
+href="https://github.com/EmilHvitfeldt/r-color-palettes"
+target="_blank">comprehensive list of color palettes in R</a> as well as
+the very handy <a
+href="https://emilhvitfeldt.github.io/paletteer/"><code>{paletteer}</code></a>
+package by <a href="https://www.emilhvitfeldt.com/" target="_blank">Emil
+Hvitfeldt</a>.</p>
+<p>In our example presented below we want to find a suitable color
+palette for visualizing sequences with the following state space
+(alphabet):</p>
 <div class="layout-chunk" data-layout="l-body">
 <table class="table table-striped table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -2627,23 +2665,40 @@ MARc2+
 </table>
 </div>
 <p> </p>
-<h2 id="defining-the-sequence-color-palette">Defining the sequence color palette</h2>
-<p>The state space is a combination of partnership status and fertility. For each partnership state we assign a unique color using pre-defined color palettes.</p>
+<h2 id="defining-the-sequence-color-palette">Defining the sequence color
+palette</h2>
+<p>The state space is a combination of partnership status and fertility.
+For each partnership state we assign a unique color using pre-defined
+color palettes.</p>
 <ul>
 <li>Single = Blue</li>
 <li>LAT = Green</li>
 <li>Cohabitation = Orange</li>
 <li>Marriage = Purple/Magenta</li>
 </ul>
-<p>In order to indicate differences in fertility within partnership states we increase the chroma of the respective color.</p>
+<p>In order to indicate differences in fertility within partnership
+states we increase the chroma of the respective color.</p>
 <p> </p>
-<h2 id="choosing-colors-with-rcolorbrewer">Choosing colors with <a href="https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf" target="_blank"><code>{RColorBrewer}</code></a></h2>
-<p>Typing <code>display.brewer.all()</code> provides you with an overview of the pre-defined color palettes available in the <a href="https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf" target="_blank"><code>{RColorBrewer}</code></a> package.</p>
+<h2 id="choosing-colors-with-rcolorbrewer">Choosing colors with <a
+href="https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf"
+target="_blank"><code>{RColorBrewer}</code></a></h2>
+<p>Typing <code>display.brewer.all()</code> provides you with an
+overview of the pre-defined color palettes available in the <a
+href="https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf"
+target="_blank"><code>{RColorBrewer}</code></a> package.</p>
 <div class="layout-chunk" data-layout="l-body-outset">
 <p><img src="images/Chapter2/2-4-0_bonus_brewer_palettes.png" width="500" /></p>
 </div>
-<p>Knowing the names of the palettes we want to use (<code>"Blues", "Greens", "Oranges", "RdPu"</code>) we can continue by choosing specific colors from these palettes. Usually this is an iterative process which involves inspecting multiple palettes.</p>
-<p>For example, <a href="https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf" target="_blank"><code>{RColorBrewer}</code></a> gives us different sets of Blues when we inspect sequential palettes of different length. It is up to you to decide which colors fit your purposes best and to extract them for your sequence color palette.</p>
+<p>Knowing the names of the palettes we want to use
+(<code>"Blues", "Greens", "Oranges", "RdPu"</code>) we can continue by
+choosing specific colors from these palettes. Usually this is an
+iterative process which involves inspecting multiple palettes.</p>
+<p>For example, <a
+href="https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf"
+target="_blank"><code>{RColorBrewer}</code></a> gives us different sets
+of Blues when we inspect sequential palettes of different length. It is
+up to you to decide which colors fit your purposes best and to extract
+them for your sequence color palette.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">display.brewer.pal</span>(<span class="dv">3</span>, <span class="st">&quot;Blues&quot;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">display.brewer.pal</span>(<span class="dv">7</span>, <span class="st">&quot;Blues&quot;</span>)</span></code></pre></div>
@@ -2651,7 +2706,8 @@ MARc2+
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-5-1.png" width="672" /><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-5-2.png" width="672" /></p>
 </div>
-<p>This is the code for extracting the colors and creating a vector that contains the colors in the desired order:</p>
+<p>This is the code for extracting the colors and creating a vector that
+contains the colors in the desired order:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>col1 <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">3</span>, <span class="st">&quot;Blues&quot;</span>)[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]   <span class="co"># Single states</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>col2 <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">3</span>, <span class="st">&quot;Greens&quot;</span>)[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]  <span class="co"># LAT states</span></span>
@@ -2661,15 +2717,21 @@ MARc2+
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># define complete color palette</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>colspace1 <span class="ot">&lt;-</span> <span class="fu">c</span>(col1, col2, col3, col4)</span></code></pre></div>
 </div>
-<p>The resulting color palette can be inspected using the <code>swatchplot</code> function of the <a href="http://colorspace.r-forge.r-project.org/index.html" target="_blank"><code>{colorspace}</code></a> package.</p>
+<p>The resulting color palette can be inspected using the
+<code>swatchplot</code> function of the <a
+href="http://colorspace.r-forge.r-project.org/index.html"
+target="_blank"><code>{colorspace}</code></a> package.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">swatchplot</span>(colspace1)</span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
-<h2 id="choosing-colors-with-colorspace">Choosing colors with <a href="http://colorspace.r-forge.r-project.org/index.html" target="_blank"><code>{colorspace}</code></a></h2>
-<p>Like in the previous step we start by plotting the pre-defined color palettes available in the package:</p>
+<h2 id="choosing-colors-with-colorspace">Choosing colors with <a
+href="http://colorspace.r-forge.r-project.org/index.html"
+target="_blank"><code>{colorspace}</code></a></h2>
+<p>Like in the previous step we start by plotting the pre-defined color
+palettes available in the package:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hcl_palettes</span>(<span class="at">plot =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
@@ -2683,8 +2745,15 @@ MARc2+
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-12-1.png" width="672" /></p>
 </div>
-<p>Note that the resulting color vector starts with the darkest blue, whereas our intended color palette should start with a light blue. Accordingly, the colors must be extracted in reverse order (as in the code below) or one could change the order of the vector by adding the option <code>rev = TRUE</code> when running <code>sequential_hcl</code>.</p>
-<p>This is our final choice using the palettes provided by <a href="http://colorspace.r-forge.r-project.org/index.html" target="_blank"><code>{colorspace}</code></a>:</p>
+<p>Note that the resulting color vector starts with the darkest blue,
+whereas our intended color palette should start with a light blue.
+Accordingly, the colors must be extracted in reverse order (as in the
+code below) or one could change the order of the vector by adding the
+option <code>rev = TRUE</code> when running
+<code>sequential_hcl</code>.</p>
+<p>This is our final choice using the palettes provided by <a
+href="http://colorspace.r-forge.r-project.org/index.html"
+target="_blank"><code>{colorspace}</code></a>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>col1 <span class="ot">&lt;-</span> <span class="fu">sequential_hcl</span>(<span class="dv">5</span>, <span class="at">palette =</span> <span class="st">&quot;Blues&quot;</span>)[<span class="dv">3</span><span class="sc">:</span><span class="dv">2</span>]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>col2 <span class="ot">&lt;-</span> <span class="fu">sequential_hcl</span>(<span class="dv">5</span>, <span class="at">palette =</span> <span class="st">&quot;Greens&quot;</span>)[<span class="dv">2</span><span class="sc">:</span><span class="dv">1</span>]</span>
@@ -2698,7 +2767,8 @@ MARc2+
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-14-1.png" width="672" /></p>
 </div>
-<h2 id="comparison-of-the-two-different-color-palettes">Comparison of the two different color palettes</h2>
+<h2 id="comparison-of-the-two-different-color-palettes">Comparison of
+the two different color palettes</h2>
 <p>Both approaches produce satisfactory results:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">swatchplot</span>(<span class="st">&quot;RColorBrewer&quot;</span> <span class="ot">=</span> colspace1,</span>
@@ -2707,16 +2777,32 @@ MARc2+
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="rChapter2-4_color_files/figure-html5/unnamed-chunk-16-1.png" width="672" /></p>
 </div>
-<p>For our final decision we compare the palettes by inspecting the state distribution plots of our example data using the <code>seqdplot</code> function (see <a href="rChapter2-4-1.html">Chapter 2.4.1</a>). We prefer the solution obtained by <a href="http://colorspace.r-forge.r-project.org/index.html" target="_blank"><code>{colorspace}</code></a> and will proceed with the respective color palette.</p>
+<p>For our final decision we compare the palettes by inspecting the
+state distribution plots of our example data using the
+<code>seqdplot</code> function (see <a href="rChapter2-4-1.html">Chapter
+2.4.1</a>). We prefer the solution obtained by <a
+href="http://colorspace.r-forge.r-project.org/index.html"
+target="_blank"><code>{colorspace}</code></a> and will proceed with the
+respective color palette.</p>
 <div class="layout-chunk" data-layout="l-body-outset">
 <p><img src="images/Chapter2/2-4-0_bonus_dplot_colorpalsMonthly.png" width="400" /></p>
 </div>
-<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="doc-bibliography">
+<div id="refs" class="references csl-bib-body hanging-indent"
+data-line-spacing="2" role="doc-bibliography">
 <div id="ref-zeileis2020" class="csl-entry" role="doc-biblioentry">
-Zeileis, A., Fisher, J. C., Hornik, K., Ihaka, R., McWhite, C. D., Murrell, P., Stauffer, R., &amp; Wilke, C. O. (2020). Colorspace: A <span>Toolbox</span> for <span>Manipulating</span> and <span>Assessing Colors</span> and <span>Palettes</span>. <em>Journal of Statistical Software</em>, <em>96</em>(1), 1–49. <a href="https://doi.org/10.18637/jss.v096.i01">https://doi.org/10.18637/jss.v096.i01</a>
+Zeileis, A., Fisher, J. C., Hornik, K., Ihaka, R., McWhite, C. D.,
+Murrell, P., Stauffer, R., &amp; Wilke, C. O. (2020). Colorspace: A
+<span>Toolbox</span> for <span>Manipulating</span> and <span>Assessing
+Colors</span> and <span>Palettes</span>. <em>Journal of Statistical
+Software</em>, <em>96</em>(1), 1–49. <a
+href="https://doi.org/10.18637/jss.v096.i01">https://doi.org/10.18637/jss.v096.i01</a>
 </div>
 <div id="ref-zeileis2009" class="csl-entry" role="doc-biblioentry">
-Zeileis, A., Hornik, K., &amp; Murrell, P. (2009). Escaping <span>RGBland</span>: Selecting colors for statistical graphics. <em>Computational Statistics &amp; Data Analysis</em>, <em>53</em>(9), 3259–3270. <a href="https://doi.org/10.1016/j.csda.2008.11.033">https://doi.org/10.1016/j.csda.2008.11.033</a>
+Zeileis, A., Hornik, K., &amp; Murrell, P. (2009). Escaping
+<span>RGBland</span>: Selecting colors for statistical graphics.
+<em>Computational Statistics &amp; Data Analysis</em>, <em>53</em>(9),
+3259–3270. <a
+href="https://doi.org/10.1016/j.csda.2008.11.033">https://doi.org/10.1016/j.csda.2008.11.033</a>
 </div>
 </div>
 <!--radix_placeholder_article_footer-->

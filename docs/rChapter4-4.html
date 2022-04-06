@@ -2395,7 +2395,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
   <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
   <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
   <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
@@ -2468,7 +2468,8 @@ Material for R
 <h1>Using clusters in a regression framework</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Chapter 4.4 Using typologies as dependent and independent variables</p></p>
+<p><p>Chapter 4.4 Using typologies as dependent and independent
+variables</p></p>
 </div>
 
 
@@ -2491,10 +2492,20 @@ Material for R
 <strong>Click here to get instructions…</strong>
 </summary>
 <ul>
-<li>Please download and unzip the replication files for Chapter 4 (<a href="source/Chapter03.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter04.zip</a>).</li>
-<li>Read <code>readme.html</code> and run <code>4-0_ChapterSetup.R</code>. This will create <code>4-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to produce the plots shown below.</li>
-<li>You also have to add the function <code>legend_large_box</code> to your environment in order to render the tweaked version of the legend described below. You find this file in the <code>source</code> folder of the unzipped Chapter 4 archive.</li>
-<li>We also recommend to load the libraries listed in Chapter 4’s <code>LoadInstallPackages.R</code></li>
+<li>Please download and unzip the replication files for Chapter 4 (<a
+href="source/Chapter03.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg>
+Chapter04.zip</a>).</li>
+<li>Read <code>readme.html</code> and run
+<code>4-0_ChapterSetup.R</code>. This will create
+<code>4-0_ChapterSetup.RData</code> in the sub folder
+<code>data/R</code>. This file contains the data required to produce the
+plots shown below.</li>
+<li>You also have to add the function <code>legend_large_box</code> to
+your environment in order to render the tweaked version of the legend
+described below. You find this file in the <code>source</code> folder of
+the unzipped Chapter 4 archive.</li>
+<li>We also recommend to load the libraries listed in Chapter 4’s
+<code>LoadInstallPackages.R</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming you are working within .Rproj environment</span></span>
@@ -2509,22 +2520,34 @@ Material for R
 </details>
 <p><br />
 </p>
-<p>In chapter 4.4, we use clusters as outcomes or predictors in a regression framework. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see <a href="https://www.pairfam.de/en/" target="_blank">here</a>.</p>
+<p>In chapter 4.4, we use clusters as outcomes or predictors in a
+regression framework. The data come from a sub-sample of the German
+Family Panel - pairfam. For further information on the study and on how
+to access the full scientific use file see <a
+href="https://www.pairfam.de/en/" target="_blank">here</a>.</p>
 <h2 id="preparatory-work">Preparatory work</h2>
-<p>We first need to extract a typology from the initial sample. Here we use PAM with results from Ward to initializing the algorithm. We use the ?hclust for hierarchical cluster analysis, with non-squared dissimilarities and using weights.</p>
+<p>We first need to extract a typology from the initial sample. Here we
+use PAM with results from Ward to initializing the algorithm. We use the
+?hclust for hierarchical cluster analysis, with non-squared
+dissimilarities and using weights.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fam.ward1 <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="fu">as.dist</span>(partner.child.year.om), </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">method =</span> <span class="st">&quot;ward.D&quot;</span>, </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">members =</span> family<span class="sc">$</span>weight40)</span></code></pre></div>
 </div>
-<p>We then use the ?wcKMedRange command for PAM cluster analysis, with weights and the output of the previous ?hclust as initializing points.</p>
+<p>We then use the ?wcKMedRange command for PAM cluster analysis, with
+weights and the output of the previous ?hclust as initializing
+points.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fam.pam.ward <span class="ot">&lt;-</span> <span class="fu">wcKMedRange</span>(partner.child.year.om, </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">weights =</span> family<span class="sc">$</span>weight40, </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">kvals =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>,</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">initialclust =</span> fam.ward1)</span></code></pre></div>
 </div>
-<p>5 clusters are extracted (see previous sections/the relevant chapters in the book for how to make a decision on the number of clusters): we generate a vector with the info on the cluster assingment for each case in the sample</p>
+<p>5 clusters are extracted (see previous sections/the relevant chapters
+in the book for how to make a decision on the number of clusters): we
+generate a vector with the info on the cluster assingment for each case
+in the sample</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fam.pam.ward<span class="fl">.5</span>cl<span class="ot">&lt;-</span>fam.pam.ward<span class="sc">$</span>clustering<span class="sc">$</span>cluster5</span></code></pre></div>
 </div>
@@ -2532,12 +2555,16 @@ Material for R
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>family<span class="sc">$</span>fam.pam.ward<span class="fl">.5</span>cl<span class="ot">&lt;-</span>fam.pam.ward<span class="fl">.5</span>cl</span></code></pre></div>
 </div>
-<p>For practical reasons, we re-label clusters from 1 to 5 instead of keeping the medoid idenfiers:</p>
+<p>For practical reasons, we re-label clusters from 1 to 5 instead of
+keeping the medoid idenfiers:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>family<span class="sc">$</span>fam.pam.ward<span class="fl">.5</span>cl<span class="ot">&lt;-</span>car<span class="sc">::</span><span class="fu">recode</span>(family<span class="sc">$</span>fam.pam.ward<span class="fl">.5</span>cl, </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">&quot;982=1; 790=2; 373=3; 1643=4; 985=5&quot;</span>)</span></code></pre></div>
 </div>
-<p>… and create labels for the clusters (note that one needs to inspect the clusters visually to do this) and attach them to the vector containing the cluster assignments. To do that, we need to transform the vector into a factor:</p>
+<p>… and create labels for the clusters (note that one needs to inspect
+the clusters visually to do this) and attach them to the vector
+containing the cluster assignments. To do that, we need to transform the
+vector into a factor:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fam.pam.ward.lab<span class="fl">.5</span>cl <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Early parenthood in cohabitation&quot;</span>, </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;LAT and long-lasting cohabitation without children&quot;</span>,</span>
@@ -2553,11 +2580,15 @@ Material for R
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>family<span class="sc">$</span>cluster<span class="ot">&lt;-</span>fam.pam.ward.factor<span class="fl">.5</span>cl</span></code></pre></div>
 </div>
-<p>For sake of visualization, we also retain a variable with the clusters without labels:</p>
+<p>For sake of visualization, we also retain a variable with the
+clusters without labels:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>family<span class="sc">$</span>cluster.nolab<span class="ot">&lt;-</span>family<span class="sc">$</span>fam.pam.ward<span class="fl">.5</span>cl</span></code></pre></div>
 </div>
-<p>Next, we need to store the variables we want to include in the regression models as factors and make sure they are attached to the main <code>data.frame</code> family. For a substantive presentation of these variables see Chapter 4.4 of the book.</p>
+<p>Next, we need to store the variables we want to include in the
+regression models as factors and make sure they are attached to the main
+<code>data.frame</code> family. For a substantive presentation of these
+variables see Chapter 4.4 of the book.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>family<span class="sc">$</span>east.f <span class="ot">&lt;-</span> <span class="fu">factor</span>(family<span class="sc">$</span>east)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2567,14 +2598,17 @@ Material for R
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>family<span class="sc">$</span>cluster.nolab.f <span class="ot">&lt;-</span> <span class="fu">factor</span>(family<span class="sc">$</span>cluster.nolab)</span></code></pre></div>
 </div>
-<p>We make sure that the main covariate of interest (east) is labelled:</p>
+<p>We make sure that the main covariate of interest (east) is
+labelled:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>family<span class="sc">$</span>east.f <span class="ot">&lt;-</span> <span class="fu">factor</span>(family<span class="sc">$</span>east.f,</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;West&quot;</span>, <span class="st">&quot;East&quot;</span>))</span></code></pre></div>
 </div>
 <h2 id="clusters-as-outcomes">Clusters as outcomes</h2>
-<p>We first want to get a cross-tab of the cluster variable with the covariate of interest with a focus on row percentages. We store the results in an object named row…</p>
+<p>We first want to get a cross-tab of the cluster variable with the
+covariate of interest with a focus on row percentages. We store the
+results in an object named row…</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="rChapter4-4_files/figure-html5/unnamed-chunk-12-1.png" width="624" /></p>
 </div>
@@ -2609,7 +2643,8 @@ family$cluster.nolab     West    East   Total
 Total                   1863     483    2346 
 =============================================</code></pre>
 </div>
-<p>We do the same for column percentages, storing the results in an object called col…</p>
+<p>We do the same for column percentages, storing the results in an
+object called col…</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>col<span class="ot">&lt;-</span><span class="fu">crosstab</span>(family<span class="sc">$</span>cluster.nolab, </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>               family<span class="sc">$</span>east.f, </span>
@@ -2649,7 +2684,11 @@ Total                   1863     483    2346
                         79.4%   20.6%        
 =============================================</code></pre>
 </div>
-<p>We can now estimate a multinomial logit model by using the ?multinom command. Notice that we have to specify the main dataset (see the <code>data</code> option) and where the weights are (see the <code>w</code> option). We store the results in an object called cluster.outcomes…</p>
+<p>We can now estimate a multinomial logit model by using the ?multinom
+command. Notice that we have to specify the main dataset (see the
+<code>data</code> option) and where the weights are (see the
+<code>w</code> option). We store the results in an object called
+cluster.outcomes…</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>cluster.outcomes <span class="ot">&lt;-</span> <span class="fu">multinom</span>(cluster.nolab <span class="sc">~</span> </span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                              sex.f <span class="sc">+</span> </span>
@@ -2681,7 +2720,13 @@ Coefficients:
 Residual Deviance: 6936.121 
 AIC: 6968.121 </code></pre>
 </div>
-<p>To ease the interpretation of the results, we estimate predicted probabilities for the assignment to each cluster as a function of being born in East or West Germany by using the ?Effect command: we have to specify the covariate for which estimating the predicted probabilities (east.f) and the object where the regression results are stored (here: cluster.outcomes). Also in this case, we store the predictions in an object that we call pred.east:</p>
+<p>To ease the interpretation of the results, we estimate predicted
+probabilities for the assignment to each cluster as a function of being
+born in East or West Germany by using the ?Effect command: we have to
+specify the covariate for which estimating the predicted probabilities
+(east.f) and the object where the regression results are stored (here:
+cluster.outcomes). Also in this case, we store the predictions in an
+object that we call pred.east:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pred.east <span class="ot">&lt;-</span> <span class="fu">Effect</span>(<span class="st">&quot;east.f&quot;</span>, cluster.outcomes)</span></code></pre></div>
 </div>
@@ -2714,14 +2759,23 @@ east.f
      West      East 
 0.3844593 0.2717925 </code></pre>
 </div>
-<p>One can store the predictions and the upper and lower confidence intervals values as a data frame:</p>
+<p>One can store the predictions and the upper and lower confidence
+intervals values as a data frame:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>tidy.pred<span class="ot">&lt;-</span><span class="fu">data.frame</span>(pred.east<span class="sc">$</span>prob, </span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                      pred.east<span class="sc">$</span>lower.prob, </span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                      pred.east<span class="sc">$</span>upper.prob)</span></code></pre></div>
 </div>
 <h2 id="clusters-as-predictors">Clusters as predictors</h2>
-<p>Here we consider satisfaction with family life (a continuous variable sat1i4 in the family dataset, measured at the end of the observational window covered by the sequences) as dependent variable in a model where clusters are the main predictors. We first generate summary statistics of sat1i4 by cluster by using the ?describeBy command. Note that we have to specify the <code>group</code>, that is the variable by which the summary description has to be displayed - here the cluster variable included in the family dataset. We store the summary in an object called sat.clu …</p>
+<p>Here we consider satisfaction with family life (a continuous variable
+sat1i4 in the family dataset, measured at the end of the observational
+window covered by the sequences) as dependent variable in a model where
+clusters are the main predictors. We first generate summary statistics
+of sat1i4 by cluster by using the ?describeBy command. Note that we have
+to specify the <code>group</code>, that is the variable by which the
+summary description has to be displayed - here the cluster variable
+included in the family dataset. We store the summary in an object called
+sat.clu …</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>sat.clu<span class="ot">&lt;-</span><span class="fu">describeBy</span>(family<span class="sc">$</span>sat1i4, <span class="at">group=</span>family<span class="sc">$</span>cluster)</span></code></pre></div>
 </div>
@@ -2760,7 +2814,11 @@ X1    1 717 8.37 1.59      9    8.37 1.48   0  10    10 -1.56
    kurtosis   se
 X1     3.88 0.06</code></pre>
 </div>
-<p>We can now estimate a linear model for satisfaction with family life by using the ?lm command. Notice that we have to specify the main dataset (see the <code>data</code> option) and where the weights are (see the <code>w</code> option). We store the results in an object called cluster.predictors…</p>
+<p>We can now estimate a linear model for satisfaction with family life
+by using the ?lm command. Notice that we have to specify the main
+dataset (see the <code>data</code> option) and where the weights are
+(see the <code>w</code> option). We store the results in an object
+called cluster.predictors…</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>cluster.predictors <span class="ot">&lt;-</span> <span class="fu">lm</span>(sat1i4 <span class="sc">~</span> </span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>                           cluster.nolab.f <span class="sc">+</span> </span>
@@ -2786,7 +2844,8 @@ cluster.nolab.f4  cluster.nolab.f5            sex.f1
    highschool.f1        east.fEast  
         -0.03143           0.01093  </code></pre>
 </div>
-<p>To arrange the results nicely, we use the ?tidy command and store the predictions in an object called tidy.predictors …</p>
+<p>To arrange the results nicely, we use the ?tidy command and store the
+predictions in an object called tidy.predictors …</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>tidy.predictors <span class="ot">&lt;-</span> <span class="fu">tidy</span>(cluster.predictors)</span></code></pre></div>
 </div>

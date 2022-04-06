@@ -2395,7 +2395,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
   <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
   <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
   <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
@@ -2477,9 +2477,14 @@ Material for R
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#different-sets-of-sequences-same-state-distribution">Different sets of sequences, <br/>same state distribution</a></li>
-<li><a href="#the-relative-frequency-index-plot">The relative frequency index plot</a></li>
-<li><a href="#bonus-material-additional-relative-frequency-sequence-plots">Bonus material: <br/>Additional relative frequency sequence plots</a></li>
+<li><a
+href="#different-sets-of-sequences-same-state-distribution">Different
+sets of sequences, <br/>same state distribution</a></li>
+<li><a href="#the-relative-frequency-index-plot">The relative frequency
+index plot</a></li>
+<li><a
+href="#bonus-material-additional-relative-frequency-sequence-plots">Bonus
+material: <br/>Additional relative frequency sequence plots</a></li>
 </ul>
 </nav>
 </div>
@@ -2491,9 +2496,16 @@ Material for R
 <strong>Click here to get instructions…</strong>
 </summary>
 <ul>
-<li>Please download and unzip the replication files for Chapter 2 (<a href="source/Chapter02.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter02.zip</a>).</li>
-<li>Read <code>readme.html</code> and run <code>2-0_ChapterSetup.R</code>. This will create <code>2-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to re-produce the results shown below.</li>
-<li>We also recommend to load the libraries listed in the Chapter 2’s <code>LoadInstallPackages.R</code></li>
+<li>Please download and unzip the replication files for Chapter 2 (<a
+href="source/Chapter02.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg>
+Chapter02.zip</a>).</li>
+<li>Read <code>readme.html</code> and run
+<code>2-0_ChapterSetup.R</code>. This will create
+<code>2-0_ChapterSetup.RData</code> in the sub folder
+<code>data/R</code>. This file contains the data required to re-produce
+the results shown below.</li>
+<li>We also recommend to load the libraries listed in the Chapter 2’s
+<code>LoadInstallPackages.R</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming you are working within .Rproj environment</span></span>
@@ -2506,9 +2518,21 @@ Material for R
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;R&quot;</span>, <span class="st">&quot;2-0_ChapterSetup.RData&quot;</span>))</span></code></pre></div>
 </div>
 </details>
-<p>The figures in the book are printed in grayscale. Here we present the colored versions of the figures. The zip archive with the replication files for Chapter 2 contains both the code required to produce the grayscale and the colored figures. Note that the code for the grayscale plots rendered with <code>seqplot</code> is considerably longer than the code for the colored figures because adding shading lines requires some extra coding (see tutorial <a href="rChapter2-4_grayscale.html"><em>Color palette: Grayscale Edition</em></a>)</p>
-<h2 id="different-sets-of-sequences-same-state-distribution">Different sets of sequences, <br/>same state distribution</h2>
-<p>Using two small example datasets each containing ten constructed partnership biographies, <strong>Figure 2.5</strong> illustrates that the aggregation of different sets of sequences can yield identical aggregated state distributions.</p>
+<p>The figures in the book are printed in grayscale. Here we present the
+colored versions of the figures. The zip archive with the replication
+files for Chapter 2 contains both the code required to produce the
+grayscale and the colored figures. Note that the code for the grayscale
+plots rendered with <code>seqplot</code> is considerably longer than the
+code for the colored figures because adding shading lines requires some
+extra coding (see tutorial <a
+href="rChapter2-4_grayscale.html"><em>Color palette: Grayscale
+Edition</em></a>)</p>
+<h2 id="different-sets-of-sequences-same-state-distribution">Different
+sets of sequences, <br/>same state distribution</h2>
+<p>Using two small example datasets each containing ten constructed
+partnership biographies, <strong>Figure 2.5</strong> illustrates that
+the aggregation of different sets of sequences can yield identical
+aggregated state distributions.</p>
 <p>The two example datasets are defined as:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================</span></span>
@@ -2548,7 +2572,11 @@ Material for R
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                           <span class="at">labels =</span> longlab.partner, <span class="at">alphabet =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>),</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                           <span class="at">cpal =</span> colspace.partner)</span></code></pre></div>
 </div>
-<p>This gives us the following two sets of sequences, which are plotted as state distribution and index plots in the next step. Both sets can be described by the same distribution plot, although they produce different index plots. The equality of the two state distributions is demonstrated with the <code>all.equal</code> function.</p>
+<p>This gives us the following two sets of sequences, which are plotted
+as state distribution and index plots in the next step. Both sets can be
+described by the same distribution plot, although they produce different
+index plots. The equality of the two state distributions is demonstrated
+with the <code>all.equal</code> function.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(partner.ex1.seq, <span class="at">format =</span> <span class="st">&quot;SPS&quot;</span>)</span></code></pre></div>
 <pre><code>   Sequence                           
@@ -2577,7 +2605,8 @@ Material for R
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(<span class="fu">seqstatd</span>(partner.ex1.seq), <span class="fu">seqstatd</span>(partner.ex2.seq))</span></code></pre></div>
 <pre><code>[1] TRUE</code></pre>
 </div>
-<p>Like in Chapter 2.4.1 we use R’s layout function to arrange the plots of the figure.</p>
+<p>Like in Chapter 2.4.1 we use R’s layout function to arrange the plots
+of the figure.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>layout.fig1 <span class="ot">&lt;-</span> <span class="fu">layout</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>), <span class="dv">2</span>, <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">heights =</span> <span class="fu">c</span>(.<span class="dv">75</span>,.<span class="dv">25</span>), <span class="at">widths =</span> <span class="fu">c</span>(.<span class="dv">35</span>, .<span class="dv">325</span>, .<span class="dv">325</span>))</span>
@@ -2586,9 +2615,13 @@ Material for R
 </div>
 <p>The plot consists of 4 elements:</p>
 <ol type="1">
-<li>State distribution plot (<code>seqdplot</code>): In the code below the plot is based on <code>partner.ex1.seq</code> but it would be the same if we had used <code>partner.ex2.seq</code> instead.</li>
-<li>Sequence index plot (<code>seqiplot</code>) of <code>partner.ex1.seq</code></li>
-<li>Sequence index plot (<code>seqiplot</code>) of <code>partner.ex2.seq</code></li>
+<li>State distribution plot (<code>seqdplot</code>): In the code below
+the plot is based on <code>partner.ex1.seq</code> but it would be the
+same if we had used <code>partner.ex2.seq</code> instead.</li>
+<li>Sequence index plot (<code>seqiplot</code>) of
+<code>partner.ex1.seq</code></li>
+<li>Sequence index plot (<code>seqiplot</code>) of
+<code>partner.ex2.seq</code></li>
 <li>Joint legend produced with <code>seqlegend</code></li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
@@ -2632,17 +2665,49 @@ Material for R
 <div class="layout-chunk" data-layout="l-page">
 <p><img src="images/Chapter2/2-4-2_Fig2-5_dplot_iplots_color.png" width="1800" /></p>
 </div>
-<h2 id="the-relative-frequency-index-plot">The relative frequency index plot</h2>
-<p>This section illustrates how to render relative frequency index plot using the standard <code>seqIplot</code> function instead of <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineRExtras}</code></a>’s <code>seqplot.rf</code>. Although <code>seqplot.rf</code> produces an appealing result, the function lacks flexibility. For instance, it does not allow to adjust specific aspects of its two sub-plots (e.g., axis labels and titles) and it is not suited for producing grayscale figures that use shading lines to differentiate between states.</p>
-<p>Accordingly, we generated a tweaked version of <code>seqplot.rf</code> which does not render the graph but stores the information required to generate the desired visualization <em>manually</em>. This information is saved in a list object and the different elements of this list will be used to render the plot.</p>
-<p>Here you can download the tweaked version of <code>seqplot.rf</code>:</p>
-<p><a href="source/relfreqseq-obj.R"><svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"></path></svg> relfreqseq-obj.R</a>.</p>
-<p>Generating a relative frequency index plot requires the sequences to be sorted according to a substantively meaningful principle. By default <code>seqplot.rf</code> (and <code>relfreqseq-obj.R</code>) sorts the sequences according to their score on the first factor derived by applying multidimensional scaling on a matrix of pairwise dissimilarities between sequences. This matrix has to be computed prior to the call of the <code>seqplot.rf</code> function. The following command is generating such a matrix using Optimal Matching with the default cost specification (indel = 1, substitution = 2) on our family formation sequence data (yearly granularity). For further details on dissimilarity measures see tutorials for <a href="rChapter3-0.html">Chapter 3</a>.</p>
+<h2 id="the-relative-frequency-index-plot">The relative frequency index
+plot</h2>
+<p>This section illustrates how to render relative frequency index plot
+using the standard <code>seqIplot</code> function instead of <a
+href="http://traminer.unige.ch"
+target="_blank"><code>{TraMineRExtras}</code></a>’s
+<code>seqplot.rf</code>. Although <code>seqplot.rf</code> produces an
+appealing result, the function lacks flexibility. For instance, it does
+not allow to adjust specific aspects of its two sub-plots (e.g., axis
+labels and titles) and it is not suited for producing grayscale figures
+that use shading lines to differentiate between states.</p>
+<p>Accordingly, we generated a tweaked version of
+<code>seqplot.rf</code> which does not render the graph but stores the
+information required to generate the desired visualization
+<em>manually</em>. This information is saved in a list object and the
+different elements of this list will be used to render the plot.</p>
+<p>Here you can download the tweaked version of
+<code>seqplot.rf</code>:</p>
+<p><a
+href="source/relfreqseq-obj.R"><svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"></path></svg>
+relfreqseq-obj.R</a>.</p>
+<p>Generating a relative frequency index plot requires the sequences to
+be sorted according to a substantively meaningful principle. By default
+<code>seqplot.rf</code> (and <code>relfreqseq-obj.R</code>) sorts the
+sequences according to their score on the first factor derived by
+applying multidimensional scaling on a matrix of pairwise
+dissimilarities between sequences. This matrix has to be computed prior
+to the call of the <code>seqplot.rf</code> function. The following
+command is generating such a matrix using Optimal Matching with the
+default cost specification (indel = 1, substitution = 2) on our family
+formation sequence data (yearly granularity). For further details on
+dissimilarity measures see tutorials for <a
+href="rChapter3-0.html">Chapter 3</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>partner.child.year.om <span class="ot">&lt;-</span> <span class="fu">seqdist</span>(partner.child.year.seq, </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">method=</span><span class="st">&quot;OM&quot;</span>, <span class="at">sm=</span> <span class="st">&quot;CONSTANT&quot;</span>)</span></code></pre></div>
 </div>
-<p>Once the dissimilarity matrix is generated, the information required for the plots can be extracted and saved as a list object by the new <code>relfreqseq-obj</code> function. The example data comprise 1866 sequences and we extract 37 frequency groups each containing <span class="math inline">\(1866/37 = 50\)</span> sequences.</p>
+<p>Once the dissimilarity matrix is generated, the information required
+for the plots can be extracted and saved as a list object by the new
+<code>relfreqseq-obj</code> function. The example data comprise 1866
+sequences and we extract 37 frequency groups each containing <span
+class="math inline">\(1866/37 = 50\)</span> sequences.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># adjusted version of seqplot.rf saving objects required for plotting</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">&quot;source&quot;</span>, <span class="st">&quot;relfreqseq-obj.R&quot;</span>))</span>
@@ -2652,12 +2717,20 @@ Material for R
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">diss=</span>partner.child.year.om, </span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">k=</span><span class="dv">37</span>)</span></code></pre></div>
 </div>
-<p>Based on this object we finally can produce Figure 2.6. Note that we use the <code>legend_large_box</code> function instead of the the default <code>legend</code> function and rearrange the elements shown in the legend to obtain a more appealing result.</p>
+<p>Based on this object we finally can produce Figure 2.6. Note that we
+use the <code>legend_large_box</code> function instead of the the
+default <code>legend</code> function and rearrange the elements shown in
+the legend to obtain a more appealing result.</p>
 <details>
 <summary>
 <strong>Details on setting up the legend</strong>
 </summary>
-<p>We start generating our plot by fine-tuning the appearance of the legend (for a detailed account of the procedure see <a href="rChapter2-4_grayscale.html#legend-link">here</a>). We add “blank” entries (no label, white boxes) to ensure that each of the columns in the legend corresponds to a distinct partnership state (Single, LAT, Cohabitation, Marriage).</p>
+<p>We start generating our plot by fine-tuning the appearance of the
+legend (for a detailed account of the procedure see <a
+href="rChapter2-4_grayscale.html#legend-link">here</a>). We add “blank”
+entries (no label, white boxes) to ensure that each of the columns in
+the legend corresponds to a distinct partnership state (Single, LAT,
+Cohabitation, Marriage).</p>
 <div class="layout-chunk" data-layout="l-body-outset">
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ...adding empty labels below Single, LAT, and Cohabitation</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>longlab.partner.child2 <span class="ot">&lt;-</span> <span class="fu">append</span>(longlab.partner.child, <span class="st">&quot;&quot;</span>, <span class="at">after=</span><span class="dv">2</span>)  </span>
@@ -2691,13 +2764,24 @@ Material for R
 <p><img src="rChapter2-4-2_files/figure-html5/unnamed-chunk-10-1.png" width="1152" /></p>
 </div>
 </details>
-<p>Like for the previous plot we use the <code>layout</code> function to arrange the three elements of <strong>Figure 2.6</strong>.</p>
+<p>Like for the previous plot we use the <code>layout</code> function to
+arrange the three elements of <strong>Figure 2.6</strong>.</p>
 <ol type="1">
-<li>The index plot of the representative sequences (<code>seqIplot</code>) stored in the first element of the list <code>k37.mds</code></li>
-<li>Boxplot of within frequency group distances to medoid (<code>boxplot</code>) based on the second and third element of the list <code>k37.mds</code></li>
+<li>The index plot of the representative sequences
+(<code>seqIplot</code>) stored in the first element of the list
+<code>k37.mds</code></li>
+<li>Boxplot of within frequency group distances to medoid
+(<code>boxplot</code>) based on the second and third element of the list
+<code>k37.mds</code></li>
 <li>The legend depicting colors and labels of the alphabet</li>
 </ol>
-<p>Note that we also extract the information on the representation quality (<span class="math inline">\(R^2\)</span> and <span class="math inline">\(F\)</span>) from <code>k37.mds</code> (elements 7 and 8). (Tip for R novices: You can refer to the elements of a list either by referring to their list position or their name, e.g. <code>k37.mds[["R2"]] == k37.mds[[7]]</code>. The names can be obtained by <code>names(k37.mds)</code>)</p>
+<p>Note that we also extract the information on the representation
+quality (<span class="math inline">\(R^2\)</span> and <span
+class="math inline">\(F\)</span>) from <code>k37.mds</code> (elements 7
+and 8). (Tip for R novices: You can refer to the elements of a list
+either by referring to their list position or their name,
+e.g. <code>k37.mds[["R2"]] == k37.mds[[7]]</code>. The names can be
+obtained by <code>names(k37.mds)</code>)</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cairo_pdf</span>(<span class="fu">here</span>(<span class="st">&quot;figures&quot;</span>, <span class="st">&quot;2-4-3_Fig2-6_relfreqIplot_mds_color.pdf&quot;</span>),</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">width=</span><span class="dv">10</span>,</span>
@@ -2757,13 +2841,25 @@ Material for R
 <div class="layout-chunk" data-layout="l-page">
 <p><img src="images/Chapter2/2-4-3_Fig2-6_relfreqIplot_mds_color.png" width="1500" /></p>
 </div>
-<h2 id="bonus-material-additional-relative-frequency-sequence-plots">Bonus material: <br/>Additional relative frequency sequence plots</h2>
-<p>The quality and the appearance of relative frequency sequence plots heavily depend on the underlying analytical choices. Below we illustrate how the plot looks like with</p>
+<h2
+id="bonus-material-additional-relative-frequency-sequence-plots">Bonus
+material: <br/>Additional relative frequency sequence plots</h2>
+<p>The quality and the appearance of relative frequency sequence plots
+heavily depend on the underlying analytical choices. Below we illustrate
+how the plot looks like with</p>
 <ol type="1">
 <li>more frequency groups (k=100) or</li>
-<li>a different sorting criterion (time spent in marriage). The marital states are the last three states of the alphabet (<code>alphabet(partner.child.year.seq)[7:9]</code>), the respective state frequencies are extracted with <code>{TraMineR}</code>’s <code>seqistatd</code> function, and summed up using <code>rowSums</code>.</li>
+<li>a different sorting criterion (time spent in marriage). The marital
+states are the last three states of the alphabet
+(<code>alphabet(partner.child.year.seq)[7:9]</code>), the respective
+state frequencies are extracted with <code>{TraMineR}</code>’s
+<code>seqistatd</code> function, and summed up using
+<code>rowSums</code>.</li>
 </ol>
-<p>The plots are generated in excactly the same way as above. We only have to replace <code>k37.mds</code> with <code>k100.mds</code> (+ the number of the frequency groups in the left plot title) and <code>k37.mardur</code> respectively.</p>
+<p>The plots are generated in excactly the same way as above. We only
+have to replace <code>k37.mds</code> with <code>k100.mds</code> (+ the
+number of the frequency groups in the left plot title) and
+<code>k37.mardur</code> respectively.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>k100.mds <span class="ot">&lt;-</span> <span class="fu">relfreqseq.obj</span>(partner.child.year.seq,</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">diss=</span>partner.child.year.om, </span>
@@ -2777,9 +2873,23 @@ Material for R
 <div class="layout-chunk" data-layout="l-page">
 <p><img src="images/Chapter2/2-4-3_Fig2-6_bonus_relfreqIplot_mds100_color.png" width="1500" /><img src="images/Chapter2/2-4-3_Fig2-6_bonus_relfreqIplot_mardur_color.png" width="1500" /></p>
 </div>
-<p>Compared to the plot shown in the book (<code>k37.mds</code>) the addition of 63 additional frquency groups (<code>k100.mds</code>) leads to a slightly more nuanced index plot. The medoids, however, are not performing better in representing the sequences within their frequency groups (see <span class="math inline">\(R^2\)</span>).</p>
-<p>Regarding <code>k37.mardur</code> the dissimilarities to medoid plot and the lower <span class="math inline">\(R^2\)</span> show that the alternative sorting criterion performs worse than the MDS-based solution with the same number of frequency groups (<code>k37.mds</code>).</p>
-<p>In the next figure we re-plot only the two medoid sequences of the two <span class="math inline">\(k=37\)</span> solutions to ease the comparison. In terms of code this requires to replace the box-whisker-plot from the previous code snippet (<code>boxplot(k37.mds[[3]]~k37.mds[[2]] ...</code>) by another <code>seqIplot</code>. In addition, we slightly adjust the two index plots’ titles to print the two <span class="math inline">\(R^2\)</span> values.</p>
+<p>Compared to the plot shown in the book (<code>k37.mds</code>) the
+addition of 63 additional frquency groups (<code>k100.mds</code>) leads
+to a slightly more nuanced index plot. The medoids, however, are not
+performing better in representing the sequences within their frequency
+groups (see <span class="math inline">\(R^2\)</span>).</p>
+<p>Regarding <code>k37.mardur</code> the dissimilarities to medoid plot
+and the lower <span class="math inline">\(R^2\)</span> show that the
+alternative sorting criterion performs worse than the MDS-based solution
+with the same number of frequency groups (<code>k37.mds</code>).</p>
+<p>In the next figure we re-plot only the two medoid sequences of the
+two <span class="math inline">\(k=37\)</span> solutions to ease the
+comparison. In terms of code this requires to replace the
+box-whisker-plot from the previous code snippet
+(<code>boxplot(k37.mds[[3]]~k37.mds[[2]] ...</code>) by another
+<code>seqIplot</code>. In addition, we slightly adjust the two index
+plots’ titles to print the two <span class="math inline">\(R^2\)</span>
+values.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cairo_pdf</span>(<span class="fu">here</span>(<span class="st">&quot;figures&quot;</span>, <span class="st">&quot;2-4-3_Fig2-6_bonus_relfreqIplot_mds_vs_mardur_color.pdf&quot;</span>),</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">width=</span><span class="dv">10</span>,</span>
@@ -2842,10 +2952,29 @@ Material for R
 <div class="layout-chunk" data-layout="l-page">
 <p><img src="images/Chapter2/2-4-3_Fig2-6_bonus_relfreqIplot_mds_vs_mardur_color.png" width="1500" /></p>
 </div>
-<p>While the two plots clearly resemble each other, they also show some marked differences. The medoids in the right panel are much more dominated by the state “Married 2+ children”. Note that both plots still represent the same data. The sorting criterion just led to a different selection of medoids and consequently to different visual representations of the same data.</p>
-<p>Ultimately, relative frequency sequence plots are a data reduction strategy whose results depend on the input parameters. Luckily, the <span class="math inline">\(R^2\)</span> and <span class="math inline">\(F\)</span> values allow to evaluate and to compare the quality of different solutions.</p>
-<p>It is also worthwile to inspect how the state distributions at different positions of the sequence compare to those shown in the state distribution plot (which presents a summary of the entire data set as opposed to a selection of representative sequences). Based on these criteria we prefer the sorting based on multidimensional scaling for generating relative frequency sequence plots with our example data.</p>
-<p>In general, we recommend to test different specifications of the sorting criteria, the dissimilarity measure, and the number of chosen frequency groups. In the example shown in our book, for instance, we used a rather low number of frequency groups in order to ensure readibilty of the grayscale figures. The results, however, were robust to changes in the number of frequency groups.</p>
+<p>While the two plots clearly resemble each other, they also show some
+marked differences. The medoids in the right panel are much more
+dominated by the state “Married 2+ children”. Note that both plots still
+represent the same data. The sorting criterion just led to a different
+selection of medoids and consequently to different visual
+representations of the same data.</p>
+<p>Ultimately, relative frequency sequence plots are a data reduction
+strategy whose results depend on the input parameters. Luckily, the
+<span class="math inline">\(R^2\)</span> and <span
+class="math inline">\(F\)</span> values allow to evaluate and to compare
+the quality of different solutions.</p>
+<p>It is also worthwile to inspect how the state distributions at
+different positions of the sequence compare to those shown in the state
+distribution plot (which presents a summary of the entire data set as
+opposed to a selection of representative sequences). Based on these
+criteria we prefer the sorting based on multidimensional scaling for
+generating relative frequency sequence plots with our example data.</p>
+<p>In general, we recommend to test different specifications of the
+sorting criteria, the dissimilarity measure, and the number of chosen
+frequency groups. In the example shown in our book, for instance, we
+used a rather low number of frequency groups in order to ensure
+readibilty of the grayscale figures. The results, however, were robust
+to changes in the number of frequency groups.</p>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

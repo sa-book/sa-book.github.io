@@ -2395,7 +2395,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
   <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
   <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
   <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
@@ -2468,7 +2468,8 @@ Material for R
 <h1>Cross-tabulation of clusters</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Chapter 5.3 Cross-tabulation of groups from different dissimilarity matrices</p></p>
+<p><p>Chapter 5.3 Cross-tabulation of groups from different
+dissimilarity matrices</p></p>
 </div>
 
 
@@ -2477,9 +2478,15 @@ Material for R
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#preparatory-work-for-family-formation-trajectories">Preparatory work for family formation trajectories</a></li>
-<li><a href="#preparatory-work-for-labor-market-trajectories">Preparatory work for labor market trajectories</a></li>
-<li><a href="#cross-tabulation-for-a-5-cluster-solution-on-both-channels">Cross-tabulation for a 5-cluster solution on both channels</a></li>
+<li><a
+href="#preparatory-work-for-family-formation-trajectories">Preparatory
+work for family formation trajectories</a></li>
+<li><a
+href="#preparatory-work-for-labor-market-trajectories">Preparatory work
+for labor market trajectories</a></li>
+<li><a
+href="#cross-tabulation-for-a-5-cluster-solution-on-both-channels">Cross-tabulation
+for a 5-cluster solution on both channels</a></li>
 </ul>
 </nav>
 </div>
@@ -2491,10 +2498,20 @@ Material for R
 <strong>Click here to get instructions…</strong>
 </summary>
 <ul>
-<li>Please download and unzip the replication files for Chapter 5 (<a href="source/Chapter03.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter04.zip</a>).</li>
-<li>Read <code>readme.html</code> and run <code>5-0_ChapterSetup.R</code>. This will create <code>5-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to produce the plots shown below.</li>
-<li>You also have to add the function <code>legend_large_box</code> to your environment in order to render the tweaked version of the legend described below. You find this file in the <code>source</code> folder of the unzipped Chapter 5 archive.</li>
-<li>We also recommend to load the libraries listed in Chapter 5’s <code>LoadInstallPackages.R</code></li>
+<li>Please download and unzip the replication files for Chapter 5 (<a
+href="source/Chapter03.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg>
+Chapter04.zip</a>).</li>
+<li>Read <code>readme.html</code> and run
+<code>5-0_ChapterSetup.R</code>. This will create
+<code>5-0_ChapterSetup.RData</code> in the sub folder
+<code>data/R</code>. This file contains the data required to produce the
+plots shown below.</li>
+<li>You also have to add the function <code>legend_large_box</code> to
+your environment in order to render the tweaked version of the legend
+described below. You find this file in the <code>source</code> folder of
+the unzipped Chapter 5 archive.</li>
+<li>We also recommend to load the libraries listed in Chapter 5’s
+<code>LoadInstallPackages.R</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming you are working within .Rproj environment</span></span>
@@ -2509,9 +2526,19 @@ Material for R
 </details>
 <p><br />
 </p>
-<p>In chapter 5.3, we introduce one of the options to account for the parallel unfolding of temporal processes: the cross-tabulation of cluster solutions extracted separately from two (or more) pools of sequences representing the trajectories in different domains. We are now using the data-frame multidim, which contains both family formation and labour market sequences. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see <a href="https://www.pairfam.de/en/" target="_blank">here</a>.</p>
-<h2 id="preparatory-work-for-family-formation-trajectories">Preparatory work for family formation trajectories</h2>
-<p>First, we run a Ward clustering based on the dissimilarity matrix mc.fam.year.om:</p>
+<p>In chapter 5.3, we introduce one of the options to account for the
+parallel unfolding of temporal processes: the cross-tabulation of
+cluster solutions extracted separately from two (or more) pools of
+sequences representing the trajectories in different domains. We are now
+using the data-frame multidim, which contains both family formation and
+labour market sequences. The data come from a sub-sample of the German
+Family Panel - pairfam. For further information on the study and on how
+to access the full scientific use file see <a
+href="https://www.pairfam.de/en/" target="_blank">here</a>.</p>
+<h2 id="preparatory-work-for-family-formation-trajectories">Preparatory
+work for family formation trajectories</h2>
+<p>First, we run a Ward clustering based on the dissimilarity matrix
+mc.fam.year.om:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fam.ward<span class="ot">&lt;-</span><span class="fu">hclust</span>(<span class="fu">as.dist</span>(mc.fam.year.om), </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method=</span><span class="st">&quot;ward.D&quot;</span>, </span>
@@ -2532,18 +2559,22 @@ Material for R
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>multidim<span class="sc">$</span>fam.pam<span class="fl">.5</span>cl<span class="ot">&lt;-</span>fam.pam<span class="fl">.5</span>cl</span></code></pre></div>
 </div>
-<p>… and re-label clusters from 1 to 5 instead of medoid identifiers…</p>
+<p>… and re-label clusters from 1 to 5 instead of medoid
+identifiers…</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fam.pam<span class="fl">.5</span>cl.factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(fam.pam<span class="fl">.5</span>cl, </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">460</span>, <span class="dv">479</span>, <span class="dv">892</span>, <span class="dv">898</span>), </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;4&quot;</span>, <span class="st">&quot;5&quot;</span>))</span></code></pre></div>
 </div>
-<p>…to finally attach the factor info to the main data-frame “multidim”:</p>
+<p>…to finally attach the factor info to the main data-frame
+“multidim”:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>multidim<span class="sc">$</span>fam.pam<span class="fl">.5</span>cl.factor<span class="ot">&lt;-</span>fam.pam<span class="fl">.5</span>cl.factor</span></code></pre></div>
 </div>
-<h2 id="preparatory-work-for-labor-market-trajectories">Preparatory work for labor market trajectories</h2>
-<p>First, we run a Ward clustering based on the dissimilarity matrix mc.act.year.om:</p>
+<h2 id="preparatory-work-for-labor-market-trajectories">Preparatory work
+for labor market trajectories</h2>
+<p>First, we run a Ward clustering based on the dissimilarity matrix
+mc.act.year.om:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>act.ward<span class="ot">&lt;-</span><span class="fu">hclust</span>(<span class="fu">as.dist</span>(mc.act.year.om), </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method=</span><span class="st">&quot;ward.D&quot;</span>, </span>
@@ -2564,18 +2595,23 @@ Material for R
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>multidim<span class="sc">$</span>act.pam<span class="fl">.5</span>cl<span class="ot">&lt;-</span>act.pam<span class="fl">.5</span>cl</span></code></pre></div>
 </div>
-<p>… and re-label clusters from 1 to 5 instead of medoid identifiers…</p>
+<p>… and re-label clusters from 1 to 5 instead of medoid
+identifiers…</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>act.pam<span class="fl">.5</span>cl.factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(act.pam<span class="fl">.5</span>cl, </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">25</span>, <span class="dv">78</span>, <span class="dv">539</span>, <span class="dv">709</span>), </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;4&quot;</span>, <span class="st">&quot;5&quot;</span>))</span></code></pre></div>
 </div>
-<p>…to finally attach the factor info to the main data-frame “multidim”:</p>
+<p>…to finally attach the factor info to the main data-frame
+“multidim”:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>multidim<span class="sc">$</span>act.pam<span class="fl">.5</span>cl.factor<span class="ot">&lt;-</span>act.pam<span class="fl">.5</span>cl.factor</span></code></pre></div>
 </div>
-<h2 id="cross-tabulation-for-a-5-cluster-solution-on-both-channels">Cross-tabulation for a 5-cluster solution on both channels</h2>
-<p>Tabulate the two vectors and store the results in an object that we call crosstab…</p>
+<h2
+id="cross-tabulation-for-a-5-cluster-solution-on-both-channels">Cross-tabulation
+for a 5-cluster solution on both channels</h2>
+<p>Tabulate the two vectors and store the results in an object that we
+call crosstab…</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>crosstab<span class="ot">&lt;-</span><span class="fu">table</span>(multidim<span class="sc">$</span>act.pam<span class="fl">.5</span>cl.factor, multidim<span class="sc">$</span>fam.pam<span class="fl">.5</span>cl.factor)</span></code></pre></div>
 </div>

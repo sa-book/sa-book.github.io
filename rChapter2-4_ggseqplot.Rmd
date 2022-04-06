@@ -1,0 +1,171 @@
+---
+title: "Visualizing sequences"
+description: |
+  ... ggplotify sequence data plots
+
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+# Load required packages
+library(here)
+source(here("source", "load_libraries.R"))
+
+# Output options
+knitr::opts_chunk$set(eval=TRUE, echo=TRUE)
+options("kableExtra.html.bsTable" = T)
+
+# load data for Chapter 2
+load(here("data", "2-0_ChapterSetup.RData"))
+```
+
+```{r, xaringanExtra-clipboard, echo=FALSE}
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clone fa-2x\" style=\"color: #c58dce\"></i>",
+    success_text = "<i class=\"fa fa-check fa-2x\" style=\"color: #90BE6D\"></i>",
+    error_text = "<i class=\"fa fa-times fa-2x\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
+<details><summary>**Click here to get instructions...**</summary>
+
+- Please download and unzip the replication files for Chapter 2
+([`r fontawesome::fa("far fa-file-archive")` Chapter02.zip](source/Chapter02.zip)). 
+- Read `readme.html` and run `2-0_ChapterSetup.R`. This will create `2-0_ChapterSetup.RData` in the sub folder `data/R`. This file contains the data required to produce the state distribution plot shown below. 
+- We also recommend to load the libraries listed in the Chapter 2's `LoadInstallPackages.R`
+
+```{r, eval=FALSE}
+# assuming you are working within .Rproj environment
+library(here)
+
+# install (if necessary) and load other required packages
+source(here("source", "load_libraries.R"))
+
+# load environment generated in "2-0_ChapterSetup.R"
+load(here("data", "R", "2-0_ChapterSetup.RData"))
+
+```
+</details>
+
+\  
+
+Virtually all figures shown in the book were rendererd with `TraMineR::seqplot` which uses base R's `plot` function. While there is nothing wrong with that, many R users tend to prefer [`{ggplot2}`](https://ggplot2.tidyverse.org/){target="_blank"} for visualizing their data. 
+
+We wrote a little R package named [`{ggseqplot}`](https://github.com/maraab23/ggseqplot) that reproduces some of the sequence plots from [`{TraMineR}`](http://traminer.unige.ch){target="_blank"}’s `seqplot` using [`{ggplot2}`](https://ggplot2.tidyverse.org/){target="_blank"}. These plots are produced on the basis of a sequence object defined with `TraMineR::seqdef`. The package automates the reshaping and plotting of sequence data required to render the plots with [`{ggplot2}`](https://ggplot2.tidyverse.org/){target="_blank"}.
+
+[`{ggseqplot}`](https://github.com/maraab23/ggseqplot) is in an early stage of development and will be hopefully complemented by a few additional functions in the near future.
+
+Currently, [`{ggseqplot}`](https://github.com/maraab23/ggseqplot) only contains two functions: - `ggseqiplot` (`TraMineR::seqIplot`) - `ggseqdplot` (`TraMineR::seqdplot`)
+
+The package is stored on [`r fontawesome::fa("github")` GitHub](https://github.com/maraab23/ggseqplot) and you can install and load it with the following commands: 
+
+```{r, eval=FALSE, echo=TRUE}
+devtools::install_github("maraab23/ggseqplot")
+library(ggseqplot)
+```
+
+
+
+\  
+
+## State distribution plot
+
+In the following example we are rendering state distribution plots of the
+sequence object `partner.child.year.seq`.
+
+We start by comparing `seqdplot` and `ggseqdplot` in their most basic specification:
+
+```{r, layout="l-body-outset", fig.width=10, fig.height=6.5}
+seqdplot(partner.child.year.seq)
+ggseqdplot(partner.child.year.seq)
+```
+
+As `ggseqdplot` has been written with the intention to mimic the behavior of `seqdplot` it's not very surprising that both plots look very similar. Just like with `seqplot` the `ggplot` version of the plot allows to turn off weights and to generate faceted plots by specifying the `group` argument.
+Turn to the documentation for further possibilities to adjust the outcome of `ggseqdplot`:
+
+```{r, layout="l-body-outset", fig.width=10, fig.height=6.5}
+ggseqdplot(partner.child.year.seq, 
+           group = as_factor(family$sex), # `as_factor` not necessary; only used to get nice labels
+           weighted = FALSE)
+```
+
+Note that it is not possible to obtain the faceted output by *manually* specifying `facet_wrap(~family$sex)`. That is because `ggseqdplot` internally reshapes the sequence data into
+an aggregated format that is suitable for generating the plot. In our example the resulting dataset includes one row for every combination of sequence position $k$ (22 positions in our case) and state of the alphabet $A$ (9 distinct states). With one group this yields a data set with $22*9=198$ rows. The data for the faceted version shown above has 396 rows with 198 for men and women each. The grouping variable `family$sex`, however, is of length 1866 (one row for each case). 
+
+If you want to access the data used for the plot you can save the plot as a list object:
+
+```{r}
+dplot <- ggseqdplot(partner.child.year.seq,
+                    group = as_factor(family$sex), 
+                    weighted = FALSE)
+
+dplot$data
+```
+
+Of course, the figures produced with [`{ggseqplot}`](https://github.com/maraab23/ggseqplot)
+can be adjusted like any other [`{ggplot2}`](https://ggplot2.tidyverse.org/){target="_blank"} figure
+
+```{r, layout="l-body-outset", fig.width=10, fig.height=6.5}
+library(hrbrthemes)
+
+ggseqdplot(partner.child.year.seq) + 
+  scale_x_discrete(labels = 18:39) + 
+  labs(title = "State distribution plot",
+       x = "Age") +
+  guides(fill=guide_legend(title="Alphabet")) +
+  theme_ipsum_rc() +
+  theme(plot.title = element_text(size = 34, 
+                                  margin=margin(0,0,20,0)),
+        plot.title.position = "plot",
+        axis.title.x = element_text(size=12),
+        axis.title.y = element_text(size=12))
+
+
+```
+
+## Seqeuence index plots
+
+We again start with a comparison of the default outputs for `seqIplot` and `ggseqiplot`. We plot a sample of 50 sequences and sort the remaining sequences according to the time spent in marriage (states 7 to 9).
+
+```{r, layout="l-body-outset", fig.width=10, fig.height=6.5}
+set.seed(1234)
+subset <- sample(1:nrow(partner.child.year.seq),50)
+
+seqIplot(partner.child.year.seq[subset,], 
+         sortv = rowSums(seqistatd(partner.child.year.seq[subset,])[,7:9]))
+
+ggseqiplot(partner.child.year.seq[subset,],
+           sortv = rowSums(seqistatd(partner.child.year.seq[subset,])[,7:9]))
+
+```
+
+Note that other than for `ggseqdplot` the x-axis for `ggseqiplot` is on a continuous scale. The following code chunk illustrates how the plot can be fine-tuned in the well-known [`{ggplot2}`](https://ggplot2.tidyverse.org/){target="_blank"} fashion:   
+
+```{r, layout="l-body-outset", fig.width=10, fig.height=6.5}
+ggseqiplot(partner.child.year.seq[subset,],
+           sortv = rowSums(seqistatd(partner.child.year.seq[subset,])[,7:9])) +
+  scale_y_continuous(expand = expansion(add = c(.8, 0))) +
+  scale_x_continuous(breaks = seq(0,22,2),
+                     labels = seq(18,40,2),
+                     expand = expansion(add = c(0.2, 0))) +
+  labs(title = "Sequence index plot",
+       x = "Age", 
+       fill = "Alphabet",
+       caption = "Sequences sorted by marriage duration") +
+  guides(color="none") +
+  theme_ipsum_rc() +
+  theme(plot.title = element_text(size = 34, 
+                                  margin=margin(0,0,20,0)),
+        plot.title.position = "plot",
+        plot.caption = element_text(size=12),
+        axis.title.x = element_text(size=12),
+        axis.title.y = element_text(size=12))
+  
+```
+

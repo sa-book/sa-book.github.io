@@ -2395,7 +2395,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
   <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
   <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
   <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
@@ -2477,10 +2477,17 @@ Material for R
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#extract-r2-and-asw-for-the-mcsa-clustering">Extract R2 and ASW for the MCSA clustering</a></li>
-<li><a href="#extract-r2-and-asw-for-family-formation-and-labor-market-trajectories-separately">Extract R2 and ASW for family formation and labor market trajectories separately</a></li>
-<li><a href="#compare-r2-and-asw-trends-between-mcsa-and-for-the-separate-channels">Compare R2 and ASW trends between MCSA and for the separate channels</a></li>
-<li><a href="#cluster-analysis-for-mcsa">Cluster analysis for MCSA</a></li>
+<li><a href="#extract-r2-and-asw-for-the-mcsa-clustering">Extract R2 and
+ASW for the MCSA clustering</a></li>
+<li><a
+href="#extract-r2-and-asw-for-family-formation-and-labor-market-trajectories-separately">Extract
+R2 and ASW for family formation and labor market trajectories
+separately</a></li>
+<li><a
+href="#compare-r2-and-asw-trends-between-mcsa-and-for-the-separate-channels">Compare
+R2 and ASW trends between MCSA and for the separate channels</a></li>
+<li><a href="#cluster-analysis-for-mcsa">Cluster analysis for
+MCSA</a></li>
 </ul>
 </nav>
 </div>
@@ -2492,10 +2499,20 @@ Material for R
 <strong>Click here to get instructions…</strong>
 </summary>
 <ul>
-<li>Please download and unzip the replication files for Chapter 5 (<a href="source/Chapter03.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter04.zip</a>).</li>
-<li>Read <code>readme.html</code> and run <code>5-0_ChapterSetup.R</code>. This will create <code>5-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to produce the plots shown below.</li>
-<li>You also have to add the function <code>legend_large_box</code> to your environment in order to render the tweaked version of the legend described below. You find this file in the <code>source</code> folder of the unzipped Chapter 5 archive.</li>
-<li>We also recommend to load the libraries listed in Chapter 5’s <code>LoadInstallPackages.R</code></li>
+<li>Please download and unzip the replication files for Chapter 5 (<a
+href="source/Chapter03.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg>
+Chapter04.zip</a>).</li>
+<li>Read <code>readme.html</code> and run
+<code>5-0_ChapterSetup.R</code>. This will create
+<code>5-0_ChapterSetup.RData</code> in the sub folder
+<code>data/R</code>. This file contains the data required to produce the
+plots shown below.</li>
+<li>You also have to add the function <code>legend_large_box</code> to
+your environment in order to render the tweaked version of the legend
+described below. You find this file in the <code>source</code> folder of
+the unzipped Chapter 5 archive.</li>
+<li>We also recommend to load the libraries listed in Chapter 5’s
+<code>LoadInstallPackages.R</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming you are working within .Rproj environment</span></span>
@@ -2510,9 +2527,21 @@ Material for R
 </details>
 <p><br />
 </p>
-<p>In chapter 5.3, we introduce the so-called multichannel sequence analysis. We are now using the data-frame multidim, which contains both family formation and labour market sequences. Note that individual 1 in one pool of sequences has to correspond to individual 1 in the other pool of sequences. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see <a href="https://www.pairfam.de/en/" target="_blank">here</a>.</p>
-<h2 id="extract-r2-and-asw-for-the-mcsa-clustering">Extract R2 and ASW for the MCSA clustering</h2>
-<p>We use the ?seqdistmc command to compute the multichannel dissimilarity matrix. We specify the option <code>channels</code> with the sequences in the two domains stored in mc.fam.year.seq and mc.act.year.seq. Notice that here we give equal weight to the two channels by specifying the option <code>cweight</code> as follows:</p>
+<p>In chapter 5.3, we introduce the so-called multichannel sequence
+analysis. We are now using the data-frame multidim, which contains both
+family formation and labour market sequences. Note that individual 1 in
+one pool of sequences has to correspond to individual 1 in the other
+pool of sequences. The data come from a sub-sample of the German Family
+Panel - pairfam. For further information on the study and on how to
+access the full scientific use file see <a
+href="https://www.pairfam.de/en/" target="_blank">here</a>.</p>
+<h2 id="extract-r2-and-asw-for-the-mcsa-clustering">Extract R2 and ASW
+for the MCSA clustering</h2>
+<p>We use the ?seqdistmc command to compute the multichannel
+dissimilarity matrix. We specify the option <code>channels</code> with
+the sequences in the two domains stored in mc.fam.year.seq and
+mc.act.year.seq. Notice that here we give equal weight to the two
+channels by specifying the option <code>cweight</code> as follows:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mcdist.om <span class="ot">&lt;-</span> <span class="fu">seqdistmc</span>(<span class="at">channels=</span><span class="fu">list</span>(mc.fam.year.seq, mc.act.year.seq),</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method=</span><span class="st">&quot;OM&quot;</span>, </span>
@@ -2520,13 +2549,17 @@ Material for R
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sm=</span><span class="st">&quot;CONSTANT&quot;</span>, </span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">cweight=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
 </div>
-<p>Now that we stored the MCSA dissimilarity matrix in the object mcdist.om, we can use the ?wcKMedRange command to perform a PAM clustering.</p>
+<p>Now that we stored the MCSA dissimilarity matrix in the object
+mcdist.om, we can use the ?wcKMedRange command to perform a PAM
+clustering.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mcdist.om.pam <span class="ot">&lt;-</span> <span class="fu">wcKMedRange</span>(mcdist.om, </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">weights =</span> multidim<span class="sc">$</span>weight40, </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">kvals =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
 </div>
-<p>From the object containing the values of the cluster quality indicators for different number of clusters, we extract the part of the output where the values for all indicators are stored:</p>
+<p>From the object containing the values of the cluster quality
+indicators for different number of clusters, we extract the part of the
+output where the values for all indicators are stored:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mc.val<span class="ot">&lt;-</span>mcdist.om.pam[[<span class="dv">4</span>]]</span></code></pre></div>
 </div>
@@ -2538,8 +2571,12 @@ Material for R
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mc.r2 <span class="ot">&lt;-</span> mc.val[,<span class="dv">7</span>]</span></code></pre></div>
 </div>
-<h2 id="extract-r2-and-asw-for-family-formation-and-labor-market-trajectories-separately">Extract R2 and ASW for family formation and labor market trajectories separately</h2>
-<p>We use the same procedure on the pools of family formation and labor market trajectories separately.</p>
+<h2
+id="extract-r2-and-asw-for-family-formation-and-labor-market-trajectories-separately">Extract
+R2 and ASW for family formation and labor market trajectories
+separately</h2>
+<p>We use the same procedure on the pools of family formation and labor
+market trajectories separately.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Family formation trajectory</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2565,8 +2602,12 @@ Material for R
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>act.r2 <span class="ot">&lt;-</span> act.val[,<span class="dv">7</span>]</span></code></pre></div>
 </div>
-<h2 id="compare-r2-and-asw-trends-between-mcsa-and-for-the-separate-channels">Compare R2 and ASW trends between MCSA and for the separate channels</h2>
-<p>We can now visualize the R2 and ASW trends across number of clusters. We first have to define the range of the x axis to plot against the ASW/R2 values:</p>
+<h2
+id="compare-r2-and-asw-trends-between-mcsa-and-for-the-separate-channels">Compare
+R2 and ASW trends between MCSA and for the separate channels</h2>
+<p>We can now visualize the R2 and ASW trends across number of clusters.
+We first have to define the range of the x axis to plot against the
+ASW/R2 values:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">15</span></span></code></pre></div>
 </div>
@@ -2673,7 +2714,8 @@ Material for R
 <p><img src="images/Chapter5/5-5_Fig5-1_heuristic_gray.png" width="2250" /></p>
 </div>
 <h2 id="cluster-analysis-for-mcsa">Cluster analysis for MCSA</h2>
-<p>We use the joint dissimilarity matrix mcdist.om computed above and for PAM clustering with Ward output to initialize the procedure:</p>
+<p>We use the joint dissimilarity matrix mcdist.om computed above and
+for PAM clustering with Ward output to initialize the procedure:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ward</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2689,7 +2731,9 @@ Material for R
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">kvals =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>,</span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">initialclust =</span> mcdist.om.ward)</span></code></pre></div>
 </div>
-<p>We extract 5 clusters and re-label them from 1 to 5 to replace the medoid identifiers and attach the vector with the clusters to the main data frame multidim:</p>
+<p>We extract 5 clusters and re-label them from 1 to 5 to replace the
+medoid identifiers and attach the vector with the clusters to the main
+data frame multidim:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mc <span class="ot">&lt;-</span> mcdist.om.pam.ward<span class="sc">$</span>clustering<span class="sc">$</span>cluster5</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2698,7 +2742,10 @@ Material for R
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>multidim<span class="sc">$</span>mc.factor <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(mc.factor)</span></code></pre></div>
 </div>
-<p>To display the clusters for the two channels in parallel, we have to perform some steps to prepare the data. First, we generate subsets of sequences based on the clusters they have been allocated to. We do so for both channels:</p>
+<p>To display the clusters for the two channels in parallel, we have to
+perform some steps to prepare the data. First, we generate subsets of
+sequences based on the clusters they have been allocated to. We do so
+for both channels:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Family formation</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>fam1.seq <span class="ot">&lt;-</span> mc.fam.year.seq[multidim<span class="sc">$</span>mc.factor <span class="sc">==</span> <span class="st">&quot;1&quot;</span>, ]</span>
@@ -2714,18 +2761,22 @@ Material for R
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>act4.seq <span class="ot">&lt;-</span> mc.act.year.seq[multidim<span class="sc">$</span>mc.factor <span class="sc">==</span> <span class="st">&quot;4&quot;</span>, ]</span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>act5.seq <span class="ot">&lt;-</span> mc.act.year.seq[multidim<span class="sc">$</span>mc.factor <span class="sc">==</span> <span class="st">&quot;5&quot;</span>, ]</span></code></pre></div>
 </div>
-<p>We then generate an object called relfreq that contains the relative frequencies of the five clusters (using weights, see option <code>wt</code>):</p>
+<p>We then generate an object called relfreq that contains the relative
+frequencies of the five clusters (using weights, see option
+<code>wt</code>):</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>relfreq <span class="ot">&lt;-</span> multidim <span class="sc">%&gt;%</span> </span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>           <span class="fu">count</span>(mc.factor, <span class="at">wt =</span> weight40) <span class="sc">%&gt;%</span> </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">mutate</span>(<span class="at">share =</span> n<span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>           <span class="fu">arrange</span>(share)</span></code></pre></div>
 </div>
-<p>We then convert relative frequencies to percentages (will be used for labeling the y-axes) and store the information in the object share:</p>
+<p>We then convert relative frequencies to percentages (will be used for
+labeling the y-axes) and store the information in the object share:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>share <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">as.numeric</span>(relfreq<span class="sc">$</span>share)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>)</span></code></pre></div>
 </div>
-<p>We can now plot the MCSA clusters, here sequences in each sub-graph are ordered by multidimensional scaling calcualted on both channels.</p>
+<p>We can now plot the MCSA clusters, here sequences in each sub-graph
+are ordered by multidimensional scaling calcualted on both channels.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>def.par <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">no.readonly =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2890,7 +2941,9 @@ Material for R
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/Chapter5/5-5_Fig5-2_MCSA_colors_joint.png" width="2400" /></p>
 </div>
-<p>For the code necessary to order the sequences based on the family trajectories only, see the R-code “5-5_Fig5-2_MCSA_colors_mds_family.R” in the folder “Chapter05.zip” at the download page.</p>
+<p>For the code necessary to order the sequences based on the family
+trajectories only, see the R-code “5-5_Fig5-2_MCSA_colors_mds_family.R”
+in the folder “Chapter05.zip” at the download page.</p>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

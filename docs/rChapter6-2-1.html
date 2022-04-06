@@ -2395,7 +2395,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
   <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
   <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
   <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
@@ -2472,7 +2472,8 @@ Material for R
 <h1>Measuring Associations Between Sequences and Covariates I</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Chapter 6.2.1 Discrepancy Framework—Pseudo R2 and Permutation F-Test</p></p>
+<p><p>Chapter 6.2.1 Discrepancy Framework—Pseudo R2 and Permutation
+F-Test</p></p>
 </div>
 
 
@@ -2481,7 +2482,8 @@ Material for R
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#share-of-explained-discrepancy">Share of explained discrepancy</a></li>
+<li><a href="#share-of-explained-discrepancy">Share of explained
+discrepancy</a></li>
 <li><a href="#regression-tree">Regression Tree</a></li>
 </ul>
 </nav>
@@ -2494,9 +2496,16 @@ Material for R
 <strong>Click here to get instructions…</strong>
 </summary>
 <ul>
-<li>Please download and unzip the replication files for Chapter 6 (<a href="source/Chapter06.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter06.zip</a>).</li>
-<li>Read <code>readme.html</code> and run <code>6-0_ChapterSetup.R</code>. This will create <code>6-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to produce the table shown at the bottom of this page.</li>
-<li>We also recommend to load the libraries listed in the Chapter 6’s <code>LoadInstallPackages.R</code></li>
+<li>Please download and unzip the replication files for Chapter 6 (<a
+href="source/Chapter06.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg>
+Chapter06.zip</a>).</li>
+<li>Read <code>readme.html</code> and run
+<code>6-0_ChapterSetup.R</code>. This will create
+<code>6-0_ChapterSetup.RData</code> in the sub folder
+<code>data/R</code>. This file contains the data required to produce the
+table shown at the bottom of this page.</li>
+<li>We also recommend to load the libraries listed in the Chapter 6’s
+<code>LoadInstallPackages.R</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming you are working within .Rproj environment</span></span>
@@ -2511,10 +2520,28 @@ Material for R
 </details>
 <p><br />
 </p>
-<h2 id="share-of-explained-discrepancy">Share of explained discrepancy</h2>
-<p><strong>Table 6.2</strong> in Chapter 6.2.1 shows how much of the dicrepancy in the labor market (<code>activity.year.seq</code>) and family (<code>partner.child.year.seq</code>) sequences is explained by the three dummy variables <code>east</code> (living in East vs West Germany), <code>sex</code> (male vs. female), <code>highschool</code> (at least highschool degree: yes vs. no). The dummy variables are stored in the data frames <code>family</code> and <code>activity</code>.</p>
-<p>When considering only one variable at a time, <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineR}</code></a>’s <code>dissassoc</code> function is the fastest solution for computing the share of explained discrepancy (pseudo-<span class="math inline">\(R^2\)</span>). With <code>dissmfacw</code> <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineR}</code></a> also provides the possibility to consider multiple variables at a time.</p>
-<p><strong>Table 6.2</strong> includes both a univariable and a mutlivariable analysis of the three variables. As the grouping variables do not explain the discrepancy of the family biographies the multivariable approach is only presented for the labor market sequences.</p>
+<h2 id="share-of-explained-discrepancy">Share of explained
+discrepancy</h2>
+<p><strong>Table 6.2</strong> in Chapter 6.2.1 shows how much of the
+dicrepancy in the labor market (<code>activity.year.seq</code>) and
+family (<code>partner.child.year.seq</code>) sequences is explained by
+the three dummy variables <code>east</code> (living in East vs West
+Germany), <code>sex</code> (male vs. female), <code>highschool</code>
+(at least highschool degree: yes vs. no). The dummy variables are stored
+in the data frames <code>family</code> and <code>activity</code>.</p>
+<p>When considering only one variable at a time, <a
+href="http://traminer.unige.ch"
+target="_blank"><code>{TraMineR}</code></a>’s <code>dissassoc</code>
+function is the fastest solution for computing the share of explained
+discrepancy (pseudo-<span class="math inline">\(R^2\)</span>). With
+<code>dissmfacw</code> <a href="http://traminer.unige.ch"
+target="_blank"><code>{TraMineR}</code></a> also provides the
+possibility to consider multiple variables at a time.</p>
+<p><strong>Table 6.2</strong> includes both a univariable and a
+mutlivariable analysis of the three variables. As the grouping variables
+do not explain the discrepancy of the family biographies the
+multivariable approach is only presented for the labor market
+sequences.</p>
 <div class="layout-chunk" data-layout="l-body">
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -2669,8 +2696,20 @@ Total
 </tbody>
 </table>
 </div>
-<p>Like in Chapter 6.1 we wrote a function and several lines of code to extract the results from the <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineR}</code></a> functions and to print a nice table using <code>{knitr}</code>’s <code>kable</code> and the <code>{kableExtra}</code> package. You can find the code in the script <code>6-2_Table_6-2_R2.R</code> stored in <a href="source/Chapter06.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter06.zip</a>).</p>
-<p>On this page, however, we do not further elaborate on such technicalities and rather focus on briefly showcasing the plain <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineR}</code></a> commands required to obtain the results shown in the table. As you see, this does not require a lot of coding:</p>
+<p>Like in Chapter 6.1 we wrote a function and several lines of code to
+extract the results from the <a href="http://traminer.unige.ch"
+target="_blank"><code>{TraMineR}</code></a> functions and to print a
+nice table using <code>{knitr}</code>’s <code>kable</code> and the
+<code>{kableExtra}</code> package. You can find the code in the script
+<code>6-2_Table_6-2_R2.R</code> stored in <a
+href="source/Chapter06.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg>
+Chapter06.zip</a>).</p>
+<p>On this page, however, we do not further elaborate on such
+technicalities and rather focus on briefly showcasing the plain <a
+href="http://traminer.unige.ch"
+target="_blank"><code>{TraMineR}</code></a> commands required to obtain
+the results shown in the table. As you see, this does not require a lot
+of coding:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Labor market sequences</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dissassoc</span>(activity.year.om, activity<span class="sc">$</span>sex)</span>
@@ -2686,7 +2725,11 @@ Total
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">dissassoc</span>(partner.child.year.om, family<span class="sc">$</span>east)</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">dissassoc</span>(partner.child.year.om, family<span class="sc">$</span>highschool)</span></code></pre></div>
 </div>
-<p>Extracting specifically the information needed for the table requires some additional commands. The following code chunks briefly illustrate the general procedure. We first save and inspect the results from a discrepancy analysis of <code>activity.year.om</code> by gender (<code>activity$sex</code>).</p>
+<p>Extracting specifically the information needed for the table requires
+some additional commands. The following code chunks briefly illustrate
+the general procedure. We first save and inspect the results from a
+discrepancy analysis of <code>activity.year.om</code> by gender
+(<code>activity$sex</code>).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>discr_sex <span class="ot">&lt;-</span> <span class="fu">dissassoc</span>(activity.year.om, activity<span class="sc">$</span>sex)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>discr_sex</span></code></pre></div>
@@ -2714,7 +2757,15 @@ Discrepancy per level:
 1      521   12.112702
 Total 1027   10.720121</code></pre>
 </div>
-<p><a href="http://traminer.unige.ch" target="_blank"><code>{TraMineR}</code></a>’s <code>dissassoc</code> produces a lot of output. We save the output in the object <code>discr_sex</code>. A closer inspection of this object with <code>str</code> or <code>names</code> shows that <code>dissassoc</code> stores its results in a list object with seven elements. The information required for <strong>Table 6.2</strong> - pseudo-<span class="math inline">\(R^2\)</span> and the corresponding p-value - is stored in the list element <code>stat</code>.</p>
+<p><a href="http://traminer.unige.ch"
+target="_blank"><code>{TraMineR}</code></a>’s <code>dissassoc</code>
+produces a lot of output. We save the output in the object
+<code>discr_sex</code>. A closer inspection of this object with
+<code>str</code> or <code>names</code> shows that <code>dissassoc</code>
+stores its results in a list object with seven elements. The information
+required for <strong>Table 6.2</strong> - pseudo-<span
+class="math inline">\(R^2\)</span> and the corresponding p-value - is
+stored in the list element <code>stat</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(discr_sex)</span></code></pre></div>
 <pre><code>List of 7
@@ -2750,15 +2801,27 @@ Pseudo R2    0.08915569   0.001
 Bartlett    31.59488891   0.001
 Levene     172.45072755   0.001</code></pre>
 </div>
-<p>If we want to extract pseudo-<span class="math inline">\(R^2\)</span>, for instance, we can type:</p>
+<p>If we want to extract pseudo-<span
+class="math inline">\(R^2\)</span>, for instance, we can type:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>discr_sex<span class="sc">$</span>stat[<span class="dv">3</span>,<span class="dv">1</span>] <span class="sc">%&gt;%</span> </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>[1] 0.09</code></pre>
 </div>
-<p>The script <code>6-2_Table_6-2_R2.R</code> illustrates all the steps required to extract, arrange, and format the output from <code>dissassoc</code> and <code>dissmfacw</code> as shown in <strong>Table 6.2</strong>.</p>
+<p>The script <code>6-2_Table_6-2_R2.R</code> illustrates all the steps
+required to extract, arrange, and format the output from
+<code>dissassoc</code> and <code>dissmfacw</code> as shown in
+<strong>Table 6.2</strong>.</p>
 <h2 id="regression-tree">Regression Tree</h2>
-<p>The regression tree displayed in <strong>Figure 6.1</strong> is based on an analysis of labor market sequences with a reduced alphabet distinguishing 5 instead of 8 states. We define the new sequence object by recoding the original sequence object <code>activity.year.seq</code> stored in <code>6-0_ChapterSetup.RData</code> with <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineR}</code></a>’s <code>seqrecode</code> function. Note that you have to take care of the labels after you defined a new sequence object with <code>seqrecode</code>.</p>
+<p>The regression tree displayed in <strong>Figure 6.1</strong> is based
+on an analysis of labor market sequences with a reduced alphabet
+distinguishing 5 instead of 8 states. We define the new sequence object
+by recoding the original sequence object <code>activity.year.seq</code>
+stored in <code>6-0_ChapterSetup.RData</code> with <a
+href="http://traminer.unige.ch"
+target="_blank"><code>{TraMineR}</code></a>’s <code>seqrecode</code>
+function. Note that you have to take care of the labels after you
+defined a new sequence object with <code>seqrecode</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the original alphabet</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">alphabet</span>(activity.year.seq)</span></code></pre></div>
@@ -2778,7 +2841,18 @@ Levene     172.45072755   0.001</code></pre>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>                                           <span class="st">&quot;part-time&quot;</span>, <span class="st">&quot;full-time&quot;</span>,</span>
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>                                           <span class="st">&quot;parental leave&quot;</span>, <span class="st">&quot;other&quot;</span>)</span></code></pre></div>
 </div>
-<p>The regression tree shown in <strong>Figure 6.1</strong> is based on a regression tree analysis done with <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineR}</code></a>’s <code>seqtree</code>. The function requires to specify a regression like formula (<code>activity.year.seq2 ~ east + sex + highschool</code>) and a dissimilarity matrix (<code>activity.year.om2</code>) telling it which variables should be considered for partitioning a given sequence object. The function offers several opportunities to set cut-off criteria restricting the further growth of the tree. In the example below we restrict the depth of the tree to three (<code>max.depth = 3</code>), i.e. to branches with a maximum of two splits of the starting partition (the original sequence object).</p>
+<p>The regression tree shown in <strong>Figure 6.1</strong> is based on
+a regression tree analysis done with <a href="http://traminer.unige.ch"
+target="_blank"><code>{TraMineR}</code></a>’s <code>seqtree</code>. The
+function requires to specify a regression like formula
+(<code>activity.year.seq2 ~ east + sex + highschool</code>) and a
+dissimilarity matrix (<code>activity.year.om2</code>) telling it which
+variables should be considered for partitioning a given sequence object.
+The function offers several opportunities to set cut-off criteria
+restricting the further growth of the tree. In the example below we
+restrict the depth of the tree to three (<code>max.depth = 3</code>),
+i.e. to branches with a maximum of two splits of the starting partition
+(the original sequence object).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute dissimilarity matrix required as input for regression tree</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>activity.year.om2 <span class="ot">&lt;-</span> <span class="fu">seqdist</span>(activity.year.seq2, </span>
@@ -2810,7 +2884,17 @@ Levene     172.45072755   0.001</code></pre>
                    |-- &lt;= 0    (n: 295 disc: 11.353)[(EDU,2)-(FT,16)-(PLEAVE,3)-(PT,1)] * 
                    |-- &gt; 0    (n: 226 disc: 10.681)[(EDU,8)-(FT,10)-(PLEAVE,1)-(PT,3)] * </code></pre>
 </div>
-<p>Although, the printed tree provides a lot of information a graphical visualization of the tree is more appealing and insightful. The visualization can be rendered with the function <code>seqtreedisplay</code> and the open source graph visualization software <a href="https://graphviz.org/" target="_blank">GraphViz</a>. Once you have downloaded and installed GraphViz it can be used by <code>seqtreedisplay</code>. It might be necessary, however, to inform the function where to find GraphViz on your computer (<code>gvpath</code>-argument of <code>seqtreedisplay</code>). In the following code chunk we first define the <code>GraphViz</code> path and then render the graph.</p>
+<p>Although, the printed tree provides a lot of information a graphical
+visualization of the tree is more appealing and insightful. The
+visualization can be rendered with the function
+<code>seqtreedisplay</code> and the open source graph visualization
+software <a href="https://graphviz.org/" target="_blank">GraphViz</a>.
+Once you have downloaded and installed GraphViz it can be used by
+<code>seqtreedisplay</code>. It might be necessary, however, to inform
+the function where to find GraphViz on your computer
+(<code>gvpath</code>-argument of <code>seqtreedisplay</code>). In the
+following code chunk we first define the <code>GraphViz</code> path and
+then render the graph.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify GraphViz directory</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>graphviz.dir <span class="ot">&lt;-</span> <span class="st">&quot;C:/Program Files/GraphViz&quot;</span></span>

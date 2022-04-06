@@ -2396,7 +2396,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
   <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
   <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
   <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
@@ -2473,7 +2473,8 @@ Material for R
 <h1>Measuring Associations Between Sequences and Covariates II</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Chapter 6.2.2 Bayesian Information Criterion and the Likelihood Ratio Test</p></p>
+<p><p>Chapter 6.2.2 Bayesian Information Criterion and the Likelihood
+Ratio Test</p></p>
 </div>
 
 
@@ -2486,9 +2487,16 @@ Material for R
 <strong>Click here to get instructions…</strong>
 </summary>
 <ul>
-<li>Please download and unzip the replication files for Chapter 6 (<a href="source/Chapter06.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter06.zip</a>).</li>
-<li>Read <code>readme.html</code> and run <code>6-0_ChapterSetup.R</code>. This will create <code>6-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to produce the table shown at the bottom of this page.</li>
-<li>We also recommend to load the libraries listed in the Chapter 6’s <code>LoadInstallPackages.R</code></li>
+<li>Please download and unzip the replication files for Chapter 6 (<a
+href="source/Chapter06.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg>
+Chapter06.zip</a>).</li>
+<li>Read <code>readme.html</code> and run
+<code>6-0_ChapterSetup.R</code>. This will create
+<code>6-0_ChapterSetup.RData</code> in the sub folder
+<code>data/R</code>. This file contains the data required to produce the
+table shown at the bottom of this page.</li>
+<li>We also recommend to load the libraries listed in the Chapter 6’s
+<code>LoadInstallPackages.R</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming you are working within .Rproj environment</span></span>
@@ -2503,9 +2511,23 @@ Material for R
 </details>
 <p><br />
 </p>
-<p><strong>Table 6.4</strong> in Chapter 6.2.2 presents group comparisons based on a discrepancy analysis and an alternative approach recently proposed by Liao and Fasang <span class="citation" data-cites="LiaoFasang2021">(<a href="#ref-LiaoFasang2021" role="doc-biblioref"><strong>LiaoFasang2021?</strong></a>)</span>. In this example we examine the labor market trajectories stored in <code>activity.year.seq</code>. The group comparisons are using dummy variables stored in <code>activity</code>: <code>east</code> (living in East vs West Germany), <code>sex</code> (male vs. female), <code>highschool</code> (at least highschool degree: yes vs. no).</p>
-<p>The analysis are done with <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineR}</code></a>’s <code>dissassoc</code> function and the <code>seqCompare</code> function from the <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineRextras}</code></a> package.</p>
-<p>In the book we present the following table (note that we highlighted one line we are going to elborate on in the following paragraphs):</p>
+<p><strong>Table 6.4</strong> in Chapter 6.2.2 presents group
+comparisons based on a discrepancy analysis and an alternative approach
+recently proposed by Liao and Fasang <span class="citation"
+data-cites="LiaoFasang2021">(<a href="#ref-LiaoFasang2021"
+role="doc-biblioref"><strong>LiaoFasang2021?</strong></a>)</span>. In
+this example we examine the labor market trajectories stored in
+<code>activity.year.seq</code>. The group comparisons are using dummy
+variables stored in <code>activity</code>: <code>east</code> (living in
+East vs West Germany), <code>sex</code> (male vs. female),
+<code>highschool</code> (at least highschool degree: yes vs. no).</p>
+<p>The analysis are done with <a href="http://traminer.unige.ch"
+target="_blank"><code>{TraMineR}</code></a>’s <code>dissassoc</code>
+function and the <code>seqCompare</code> function from the <a
+href="http://traminer.unige.ch"
+target="_blank"><code>{TraMineRextras}</code></a> package.</p>
+<p>In the book we present the following table (note that we highlighted
+one line we are going to elborate on in the following paragraphs):</p>
 <div class="layout-chunk" data-layout="l-body">
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -2799,9 +2821,39 @@ East
 </tbody>
 </table>
 </div>
-<p>Obviously, the table includes a lot of group comparisons and it would require a lot of repetitive coding if each single comparisons would be explicitly spelled out. For that reason, we were using <a href="https://purrr.tidyverse.org/" target="_blank"><code>{purrr}</code></a>’s <code>map</code> function to to do the comparisons within loops. We also wrote several lines of code for extracting and formatting the results to be displayed in a nice table using <code>{knitr}</code>’s <code>kable</code> and the <code>{kableExtra}</code> package. In the accompanying script file <code>6-2_Table_6-4_Discrepancies-BIC.R</code> stored in <a href="source/Chapter06.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter06.zip</a>) you can find the full code required to produce the table shown above.</p>
-<p>On this page, however, we do not further elaborate on all these technicalities and rather focus on briefly showcasing the plain <a href="http://traminer.unige.ch" target="_blank"><code>{TraMineR}</code></a> commands required to obtain the results shown in the table. As you see, this does not require a lot of coding:</p>
-<p>We illustrate the procedure by calling the functions required to obtain the figures shown in the highlighted row of table displayed above. The functions <code>dissassoc</code> and <code>seqCompare</code>are easy to use. The most “tricky” part for R novices is probably to apply the functions to the correct subset of the data. In our example we are interested in the question of whether the sequences of East German women are systematically different from the sequences of their West German counterparts. Hence, our analysis have to be restricted to women. While our sequences are stored in the object <code>activity.year.seq</code> any further information characterizing the individual who experience these sequences is stored in the dataframe <code>activity</code>. We start our analysis by inspecting how many women reside in East and West Germany. (<code>table(activity$east[activity$sex==1])</code>).</p>
+<p>Obviously, the table includes a lot of group comparisons and it would
+require a lot of repetitive coding if each single comparisons would be
+explicitly spelled out. For that reason, we were using <a
+href="https://purrr.tidyverse.org/"
+target="_blank"><code>{purrr}</code></a>’s <code>map</code> function to
+to do the comparisons within loops. We also wrote several lines of code
+for extracting and formatting the results to be displayed in a nice
+table using <code>{knitr}</code>’s <code>kable</code> and the
+<code>{kableExtra}</code> package. In the accompanying script file
+<code>6-2_Table_6-4_Discrepancies-BIC.R</code> stored in <a
+href="source/Chapter06.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg>
+Chapter06.zip</a>) you can find the full code required to produce the
+table shown above.</p>
+<p>On this page, however, we do not further elaborate on all these
+technicalities and rather focus on briefly showcasing the plain <a
+href="http://traminer.unige.ch"
+target="_blank"><code>{TraMineR}</code></a> commands required to obtain
+the results shown in the table. As you see, this does not require a lot
+of coding:</p>
+<p>We illustrate the procedure by calling the functions required to
+obtain the figures shown in the highlighted row of table displayed
+above. The functions <code>dissassoc</code> and
+<code>seqCompare</code>are easy to use. The most “tricky” part for R
+novices is probably to apply the functions to the correct subset of the
+data. In our example we are interested in the question of whether the
+sequences of East German women are systematically different from the
+sequences of their West German counterparts. Hence, our analysis have to
+be restricted to women. While our sequences are stored in the object
+<code>activity.year.seq</code> any further information characterizing
+the individual who experience these sequences is stored in the dataframe
+<code>activity</code>. We start our analysis by inspecting how many
+women reside in East and West Germany.
+(<code>table(activity$east[activity$sex==1])</code>).</p>
 <div class="layout-chunk" data-layout="l-body">
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -2833,7 +2885,9 @@ East Germany
 </tbody>
 </table>
 </div>
-<p>We then proceed by generating a logical vector (<code>women</code>) indicating which of the 1027 rows of <code>activity</code> is referring to a female respondent.</p>
+<p>We then proceed by generating a logical vector (<code>women</code>)
+indicating which of the 1027 rows of <code>activity</code> is referring
+to a female respondent.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>women <span class="ot">&lt;-</span> activity<span class="sc">$</span>sex<span class="sc">==</span><span class="dv">1</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2856,8 +2910,26 @@ East Germany
 10 1 [Female] TRUE 
 # ... with 1,017 more rows</code></pre>
 </div>
-<p>We use this vector to subset women from the dissimilarity matrix <code>activity.year.om</code>, the sequence object <code>activity.year.seq</code> and the vector <code>activity$east</code> when we call <code>dissassoc</code> and <code>seqCompare</code>. Note that subsetting the pairwise distance matrix requires to extract the correct rows <strong>and</strong> columns <code>[women,women]</code>, while subsetting <code>activity.year.seq</code> only requires to extract the desired rows <code>[women, ]</code>.</p>
-<p>Below we compute the values shown in the table. While the discrepancy analysis requires a dissimilarity matrix (<code>activity.year.om[women,women]</code>) as an input, <code>seqCompare</code> computes the dissimilarity matrix on its own and requires a sequence object (<code>activity.year.seq[women,]</code>) and instructions on how to compute the distances (<code>method="OM", sm="CONSTANT"</code>) as an input. If you want to compare the results of the two approaches, the distances should be computed with the same method. Both functions require a vector (<code>activity$east[women]</code>)specifying the groups to be compared. Note that <code>seqCompare</code> currently only accepts a dichotomous grouping indicator.</p>
+<p>We use this vector to subset women from the dissimilarity matrix
+<code>activity.year.om</code>, the sequence object
+<code>activity.year.seq</code> and the vector <code>activity$east</code>
+when we call <code>dissassoc</code> and <code>seqCompare</code>. Note
+that subsetting the pairwise distance matrix requires to extract the
+correct rows <strong>and</strong> columns <code>[women,women]</code>,
+while subsetting <code>activity.year.seq</code> only requires to extract
+the desired rows <code>[women, ]</code>.</p>
+<p>Below we compute the values shown in the table. While the discrepancy
+analysis requires a dissimilarity matrix
+(<code>activity.year.om[women,women]</code>) as an input,
+<code>seqCompare</code> computes the dissimilarity matrix on its own and
+requires a sequence object (<code>activity.year.seq[women,]</code>) and
+instructions on how to compute the distances
+(<code>method="OM", sm="CONSTANT"</code>) as an input. If you want to
+compare the results of the two approaches, the distances should be
+computed with the same method. Both functions require a vector
+(<code>activity$east[women]</code>)specifying the groups to be compared.
+Note that <code>seqCompare</code> currently only accepts a dichotomous
+grouping indicator.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>discr.region <span class="ot">&lt;-</span> <span class="fu">dissassoc</span>(activity.year.om[women,women], </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> activity<span class="sc">$</span>east[women])</span>
@@ -2866,7 +2938,10 @@ East Germany
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">group =</span> activity<span class="sc">$</span>east[women],</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">method=</span><span class="st">&quot;OM&quot;</span>, <span class="at">sm=</span><span class="st">&quot;CONSTANT&quot;</span>)</span></code></pre></div>
 </div>
-<p>The output of <code>seqCompare</code> is quite parsimonious. For <strong>Table 6.4</strong> we extracted the p-value (<code>bic.region[,2]</code>) and the BIC difference (<code>bic.region[,3]</code>)</p>
+<p>The output of <code>seqCompare</code> is quite parsimonious. For
+<strong>Table 6.4</strong> we extracted the p-value
+(<code>bic.region[,2]</code>) and the BIC difference
+(<code>bic.region[,3]</code>)</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bic.region <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
@@ -2913,8 +2988,19 @@ Bayes Factor (From Avg BIC)
 </tbody>
 </table>
 </div>
-<p><code>dissassoc</code>, on the other hand, produces quite a lot of output which can be stored as a list object. The results shown in the table are the total number of cases (<code>discr.region$groups[3,1]</code>), the pseudo-<span class="math inline">\(R^2\)</span> (<code>discr.region$stat[3,1]</code>), and the corresponding p-value (<code>discr.region$stat[3,2]</code>).</p>
-<p>We close this section double checking if the subsetting worked as intended by inspecting the case numbers stored in <code>discr.region$groups</code>. The first row refers to East German women and the second one to West German women. The case numbers are as expected (see frequency table above). Hence, we can be confident that we achieved what we wanted.</p>
+<p><code>dissassoc</code>, on the other hand, produces quite a lot of
+output which can be stored as a list object. The results shown in the
+table are the total number of cases
+(<code>discr.region$groups[3,1]</code>), the pseudo-<span
+class="math inline">\(R^2\)</span>
+(<code>discr.region$stat[3,1]</code>), and the corresponding p-value
+(<code>discr.region$stat[3,2]</code>).</p>
+<p>We close this section double checking if the subsetting worked as
+intended by inspecting the case numbers stored in
+<code>discr.region$groups</code>. The first row refers to East German
+women and the second one to West German women. The case numbers are as
+expected (see frequency table above). Hence, we can be confident that we
+achieved what we wanted.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(discr.region<span class="sc">$</span>groups) <span class="sc">%&gt;%</span> </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable_styling</span>(<span class="at">full_width =</span><span class="cn">FALSE</span>) </span></code></pre></div>
@@ -2968,7 +3054,12 @@ Total
 </tbody>
 </table>
 </div>
-<p>For the more complex subsetting including all groups shown in <strong>Table 6.4</strong> we refer you to the script <code>6-2_Table_6-4_Discrepancies-BIC.R</code>. There we also illustrate how to extract, arrange, and format the outputs from <code>dissassoc</code> and <code>seqCompare</code> to produce the table shown at the beginning of this page.</p>
+<p>For the more complex subsetting including all groups shown in
+<strong>Table 6.4</strong> we refer you to the script
+<code>6-2_Table_6-4_Discrepancies-BIC.R</code>. There we also illustrate
+how to extract, arrange, and format the outputs from
+<code>dissassoc</code> and <code>seqCompare</code> to produce the table
+shown at the beginning of this page.</p>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

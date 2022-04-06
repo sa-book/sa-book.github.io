@@ -2395,7 +2395,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
   <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
   <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
   <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
@@ -2477,7 +2477,8 @@ Material for R
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#defining-a-state-sequence-object">Defining a state sequence object</a></li>
+<li><a href="#defining-a-state-sequence-object">Defining a state
+sequence object</a></li>
 <li><a href="#sequence-data-notation">Sequence data notation</a></li>
 </ul>
 </nav>
@@ -2490,10 +2491,15 @@ Material for R
 <strong>Click here to get instructions…</strong>
 </summary>
 <ul>
-<li>Please download and unzip the replication files for Chapter 2 (<a href="source/Chapter02.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter02.zip</a>).</li>
+<li>Please download and unzip the replication files for Chapter 2 (<a
+href="source/Chapter02.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg>
+Chapter02.zip</a>).</li>
 <li>Read <code>readme.html</code></li>
-<li>You don’t have to run <code>2-0_ChapterSetup.R</code> for this tutorial because we start with importing the raw data stored in the .dta format (Stata)</li>
-<li>We also recommend to load the libraries listed in the Chapter 2’s <code>LoadInstallPackages.R</code></li>
+<li>You don’t have to run <code>2-0_ChapterSetup.R</code> for this
+tutorial because we start with importing the raw data stored in the .dta
+format (Stata)</li>
+<li>We also recommend to load the libraries listed in the Chapter 2’s
+<code>LoadInstallPackages.R</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming you are working within .Rproj environment</span></span>
@@ -2503,10 +2509,21 @@ Material for R
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">&quot;source&quot;</span>, <span class="st">&quot;LoadInstallPackages.R&quot;</span>))</span></code></pre></div>
 </div>
 </details>
-<p>In chapter 2.1, we introduce different notations of sequence data using example data on family biographies from age 18 to 40. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see <a href="https://www.pairfam.de/en/" target="_blank">here</a>.</p>
-<h2 id="defining-a-state-sequence-object">Defining a state sequence object</h2>
-<p>We generated the example dataset in Stata. Next to the sequence variables it comprises a few additional variables which will be used to analyze the sequences in later chapters.</p>
-<p>We import the data to R using the <code>read_dta</code> function from the <a href="https://haven.tidyverse.org/index.html" target="_blank"><code>{haven}</code></a> package and inspect the names of the imported variables.</p>
+<p>In chapter 2.1, we introduce different notations of sequence data
+using example data on family biographies from age 18 to 40. The data
+come from a sub-sample of the German Family Panel - pairfam. For further
+information on the study and on how to access the full scientific use
+file see <a href="https://www.pairfam.de/en/"
+target="_blank">here</a>.</p>
+<h2 id="defining-a-state-sequence-object">Defining a state sequence
+object</h2>
+<p>We generated the example dataset in Stata. Next to the sequence
+variables it comprises a few additional variables which will be used to
+analyze the sequences in later chapters.</p>
+<p>We import the data to R using the <code>read_dta</code> function from
+the <a href="https://haven.tidyverse.org/index.html"
+target="_blank"><code>{haven}</code></a> package and inspect the names
+of the imported variables.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>family <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;Stata&quot;</span>, <span class="st">&quot;PartnerBirthbio.dta&quot;</span>))</span></code></pre></div>
@@ -2612,7 +2629,12 @@ Material for R
 </div>
 </div>
 <p> </p>
-<p>The sequence variables begin with the prefix <code>state</code>. The data comprise 264 sequence variables per person (wide data format). These variables include monthly information on family biographies covering a period of 22 years. Haven imports them as numeric variables with labels attached to them (<code>class = "haven_labelled"</code>). With the follwing commands we can take a look at the labels.</p>
+<p>The sequence variables begin with the prefix <code>state</code>. The
+data comprise 264 sequence variables per person (wide data format).
+These variables include monthly information on family biographies
+covering a period of 22 years. Haven imports them as numeric variables
+with labels attached to them (<code>class = "haven_labelled"</code>).
+With the follwing commands we can take a look at the labels.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(family<span class="sc">$</span>state1) </span></code></pre></div>
 <pre><code> dbl+lbl [1:1866] 5, 1, 5, 1, 3, 3, 1, 3, 1, 1, 1, 1, 1, 3, 1, 1,...
@@ -2627,7 +2649,12 @@ Material for R
      Married, no child       Married, 1 child   Married, 2+ children 
                      7                      8                      9 </code></pre>
 </div>
-<p>The first examples in the book are based on sequences with a reduced alphabet only distinguishing partnership states. The following code generates a data set (<code>seqvars.partner</code>) containing the recoded sequence variables using <a href="https://dplyr.tidyverse.org/index.html" target="_blank"><code>{dplyr}</code></a>.</p>
+<p>The first examples in the book are based on sequences with a reduced
+alphabet only distinguishing partnership states. The following code
+generates a data set (<code>seqvars.partner</code>) containing the
+recoded sequence variables using <a
+href="https://dplyr.tidyverse.org/index.html"
+target="_blank"><code>{dplyr}</code></a>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extracting and recoding the sequence variables (which all start with state)</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># recode to reduced state space capturing partnership status only </span></span>
@@ -2639,7 +2666,12 @@ Material for R
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    . <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">6</span>) <span class="sc">~</span> <span class="dv">3</span>,    <span class="co"># Cohabiting</span></span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    . <span class="sc">&gt;</span> <span class="dv">6</span> <span class="sc">~</span> <span class="dv">4</span>,)))         <span class="co"># Married</span></span></code></pre></div>
 </div>
-<p>Then we define two vectors storing the long and short labels for the states in the newly defined alphabet. Once that is done, we can define the data as a state sequence object. Most <a href="http://traminer.unige.ch/" target="_blank"><code>{TraMineR}</code></a> functions for analyzing sequences require the data to have this format.</p>
+<p>Then we define two vectors storing the long and short labels for the
+states in the newly defined alphabet. Once that is done, we can define
+the data as a state sequence object. Most <a
+href="http://traminer.unige.ch/"
+target="_blank"><code>{TraMineR}</code></a> functions for analyzing
+sequences require the data to have this format.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>shortlab.partner <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;S&quot;</span>, <span class="st">&quot;LAT&quot;</span>, <span class="st">&quot;COH&quot;</span>, <span class="st">&quot;MAR&quot;</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>longlab.partner <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">&quot;Single&quot;</span>, <span class="st">&quot;LAT&quot;</span>, <span class="st">&quot;Cohabiting&quot;</span>, <span class="st">&quot;Married&quot;</span>)</span>
@@ -2650,10 +2682,19 @@ Material for R
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">states =</span> shortlab.partner,</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                            <span class="at">weights =</span> family<span class="sc">$</span>weight40)</span></code></pre></div>
 </div>
-<p>Note that the <code>seqdef</code> function can include many more optional arguments. Some of these arguments - most importantly <code>cpal</code> - affect the appearance of state sequence plots rendered with <code>seqplot</code> or <code>seqplot.rf</code>. We cover the definition of color palettes on two separate pages (<a href="rChapter2-4_color.html">definition of color palettes</a>; <a href="rChapter2-4_grayscale.html">definition of grayscale palettes</a>)</p>
+<p>Note that the <code>seqdef</code> function can include many more
+optional arguments. Some of these arguments - most importantly
+<code>cpal</code> - affect the appearance of state sequence plots
+rendered with <code>seqplot</code> or <code>seqplot.rf</code>. We cover
+the definition of color palettes on two separate pages (<a
+href="rChapter2-4_color.html">definition of color palettes</a>; <a
+href="rChapter2-4_grayscale.html">definition of grayscale
+palettes</a>)</p>
 <p> </p>
 <h2 id="sequence-data-notation">Sequence data notation</h2>
-<p>In chapter 2.1, we introduce different notations for printing sequences. The following commands print the sequences in <em>STS</em>, <em>DSS</em>, and <em>SPS</em> format.</p>
+<p>In chapter 2.1, we introduce different notations for printing
+sequences. The following commands print the sequences in <em>STS</em>,
+<em>DSS</em>, and <em>SPS</em> format.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(partner.month.seq[<span class="dv">8</span>, ], <span class="at">format =</span> <span class="st">&quot;STS&quot;</span>)</span></code></pre></div>
 <pre><code>  Sequence                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
