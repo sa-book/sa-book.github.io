@@ -59,7 +59,7 @@ In chapter 4.2, we apply hierarchical and partitional clustering to family forma
 
 ## Hierarchical clustering: Ward’s linkage
 
-We apply a hierarchical cluster analysis by using the command ?hclust to the dissimilarity matrix partner.child.year.om for the family formation sequences, computed based on OM with `indel`=1 and substitution=2. With use non-squared dissimilarities (see the `method` option) and weights (see the `members` option, where we have to specify to which `data.frame` the vector with the weights belongs to). 
+We apply a hierarchical cluster analysis by using the command ?hclust to the dissimilarity matrix partner.child.year.om for the family formation sequences, computed based on OM with `indel`=1 and substitution=2. We use non-squared dissimilarities (see the `method` option) and weights (see the `members` option, where we have to specify to which `data.frame` the vector with the weights belongs to). 
 
 ```{r, eval=TRUE, echo=TRUE}
 fam.ward1 <- hclust(as.dist(partner.child.year.om), 
@@ -269,7 +269,7 @@ Among the many options for visualization introduced in Chapter 2, we use the rel
 source(here("source", "rfplotsleft.R"))
 ```
 
-Notice that we recommend do always display the distance-to-medoid plot for each cluster at least in the appendix of your article: an example of this can be found in [`Struffolino and Van Winkle 2021`](https://doi.org/10.1016/j.ssresearch.2021.102585){target="_blank"} (open-access version [here](https://osf.io/preprints/socarxiv/b2qpu/){target="_blank"}).
+Notice that we recommend to always display the distance-to-medoid plot for each cluster at least in the appendix of your article: an example of this can be found in [`Struffolino and Van Winkle 2021`](https://doi.org/10.1016/j.ssresearch.2021.102585){target="_blank"} (open-access version [here](https://osf.io/preprints/socarxiv/b2qpu/){target="_blank"}).
 
 For a nice display of the clusters using the sourced code "rfplotsleft.R", we first generate separate objects containing the sequences allocated to each clusters:
 
@@ -389,7 +389,7 @@ include_graphics("images/Chapter4/4-2-2_Fig4-5_5clusterSolution_colors.png")
 
 ## Visualizing clustering options with MDS
 
-We use the ?cmdscale to calculate the multidimensional scaling of the dissimilarity matrix partner.child.year.om. We  the `k` option (the maximum dimension of the space which the data are to be represented in) at 2:
+We use the `?cmdscale` to calculate the multidimensional scaling of the dissimilarity matrix partner.child.year.om. We  the `k` option (the maximum dimension of the space which the data are to be represented in) at 2:
 
 ```{r, eval=TRUE, echo=TRUE}
 mds.year.om<-cmdscale(partner.child.year.om, k = 2)
@@ -416,7 +416,7 @@ mds_pam <- mds_pam$clustering
 mds_pam <- car::recode(mds_pam, "156=1; 985=2; 1735=3")
 ```
 
-We can now use the objects mds.year.om, mds_ward, mds_pam to visualize the distrubution of the sequences in the samples by cluster (extracted by using two different clustering method) in a bi-dimensional space.
+We can now use the objects mds.year.om, mds_ward, mds_pam to visualize the distribution of the sequences in the samples by cluster (extracted by using two different clustering method) in a bi-dimensional space.
 
 ```{r, eval=FALSE, echo=TRUE}
 

@@ -18,8 +18,8 @@ knitr::opts_chunk$set(echo = FALSE)
 | 5.1	Accounting for simultaneous temporal processes                   | [No code for this section] |
 | 5.2	Expanding the alphabet                                           |  [no code for this section] |
 | 5.3	Cross-tabulation of groups from different dissimilarity matrices |  [Cross-tabulation of clusters](rChapter5-3.html) |
-| 3.4 Combine domain-specific dissimilarities                          | [Summation and averaging](rChapter5-4.html) |
-| 3.5	Multichannel sequence analysis                                   | [Dissimilarity matrix and clustering](rChapter5-6.html) | 
+| 5.4 Combine domain-specific dissimilarities                          | [Summation and averaging](rChapter5-4.html) |
+| 5.5	Multichannel sequence analysis                                   | [Dissimilarity matrix and clustering](rChapter5-5.html) | 
 
 
 This chapter introduces the idea of multidimensional sequence analysis. We present different options to account for parallel temporal processes using sequence analysis. As an illustrative example, we consider the case of family formation and labor market trajectories. 

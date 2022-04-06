@@ -59,7 +59,7 @@ In chapter 4.1, we introduce crisp/hard clustering algorithms and cluster qualit
 
 ## Crisp (or hard) clustering algorithms
 
-We apply a hierarchical cluster analysis by using the command ?hclust to the dissimilarity matrix partner.child.year.om for the family formation sequences, computed based on OM with `indel`=1 and substitution=2. With use non-squared dissimilarities (see the `method` option) and weights (see the `members` option, where we have to specify to which `data.frame` the vector with the weights belongs to). 
+We apply a hierarchical cluster analysis by using the command ?hclust to the dissimilarity matrix partner.child.year.om for the family formation sequences, computed based on OM with `indel`=1 and substitution=2. We use non-squared dissimilarities (see the `method` option) and weights (see the `members` option, where we have to specify to which `data.frame` the vector with the weights belongs to). 
 
 ```{r, eval=TRUE, echo=TRUE}
 fam.ward1 <- hclust(as.dist(partner.child.year.om), 

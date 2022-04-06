@@ -19,7 +19,7 @@ source(here("source", "load_libraries.R"))
 
 Below you find the data and R scripts to replicate all examples from the book. The material was created using R (`version 4.1.2`) and RStudio (`version 2021.09.0+351`).
 
-The files in each zip file are organized in a chapter-specific RStudio project and we use relative paths when referring to the different directories. The top-level directory (reference point for the relative paths) contains most R-Scripts and the `.Rproj` file which can be used to open the project in RStudio. If you change the directory structure or the names of directories you might need adjust the scripts accordingly. It might be also necessary to install additional libraries and (free) software to run some the scripts. 
+The files in each zip file are organized in a chapter-specific RStudio project and we use relative paths when referring to the different directories. The top-level directory (reference point for the relative paths) contains most R-Scripts and the `.Rproj` file which can be used to open the project in RStudio. If you change the directory structure or the names of directories, you need to adjust the scripts accordingly. It might be also necessary to install additional libraries and (free) software to run some the scripts. 
 
 <style>
 div.green {background-color:#8DCEA4; border-radius: 5px; padding: 20px;}
@@ -30,7 +30,7 @@ div.green {background-color:#8DCEA4; border-radius: 5px; padding: 20px;}
 
 <p></p>
 
-Please note that this website also contains additional material providing commented code and instructions as well as some bonus material introducing further examples and analytical tools. To access this material please turn to the chapter-specific sub.pages. 
+Please note that this website also contains additional material providing commented code and instructions as well as some bonus material introducing further examples and analytical tools. To access this material please turn to the chapter-specific sub-pages. 
 
 <br>
 
@@ -60,9 +60,9 @@ The data for examples come from the German Family Panel (pairfam), release 10.0 
 
 We gratefully acknowledge the permission of the pairfam team to share a reduced version of their data to illustrate all techniques presented in the book with real-world survey data.
 
-If you are interested in using the complete data sets please turn to: <https://www.pairfam.de/en/>
+If you are interested in using the complete data sets, please turn to: <https://www.pairfam.de/en/>
 
 
 ## How to cite
 
-If you are re-using our code for your own projects we kindly ask you to cite our book.
+If you are re-using our code for your own projects, we kindly ask you to cite our book.

@@ -2535,7 +2535,7 @@ Ward’s linkage</h2>
 <p>We apply a hierarchical cluster analysis by using the command ?hclust
 to the dissimilarity matrix partner.child.year.om for the family
 formation sequences, computed based on OM with <code>indel</code>=1 and
-substitution=2. With use non-squared dissimilarities (see the
+substitution=2. We use non-squared dissimilarities (see the
 <code>method</code> option) and weights (see the <code>members</code>
 option, where we have to specify to which <code>data.frame</code> the
 vector with the weights belongs to).</p>
@@ -2775,7 +2775,7 @@ following code:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">&quot;source&quot;</span>, <span class="st">&quot;rfplotsleft.R&quot;</span>))</span></code></pre></div>
 </div>
-<p>Notice that we recommend do always display the distance-to-medoid
+<p>Notice that we recommend to always display the distance-to-medoid
 plot for each cluster at least in the appendix of your article: an
 example of this can be found in <a
 href="https://doi.org/10.1016/j.ssresearch.2021.102585"
@@ -2899,10 +2899,10 @@ see in the code below:</p>
 </div>
 <h2 id="visualizing-clustering-options-with-mds">Visualizing clustering
 options with MDS</h2>
-<p>We use the ?cmdscale to calculate the multidimensional scaling of the
-dissimilarity matrix partner.child.year.om. We the <code>k</code> option
-(the maximum dimension of the space which the data are to be represented
-in) at 2:</p>
+<p>We use the <code>?cmdscale</code> to calculate the multidimensional
+scaling of the dissimilarity matrix partner.child.year.om. We the
+<code>k</code> option (the maximum dimension of the space which the data
+are to be represented in) at 2:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>mds.year.om<span class="ot">&lt;-</span><span class="fu">cmdscale</span>(partner.child.year.om, <span class="at">k =</span> <span class="dv">2</span>)</span></code></pre></div>
 </div>
@@ -2928,7 +2928,7 @@ procedure presented in detail above.</p>
 <span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>mds_pam <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(mds_pam, <span class="st">&quot;156=1; 985=2; 1735=3&quot;</span>)</span></code></pre></div>
 </div>
 <p>We can now use the objects mds.year.om, mds_ward, mds_pam to
-visualize the distrubution of the sequences in the samples by cluster
+visualize the distribution of the sequences in the samples by cluster
 (extracted by using two different clustering method) in a bi-dimensional
 space.</p>
 <div class="layout-chunk" data-layout="l-body">
