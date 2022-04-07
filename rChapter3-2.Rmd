@@ -85,19 +85,19 @@ ch3.ex1.seq
 
 ## Optimal matching (OM)
 
-In this case sequences are short and few in number, so that we immediately recognize that they are not the identical In case of longer and more complex sequences, one might want to know if two sequences are the identical but doing that visually might not be feasible. The following code allows you to do that as it returns [TRUE] if the sequences are the same and [FALSE] if they are not. In this case we compare sequence 1 and 2 above:
+In this case sequences are short and few in number, so that we immediately recognize that they are not the identical. In case of longer and more complex sequences, one might want to know if two sequences are the identical but doing that visually might not be feasible. The following code allows you to do that as it returns [TRUE] if the sequences are the same and [FALSE] if they are not. In this case we compare sequence 1 and 2 above:
 
 ```{r, eval=TRUE, echo=TRUE}
 seqcomp(ch3.ex1.seq[1,],ch3.ex1.seq[2,])
 ```
 
-However, the two sequences might have some similarity although they are not exaclty the same. To obtain the number of matching positions between the two sequences, we can use the code: 
+However, the two sequences might have some similarity even if they are not exactly the same. To obtain the number of matching positions between the two sequences, we can use the code: 
 
 ```{r, eval=TRUE, echo=TRUE}
 seqmpos(ch3.ex1.seq[1,],ch3.ex1.seq[2,])
 ```
 
-We now know that sequence 1 and sequence 2 shares 3 matching positions.
+We now know that sequence 1 and sequence 2 share 3 matching positions.
 
 Alternatively, we can compute the length of the longest common subsequence (elements composed of tokens - states and combinations of subsequent states - that occur in the same order along the sequence) of two sequences:
 
@@ -105,9 +105,13 @@ Alternatively, we can compute the length of the longest common subsequence (elem
 seqLLCS(ch3.ex1.seq[1,],ch3.ex1.seq[2,])
 ```
 
-We now know that the longest common subsequence between sequence 1 and sequence 2 is 3-elements long.
+We now know that the longest common subsequence between sequence 1 and sequence 2 is 3-element-long.
 
-Aligning them pairwise to make them the same. Optimal Matching (OM) does so by changing the order of the states or the length of a spell. In classical OM applications, alignment can be achieved by conducting two basic operations: insertion/deletion of a state (indel) and substitution of a state with another one. Different combinations of operations are possible to "match" the sequences pairwise. Each operation is assigned a “cost”: the sum of the costs of all operations will be regarded as the degree of dissimilarity between the two sequences. The matching is "optimal" as the algorithm finds the "cheapest" solution to align the sequences given a set of costs for the indel and substitution operations. 
+Aligning them pairwise to make them the same. Optimal Matching (OM) does so by changing the order of the states or the length of a spell. 
+
+<!--
+In classical OM applications, alignment can be achieved by conducting two basic operations: insertion/deletion of a state (indel) and substitution of a state with another one. Different combinations of operations are possible to "match" the sequences pairwise. Each operation is assigned a “cost”: the sum of the costs of all operations will be regarded as the degree of dissimilarity between the two sequences. The matching is "optimal" as the algorithm finds the "cheapest" solution to align the sequences given a set of costs for the indel and substitution operations. 
+-->
 
 In the simplest example possible, both indel and substitution operations can be assigned the same cost of 1 (Levenshtein I). 
 We first generate a substitution costs matrix to be used in the next steps:
@@ -174,7 +178,7 @@ One can display the newly-generated matrix:
 costsL1
 ```
 
-Using the `?seqalign` command we obtain a summary of the optimal number and costs of operations: the OM identifies as the cheapest to align the three sequences pairwise:
+Using the `?seqalign` command we obtain a summary of the optimal number and costs of operations. The OM identifies the following as the cheapest to align the three sequences pairwise:
 
 ```{r, eval=TRUE, echo=TRUE}
 al1.L1 <- seqalign(ch3.ex2.seq, 1:2, indel=1, sm=costsL1)
@@ -191,8 +195,7 @@ al3.L1 <- seqalign(ch3.ex2.seq, 2:3, indel=1, sm=costsL1)
 print(al3.L1)
 ```
 
-We now generate an alternative a substitution costs matrix with the following costs: `indel=1` , `sm=4` - which corresponds to Levenshtein II. Note that
-indel costs are lower than half of the minimum substitution cost, so that only indel operations will be used by the OM.
+We now generate an alternative substitution costs matrix with `sm=4`. Combined with `indel=1` this corresponds to Levenshtein II. Note that indel costs are lower than half of the minimum substitution cost, so that only indel operations will be used by the OM.
 
 ```{r, eval=TRUE, echo=TRUE}
 costsL2 <- matrix(
@@ -209,7 +212,7 @@ One can display the newly-generated matrix:
 costsL2
 ```
 
-Using the `?seqalign` command, we obtain a summary of the optimal number and costs of operations: the OM identifies as the cheapest to align the three sequences pairwise:
+Using the `?seqalign` command, we obtain a summary of the optimal number and costs of operations. The OM identifies the following as the cheapest to align the three sequences pairwise:
 
 ```{r, eval=TRUE, echo=TRUE}
 al1.L2  <- seqalign(ch3.ex2.seq, 1:2, indel=1, sm=costsL2)
@@ -243,7 +246,7 @@ costsHAM <- matrix(
 costsHAM
 ```
 
-Using the `?seqalign` command, we obtain a summary of the optimal number and costs of operations: the OM identifies as the cheapest to align the three sequences pairwise. Note that here we have to specify `indel=4` (very high) just to make sure that the algorithm does not use them as with `seqalign` is not possible to specify directly `dist=HAM`
+Using the `?seqalign` command, we obtain a summary of the optimal number and costs of operations: the OM identifies the following as the cheapest to align the three sequences pairwise. Note that here we have to specify `indel=4` (very high) just to make sure that the algorithm does not use them as with `seqalign` is not possible to specify directly `dist=HAM`
 
 ```{r, eval=TRUE, echo=TRUE}
 al1.HAM <- seqalign(ch3.ex2.seq, 1:2, indel=4, sm=costsHAM)
@@ -260,7 +263,7 @@ al3.HAM <- seqalign(ch3.ex2.seq, 2:3, indel=4, sm=costsHAM)
 print(al3.HAM) 
 ```
 
-We now try the option with the following costs: `indel=1` , `substitution=2` , generating the substitution costs matrix firs:
+We now try the option with the following costs: `indel=1` , `substitution=2`, generating the substitution costs matrix first:
 
 ```{r, eval=TRUE, echo=TRUE}
 costsOMcl <- matrix(
@@ -277,7 +280,7 @@ We display the resulting matrix of substitution costs:
 costsOMcl
 ```
 
-Using the `?seqalign` command, we obtain a summary of the optimal number and costs of operations: the OM identifies as the cheapest to align the three sequences pairwise.
+Using the `?seqalign` command, we obtain a summary of the optimal number and costs of operation.  The OM identifies the following as the cheapest to align the three sequences pairwise.
 
 ```{r, eval=TRUE, echo=TRUE}
 al1.OMcl <- seqalign(ch3.ex2.seq, 1:2, indel=1, sm=costsOMcl)

@@ -2395,7 +2395,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
   <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
   <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
   <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
@@ -2477,8 +2477,7 @@ Material for R
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#crisp-or-hard-clustering-algorithms">Crisp (or hard)
-clustering algorithms</a></li>
+<li><a href="#crisp-or-hard-clustering-algorithms">Crisp (or hard) clustering algorithms</a></li>
 </ul>
 </nav>
 </div>
@@ -2490,20 +2489,10 @@ clustering algorithms</a></li>
 <strong>Click here to get instructions…</strong>
 </summary>
 <ul>
-<li>Please download and unzip the replication files for Chapter 4 (<a
-href="source/Chapter03.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg>
-Chapter04.zip</a>).</li>
-<li>Read <code>readme.html</code> and run
-<code>4-0_ChapterSetup.R</code>. This will create
-<code>4-0_ChapterSetup.RData</code> in the sub folder
-<code>data/R</code>. This file contains the data required to produce the
-plots shown below.</li>
-<li>You also have to add the function <code>legend_large_box</code> to
-your environment in order to render the tweaked version of the legend
-described below. You find this file in the <code>source</code> folder of
-the unzipped Chapter 4 archive.</li>
-<li>We also recommend to load the libraries listed in Chapter 4’s
-<code>LoadInstallPackages.R</code></li>
+<li>Please download and unzip the replication files for Chapter 4 (<a href="source/Chapter03.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter04.zip</a>).</li>
+<li>Read <code>readme.html</code> and run <code>4-0_ChapterSetup.R</code>. This will create <code>4-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to produce the plots shown below.</li>
+<li>You also have to add the function <code>legend_large_box</code> to your environment in order to render the tweaked version of the legend described below. You find this file in the <code>source</code> folder of the unzipped Chapter 4 archive.</li>
+<li>We also recommend to load the libraries listed in Chapter 4’s <code>LoadInstallPackages.R</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming you are working within .Rproj environment</span></span>
@@ -2518,29 +2507,15 @@ the unzipped Chapter 4 archive.</li>
 </details>
 <p><br />
 </p>
-<p>In chapter 4.1, we introduce crisp/hard clustering algorithms and
-cluster quality indeces to be considered when making decisions on the
-number of clusters to extract from the initial sample. The data come
-from a sub-sample of the German Family Panel - pairfam. For further
-information on the study and on how to access the full scientific use
-file see <a href="https://www.pairfam.de/en/"
-target="_blank">here</a>.</p>
-<h2 id="crisp-or-hard-clustering-algorithms">Crisp (or hard) clustering
-algorithms</h2>
-<p>We apply a hierarchical cluster analysis by using the command ?hclust
-to the dissimilarity matrix partner.child.year.om for the family
-formation sequences, computed based on OM with <code>indel</code>=1 and
-substitution=2. We use non-squared dissimilarities (see the
-<code>method</code> option) and weights (see the <code>members</code>
-option, where we have to specify to which <code>data.frame</code> the
-vector with the weights belongs to).</p>
+<p>In chapter 4.1, we introduce crisp/hard clustering algorithms and cluster quality indeces to be considered when making decisions on the number of clusters to extract from the initial sample. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see <a href="https://www.pairfam.de/en/" target="_blank">here</a>.</p>
+<h2 id="crisp-or-hard-clustering-algorithms">Crisp (or hard) clustering algorithms</h2>
+<p>We apply a hierarchical cluster analysis by using the command <code>?hclust</code> to the dissimilarity matrix <code>partner.child.year.om</code> for the family formation sequences, computed based on OM with <code>indel</code>=1 and <code>sm</code>=2. We use non-squared dissimilarities (see the <code>method</code> option) and weights (see the <code>members</code> option, where we have to specify to which <code>data.frame</code> the vector with the weights belongs to).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fam.ward1 <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="fu">as.dist</span>(partner.child.year.om), </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">method =</span> <span class="st">&quot;ward.D&quot;</span>, </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">members =</span> family<span class="sc">$</span>weight40)</span></code></pre></div>
 </div>
-<p>The nested structure emerging from the hierarchical clustering
-algorithm can be displayed using a dendrogram:</p>
+<p>The nested structure emerging from the hierarchical clustering algorithm can be displayed using a dendrogram:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">3</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fam.ward1, <span class="at">labels =</span> <span class="cn">FALSE</span>, </span>

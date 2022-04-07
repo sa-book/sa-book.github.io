@@ -2395,7 +2395,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
   <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
   <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
   <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
@@ -2477,15 +2477,9 @@ Material for R
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a
-href="#preparatory-work-computing-the-dissimilarity-matrices-to-be-compared">Preparatory
-work: computing the dissimilarity matrices to be compared</a></li>
-<li><a
-href="#correlation-between-the-different-dissimilarity-matrices">Correlation
-between the different dissimilarity matrices</a></li>
-<li><a
-href="#correlation-between-the-different-normalized-dissimilarity-matrices">Correlation
-between the different normalized dissimilarity matrices</a></li>
+<li><a href="#preparatory-work-computing-the-dissimilarity-matrices-to-be-compared">Preparatory work: computing the dissimilarity matrices to be compared</a></li>
+<li><a href="#correlation-between-the-different-dissimilarity-matrices">Correlation between the different dissimilarity matrices</a></li>
+<li><a href="#correlation-between-the-different-normalized-dissimilarity-matrices">Correlation between the different normalized dissimilarity matrices</a></li>
 </ul>
 </nav>
 </div>
@@ -2497,20 +2491,10 @@ between the different normalized dissimilarity matrices</a></li>
 <strong>Click here to get instructions…</strong>
 </summary>
 <ul>
-<li>Please download and unzip the replication files for Chapter 3 (<a
-href="source/Chapter03.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg>
-Chapter03.zip</a>).</li>
-<li>Read <code>readme.html</code> and run
-<code>3-0_ChapterSetup.R</code>. This will create
-<code>3-0_ChapterSetup.RData</code> in the sub folder
-<code>data/R</code>. This file contains the data required to produce the
-plots shown below.</li>
-<li>You also have to add the function <code>legend_large_box</code> to
-your environment in order to render the tweaked version of the legend
-described below. You find this file in the <code>source</code> folder of
-the unzipped Chapter 3 archive.</li>
-<li>We also recommend to load the libraries listed in Chapter 3’s
-<code>LoadInstallPackages.R</code></li>
+<li>Please download and unzip the replication files for Chapter 3 (<a href="source/Chapter03.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter03.zip</a>).</li>
+<li>Read <code>readme.html</code> and run <code>3-0_ChapterSetup.R</code>. This will create <code>3-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to produce the plots shown below.</li>
+<li>You also have to add the function <code>legend_large_box</code> to your environment in order to render the tweaked version of the legend described below. You find this file in the <code>source</code> folder of the unzipped Chapter 3 archive.</li>
+<li>We also recommend to load the libraries listed in Chapter 3’s <code>LoadInstallPackages.R</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming you are working within .Rproj environment</span></span>
@@ -2525,17 +2509,9 @@ the unzipped Chapter 3 archive.</li>
 </details>
 <p><br />
 </p>
-<p>In chapter 3.5, we consider how to compute a correlation matrix of
-sequences’ pairwise dissimilarity matrices obtained using different
-strategies. The data come from a sub-sample of the German Family Panel -
-pairfam. For further information on the study and on how to access the
-full scientific use file see <a href="https://www.pairfam.de/en/"
-target="_blank">here</a>.</p>
-<h2
-id="preparatory-work-computing-the-dissimilarity-matrices-to-be-compared">Preparatory
-work: computing the dissimilarity matrices to be compared</h2>
-<p>Two OM-based with different substitution costs, first equal to 2 and
-then equal to 1:</p>
+<p>In chapter 3.5, we consider how to compute a correlation matrix of sequences’ pairwise dissimilarity matrices obtained using different strategies. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see <a href="https://www.pairfam.de/en/" target="_blank">here</a>.</p>
+<h2 id="preparatory-work-computing-the-dissimilarity-matrices-to-be-compared">Preparatory work: computing the dissimilarity matrices to be compared</h2>
+<p>Two OM-based with different substitution costs, first equal to 2 and then equal to 1:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>costs.sm2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,</span>
@@ -2548,7 +2524,9 @@ then equal to 1:</p>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>,</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">0</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">9</span>, <span class="at">ncol =</span> <span class="dv">9</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">9</span>, </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">9</span>, </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>costs.sm1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
@@ -2562,21 +2540,23 @@ then equal to 1:</p>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">9</span>, <span class="at">ncol =</span> <span class="dv">9</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">9</span>, </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">9</span>, </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
-<p>OM with substitution costs based on state properties (or
-features):</p>
+<p>OM with substitution costs based on state properties (or features):</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>partner <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>child <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>alphabetprop <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">partner =</span> partner, <span class="at">child =</span> child)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(alphabetprop) <span class="ot">&lt;-</span> <span class="fu">alphabet</span>(partner.child.year.seq)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>prop <span class="ot">&lt;-</span> <span class="fu">seqcost</span>(partner.child.year.seq, </span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">method=</span><span class="st">&quot;FEATURES&quot;</span>,</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">state.features =</span> alphabetprop)</span></code></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>alphabetprop <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">partner =</span> partner, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">child =</span> child)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(alphabetprop) <span class="ot">&lt;-</span> <span class="fu">alphabet</span>(partner.child.year.seq)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>prop <span class="ot">&lt;-</span> <span class="fu">seqcost</span>(partner.child.year.seq, </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">method=</span><span class="st">&quot;FEATURES&quot;</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">state.features =</span> alphabetprop)</span></code></pre></div>
 </div>
 <p>OM with theory-based substitution costs:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2590,14 +2570,14 @@ features):</p>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>),</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">9</span>, <span class="at">ncol =</span> <span class="dv">9</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">dimnames =</span> <span class="fu">list</span>(shortlab.partner.child, shortlab.partner.child))</span></code></pre></div>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">9</span>, </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">9</span>, </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">dimnames =</span> <span class="fu">list</span>(shortlab.partner.child, </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>                  shortlab.partner.child))</span></code></pre></div>
 </div>
-<h2
-id="correlation-between-the-different-dissimilarity-matrices">Correlation
-between the different dissimilarity matrices</h2>
-<p>We now compute the dissimilarity matrices with different options to
-be compared:</p>
+<h2 id="correlation-between-the-different-dissimilarity-matrices">Correlation between the different dissimilarity matrices</h2>
+<p>We now compute the dissimilarity matrices with different options to be compared:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>om.s2.i1<span class="ot">&lt;-</span><span class="fu">seqdist</span>(partner.child.year.seq, </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">method =</span> <span class="st">&quot;OM&quot;</span>, </span>
@@ -2632,8 +2612,7 @@ be compared:</p>
 <span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>dhd<span class="ot">&lt;-</span><span class="fu">seqdist</span>(partner.child.year.seq, </span>
 <span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>             <span class="at">method =</span> <span class="st">&quot;DHD&quot;</span>)</span></code></pre></div>
 </div>
-<p>Further, we have to create a <code>data.frame</code> that bring
-together the various dissimilarity matrices:</p>
+<p>Further, we have to create a <code>data.frame</code> that bring together the various dissimilarity matrices:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>diss.partner.child <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">OMi1s2 =</span> <span class="fu">vech</span>(om.s2.i1),</span>
@@ -2646,8 +2625,7 @@ together the various dissimilarity matrices:</p>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">dhd =</span> <span class="fu">vech</span>(dhd)</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </div>
-<p>We can now calculate the correlation between the various
-dissimilarity matrices:</p>
+<p>We can now calculate the correlation between the various dissimilarity matrices:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>corr.partner.child <span class="ot">&lt;-</span> <span class="fu">cor</span>(diss.partner.child)</span></code></pre></div>
 </div>
@@ -2673,12 +2651,8 @@ lcs    0.8548552 0.8658035
 ham    1.0000000 0.9953943
 dhd    0.9953943 1.0000000</code></pre>
 </div>
-<h2
-id="correlation-between-the-different-normalized-dissimilarity-matrices">Correlation
-between the different normalized dissimilarity matrices</h2>
-<p>We can compute the dissimilarity matrices with different options to
-be compared by setting the normalization method (see ?seqdist to learn
-more about this):</p>
+<h2 id="correlation-between-the-different-normalized-dissimilarity-matrices">Correlation between the different normalized dissimilarity matrices</h2>
+<p>It is wise to compute the dissimilarity matrices with different options to be compared by setting the normalization method (see <code>?seqdist</code> to learn more about this):</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>om.s2.i1.n<span class="ot">&lt;-</span><span class="fu">seqdist</span>(partner.child.year.seq, </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">method =</span> <span class="st">&quot;OM&quot;</span>, </span>
@@ -2722,8 +2696,7 @@ more about this):</p>
 <span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>               <span class="at">method =</span> <span class="st">&quot;DHD&quot;</span>, </span>
 <span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>               <span class="at">norm=</span><span class="st">&quot;auto&quot;</span>)</span></code></pre></div>
 </div>
-<p>Also in this case, we create a <code>data.frame</code> of the various
-normalized dissimilarity matrices:</p>
+<p>Also in this case, we create a <code>data.frame</code> of the various normalized dissimilarity matrices:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>diss.partner.child.n <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">OMi1s2 =</span> <span class="fu">vech</span>(om.s2.i1.n),</span>
@@ -2736,8 +2709,7 @@ normalized dissimilarity matrices:</p>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">DHD =</span> <span class="fu">vech</span>(dhd.n)</span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </div>
-<p>…and then calculate the correlation between the various dissimilarity
-matrices:</p>
+<p>…and then calculate the correlation between the various dissimilarity matrices:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>corr.partner.child.n <span class="ot">&lt;-</span> <span class="fu">cor</span>(diss.partner.child.n)</span></code></pre></div>
 </div>
@@ -2763,13 +2735,11 @@ LCS    0.8548552 0.8658035
 HAM    1.0000000 0.9953943
 DHD    0.9953943 1.0000000</code></pre>
 </div>
-<p>Several options for the visualization of the correlation matrix are
-available, here we suggest a pie from the ?coorplot package:</p>
+<p>Several options for the visualization of the correlation matrix are available, here we suggest a pie from the <code>?coorplot</code> package:</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/Chapter3/3-5_Fig3-2_corrDissMatrices_gray.png" width="3000" /></p>
 </div>
-<p>If you want to explore the code to produce this graph, here it
-is:</p>
+<p>If you want to explore the code to produce this graph, here it is:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(corr.partner.child.n, </span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">method =</span>(<span class="st">&quot;pie&quot;</span>), </span>

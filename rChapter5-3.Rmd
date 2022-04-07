@@ -55,18 +55,19 @@ load(here("data", "R", "5-0_ChapterSetup.RData"))
 
 \
 
-In chapter 5.3, we introduce one of the options to account for the parallel unfolding of temporal processes: the cross-tabulation of cluster solutions extracted separately from two (or more) pools of sequences representing the trajectories in different domains. We are now using the data-frame multidim, which contains both family formation and labour market sequences. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see [here](https://www.pairfam.de/en/){target="_blank"}.
+In chapter 5.3, we introduce one of the options to account for the parallel unfolding of temporal processes: the cross-tabulation of cluster solutions extracted separately from two (or more) pools of sequences representing the trajectories in different domains. We are now using the `data.frame` `multidim`, which contains both family formation and labour market sequences. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see [here](https://www.pairfam.de/en/){target="_blank"}.
 
 ## Preparatory work for family formation trajectories
 
-First, we run a Ward clustering based on the dissimilarity matrix mc.fam.year.om:
+First, we run a Ward cluster analysis based on the dissimilarity matrix `mc.fam.year.om`:
 
 ```{r, eval=TRUE, echo=TRUE}
 fam.ward<-hclust(as.dist(mc.fam.year.om), 
                        method="ward.D", 
                        members=multidim$weight40)
 ```
-... to be used as initialization of the PAM clustering:
+
+... to be used as initialization of the PAM clustering
 
 ```{r, eval=TRUE, echo=TRUE}
 fam.pam <- wcKMedRange(mc.fam.year.om, 
@@ -81,7 +82,7 @@ We now extract 5 clusters...
 fam.pam.5cl <- fam.pam$clustering$cluster5
 ```
 
-...attach the cluster info to the main data.frame multidim...
+...attach the cluster info to the main `data.frame` `multidim`...
 
 ```{r, eval=TRUE, echo=TRUE}
 multidim$fam.pam.5cl<-fam.pam.5cl
@@ -95,7 +96,7 @@ fam.pam.5cl.factor <- factor(fam.pam.5cl,
                              c("1", "2", "3", "4", "5"))
 ```
 
-...to finally attach the factor info to the main data-frame "multidim":
+...to finally attach the factor info to the main `data.frame` `multidim`:
 
 ```{r, eval=TRUE, echo=TRUE}
 multidim$fam.pam.5cl.factor<-fam.pam.5cl.factor
@@ -103,7 +104,7 @@ multidim$fam.pam.5cl.factor<-fam.pam.5cl.factor
 
 ## Preparatory work for labor market trajectories
 
-First, we run a Ward clustering based on the dissimilarity matrix mc.act.year.om:
+First, we run a Ward cluster analysis based on the dissimilarity matrix `mc.act.year.om`:
 
 ```{r, eval=TRUE, echo=TRUE}
 act.ward<-hclust(as.dist(mc.act.year.om), 
@@ -111,7 +112,7 @@ act.ward<-hclust(as.dist(mc.act.year.om),
                  members=multidim$weight40)
 ```
 
-... to be used as initialization of the PAM clustering:
+... to be used as initialization of the PAM clustering
 
 ```{r, eval=TRUE, echo=TRUE}
 act.pam <- wcKMedRange(mc.act.year.om, 
@@ -126,7 +127,7 @@ We now extract 5 clusters...
 act.pam.5cl <- act.pam$clustering$cluster5
 ```
 
-...attach the cluster info to the main data.frame multidim...
+...attach the cluster info to the main `data.frame` `multidim`...
 
 ```{r, eval=TRUE, echo=TRUE}
 multidim$act.pam.5cl<-act.pam.5cl
@@ -140,7 +141,7 @@ act.pam.5cl.factor <- factor(act.pam.5cl,
                              c("1", "2", "3", "4", "5"))
 ```
 
-...to finally attach the factor info to the main data-frame "multidim":
+...to finally attach the factor info to the main `data.frame` `multidim`
 
 ```{r, eval=TRUE, echo=TRUE}
 multidim$act.pam.5cl.factor<-act.pam.5cl.factor
@@ -148,7 +149,7 @@ multidim$act.pam.5cl.factor<-act.pam.5cl.factor
 
 ## Cross-tabulation for a 5-cluster solution on both channels 
 
-Tabulate the two vectors and store the results in an object that we call crosstab...
+Tabulate the two vectors and store the results in an object that we name `crosstab`...
 
 ```{r, eval=TRUE, echo=TRUE}
 crosstab<-table(multidim$act.pam.5cl.factor, multidim$fam.pam.5cl.factor)

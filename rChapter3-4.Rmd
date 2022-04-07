@@ -71,7 +71,7 @@ ch3.ex2 <- c("A-B-B-C-C-C", "A-B-B-B-B-B", "B-C-C-C-B-B")
 ch3.ex2.seq <- seqdef(ch3.ex2)
 ```
 
-We compute the dissimilarity matrix between these three example sequences using the longest common subsequence method for substitution costs: 
+We compute the dissimilarity matrix between these three example sequences using the longest common subsequence method: 
 
 ```{r, eval=TRUE, echo=TRUE}
 lcs.diss<-seqdist(ch3.ex2.seq, method="LCS")

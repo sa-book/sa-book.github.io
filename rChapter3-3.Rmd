@@ -64,8 +64,9 @@ In chapter 3.3, we introduce alignment-based extensions of OM. The data come fro
 
 We generate a substitution costs matrix to be used in the next step based on the following theory-based costs:
 
-   substitution=1 if one if different number of children but same partnership status 
-   substitution=2 any substitution of different partnership statuses
+substitution=1 if one if different number of children but same partnership status 
+
+substitution=2 any substitution of different partnership statuses
 
 ```{r, eval=TRUE, echo=TRUE}
 theo <- matrix(
@@ -78,8 +79,11 @@ theo <- matrix(
     2,2,2,2,2,2,0,1,1,
     2,2,2,2,2,2,1,0,1,
     2,2,2,2,2,2,1,1,0),
-  nrow = 9, ncol = 9, byrow = TRUE,
-  dimnames = list(longlab.partner.child, shortlab.partner.child))
+  nrow = 9, 
+  ncol = 9, 
+  byrow = TRUE,
+  dimnames = list(longlab.partner.child, 
+                  shortlab.partner.child))
 ```
 
 and display the resulting matrix:
@@ -94,7 +98,7 @@ We use this matrix to calculate pairwise dissimilarities:
 om.theo<-seqdist(partner.child.year.seq, method = "OM", indel = 1,sm = theo)
 ```
 
-Let's consider three sequences from the initial sample:
+Let's consider the first three sequences in the initial sample:
 
 ```{r fig.width=6, fig.height=4,echo=FALSE, echo=FALSE}
 include_graphics("images/Chapter3/3-3_Fig3-1_exampleseq_color.png")
@@ -150,13 +154,13 @@ partner <- c(0, 0, 1, 1, 1, 1, 1,1,1)
 child <- c(0,1,0,1,0,1,0,1,1)
 ```
  
-Create a data.frame with the vectors:
+Create a `data.frame` with the vectors:
 
 ```{r, eval=TRUE, echo=TRUE}
 alphabetprop <- data.frame(partner = partner, child = child)
 ```
 
-Label the rows of the data.frame after the states' names:
+Label the rows of the `data.frame` after the states' names:
 
 ```{r, eval=TRUE, echo=TRUE}
 rownames(alphabetprop) <- alphabet(partner.child.year.seq)
@@ -168,14 +172,15 @@ rownames(alphabetprop) <- alphabet(partner.child.year.seq)
 alphabetprop
 ```
 
-Generate a substitution costs matrix based on the properties with "Gower" algorithm
+Generate a substitution costs matrix based on the properties with "Gower" algorithm and print it
 
 ```{r, eval=TRUE, echo=TRUE}
-prop <- as.matrix(daisy(alphabetprop, metric = "gower"))
+prop <- as.matrix(daisy(alphabetprop, 
+                        metric = "gower"))
 prop
 ```
 
-Alternatively, this code can be used within the ?seqcost command (where `FEATURES` corresponds to the properties):
+Alternatively, this code can be used within the `?seqcost` command (where `FEATURES` corresponds to the properties)
 
 ```{r, eval=TRUE, echo=TRUE}
 prop2 <- seqcost(partner.child.year.seq, 
@@ -185,7 +190,7 @@ prop2 <- seqcost(partner.child.year.seq,
 prop2
 ```
 
-We then use the matrix to calculate pairwise dissimilarities, and display a selection of the dissimilarity matrix between sequences in the figure above (Fig. 3.1):
+We then use the matrix to calculate the pairwise dissimilarities, and display a selection of the dissimilarity matrix between sequences in the figure above (Fig. 3.1):
 
 ```{r, eval=TRUE, echo=TRUE}
 om.prop<-seqdist(partner.child.year.seq, 
@@ -195,7 +200,7 @@ om.prop<-seqdist(partner.child.year.seq,
 om.prop[1:3, 1:3]
 ```
 
-Here an alternative code to use the matrix to calculate pairwise dissimilarities and display the dissimilarity matrix between the usual sequences (Fig. 3.1):
+Here an alternative code to use the matrix to calculate pairwise dissimilarities and display the dissimilarity matrix between the usual sequences (Fig. 3.1)
 
 
 ```{r, eval=TRUE, echo=TRUE}
@@ -216,31 +221,31 @@ ch3.ex2 <- c("A-B-B-C-C-C", "A-B-B-B-B-B", "B-C-C-C-B-B")
 ch3.ex2.seq <- seqdef(ch3.ex2)
 ```
 
-The command ?seqcost generates substitution costs, in this case based on transition rates. The command returns also the value of `indel`. 
+The command `?seqcost` generates substitution costs, in this case based on transition rates. The command returns also the value of `indel`. 
 
 ```{r, eval=TRUE, echo=TRUE}
 trate1<-seqcost(ch3.ex2.seq, method="TRATE")
 ```
 
-We can display the substitution costs matrix based on transition rates:
+We can display the substitution costs matrix based on transition rates
 
 ```{r, eval=TRUE, echo=TRUE}
 trate1
 ```
 
-As an alternative code, ?seqsubm generates substitution costs (here based on transition rates as above), but does not return `indel`:
+As an alternative code, `?seqsubm` generates substitution costs (here based on transition rates as above), but does not return `indel`
 
 ```{r, eval=TRUE, echo=TRUE}
 trate2 <- seqsubm(ch3.ex2.seq, method="TRATE")
 ```
 
-We can display the substitution costs matrix based on transition rates:
+We can display the substitution costs matrix based on transition rates
 
 ```{r, eval=TRUE, echo=TRUE}
 trate2
 ```
 
-We now want to extract the transition rated between states for the three example sequences:
+We now want to extract the transition rates between states for the three example sequences:
 
 ```{r, eval=TRUE, echo=TRUE}
 tr.rates<-seqtrate(ch3.ex2.seq, sel.states = NULL, 
@@ -251,29 +256,41 @@ tr.rates<-seqtrate(ch3.ex2.seq, sel.states = NULL,
                    count = FALSE)
 ```
 
-...and use the ?seqalign command to get a summary of the optimal number and costs of OM operations with data-driven (transition rates) substitution costs: 
+...and use the `?seqalign` command to get a summary of the optimal number and costs of OM operations with data-driven (transition rates) substitution costs: 
 
 ```{r, eval=TRUE, echo=TRUE}
-al1.OM.dd <- seqalign(ch3.ex2.seq, 1:2, indel=1, sm=trate2)
+al1.OM.dd <- seqalign(ch3.ex2.seq, 1:2, 
+                      indel=1, 
+                      sm=trate2)
+
 print(al1.OM.dd)
 ```
 
 ```{r, eval=TRUE, echo=TRUE}
-al2.OM.dd <- seqalign(ch3.ex2.seq, c(1,3), indel=1, sm=trate2)
+al2.OM.dd <- seqalign(ch3.ex2.seq, c
+                      (1,3), 
+                      indel=1, 
+                      sm=trate2)
+
 print(al2.OM.dd)
 ```
 
 ```{r, eval=TRUE, echo=TRUE}
-al3.OM.dd <- seqalign(ch3.ex2.seq, 2:3, indel=1, sm=trate2)
+al3.OM.dd <- seqalign(ch3.ex2.seq, 
+                      2:3, 
+                      indel=1, 
+                      sm=trate2)
+
 print(al3.OM.dd)
 ```
 
 ## Dynamic Hamming distance 
 
-We continue using the three example sequences and compute the dissimilarity matrix using the following costs: `indel`=1, `sm`=dynamic Hamming distance 
+We proceed by using the three example sequences and compute the dissimilarity matrix using the following costs: `indel`=1, `sm`=dynamic Hamming distance (DHD)
 
 ```{r, eval=TRUE, echo=TRUE}
-dhd.diss<-seqdist(ch3.ex2.seq, method="DHD")
+dhd.diss<-seqdist(ch3.ex2.seq, 
+                  method="DHD")
 ```
 
 ...and display the resulting DHD-based dissimilarity matrix:

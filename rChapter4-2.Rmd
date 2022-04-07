@@ -59,7 +59,7 @@ In chapter 4.2, we apply hierarchical and partitional clustering to family forma
 
 ## Hierarchical clustering: Ward’s linkage
 
-We apply a hierarchical cluster analysis by using the command ?hclust to the dissimilarity matrix partner.child.year.om for the family formation sequences, computed based on OM with `indel`=1 and substitution=2. We use non-squared dissimilarities (see the `method` option) and weights (see the `members` option, where we have to specify to which `data.frame` the vector with the weights belongs to). 
+We apply a hierarchical cluster analysis by using the command `?hclust` to the dissimilarity matrix `partner.child.year.om` for the family formation sequences, computed based on OM with `indel`=1 and `sm`=2. We use non-squared dissimilarities (see the `method` option) and weights (see the `members` option, where we have to specify to which `data.frame` the vector with the weights belongs to). 
 
 ```{r, eval=TRUE, echo=TRUE}
 fam.ward1 <- hclust(as.dist(partner.child.year.om), 
@@ -67,7 +67,7 @@ fam.ward1 <- hclust(as.dist(partner.child.year.om),
                     members = family$weight40)
 ```
 
-One can combine different heuristics to select the number of clusters. One is the so-called "elbow" method, based on a line graph which can be obtained by using the ?fviz_nbclust command. Notice that we specify here the method option (the method to be used for estimating the optimal number of clusters) as "wss", that is the total within sum of square. The input of the command is the dissimilarity matrix partner.child.year.om: 
+One can combine different heuristics to select the number of clusters. One is the so-called "elbow" method, based on a line graph which can be obtained by using the `?fviz_nbclust` command. Notice that we specify here the method option (the method to be used for estimating the optimal number of clusters) as `wss`, that is the total within sum of square. The input of the command is the dissimilarity matrix `partner.child.year.om`: 
 
 ```{r, eval=FALSE, echo=TRUE}
 fviz_nbclust(partner.child.year.om, 
@@ -83,7 +83,7 @@ dev.off()
 include_graphics("images/Chapter4/4-2-1_Fig4-3_lineGraph_gray.png")
 ```
 
-As an alternative or to be used in combination with the elbow method (please refer Chapter 4.2 in the book), we can use the ?as.clustrange command by using the ?hclust results (here stored in the object fam.ward1) as input. ?as.clustrange will return a series of cluster quality indicators. Notice that we have to specify the `diss` option by using the dissimilarity matrix of interest and the number of clusters we want the command to "test" (here 10 in the `ncluster` option)
+As an alternative or to be used in combination with the elbow method (please refer Chapter 4.2 in the book), we can use the `?as.clustrange` command by using the `?hclust` results (here stored in the object `fam.ward1`) as input. `?as.clustrange` will return a series of cluster quality indicators. Notice that we have to specify the `diss` option by using the dissimilarity matrix of interest and the number of clusters we want the command to "test" (here 10 in the `ncluster` option)
 
 ```{r, eval=TRUE, echo=TRUE}
 fam.ward.test <- as.clustrange(fam.ward1, 
@@ -92,13 +92,13 @@ fam.ward.test <- as.clustrange(fam.ward1,
                                ncluster = 10)
 ```
 
-Let's look at the cluster quality indicators:
+Let's look at the cluster quality indicators
 
 ```{r, eval=TRUE, echo=TRUE}
 fam.ward.test
 ```
 
-We can also visualize the trends in the indicators. Here some selected cluster quality indicators, visualized as z-scores:
+We can also visualize the trends in the indicators. Here some selected cluster quality indicators, visualized as z-scores
 
 ```{r, eval=FALSE, echo=TRUE}
 plot(fam.ward.test, stat = c("ASW", "HG", "PBC", "CH", "R2"), 
@@ -115,19 +115,19 @@ dev.off()
 include_graphics("images/Chapter4/4-2-bonusCQI.png")
 ```
 
-Based on considerations presented in the book, we extract the 5-cluster solution. This can be done with the ?cutree command, specifying the ?hclust-generate object and the `k` number of clusters to be extracted. We store this information into an object called fam.ward.5cl ...
+Based on considerations presented in the book, we extract the 5-cluster solution. This can be done with the `?cutree` command, specifying the `?hclust`-generate object and the `k` number of clusters to be extracted. We store this information into an object called `fam.ward.5cl`
 
 ```{r, eval=TRUE, echo=TRUE}
 fam.ward.5cl <-cutree(fam.ward1, k = 5)
 ```
 
-...that we add to the main dataframe family:
+...that we add to the main `data.frame` `family`:
 
 ```{r, eval=TRUE, echo=TRUE}
 family$fam.ward.5cl<-fam.ward.5cl
 ```
 
-Because we want to illustrate how to compare different cluster solutions, we also extract 4 clusters and repeat the procedure:
+Because we want to illustrate how to compare different cluster solutions, we also extract 4 clusters and repeat the procedure
 
 ```{r, eval=TRUE, echo=TRUE}
 fam.ward.4cl <-cutree(fam.ward1, k = 4)
@@ -149,7 +149,7 @@ comp.ward
 
 ## Partitional clustering: PAM
 
-We use the ?wcKMedRange command to obtain the cluster quality indicators for a number of clusters between 2 and 10 (see the kvals option) using the PAM algorithm. We also specify weights (see weights option). Further, we specify the initialclust option by using the ?hclust-generated object we used above.
+We use the `?wcKMedRange` command to obtain the cluster quality indicators for a number of clusters between 2 and 10 (see the `kvals` option) using the PAM algorithm. We also specify weights (see `weights` option). Further, we specify the `initialclust` option by using the `?hclust`-generated object we used above
 
 ```{r, eval=TRUE, echo=TRUE}
 fam.pam.ward <- wcKMedRange(partner.child.year.om, 
@@ -158,25 +158,25 @@ fam.pam.ward <- wcKMedRange(partner.child.year.om,
                             initialclust = fam.ward1)
 ```
 
-Let's consider the cluster quality criteria for this PAM clustering:  
+Let's consider the cluster quality criteria for this PAM clustering  
 
 ```{r, eval=TRUE, echo=TRUE}
 fam.pam.ward
 ```
 
-We first extract a 4-cluster solution:
+We first extract a 4-cluster solution
 
 ```{r, eval=TRUE, echo=TRUE}
 fam.pam.ward.4cl<-fam.pam.ward$clustering$cluster4
 ```
 
-... attach the vector with the 4-cluster solution to the main dataframe:
+... attach the vector with the 4-cluster solution to the main `data.frame`:
 
 ```{r, eval=TRUE, echo=TRUE}
 family$fam.pam.ward.4cl<-fam.pam.ward.4cl
 ```
 
-... and re-label clusters from 1 to 4 instead of medoid identifier by using the ?recode command:
+... and re-label clusters from 1 to 4 instead of medoid identifier by using the `?recode` command:
 
 ```{r, eval=TRUE, echo=TRUE}
 family$fam.pam.ward.4cl<-car::recode(family$fam.pam.ward.4cl, 
@@ -194,19 +194,19 @@ family$fam.pam.ward.5cl<-car::recode(family$fam.pam.ward.5cl,
                                      "982=1; 790=2; 373=3; 1643=4; 985=5")
 ```
 
-We want to compare the 4 and 5-cluster solutions for PAM+Ward clustering. We can use the ?table command and store the table into an object...
+We want to compare the 4 and 5-cluster solutions for PAM+Ward clustering. We can use the `?table` command and store the table into an object...
 
 ```{r, eval=TRUE, echo=TRUE}
 comp.pam.ward<-table(family$fam.pam.ward.5cl, family$fam.pam.ward.4cl)
 ```
 
-...to be printed at our convenience:
+...to be printed at our convenience
 
 ```{r, eval=TRUE, echo=TRUE}
 comp.pam.ward
 ```
 
-It is time to compute the average silhouette width by cluster: we can use the ?silhouette command and specify the dissimilarity matrix in the `dmatrix` option. We do that for the 4- and the 5-cluster solutions. As usual, we store the results into an object...
+We now compute the average silhouette width by cluster: we can use the `?silhouette` command and specify the dissimilarity matrix in the `dmatrix` option. We do that for the 4- and the 5-cluster solutions. As usual, we store the results into an object...
 
 ```{r, eval=TRUE, echo=TRUE}
 silh.pam.ward.5cl <- silhouette(family$fam.pam.ward.5cl, 
@@ -232,7 +232,7 @@ dev.off()
 include_graphics("images/Chapter4/4-2-2_Fig4-4_SilhCl4Cl5_gray.png")
 ```
 
-We now proceed with the 5-cluster solution and generate substantively meaningful label for the clusters. Notice that to do this, we need to first visualize the clusters and ideally explore each of them with the descriptive tools presented in Chapter 2. 
+We now proceed with the 5-cluster solution and generate substantively meaningful label for the clusters. Notice that to do this, we need to first visualize the clusters and ideally explore each of them with the descriptive tools presented in Chapter 2
 
 ```{r, eval=TRUE, echo=TRUE}
 
@@ -251,19 +251,19 @@ fam.pam.ward.factor.5cl <- factor(family$fam.pam.ward.5cl,
                                   labels=fam.pam.ward.lab.5cl)
 ```
 
-We can now attach the cluster-vector (with labels) to the main data frame:
+We can now attach the cluster-vector (with labels) to the main `data.frame`:
 
 ```{r, eval=TRUE, echo=TRUE}
 family$fam.pam.ward.factor.5cl<-fam.pam.ward.factor.5cl
 ```
 
-To be sure, one might want to confirm that family with the newly attached vectors is a whole data frame:
+To be sure, one might want to confirm that family with the newly attached vectors is a whole data frame
 
 ```{r, eval=TRUE, echo=TRUE}
 family<-data.frame(family)
 ```
 
-Among the many options for visualization introduced in Chapter 2, we use the relative frequency plot. The standard ?seqplot.rf command for this graph produces a combined figure: the sequences and the distance-to-medoid plot. One can also plot only one of the two by specifying the option `which.plot`. In the archive Chapter04.zip in the download area of this webpage, you can find a code to efficiently plot only the sequences part of the relative frequency plot especially if you want to plot the clusters in the same figure. Assuming you are working within .Rproj environment, you can use the following code: 
+Among the many options for visualization introduced in Chapter 2, we use the relative frequency plot. The standard `?seqplot.rf` command for this graph produces a combined figure: the sequences and the distance-to-medoid plot. One can also plot only one of the two by specifying the option `which.plot`. In the archive Chapter04.zip in the download area of this webpage, you can find a code to efficiently plot only the sequences part of the relative frequency plot especially if you want to plot the clusters in the same figure. Assuming you are working within `.Rproj` environment, you can use the following code 
 
 ```{r, eval=FALSE, echo=TRUE}
 source(here("source", "rfplotsleft.R"))
@@ -271,7 +271,7 @@ source(here("source", "rfplotsleft.R"))
 
 Notice that we recommend to always display the distance-to-medoid plot for each cluster at least in the appendix of your article: an example of this can be found in [`Struffolino and Van Winkle 2021`](https://doi.org/10.1016/j.ssresearch.2021.102585){target="_blank"} (open-access version [here](https://osf.io/preprints/socarxiv/b2qpu/){target="_blank"}).
 
-For a nice display of the clusters using the sourced code "rfplotsleft.R", we first generate separate objects containing the sequences allocated to each clusters:
+For a nice display of the clusters using the sourced code `rfplotsleft.R`, we first generate separate objects containing the sequences allocated to each clusters:
 
 ```{r, eval=TRUE, echo=TRUE}
 
@@ -301,7 +301,7 @@ cl4_5cl.om<- seqdist(cl4_5cl, method="OM", indel=1, sm= "CONSTANT")
 cl5_5cl.om<- seqdist(cl5_5cl, method="OM", indel=1, sm= "CONSTANT")
 ```
 
-In preparation for the graph, we generate labels for x-axis, 22 time-points in steps of 2, labeled with numbers from 18 to 40, that is the age span our sequences cover.
+In preparation for the graph, we generate labels for x-axis, 22 time-points in steps of 2, labeled with numbers from 18 to 40, that is the age span our sequences cover
 
 ```{r, eval=TRUE, echo=TRUE}
 
@@ -309,7 +309,7 @@ count <- seq(from = 0, to = 22, by = 2)
 years <- seq(from = 18, to = 40, by = 2)
 ```
 
-We now code the combined relative frequency plot (only the sequences part) to display all clusters at once: for each cluster, we set 50 medoid sequences. Notice that here we use the seqplot.rf.l command that is included in the sourced code "rfplotsleft.R". Note that the line below the x-axis label "Age" of each cluster plot reports the R2 and F-stat values generated by running the standard ?seqplot.rf command. It is your choice to report them, but we recommend to do so. Unfortunately, for now our solution is to impute this information manually as you can see in the code below:
+We now code the combined relative frequency plot (only the sequences part) to display all clusters at once: for each cluster, we set 50 medoid sequences. Notice that here we use the `seqplot.rf.l` command that is included in the sourced code `rfplotsleft.R`. Note that the line below the x-axis label "Age" of each cluster plot reports the R2 and F-stat values generated by running the standard `?seqplot.rf` command. It is your choice to report them, but we recommend to do so. Unfortunately, for now our solution is to impute this information manually as you can see in the code below:
 
 
 ```{r, eval=FALSE, echo=TRUE}
@@ -389,13 +389,13 @@ include_graphics("images/Chapter4/4-2-2_Fig4-5_5clusterSolution_colors.png")
 
 ## Visualizing clustering options with MDS
 
-We use the `?cmdscale` to calculate the multidimensional scaling of the dissimilarity matrix partner.child.year.om. We  the `k` option (the maximum dimension of the space which the data are to be represented in) at 2:
+We use the `?cmdscale` to calculate the multidimensional scaling of the dissimilarity matrix `partner.child.year.om`. We  the `k` option (the maximum dimension of the space which the data are to be represented in) at 2
 
 ```{r, eval=TRUE, echo=TRUE}
 mds.year.om<-cmdscale(partner.child.year.om, k = 2)
 ```
 
-For illustrative purposes, we extract 3 clusters based on the hierarchical clustering (Ward) and the PAM clustering following the procedure presented in detail above. 
+For illustrative purposes, we extract 3 clusters based on the hierarchical clustering (Ward) and the PAM clustering following the procedure presented in detail above 
 
 ```{r, eval=TRUE, echo=TRUE}
 # Ward
@@ -416,7 +416,7 @@ mds_pam <- mds_pam$clustering
 mds_pam <- car::recode(mds_pam, "156=1; 985=2; 1735=3")
 ```
 
-We can now use the objects mds.year.om, mds_ward, mds_pam to visualize the distribution of the sequences in the samples by cluster (extracted by using two different clustering method) in a bi-dimensional space.
+We can now use the objects `mds.year.om`, `mds_ward`, `mds_pam` to visualize the distribution of the sequences in the samples by cluster (extracted by using two different clustering method) in a bi-dimensional space
 
 ```{r, eval=FALSE, echo=TRUE}
 
@@ -462,7 +462,7 @@ include_graphics("images/Chapter4/4-2-3_Fig4-6_MDS_gray.png")
 
 We adopt the same strategy used above for yearly sequences to the case of monthly sequences.
 
-Hierarchical cluster analysis, non-squared dissimilarities, weighted:
+Hierarchical cluster analysis, non-squared dissimilarities, weighted
 
 ```{r, eval=TRUE, echo=TRUE}
 fam.ward1.month <- hclust(as.dist(partner.child.month.om), 
@@ -470,7 +470,7 @@ fam.ward1.month <- hclust(as.dist(partner.child.month.om),
                           members = family$weight40)
 ```
 
-PAM cluster analysis initialized with Ward, weighted:
+PAM cluster analysis initialized with Ward, weighted
 
 ```{r, eval=TRUE, echo=TRUE}
 fam.pam.ward.month <- wcKMedRange(partner.child.month.om, 
@@ -485,32 +485,32 @@ Print the quality test for different cluster solutions
 fam.pam.ward.month
 ```
 
-Extract the 5-cluster solution:
+Extract the 5-cluster solution
 
 ```{r, eval=TRUE, echo=TRUE}
 fam.pam.ward.month.5cl<-fam.pam.ward.month$clustering$cluster5
 ```
 
-Attach the vector with the 5-cluster solution to the main data frame:
+Attach the vector with the 5-cluster solution to the main `data.frame`
 
 ```{r, eval=TRUE, echo=TRUE}
 family$fam.pam.ward.month.5cl<-fam.pam.ward.month.5cl
 ```
 
-Re-label clusters from 1 to 5 instead of medoid identifiers:
+Re-label clusters from 1 to 5 instead of medoid identifiers
 
 ```{r, eval=TRUE, echo=TRUE}
 family$fam.pam.ward.month.5cl<-car::recode(family$fam.pam.ward.month.5cl, 
                                            "1652=1; 1032=2; 412=3; 869=4; 927=5")
 ```
 
-We can now compare the cluster assignment in the case of yearly and monthly data. In both cases we extracted 5 clusters from the PAM+Ward option:
+We can now compare the cluster assignment in the case of yearly and monthly data. In both cases we extracted 5 clusters from the PAM+Ward option...
 
 ```{r, eval=TRUE, echo=TRUE}
 comp.y.m<-table(family$fam.pam.ward.5cl, family$fam.pam.ward.month.5cl)
 ```
 
-Print the resulting table:
+...and print the resulting table
 
 ```{r, eval=TRUE, echo=TRUE}
 comp.y.m

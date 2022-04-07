@@ -55,12 +55,12 @@ load(here("data", "R", "5-0_ChapterSetup.RData"))
 
 \
 
-In chapter 5.3, we introduce the so-called multichannel sequence analysis. We are now using the data-frame multidim, which contains both family formation and labour market sequences. Note that individual 1 in one pool of sequences has to correspond to individual 1 in the other pool of sequences. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see [here](https://www.pairfam.de/en/){target="_blank"}.
+In chapter 5.3, we introduce the so-called multichannel sequence analysis. We are now using the `data.frame` `multidim`, which contains both family formation and labour market sequences. Note that individual 1 in one pool of sequences has to correspond to individual 1 in the other pool of sequences. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see [here](https://www.pairfam.de/en/){target="_blank"}.
 
 
 ## Extract R2 and ASW for the MCSA clustering
 
-We use the ?seqdistmc command to compute the multichannel dissimilarity matrix. We specify the option `channels` with the sequences in the two domains stored in mc.fam.year.seq and mc.act.year.seq. Notice that here we give equal weight to the two channels by specifying the option `cweight` as follows:
+We use the `?seqdistmc` command to compute the multichannel dissimilarity matrix. We specify the option `channels` with the sequences in the two domains stored in `mc.fam.year.seq` and `mc.act.year.seq`. Notice that here we give equal weight to the two channels by specifying the option `cweight` as follows:
 
 ```{r, eval=TRUE, echo=TRUE}
 mcdist.om <- seqdistmc(channels=list(mc.fam.year.seq, mc.act.year.seq),
@@ -70,7 +70,7 @@ mcdist.om <- seqdistmc(channels=list(mc.fam.year.seq, mc.act.year.seq),
                        cweight=c(1,1))
 ```
 
-Now that we stored the MCSA dissimilarity matrix in the object mcdist.om, we can use the ?wcKMedRange command to perform a PAM clustering.
+After storing the MCSA dissimilarity matrix in the object `mcdist.om`, we can use the `?wcKMedRange` command to perform a PAM clustering
 
 ```{r, eval=TRUE, echo=TRUE}
 mcdist.om.pam <- wcKMedRange(mcdist.om, 
@@ -84,13 +84,13 @@ From the object containing the values of the cluster quality indicators for diff
 mc.val<-mcdist.om.pam[[4]]
 ```
 
-We then select the 4th column - where the ASW values are stored...
+We then select the 4th column - i.e., where the ASW values are stored...
 
 ```{r, eval=TRUE, echo=TRUE}
 mc.asw <- mc.val[,4]
 ```
 
-... and the 7th column - where the R2 values are stored:
+... and the 7th column - i.e., where the R2 values are stored
 
 ```{r, eval=TRUE, echo=TRUE}
 mc.r2 <- mc.val[,7]
@@ -98,7 +98,7 @@ mc.r2 <- mc.val[,7]
 
 ## Extract R2 and ASW for family formation and labor market trajectories separately
 
-We use the same procedure on the pools of family formation and labor market trajectories separately.
+We use the same procedure on the pools of family formation and labor market trajectories separately
 
 ```{r, eval=TRUE, echo=TRUE}
 # Family formation trajectory
@@ -128,13 +128,13 @@ act.r2 <- act.val[,7]
 
 ## Compare R2 and ASW trends between MCSA and for the separate channels
 
-We can now visualize the R2 and ASW trends across number of clusters. We first have to define the range of the x axis to plot against the ASW/R2 values:
+We can now visualize the R2 and ASW trends across number of clusters. We first have to define the range of the x-axis to plot against the ASW/R2 values:
 
 ```{r, eval=FALSE, echo=TRUE}
 x <- 2:15
 ```
 
-We can now proceed with the graph:
+We can now proceed with the graph
 
 ```{r, eval=FALSE, echo=TRUE}
 
@@ -242,7 +242,7 @@ include_graphics("images/Chapter5/5-5_Fig5-1_heuristic_gray.png")
 
 ## Cluster analysis for MCSA
 
-We use the joint dissimilarity matrix mcdist.om computed above and for PAM clustering with Ward output to initialize the procedure:
+We use the joint dissimilarity matrix `mcdist.om` computed above and for PAM clustering with Ward output to initialize the procedure:
 
 ```{r, eval=TRUE, echo=TRUE}
 
@@ -261,7 +261,7 @@ mcdist.om.pam.ward <- wcKMedRange(mcdist.om,
                                   initialclust = mcdist.om.ward)
 ```
 
-We extract 5 clusters and re-label them from 1 to 5 to replace the medoid identifiers and attach the vector with the clusters to the main data frame multidim:
+We extract 5 clusters and re-label them from 1 to 5 to replace the medoid identifiers and attach the vector with the clusters to the main `data.frame` `multidim`
 
 ```{r, eval=TRUE, echo=TRUE}
 mc <- mcdist.om.pam.ward$clustering$cluster5
@@ -292,7 +292,7 @@ act4.seq <- mc.act.year.seq[multidim$mc.factor == "4", ]
 act5.seq <- mc.act.year.seq[multidim$mc.factor == "5", ]
 ```
 
-We then generate an object called relfreq that contains the relative frequencies of the five clusters (using weights, see option `wt`):
+We then generate an object called `relfreq` that contains the relative frequencies of the five clusters (using weights, see option `wt`):
 
 ```{r, eval=TRUE, echo=TRUE}
 relfreq <- multidim %>% 
@@ -301,13 +301,13 @@ relfreq <- multidim %>%
            arrange(share)
 ```
 
-We then convert relative frequencies to percentages (will be used for labeling the y-axes) and store the information in the object share:
+We then convert relative frequencies to percentages (will be used for labeling the y-axes) and store the information in the object `share`
 
 ```{r, eval=TRUE, echo=TRUE}
 share <- round(as.numeric(relfreq$share)*100, 1)
 ```
 
-We can now plot the MCSA clusters, here sequences in each sub-graph are ordered by multidimensional scaling calcualted on both channels.
+We can now plot the MCSA clusters, here sequences in each sub-graph are ordered by multidimensional scaling calculated on both channels
 
 ```{r, eval=FALSE, echo=TRUE}
 

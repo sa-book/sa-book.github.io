@@ -88,7 +88,7 @@ seqvars.partner <- family %>%
   mutate_all(~(case_when(
     . < 3 ~ 1,            # Single
     . %in% c(3,4) ~ 2,    # LAT
-    . %in% c(5,6) ~ 3,    # Cohabiting
+    . %in% c(5,6) ~ 3,    # Cohabiting 
     . > 6 ~ 4,)))         # Married
 ```
 

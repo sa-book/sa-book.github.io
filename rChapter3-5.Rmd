@@ -77,7 +77,9 @@ costs.sm2 <- matrix(
     2,2,2,2,2,2,2,0,2,
     2,2,2,2,2,2,2,2,0
   ),
-  nrow = 9, ncol = 9, byrow = TRUE)
+  nrow = 9, 
+  ncol = 9, 
+  byrow = TRUE)
 ``` 
   
 ```{r, eval=TRUE, echo=TRUE}
@@ -92,7 +94,9 @@ costs.sm1 <- matrix(
     1,1,1,1,1,1,1,0,1,
     1,1,1,1,1,1,1,1,0
   ),
-  nrow = 9, ncol = 9, byrow = TRUE)
+  nrow = 9, 
+  ncol = 9, 
+  byrow = TRUE)
 ```
 
 OM with substitution costs based on state properties (or features):
@@ -101,7 +105,8 @@ OM with substitution costs based on state properties (or features):
 partner <- c(0, 0, 1, 1, 1, 1, 1,1,1)
 child <- c(0,1,0,1,0,1,0,1,2)
 
-alphabetprop <- data.frame(partner = partner, child = child)
+alphabetprop <- data.frame(partner = partner, 
+                           child = child)
 
 rownames(alphabetprop) <- alphabet(partner.child.year.seq)
 
@@ -123,8 +128,11 @@ theo <- matrix(
     2,2,2,2,2,2,0,1,1,
     2,2,2,2,2,2,1,0,1,
     2,2,2,2,2,2,1,1,0),
-  nrow = 9, ncol = 9, byrow = TRUE,
-  dimnames = list(shortlab.partner.child, shortlab.partner.child))
+  nrow = 9, 
+  ncol = 9, 
+  byrow = TRUE,
+  dimnames = list(shortlab.partner.child, 
+                  shortlab.partner.child))
 ```
 
 ## Correlation between the different dissimilarity matrices
@@ -195,7 +203,7 @@ corr.partner.child
 
 ## Correlation between the different normalized dissimilarity matrices
 
-We can compute the dissimilarity matrices with different options to be compared by setting the normalization method (see ?seqdist to learn more about this):
+It is wise to compute the dissimilarity matrices with different options to be compared by setting the normalization method (see `?seqdist` to learn more about this):
 
 ```{r, eval=TRUE, echo=TRUE}
 om.s2.i1.n<-seqdist(partner.child.year.seq, 
@@ -268,7 +276,7 @@ corr.partner.child.n <- cor(diss.partner.child.n)
 corr.partner.child.n
 ```
 
-Several options for the visualization of the correlation matrix are available, here we suggest a pie from the ?coorplot package:
+Several options for the visualization of the correlation matrix are available, here we suggest a pie from the `?coorplot` package:
 
 ```{r fig.width=6, fig.height=4,echo=FALSE, echo=FALSE}
 include_graphics("images/Chapter3/3-5_Fig3-2_corrDissMatrices_gray.png")
