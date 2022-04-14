@@ -2478,7 +2478,7 @@ Material for R
 <h3>Contents</h3>
 <ul>
 <li><a href="#state-distribution-plot">State distribution plot</a></li>
-<li><a href="#seqeuence-index-plots">Seqeuence index plots</a></li>
+<li><a href="#sequence-index-plots">Sequence index plots</a></li>
 </ul>
 </nav>
 </div>
@@ -2560,6 +2560,42 @@ the sequence object <code>partner.child.year.seq</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseqdplot</span>(partner.child.year.seq)</span></code></pre></div>
 <p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-3-2.png" width="960" /></p>
 </div>
+<p>Note that the somewhat awkward labeling of the x-axis values is a
+result of using</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_x_discrete</span>(<span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">check.overlap =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+</div>
+<p>in the definition of the <code>ggseqdplot</code> function. Using this
+specification ggplot tries to print as much labels as possible without
+overlapping. This might lead to some strange gaps between labels. If you
+provide more space for the labels, more labels will be printed.</p>
+<p>Of course, the labels can also be adjusted according to your need
+using the regular <a href="https://ggplot2.tidyverse.org/"
+target="_blank"><code>{ggplot2}</code></a> functions. If you want to
+access the value labels for the x-axis, you can either get them from the
+sequence object you are plotting
+(<code>attributes(partner.child.year.seq)$names</code>) or by saving
+your <code>ggseqdplot</code> as an object and then extracting the
+required information from the <code>data</code> column
+<code>k</code>.</p>
+<p>In the following example we utilize another
+<code>ggplot2::guide_axis</code> argument to provide more space for the
+values labels. More specifically, overlapping labels will be avoided by
+printing them in two rows (<code>n.dodge = 2</code>):</p>
+<div class="layout-chunk" data-layout="l-body-outset">
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dplot <span class="ot">&lt;-</span> <span class="fu">ggseqdplot</span>(partner.child.year.seq)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>dplot <span class="sc">+</span> <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">levels</span>(dplot<span class="sc">$</span>data<span class="sc">$</span>k),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">n.dodge =</span> <span class="dv">2</span>))</span></code></pre></div>
+<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-5-1.png" width="960" /></p>
+</div>
+<p>Alternatively, you could get rid of the long value labels altogether
+and just print the sequence position as labels on the x-axis.</p>
+<div class="layout-chunk" data-layout="l-body-outset">
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseqdplot</span>(partner.child.year.seq) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>()</span></code></pre></div>
+<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-6-1.png" width="960" /></p>
+</div>
 <p>As <code>ggseqdplot</code> has been written with the intention to
 mimic the behavior of <code>seqdplot</code> it’s not very surprising
 that both plots look very similar. Just like with <code>seqplot</code>
@@ -2568,10 +2604,11 @@ and to generate faceted plots by specifying the <code>group</code>
 argument. Turn to the documentation for further possibilities to adjust
 the outcome of <code>ggseqdplot</code>:</p>
 <div class="layout-chunk" data-layout="l-body-outset">
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseqdplot</span>(partner.child.year.seq, </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">group =</span> <span class="fu">as_factor</span>(family<span class="sc">$</span>sex), <span class="co"># `as_factor` not necessary; only used to get nice labels</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">weighted =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-4-1.png" width="960" /></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseqdplot</span>(partner.child.year.seq, </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">group =</span> <span class="fu">as_factor</span>(family<span class="sc">$</span>sex), <span class="co"># `as_factor` not necessary; only used to get nice labels</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">weighted =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>()</span></code></pre></div>
+<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-7-1.png" width="960" /></p>
 </div>
 <p>Note that it is not possible to obtain the faceted output by
 <em>manually</em> specifying <code>facet_wrap(~family$sex)</code>. That
@@ -2589,11 +2626,11 @@ grouping variable <code>family$sex</code>, however, is of length 1866
 <p>If you want to access the data used for the plot you can save the
 plot as a list object:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dplot <span class="ot">&lt;-</span> <span class="fu">ggseqdplot</span>(partner.child.year.seq,</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group =</span> <span class="fu">as_factor</span>(family<span class="sc">$</span>sex), </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">weighted =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>dplot<span class="sc">$</span>data</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dplot <span class="ot">&lt;-</span> <span class="fu">ggseqdplot</span>(partner.child.year.seq,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group =</span> <span class="fu">as_factor</span>(family<span class="sc">$</span>sex), </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">weighted =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>dplot<span class="sc">$</span>data</span></code></pre></div>
 <pre><code># A tibble: 396 x 6
    group  state            k        x     value grouplab       
    &lt;fct&gt;  &lt;fct&gt;            &lt;fct&gt;    &lt;fct&gt; &lt;dbl&gt; &lt;glue&gt;         
@@ -2614,36 +2651,36 @@ href="https://github.com/maraab23/ggseqplot"><code>{ggseqplot}</code></a>
 can be adjusted like any other <a href="https://ggplot2.tidyverse.org/"
 target="_blank"><code>{ggplot2}</code></a> figure</p>
 <div class="layout-chunk" data-layout="l-body-outset">
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hrbrthemes)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseqdplot</span>(partner.child.year.seq) <span class="sc">+</span> </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="dv">18</span><span class="sc">:</span><span class="dv">39</span>) <span class="sc">+</span> </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;State distribution plot&quot;</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Age&quot;</span>) <span class="sc">+</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">&quot;Alphabet&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum_rc</span>() <span class="sc">+</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">34</span>, </span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">margin=</span><span class="fu">margin</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>)),</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title.position =</span> <span class="st">&quot;plot&quot;</span>,</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>),</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>))</span></code></pre></div>
-<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-6-1.png" width="960" /></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hrbrthemes)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseqdplot</span>(partner.child.year.seq) <span class="sc">+</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="dv">18</span><span class="sc">:</span><span class="dv">39</span>) <span class="sc">+</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;State distribution plot&quot;</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Age&quot;</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">&quot;Alphabet&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum_rc</span>() <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">34</span>, </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">margin=</span><span class="fu">margin</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>)),</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title.position =</span> <span class="st">&quot;plot&quot;</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>),</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>))</span></code></pre></div>
+<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-9-1.png" width="960" /></p>
 </div>
-<h2 id="seqeuence-index-plots">Seqeuence index plots</h2>
+<h2 id="sequence-index-plots">Sequence index plots</h2>
 <p>We again start with a comparison of the default outputs for
 <code>seqIplot</code> and <code>ggseqiplot</code>. We plot a sample of
 50 sequences and sort the remaining sequences according to the time
 spent in marriage (states 7 to 9).</p>
 <div class="layout-chunk" data-layout="l-body-outset">
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>subset <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(partner.child.year.seq),<span class="dv">50</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">seqIplot</span>(partner.child.year.seq[subset,], </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">sortv =</span> <span class="fu">rowSums</span>(<span class="fu">seqistatd</span>(partner.child.year.seq[subset,])[,<span class="dv">7</span><span class="sc">:</span><span class="dv">9</span>]))</span></code></pre></div>
-<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-7-1.png" width="960" /></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseqiplot</span>(partner.child.year.seq[subset,],</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">sortv =</span> <span class="fu">rowSums</span>(<span class="fu">seqistatd</span>(partner.child.year.seq[subset,])[,<span class="dv">7</span><span class="sc">:</span><span class="dv">9</span>]))</span></code></pre></div>
-<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-7-2.png" width="960" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>subset <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(partner.child.year.seq),<span class="dv">50</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">seqIplot</span>(partner.child.year.seq[subset,], </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">sortv =</span> <span class="fu">rowSums</span>(<span class="fu">seqistatd</span>(partner.child.year.seq[subset,])[,<span class="dv">7</span><span class="sc">:</span><span class="dv">9</span>]))</span></code></pre></div>
+<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-10-1.png" width="960" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseqiplot</span>(partner.child.year.seq[subset,],</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">sortv =</span> <span class="fu">rowSums</span>(<span class="fu">seqistatd</span>(partner.child.year.seq[subset,])[,<span class="dv">7</span><span class="sc">:</span><span class="dv">9</span>]))</span></code></pre></div>
+<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-10-2.png" width="960" /></p>
 </div>
 <p>Note that other than for <code>ggseqdplot</code> the x-axis for
 <code>ggseqiplot</code> is on a continuous scale. The following code
@@ -2651,25 +2688,25 @@ chunk illustrates how the plot can be fine-tuned in the well-known <a
 href="https://ggplot2.tidyverse.org/"
 target="_blank"><code>{ggplot2}</code></a> fashion:</p>
 <div class="layout-chunk" data-layout="l-body-outset">
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseqiplot</span>(partner.child.year.seq[subset,],</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">sortv =</span> <span class="fu">rowSums</span>(<span class="fu">seqistatd</span>(partner.child.year.seq[subset,])[,<span class="dv">7</span><span class="sc">:</span><span class="dv">9</span>])) <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">add =</span> <span class="fu">c</span>(.<span class="dv">8</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">22</span>,<span class="dv">2</span>),</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">seq</span>(<span class="dv">18</span>,<span class="dv">40</span>,<span class="dv">2</span>),</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">add =</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Sequence index plot&quot;</span>,</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Age&quot;</span>, </span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Alphabet&quot;</span>,</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Sequences sorted by marriage duration&quot;</span>) <span class="sc">+</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color=</span><span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum_rc</span>() <span class="sc">+</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">34</span>, </span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">margin=</span><span class="fu">margin</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>)),</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title.position =</span> <span class="st">&quot;plot&quot;</span>,</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>),</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>),</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>))</span></code></pre></div>
-<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-8-1.png" width="960" /></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseqiplot</span>(partner.child.year.seq[subset,],</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">sortv =</span> <span class="fu">rowSums</span>(<span class="fu">seqistatd</span>(partner.child.year.seq[subset,])[,<span class="dv">7</span><span class="sc">:</span><span class="dv">9</span>])) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">add =</span> <span class="fu">c</span>(.<span class="dv">8</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">22</span>,<span class="dv">2</span>),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">seq</span>(<span class="dv">18</span>,<span class="dv">40</span>,<span class="dv">2</span>),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">add =</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Sequence index plot&quot;</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Age&quot;</span>, </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Alphabet&quot;</span>,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Sequences sorted by marriage duration&quot;</span>) <span class="sc">+</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color=</span><span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum_rc</span>() <span class="sc">+</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">34</span>, </span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">margin=</span><span class="fu">margin</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>)),</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title.position =</span> <span class="st">&quot;plot&quot;</span>,</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>),</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>),</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>))</span></code></pre></div>
+<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-11-1.png" width="960" /></p>
 </div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

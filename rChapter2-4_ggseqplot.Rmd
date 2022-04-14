@@ -86,13 +86,44 @@ seqdplot(partner.child.year.seq)
 ggseqdplot(partner.child.year.seq)
 ```
 
+Note that the somewhat awkward labeling of the x-axis values is a result of using
+
+```{r, eval=FALSE}
+scale_x_discrete(guide = guide_axis(check.overlap = TRUE))
+```
+
+in the definition of the `ggseqdplot` function. Using this specification ggplot tries to print as much labels as possible without overlapping. This might lead to some strange gaps between labels. If you provide more space for the labels, more labels will be printed.
+
+Of course, the labels can also be adjusted according to your need using the regular [`{ggplot2}`](https://ggplot2.tidyverse.org/){target="_blank"} functions. If you want to access the value labels for the x-axis, you can either get them from the sequence object you are plotting (`attributes(partner.child.year.seq)$names`) or by saving your `ggseqdplot` as an object
+and then extracting the required information from the `data` column `k`. 
+
+In the following example we utilize another `ggplot2::guide_axis` argument to provide more space for the values labels. More specifically, overlapping labels will be avoided by printing them in two rows (`n.dodge = 2`):
+
+```{r, layout="l-body-outset", fig.width=10, fig.height=6.5}
+dplot <- ggseqdplot(partner.child.year.seq)
+
+dplot + scale_x_discrete(labels = levels(dplot$data$k),
+                         guide = guide_axis(n.dodge = 2))
+
+```
+
+Alternatively, you could get rid of the long value labels altogether and just print the sequence position as labels on the x-axis. 
+
+
+```{r, layout="l-body-outset", fig.width=10, fig.height=6.5}
+ggseqdplot(partner.child.year.seq) +
+  scale_x_discrete()
+```
+
+
 As `ggseqdplot` has been written with the intention to mimic the behavior of `seqdplot` it's not very surprising that both plots look very similar. Just like with `seqplot` the `ggplot` version of the plot allows to turn off weights and to generate faceted plots by specifying the `group` argument.
 Turn to the documentation for further possibilities to adjust the outcome of `ggseqdplot`:
 
 ```{r, layout="l-body-outset", fig.width=10, fig.height=6.5}
 ggseqdplot(partner.child.year.seq, 
            group = as_factor(family$sex), # `as_factor` not necessary; only used to get nice labels
-           weighted = FALSE)
+           weighted = FALSE) +
+  scale_x_discrete()
 ```
 
 Note that it is not possible to obtain the faceted output by *manually* specifying `facet_wrap(~family$sex)`. That is because `ggseqdplot` internally reshapes the sequence data into
@@ -129,7 +160,7 @@ ggseqdplot(partner.child.year.seq) +
 
 ```
 
-## Seqeuence index plots
+## Sequence index plots
 
 We again start with a comparison of the default outputs for `seqIplot` and `ggseqiplot`. We plot a sample of 50 sequences and sort the remaining sequences according to the time spent in marriage (states 7 to 9).
 
