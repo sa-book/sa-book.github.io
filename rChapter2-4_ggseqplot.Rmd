@@ -62,7 +62,7 @@ We wrote a little R package named [`{ggseqplot}`](https://github.com/maraab23/gg
 
 <aside>
 
-```{r, echo=FALSE, out.width = "50%"}
+```{r, echo=FALSE, out.width = "65%"}
 knitr::include_graphics("https://raw.githubusercontent.com/maraab23/ggseqplot/main/man/figures/logo.png")
 ```
 
