@@ -57,7 +57,16 @@ load(here("data", "R", "2-0_ChapterSetup.RData"))
 
 Virtually all figures shown in the book were rendererd with `TraMineR::seqplot` which uses base R's `plot` function. While there is nothing wrong with that, many R users tend to prefer [`{ggplot2}`](https://ggplot2.tidyverse.org/){target="_blank"} for visualizing their data. 
 
+
 We wrote a little R package named [`{ggseqplot}`](https://github.com/maraab23/ggseqplot) that reproduces some of the sequence plots from [`{TraMineR}`](http://traminer.unige.ch){target="_blank"}’s `seqplot` using [`{ggplot2}`](https://ggplot2.tidyverse.org/){target="_blank"}. These plots are produced on the basis of a sequence object defined with `TraMineR::seqdef`. The package automates the reshaping and plotting of sequence data required to render the plots with [`{ggplot2}`](https://ggplot2.tidyverse.org/){target="_blank"}.
+
+<aside>
+
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics("https://raw.githubusercontent.com/maraab23/ggseqplot/main/man/figures/logo.png")
+```
+
+</aside>
 
 [`{ggseqplot}`](https://github.com/maraab23/ggseqplot) is in an early stage of development and will be hopefully complemented by a few additional functions in the near future.
 
@@ -86,18 +95,12 @@ seqdplot(partner.child.year.seq)
 ggseqdplot(partner.child.year.seq)
 ```
 
-Note that the somewhat awkward labeling of the x-axis values is a result of using
-
-```{r, eval=FALSE}
-scale_x_discrete(guide = guide_axis(check.overlap = TRUE))
-```
-
-in the definition of the `ggseqdplot` function. Using this specification ggplot tries to print as much labels as possible without overlapping. This might lead to some strange gaps between labels. If you provide more space for the labels, more labels will be printed.
+Note that the default labeling of the x-axis values might produce non-ideal results. The default labeling behavior forces labels to appear at the first and the last position of the sequence data. The states in-between are labeled according to base R's `pretty` function.
 
 Of course, the labels can also be adjusted according to your need using the regular [`{ggplot2}`](https://ggplot2.tidyverse.org/){target="_blank"} functions. If you want to access the value labels for the x-axis, you can either get them from the sequence object you are plotting (`attributes(partner.child.year.seq)$names`) or by saving your `ggseqdplot` as an object
 and then extracting the required information from the `data` column `k`. 
 
-In the following example we utilize another `ggplot2::guide_axis` argument to provide more space for the values labels. More specifically, overlapping labels will be avoided by printing them in two rows (`n.dodge = 2`):
+In the following example we utilize `ggplot2::guide_axis` to provide enough space for printing the complete set of values labels for the x-axis. Overlapping labels are avoided by printing the labels in two rows (`n.dodge = 2`):
 
 ```{r, layout="l-body-outset", fig.width=10, fig.height=6.5}
 dplot <- ggseqdplot(partner.child.year.seq)

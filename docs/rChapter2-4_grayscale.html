@@ -84,7 +84,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <!--radix_placeholder_meta_tags-->
   <title>Sequence Analysis - Companion Site: Visualizing sequences</title>
 
-  <meta property="description" itemprop="description" content="... ggplotify sequence data plots"/>
+  <meta property="description" itemprop="description" content="... without using colors - The grayscale edition"/>
 
   <link rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/"/>
   <link rel="icon" type="image/png" href="images/QASS.png"/>
@@ -93,20 +93,20 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Sequence Analysis - Companion Site: Visualizing sequences"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="... ggplotify sequence data plots"/>
+  <meta property="og:description" content="... without using colors - The grayscale edition"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Sequence Analysis - Companion Site"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Sequence Analysis - Companion Site: Visualizing sequences"/>
-  <meta property="twitter:description" content="... ggplotify sequence data plots"/>
+  <meta property="twitter:description" content="... without using colors - The grayscale edition"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Visualizing sequences"]},{"type":"character","attributes":{},"value":["... ggplotify sequence data plots\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Visualizing sequences"]},{"type":"character","attributes":{},"value":["... without using colors - The grayscale edition\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2402,6 +2402,10 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clone fa-2x\" style=\"color: #c58dce\"><\/i>","success":"<i class=\"fa fa-check fa-2x\" style=\"color: #90BE6D\"><\/i>","error":"<i class=\"fa fa-times fa-2x\" style=\"color: #F94144\"><\/i>"})</script>
   <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
   <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+  <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+  <link href="site_libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+  <script src="site_libs/bsTable-3.3.7/bootstrapTable.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2428,7 +2432,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Visualizing sequences","description":"... ggplotify sequence data plots","authors":[]}
+{"title":"Visualizing sequences","description":"... without using colors - The grayscale edition","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2468,7 +2472,7 @@ Material for R
 <h1>Visualizing sequences</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>… ggplotify sequence data plots</p></p>
+<p><p>… without using colors - The grayscale edition</p></p>
 </div>
 
 
@@ -2477,8 +2481,11 @@ Material for R
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#state-distribution-plot">State distribution plot</a></li>
-<li><a href="#sequence-index-plots">Sequence index plots</a></li>
+<li><a href="#defining-the-color-palette-shading-lines">Defining the
+“color” palette &amp; shading lines</a></li>
+<li><a href="#legend-link">Adjusting the legend</a></li>
+<li><a href="#sequence-index-plot-of-representative-sequences">Sequence
+index plot <br/>of representative sequences</a></li>
 </ul>
 </nav>
 </div>
@@ -2497,7 +2504,11 @@ Chapter02.zip</a>).</li>
 <code>2-0_ChapterSetup.R</code>. This will create
 <code>2-0_ChapterSetup.RData</code> in the sub folder
 <code>data/R</code>. This file contains the data required to produce the
-state distribution plot shown below.</li>
+plots shown below.</li>
+<li>You also have to add the function <code>legend_large_box</code> to
+your environment in order to render the tweaked version of the legend
+described below. You find this file in the <code>source</code> folder of
+the unzipped Chapter 2 archive.</li>
 <li>We also recommend to load the libraries listed in the Chapter 2’s
 <code>LoadInstallPackages.R</code></li>
 </ul>
@@ -2505,209 +2516,349 @@ state distribution plot shown below.</li>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming you are working within .Rproj environment</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install (if necessary) and load other required packages</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">&quot;source&quot;</span>, <span class="st">&quot;load_libraries.R&quot;</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># adjusted version of the legend function</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">&quot;source&quot;</span>, <span class="st">&quot;legend_large_box.R&quot;</span>))</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># load environment generated in &quot;2-0_ChapterSetup.R&quot;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;R&quot;</span>, <span class="st">&quot;2-0_ChapterSetup.RData&quot;</span>))</span></code></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># install (if necessary) and load other required packages</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">&quot;source&quot;</span>, <span class="st">&quot;load_libraries.R&quot;</span>))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># load environment generated in &quot;2-0_ChapterSetup.R&quot;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;R&quot;</span>, <span class="st">&quot;2-0_ChapterSetup.RData&quot;</span>))</span></code></pre></div>
 </div>
 </details>
-<p> </p>
-<p>Virtually all figures shown in the book were rendererd with
-<code>TraMineR::seqplot</code> which uses base R’s <code>plot</code>
-function. While there is nothing wrong with that, many R users tend to
-prefer <a href="https://ggplot2.tidyverse.org/"
-target="_blank"><code>{ggplot2}</code></a> for visualizing their
-data.</p>
-<p>We wrote a little R package named <a
-href="https://github.com/maraab23/ggseqplot"><code>{ggseqplot}</code></a>
-that reproduces some of the sequence plots from <a
-href="http://traminer.unige.ch"
-target="_blank"><code>{TraMineR}</code></a>’s <code>seqplot</code> using
-<a href="https://ggplot2.tidyverse.org/"
-target="_blank"><code>{ggplot2}</code></a>. These plots are produced on
-the basis of a sequence object defined with
-<code>TraMineR::seqdef</code>. The package automates the reshaping and
-plotting of sequence data required to render the plots with <a
-href="https://ggplot2.tidyverse.org/"
-target="_blank"><code>{ggplot2}</code></a>.</p>
-<aside>
+<p><br />
+</p>
+<p>Although the full potential of visualizing sequences can only be
+reached by using colored figures, some restrictions - particularly hight
+cost of colored printing - might require using grayscale figures and
+shaded lines. This page illustrates how to produce <em>acceptable</em>
+figures without using colors visualizing sequences with an alphabet of 9
+states. Based on our own experience we consider an alphabet of size 12
+as the upper limit when the usage of colors is not an option.</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="https://raw.githubusercontent.com/maraab23/ggseqplot/main/man/figures/logo.png" width="50%" /></p>
+<table class="table table-responsive table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+State
+</th>
+<th style="text-align:left;">
+Short Label
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Single, no child
+</td>
+<td style="text-align:left;">
+S
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Single, child(ren)
+</td>
+<td style="text-align:left;">
+Sc
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LAT, no child
+</td>
+<td style="text-align:left;">
+LAT
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LAT, child(ren)
+</td>
+<td style="text-align:left;">
+LATc
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cohabiting, no child
+</td>
+<td style="text-align:left;">
+COH
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cohabiting, child(ren)
+</td>
+<td style="text-align:left;">
+COHc
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Married, no child
+</td>
+<td style="text-align:left;">
+MAR
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Married, 1 child
+</td>
+<td style="text-align:left;">
+MARc1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Married, 2+ children
+</td>
+<td style="text-align:left;">
+MARc2+
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-</aside>
-<p><a
-href="https://github.com/maraab23/ggseqplot"><code>{ggseqplot}</code></a>
-is in an early stage of development and will be hopefully complemented
-by a few additional functions in the near future.</p>
-<p>Currently, <a
-href="https://github.com/maraab23/ggseqplot"><code>{ggseqplot}</code></a>
-only contains two functions: - <code>ggseqiplot</code>
-(<code>TraMineR::seqIplot</code>) - <code>ggseqdplot</code>
-(<code>TraMineR::seqdplot</code>)</p>
-<p>The package is stored on <a
-href="https://github.com/maraab23/ggseqplot"><svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
-GitHub</a> and you can install and load it with the following
-commands:</p>
+<h2 id="defining-the-color-palette-shading-lines">Defining the “color”
+palette &amp; shading lines</h2>
+<p>We use base R’s <code>gray.colors</code> function to choose grays
+appropriate for our purpose. We apply the following strategy:</p>
+<ol type="1">
+<li>choose a “color” for each partnership state;</li>
+<li>add shading lines for fertility information.</li>
+</ol>
+<p>We use a palette of nine grays to choose three different grays to
+represent the partnership states “LAT”, “Cohabitation”, and “Marriage”.
+The single status will be depicted by White (HEX = “#FFFFFF”).</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;maraab23/ggseqplot&quot;</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggseqplot)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">9</span>), <span class="at">col =</span> <span class="fu">gray.colors</span>(<span class="dv">9</span>), <span class="at">axes =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
-<p> </p>
-<h2 id="state-distribution-plot">State distribution plot</h2>
-<p>In the following example we are rendering state distribution plots of
-the sequence object <code>partner.child.year.seq</code>.</p>
-<p>We start by comparing <code>seqdplot</code> and
-<code>ggseqdplot</code> in their most basic specification:</p>
-<div class="layout-chunk" data-layout="l-body-outset">
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seqdplot</span>(partner.child.year.seq)</span></code></pre></div>
-<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-4-1.png" width="960" /></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseqdplot</span>(partner.child.year.seq)</span></code></pre></div>
-<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-4-2.png" width="960" /></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="rChapter2-4_grayscale_files/figure-html5/nine-grays-1.png" width="576" /></p>
 </div>
-<p>Note that the default labeling of the x-axis values might produce
-non-ideal results. The default labeling behavior forces labels to appear
-at the first and the last position of the sequence data. The states
-in-between are labeled according to base R’s <code>pretty</code>
-function.</p>
-<p>Of course, the labels can also be adjusted according to your need
-using the regular <a href="https://ggplot2.tidyverse.org/"
-target="_blank"><code>{ggplot2}</code></a> functions. If you want to
-access the value labels for the x-axis, you can either get them from the
-sequence object you are plotting
-(<code>attributes(partner.child.year.seq)$names</code>) or by saving
-your <code>ggseqdplot</code> as an object and then extracting the
-required information from the <code>data</code> column
-<code>k</code>.</p>
-<p>In the following example we utilize <code>ggplot2::guide_axis</code>
-to provide enough space for printing the complete set of values labels
-for the x-axis. Overlapping labels are avoided by printing the labels in
-two rows (<code>n.dodge = 2</code>):</p>
-<div class="layout-chunk" data-layout="l-body-outset">
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dplot <span class="ot">&lt;-</span> <span class="fu">ggseqdplot</span>(partner.child.year.seq)</span>
+<p>We added labels to the figure above to illustrate which grays
+constitute our palette. With the following code we specify and
+illustrate our final palette.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>colgrey.partner.child <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;#FFFFFF&quot;</span>,<span class="dv">2</span>),</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">rep</span>(<span class="fu">gray.colors</span>(<span class="dv">9</span>)[<span class="dv">8</span>],<span class="dv">2</span>),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">rep</span>(<span class="fu">gray.colors</span>(<span class="dv">9</span>)[<span class="dv">5</span>],<span class="dv">2</span>), </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">rep</span>(<span class="fu">gray.colors</span>(<span class="dv">9</span>)[<span class="dv">2</span>],<span class="dv">3</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                           </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">9</span>), <span class="at">col =</span> colgrey.partner.child, <span class="at">axes =</span> <span class="cn">FALSE</span>)                           </span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="rChapter2-4_grayscale_files/figure-html5/white-to-gray-1.png" width="576" /></p>
+</div>
+<p>According to the definition of our alphabet we need two single
+states, two LAT states, two cohabitation states, and three marriage
+states. Adding shading lines allows for distinguishing different
+fertility levels. Shading lines are added by specifying vectors for
+<code>density</code> and <code>angle</code>. We use different angles
+(i.e., 0° and 45°) to separate the two parity states within marriage.
+Specifying zero for the <code>density</code> parameter ensures that no
+shading lines are added for the four “childless” states.</p>
+<p>Note that we have to create two overlapping graph objects by typing
+<code>par(new=TRUE)</code>. The first plot creates bars with the desired
+colors, the second one adds black shading lines.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">9</span>), <span class="at">col =</span> colgrey.partner.child, <span class="at">axes =</span> <span class="cn">FALSE</span>)                           </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span><span class="cn">TRUE</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">9</span>), <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">axes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">density=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">20</span>), </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">angle=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>)) </span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="rChapter2-4_grayscale_files/figure-html5/nine-bars-shaded-1.png" width="576" /></p>
+</div>
+<h2 id="legend-link">Adjusting the legend</h2>
+<p>Based on the section above we draw a legend with the following
+standard code:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NULL</span> ,<span class="at">xaxt=</span><span class="st">&#39;n&#39;</span>,<span class="at">yaxt=</span><span class="st">&#39;n&#39;</span>,<span class="at">bty=</span><span class="st">&#39;n&#39;</span>,<span class="at">ylab=</span><span class="st">&#39;&#39;</span>,<span class="at">xlab=</span><span class="st">&#39;&#39;</span>, <span class="at">xlim=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">ylim=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>dplot <span class="sc">+</span> <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">levels</span>(dplot<span class="sc">$</span>data<span class="sc">$</span>k),</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">n.dodge =</span> <span class="dv">2</span>))</span></code></pre></div>
-<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-5-1.png" width="960" /></p>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;center&quot;</span>, <span class="at">legend =</span> longlab.partner.child,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">ncol=</span><span class="dv">3</span>, <span class="at">fill=</span>colgrey.partner.child)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span><span class="cn">TRUE</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend_large_box</span>(<span class="st">&quot;center&quot;</span>, <span class="at">legend =</span> longlab.partner.child,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ncol=</span><span class="dv">3</span>, <span class="at">bg =</span> <span class="st">&quot;transparent&quot;</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">density=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">20</span>), </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">angle=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>))</span></code></pre></div>
 </div>
-<p>Alternatively, you could get rid of the long value labels altogether
-and just print the sequence position as labels on the x-axis.</p>
 <div class="layout-chunk" data-layout="l-body-outset">
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseqdplot</span>(partner.child.year.seq) <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>()</span></code></pre></div>
-<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-6-1.png" width="960" /></p>
+<p><img src="rChapter2-4_grayscale_files/figure-html5/legend-small-boxes-1.png" width="768" /></p>
 </div>
-<p>As <code>ggseqdplot</code> has been written with the intention to
-mimic the behavior of <code>seqdplot</code> it’s not very surprising
-that both plots look very similar. Just like with <code>seqplot</code>
-the <code>ggplot</code> version of the plot allows to turn off weights
-and to generate faceted plots by specifying the <code>group</code>
-argument. Turn to the documentation for further possibilities to adjust
-the outcome of <code>ggseqdplot</code>:</p>
-<div class="layout-chunk" data-layout="l-body-outset">
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseqdplot</span>(partner.child.year.seq, </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">group =</span> <span class="fu">as_factor</span>(family<span class="sc">$</span>sex), <span class="co"># `as_factor` not necessary; only used to get nice labels</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">weighted =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>()</span></code></pre></div>
-<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-7-1.png" width="960" /></p>
-</div>
-<p>Note that it is not possible to obtain the faceted output by
-<em>manually</em> specifying <code>facet_wrap(~family$sex)</code>. That
-is because <code>ggseqdplot</code> internally reshapes the sequence data
-into an aggregated format that is suitable for generating the plot. In
-our example the resulting dataset includes one row for every combination
-of sequence position <span class="math inline">\(k\)</span> (22
-positions in our case) and state of the alphabet <span
-class="math inline">\(A\)</span> (9 distinct states). With one group
-this yields a data set with <span
-class="math inline">\(22*9=198\)</span> rows. The data for the faceted
-version shown above has 396 rows with 198 for men and women each. The
-grouping variable <code>family$sex</code>, however, is of length 1866
-(one row for each case).</p>
-<p>If you want to access the data used for the plot you can save the
-plot as a list object:</p>
+<p>Although the legend looks OK at first glance, it has two crucial
+drawbacks: (1) The grayscale boxes (with shading lines) are too small to
+be distinguished easily; (2) two different partnership states are
+appearing in the first two columns of the legend. Both issues call for
+some extra coding because they cannot be solved with the options
+available in the standard version of the legend function.</p>
+<p>Addressing the first issue we draw on a tweaked version of the legend
+suggested by <a href="http://ms.mcmaster.ca/~bolker/"
+target="_blank">Ben Bolker</a> and <a
+href="https://www.pauljhurtado.com/" target="_blank">Paul Hurtado</a> in
+a thread at <a
+href="https://stackoverflow.com/questions/13644149/increasing-the-size-of-the-coloured-squares-on-histogram-legends-in-r"
+target="_blank">Stack Overflow</a>.</p>
+<p>Here you can download the tweaked version of the legend function: <a
+href="source/legend_large_box.R"><svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"></path></svg>
+legend_large_box.R</a>.</p>
+<p>We include the function by sourcing the file within our R-script by
+typing:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dplot <span class="ot">&lt;-</span> <span class="fu">ggseqdplot</span>(partner.child.year.seq,</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group =</span> <span class="fu">as_factor</span>(family<span class="sc">$</span>sex), </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">weighted =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>dplot<span class="sc">$</span>data</span></code></pre></div>
-<pre><code># A tibble: 396 x 6
-   group  state            k        x     value grouplab       
-   &lt;fct&gt;  &lt;fct&gt;            &lt;fct&gt;    &lt;fct&gt; &lt;dbl&gt; &lt;glue&gt;         
- 1 Female Single, no child state1   1     0.494 Female (n=1039)
- 2 Female Single, no child state13  2     0.409 Female (n=1039)
- 3 Female Single, no child state25  3     0.330 Female (n=1039)
- 4 Female Single, no child state37  4     0.276 Female (n=1039)
- 5 Female Single, no child state49  5     0.244 Female (n=1039)
- 6 Female Single, no child state61  6     0.218 Female (n=1039)
- 7 Female Single, no child state73  7     0.183 Female (n=1039)
- 8 Female Single, no child state85  8     0.140 Female (n=1039)
- 9 Female Single, no child state97  9     0.133 Female (n=1039)
-10 Female Single, no child state109 10    0.122 Female (n=1039)
-# ... with 386 more rows</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">&quot;source&quot;</span>, <span class="st">&quot;legend_large_box.R&quot;</span>))</span></code></pre></div>
 </div>
-<p>Of course, the figures produced with <a
-href="https://github.com/maraab23/ggseqplot"><code>{ggseqplot}</code></a>
-can be adjusted like any other <a href="https://ggplot2.tidyverse.org/"
-target="_blank"><code>{ggplot2}</code></a> figure</p>
-<div class="layout-chunk" data-layout="l-body-outset">
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hrbrthemes)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseqdplot</span>(partner.child.year.seq) <span class="sc">+</span> </span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="dv">18</span><span class="sc">:</span><span class="dv">39</span>) <span class="sc">+</span> </span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;State distribution plot&quot;</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Age&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">&quot;Alphabet&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum_rc</span>() <span class="sc">+</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">34</span>, </span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">margin=</span><span class="fu">margin</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>)),</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title.position =</span> <span class="st">&quot;plot&quot;</span>,</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>),</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>))</span></code></pre></div>
-<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-9-1.png" width="960" /></p>
+<p>Next to changing the size of the colored boxes we want to re-arrange
+the labels of the legend. The new legend should have four columns each
+representing one partnership state. Each of the first three columns
+(“Single”, “LAT”, “Cohabitation”) has two entries (“childless”, “with
+child(ren)”). The last column (“Marriage”) has three entries (“no
+child”, “one child”, “2 or more children”).</p>
+<p>Typing <code>ncol=4</code> when specifying the legend would not do
+the trick. It would produce a four columns legend with three entries in
+the first three columns and zero entries in the last column.</p>
+<p>To obtain the desired result we have to add empty cells to the legend
+and adjust our “color” vector accordingly. This is accomplished by the
+following code:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding empty cells at the right positions</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add empty labels below Single, LAT, and Cohabitation</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>longlab.partner.child2 <span class="ot">&lt;-</span> <span class="fu">append</span>(longlab.partner.child, <span class="st">&quot;&quot;</span>, <span class="at">after=</span><span class="dv">2</span>)  </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>longlab.partner.child2 <span class="ot">&lt;-</span> <span class="fu">append</span>(longlab.partner.child2, <span class="st">&quot;&quot;</span>, <span class="at">after=</span><span class="dv">5</span>) </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>longlab.partner.child2 <span class="ot">&lt;-</span> <span class="fu">append</span>(longlab.partner.child2, <span class="st">&quot;&quot;</span>, <span class="at">after=</span><span class="dv">8</span>) </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># add white colored cells below Single, LAT, and Cohabitation</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>colgrey.partner.child2 <span class="ot">&lt;-</span> <span class="fu">append</span>(colgrey.partner.child,<span class="st">&quot;#FFFFFF&quot;</span>,<span class="at">after=</span><span class="dv">2</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>colgrey.partner.child2 <span class="ot">&lt;-</span> <span class="fu">append</span>(colgrey.partner.child2,<span class="st">&quot;#FFFFFF&quot;</span>,<span class="at">after=</span><span class="dv">5</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>colgrey.partner.child2 <span class="ot">&lt;-</span> <span class="fu">append</span>(colgrey.partner.child2,<span class="st">&quot;#FFFFFF&quot;</span>,<span class="at">after=</span><span class="dv">8</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># define border colors for the boxes in legend:</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># regular color = black</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># color for empty cells = white</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>bordercol.partner.child <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;black&quot;</span>,<span class="st">&quot;black&quot;</span>,<span class="st">&quot;White&quot;</span>),<span class="dv">3</span>),</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">rep</span>(<span class="st">&quot;black&quot;</span>, <span class="dv">3</span>))</span></code></pre></div>
 </div>
-<h2 id="sequence-index-plots">Sequence index plots</h2>
-<p>We again start with a comparison of the default outputs for
-<code>seqIplot</code> and <code>ggseqiplot</code>. We plot a sample of
-50 sequences and sort the remaining sequences according to the time
-spent in marriage (states 7 to 9).</p>
-<div class="layout-chunk" data-layout="l-body-outset">
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>subset <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(partner.child.year.seq),<span class="dv">50</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">seqIplot</span>(partner.child.year.seq[subset,], </span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">sortv =</span> <span class="fu">rowSums</span>(<span class="fu">seqistatd</span>(partner.child.year.seq[subset,])[,<span class="dv">7</span><span class="sc">:</span><span class="dv">9</span>]))</span></code></pre></div>
-<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-10-1.png" width="960" /></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseqiplot</span>(partner.child.year.seq[subset,],</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">sortv =</span> <span class="fu">rowSums</span>(<span class="fu">seqistatd</span>(partner.child.year.seq[subset,])[,<span class="dv">7</span><span class="sc">:</span><span class="dv">9</span>]))</span></code></pre></div>
-<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-10-2.png" width="960" /></p>
+<p>Finally, we can draw the tweaked legend box. Again, we have to create
+two overlapping plot objects to get both the desired “color” palette and
+the black shading lines.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NULL</span> ,<span class="at">xaxt=</span><span class="st">&#39;n&#39;</span>,<span class="at">yaxt=</span><span class="st">&#39;n&#39;</span>,<span class="at">bty=</span><span class="st">&#39;n&#39;</span>,<span class="at">ylab=</span><span class="st">&#39;&#39;</span>,<span class="at">xlab=</span><span class="st">&#39;&#39;</span>, <span class="at">xlim=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">ylim=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">legend_large_box</span>(<span class="st">&quot;center&quot;</span>, <span class="at">legend =</span> longlab.partner.child2,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">fill=</span>colgrey.partner.child2, </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">border =</span> bordercol.partner.child,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">box.cex=</span><span class="fu">c</span>(<span class="fl">4.5</span>,<span class="fl">1.5</span>),  <span class="at">y.intersp=</span><span class="dv">2</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span><span class="cn">TRUE</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">legend_large_box</span>(<span class="st">&quot;center&quot;</span>, <span class="at">legend =</span> longlab.partner.child2,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">bg =</span> <span class="st">&quot;transparent&quot;</span>, </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">border =</span> bordercol.partner.child,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">box.cex=</span><span class="fu">c</span>(<span class="fl">4.5</span>,<span class="fl">1.5</span>),  <span class="at">y.intersp=</span><span class="dv">2</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">density=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">20</span>), </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">angle=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>))</span></code></pre></div>
 </div>
-<p>Note that other than for <code>ggseqdplot</code> the x-axis for
-<code>ggseqiplot</code> is on a continuous scale. The following code
-chunk illustrates how the plot can be fine-tuned in the well-known <a
-href="https://ggplot2.tidyverse.org/"
-target="_blank"><code>{ggplot2}</code></a> fashion:</p>
 <div class="layout-chunk" data-layout="l-body-outset">
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseqiplot</span>(partner.child.year.seq[subset,],</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">sortv =</span> <span class="fu">rowSums</span>(<span class="fu">seqistatd</span>(partner.child.year.seq[subset,])[,<span class="dv">7</span><span class="sc">:</span><span class="dv">9</span>])) <span class="sc">+</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">add =</span> <span class="fu">c</span>(.<span class="dv">8</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">22</span>,<span class="dv">2</span>),</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">seq</span>(<span class="dv">18</span>,<span class="dv">40</span>,<span class="dv">2</span>),</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">add =</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Sequence index plot&quot;</span>,</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Age&quot;</span>, </span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Alphabet&quot;</span>,</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Sequences sorted by marriage duration&quot;</span>) <span class="sc">+</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color=</span><span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum_rc</span>() <span class="sc">+</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">34</span>, </span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">margin=</span><span class="fu">margin</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>)),</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title.position =</span> <span class="st">&quot;plot&quot;</span>,</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>),</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>),</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>))</span></code></pre></div>
-<p><img src="rChapter2-4_ggseqplot_files/figure-html5/unnamed-chunk-11-1.png" width="960" /></p>
+<p><img src="rChapter2-4_grayscale_files/figure-html5/legend-large-boxes-1.png" width="1152" /></p>
+</div>
+<h2 id="sequence-index-plot-of-representative-sequences">Sequence index
+plot <br/>of representative sequences</h2>
+<p>In the book we elaborate on the pros and cons of sequence index plots
+(see Chapter 2.4.2 in the book; the corresponding code can be found <a
+href="rChapter2-4-2.html">here</a>). Based on this discussion we
+recommend to abstain from standard index plots of all sequences when
+working with large data sets. This is even more true if colors are not
+available for visualization.</p>
+<p>In the subsequent example we therefore illustrate how to produce
+grayscale plots with <a href="http://traminer.unige.ch"
+target="_blank"><code>{TraMineR}</code></a>’s <code>seqplot</code>
+function rendering a selection of 10 representative sequences extracted
+by <code>seqrep</code> using sequences with a yearly granularity.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify 10 representative sequences</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>partner.child.year.rep <span class="ot">&lt;-</span> <span class="fu">seqrep</span>(partner.child.year.seq, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">diss=</span>partner.child.year.om, </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">criterion=</span><span class="st">&quot;dist&quot;</span>, <span class="at">nrep =</span> <span class="dv">10</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract sequences to be plotted and save in object</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>plot.seq <span class="ot">&lt;-</span> partner.child.year.seq[<span class="fu">attributes</span>(partner.child.year.rep)<span class="sc">$</span>Index,]</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># extract same sequences from sequence data using reduced alphabet (partnership status only)</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># this will be used for sorting the index plots by the </span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># first occurrence of the partnership status &quot;MAR&quot; (marriage)</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>plot.aux <span class="ot">&lt;-</span> partner.year.seq[<span class="fu">attributes</span>(partner.child.year.rep)<span class="sc">$</span>Index,]</span></code></pre></div>
+</div>
+<p>Like in the previous examples two overlapping plots and legends have
+to be created in order to obtain the “color” palette and the shading
+lines. Note the differences in the specification of colors,
+<code>angle</code>, and <code>density</code> between the index plot and
+the legend. They result from the necessity to define extra empty cells
+in the legend (see <a href="#legend-link">section above</a>). We also
+adjusted the default margin sizes
+(<code>par(mar=c(bottom, left, top, right))</code>) to ensure enough
+space for the enlarged legend. Note that the appearance of your plot
+depends on both the specification of the parameters of the
+<code>png</code> function (<code>width</code>, <code>height</code>,
+<code>res</code>) and the graphical parameters defined by
+<code>par</code>. An alternative approach to arrange multiple plots
+(e.g., index plot and legend plot) using the <code>layout</code>
+function is shown in the example code for chapters <a
+href="rChapter2-4-1.html">2.4.1</a> &amp; <a
+href="rChapter2-4-2.html">2.4.2</a>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save plot as png file</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;figures&quot;</span>, <span class="st">&quot;2-4-0_bonus_iplot_grayYearly.png&quot;</span>), </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">900</span>, <span class="at">height =</span> <span class="dv">650</span>, <span class="at">res =</span> <span class="dv">90</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">13</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">seqiplot</span>(plot.seq, </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">border =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">with.legend =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">axes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">yaxis =</span> <span class="cn">FALSE</span>, <span class="at">ylab =</span> <span class="cn">NA</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">sortv =</span> <span class="fu">seqfpos</span>(plot.aux, <span class="st">&quot;MAR&quot;</span>),</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">cpal =</span> colgrey.partner.child)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span><span class="cn">TRUE</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="fu">seqiplot</span>(plot.seq,  </span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">border =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">with.legend =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">axes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">yaxis =</span> <span class="cn">FALSE</span>, <span class="at">ylab =</span> <span class="cn">NA</span>,</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">sortv =</span> <span class="fu">seqfpos</span>(plot.aux, <span class="st">&quot;MAR&quot;</span>),</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">cpal=</span><span class="fu">rep</span>(<span class="st">&quot;black&quot;</span>,<span class="dv">9</span>),</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>         <span class="at">density=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">20</span>), </span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>         <span class="at">angle=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>))</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at=</span>(<span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">22</span>, <span class="at">by =</span> <span class="dv">2</span>)), <span class="at">labels =</span> <span class="fu">seq</span>(<span class="dv">18</span>,<span class="dv">40</span>, <span class="at">by =</span> <span class="dv">2</span>))</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="at">text =</span> <span class="st">&quot;Age&quot;</span>,</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">side =</span> <span class="dv">1</span>,<span class="co">#side 1 = bottom</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">line =</span> <span class="dv">2</span>)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">1</span>))</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="fu">legend_large_box</span>(<span class="st">&quot;bottom&quot;</span>, <span class="at">legend =</span> longlab.partner.child2,</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">fill =</span>colgrey.partner.child2, </span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>                 <span class="at">border =</span> bordercol.partner.child,</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>                 <span class="at">box.cex=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="fl">1.5</span>),  <span class="at">y.intersp=</span><span class="dv">2</span>,</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>                 <span class="at">inset=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="sc">-</span>.<span class="dv">4</span>), <span class="at">xpd=</span><span class="cn">TRUE</span>)</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span><span class="cn">TRUE</span>)</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="fu">legend_large_box</span>(<span class="st">&quot;bottom&quot;</span>, <span class="at">legend =</span> longlab.partner.child2,</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">bg =</span> <span class="st">&quot;transparent&quot;</span>, </span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>                 <span class="at">border =</span> bordercol.partner.child,</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>                 <span class="at">box.cex=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="fl">1.5</span>),  <span class="at">y.intersp=</span><span class="dv">2</span>,</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>                 <span class="at">inset=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="sc">-</span>.<span class="dv">4</span>), <span class="at">xpd=</span><span class="cn">TRUE</span>,</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>                 <span class="at">density=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">20</span>), </span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>                 <span class="at">angle=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">45</span>,<span class="dv">0</span>))</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body-outset">
+<p><img src="images/Chapter2/2-4-0_bonus_iplot_grayYearly.png" width="450" /></p>
 </div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
@@ -2716,15 +2867,6 @@ target="_blank"><code>{ggplot2}</code></a> fashion:</p>
 <div class="d-appendix">
 </div>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
