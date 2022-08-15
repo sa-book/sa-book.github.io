@@ -151,8 +151,10 @@ Like in the `new.order` example above we will use `cmd.idx` in the code for the 
 
 Finally, we can start to rebuild Figure 5-2 from the book using `{ggseqplot}`.
 
+The height of the index plots reflects their prevalence in the sample. This varying size is "enforced" by the use of the `force_panelsizes` function of the wonderful [`{ggh4x}`](https://teunbrand.github.io/ggh4x/index.html){target="_blank"} library.
 
-We can now plot the MCSA clusters, here sequences in each sub-graph are ordered by multidimensional scaling calculated on both channels
+In the code below, we first render the index plots for the family trajectories and save them in the object `p1`. This will the left panel of our final figure. The right panel, `p2`, displays the labor market trajectories. Both panels are arranged in a joint plot by the "composer of plots", the [`{patchwork}`](https://patchwork.data-imaginist.com/){target="_blank"} library.
+
 
 ```{r, eval=FALSE, echo=TRUE}
 

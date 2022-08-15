@@ -2699,8 +2699,18 @@ sequence data.</p>
 <h2 id="composing-the-plot">Composing the plot</h2>
 <p>Finally, we can start to rebuild Figure 5-2 from the book using
 <code>{ggseqplot}</code>.</p>
-<p>We can now plot the MCSA clusters, here sequences in each sub-graph
-are ordered by multidimensional scaling calculated on both channels</p>
+<p>The height of the index plots reflects their prevalence in the
+sample. This varying size is “enforced” by the use of the
+<code>force_panelsizes</code> function of the wonderful <a
+href="https://teunbrand.github.io/ggh4x/index.html"
+target="_blank"><code>{ggh4x}</code></a> library.</p>
+<p>In the code below, we first render the index plots for the family
+trajectories and save them in the object <code>p1</code>. This will the
+left panel of our final figure. The right panel, <code>p2</code>,
+displays the labor market trajectories. Both panels are arranged in a
+joint plot by the “composer of plots”, the <a
+href="https://patchwork.data-imaginist.com/"
+target="_blank"><code>{patchwork}</code></a> library.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The left panel: Family trajectories</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggseqiplot</span>(mc.fam.year.seq[cmd.idx,],</span>
