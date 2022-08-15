@@ -1027,10 +1027,6 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1860,6 +1856,12 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1874,6 +1876,31 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1973,6 +2000,8 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1995,7 +2024,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2395,7 +2424,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
   <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
   <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
@@ -2468,7 +2497,8 @@ Material for R
 <h1>Alternative options to compare sequences</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Chapter 3.7 Beyond the standard full-sample pairwise sequence comparison</p></p>
+<p><p>Chapter 3.7 Beyond the standard full-sample pairwise sequence
+comparison</p></p>
 </div>
 
 
@@ -2477,10 +2507,18 @@ Material for R
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#defining-a-theoretical-sequence">Defining a theoretical sequence</a></li>
-<li><a href="#identify-the-most-frequent-sequence-in-the-data">Identify the most frequent sequence in the data</a></li>
-<li><a href="#identify-the-medoid-sequence-in-the-data">Identify the medoid sequence in the data</a></li>
-<li><a href="#summary-and-visual-comparison">Summary and visual comparison</a></li>
+<li><a href="#defining-a-theoretical-sequence"
+id="toc-defining-a-theoretical-sequence">Defining a theoretical
+sequence</a></li>
+<li><a href="#identify-the-most-frequent-sequence-in-the-data"
+id="toc-identify-the-most-frequent-sequence-in-the-data">Identify the
+most frequent sequence in the data</a></li>
+<li><a href="#identify-the-medoid-sequence-in-the-data"
+id="toc-identify-the-medoid-sequence-in-the-data">Identify the medoid
+sequence in the data</a></li>
+<li><a href="#summary-and-visual-comparison"
+id="toc-summary-and-visual-comparison">Summary and visual
+comparison</a></li>
 </ul>
 </nav>
 </div>
@@ -2492,10 +2530,20 @@ Material for R
 <strong>Click here to get instructions…</strong>
 </summary>
 <ul>
-<li>Please download and unzip the replication files for Chapter 3 (<a href="source/Chapter03.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter03.zip</a>).</li>
-<li>Read <code>readme.html</code> and run <code>3-0_ChapterSetup.R</code>. This will create <code>3-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to produce the plots shown below.</li>
-<li>You also have to add the function <code>legend_large_box</code> to your environment in order to render the tweaked version of the legend described below. You find this file in the <code>source</code> folder of the unzipped Chapter 3 archive.</li>
-<li>We also recommend to load the libraries listed in Chapter 3’s <code>LoadInstallPackages.R</code></li>
+<li>Please download and unzip the replication files for Chapter 3 (<a
+href="source/Chapter03.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0L64-.0001c-35.35 0-64 28.65-64 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h48V64h64V48.13h48.01L224 128c0 17.67 14.33 32 32 32h79.1V448zM176 96h-64v32h64V96zM176 160h-64v32h64V160zM176 224h-64l-30.56 116.5C73.51 379.5 103.7 416 144.3 416c40.26 0 70.45-36.3 62.68-75.15L176 224zM160 368H128c-8.836 0-16-7.164-16-16s7.164-16 16-16h32c8.836 0 16 7.164 16 16S168.8 368 160 368z"/></svg>
+Chapter03.zip</a>).</li>
+<li>Read <code>readme.html</code> and run
+<code>3-0_ChapterSetup.R</code>. This will create
+<code>3-0_ChapterSetup.RData</code> in the sub folder
+<code>data/R</code>. This file contains the data required to produce the
+plots shown below.</li>
+<li>You also have to add the function <code>legend_large_box</code> to
+your environment in order to render the tweaked version of the legend
+described below. You find this file in the <code>source</code> folder of
+the unzipped Chapter 3 archive.</li>
+<li>We also recommend to load the libraries listed in Chapter 3’s
+<code>LoadInstallPackages.R</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming you are working within .Rproj environment</span></span>
@@ -2510,9 +2558,16 @@ Material for R
 </details>
 <p><br />
 </p>
-<p>In chapter 3.7, we introduce techniques to compare all sequences in a dataset to a reference sequences instead of conducting a full-sample pairwise comparison. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see <a href="https://www.pairfam.de/en/" target="_blank">here</a>.</p>
-<h2 id="defining-a-theoretical-sequence">Defining a theoretical sequence</h2>
-<p>First, we generate an object that contains the theoretical sequence id the SPS format of the same length of the sequences in the sample:</p>
+<p>In chapter 3.7, we introduce techniques to compare all sequences in a
+dataset to a reference sequences instead of conducting a full-sample
+pairwise comparison. The data come from a sub-sample of the German
+Family Panel - pairfam. For further information on the study and on how
+to access the full scientific use file see <a
+href="https://www.pairfam.de/en/" target="_blank">here</a>.</p>
+<h2 id="defining-a-theoretical-sequence">Defining a theoretical
+sequence</h2>
+<p>First, we generate an object that contains the theoretical sequence
+id the SPS format of the same length of the sequences in the sample:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>theo.seq<span class="ot">&lt;-</span><span class="fu">as.matrix</span>(<span class="st">&quot;(S,5)-(MAR,2)-(MARc1,3)-(MARc2+,12)&quot;</span>)</span></code></pre></div>
 </div>
@@ -2522,18 +2577,23 @@ Material for R
 <pre><code>     [,1]                                 
 [1,] &quot;(S,5)-(MAR,2)-(MARc1,3)-(MARc2+,12)&quot;</code></pre>
 </div>
-<p>We then recode the theoretical sequence from SPS to STS and overwrite the object that contains it</p>
+<p>We then recode the theoretical sequence from SPS to STS and overwrite
+the object that contains it</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>theo.seq <span class="ot">&lt;-</span> <span class="fu">seqformat</span>(theo.seq, <span class="at">from =</span> <span class="st">&quot;SPS&quot;</span>, <span class="at">to =</span> <span class="st">&quot;STS&quot;</span>)</span></code></pre></div>
 </div>
-<p>We overwrite it again, by formally define it as a sequence using the <code>TraMineR</code> <code>?seqdef</code> command:</p>
+<p>We overwrite it again, by formally define it as a sequence using the
+<code>TraMineR</code> <code>?seqdef</code> command:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>theo.seq<span class="ot">&lt;-</span><span class="fu">seqdef</span>(theo.seq, </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">states =</span> shortlab.partner.child,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">alphabet =</span> shortlab.partner.child, </span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">xtstep =</span> <span class="dv">1</span>)</span></code></pre></div>
 </div>
-<p>We can now compute the dissimilarity between the theoretical sequence and all sequences in the data. Here we use OM with constant substitution costs and <code>indel</code> =1. The <code>theo.seq</code> object has to be specified as argument to the option <code>refseq</code></p>
+<p>We can now compute the dissimilarity between the theoretical sequence
+and all sequences in the data. Here we use OM with constant substitution
+costs and <code>indel</code> =1. The <code>theo.seq</code> object has to
+be specified as argument to the option <code>refseq</code></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dist.theo<span class="ot">&lt;-</span><span class="fu">seqdist</span>(partner.child.year.seq, </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">method =</span> <span class="st">&quot;OM&quot;</span>, </span>
@@ -2541,8 +2601,12 @@ Material for R
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sm =</span> <span class="st">&quot;CONSTANT&quot;</span>, </span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">refseq =</span> theo.seq)</span></code></pre></div>
 </div>
-<h2 id="identify-the-most-frequent-sequence-in-the-data">Identify the most frequent sequence in the data</h2>
-<p>We can identify the most frequent sequence by using the <code>?seqtab</code> command and specify the <code>idxs</code> as follows and store it in a separate object, here called <code>mostfreq.seq</code></p>
+<h2 id="identify-the-most-frequent-sequence-in-the-data">Identify the
+most frequent sequence in the data</h2>
+<p>We can identify the most frequent sequence by using the
+<code>?seqtab</code> command and specify the <code>idxs</code> as
+follows and store it in a separate object, here called
+<code>mostfreq.seq</code></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mostfreq.seq<span class="ot">&lt;-</span><span class="fu">seqtab</span>(partner.child.year.seq, </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">idxs =</span> <span class="dv">1</span>, </span>
@@ -2555,7 +2619,9 @@ Material for R
 <pre><code>     Freq Percent
 S/22   14    0.75</code></pre>
 </div>
-<p>… and compute the dissimilarity between the most frequent sequence and all sequences in the data. The <code>mostfreq.seq</code> object has to be specified as argument to the option <code>refseq</code></p>
+<p>… and compute the dissimilarity between the most frequent sequence
+and all sequences in the data. The <code>mostfreq.seq</code> object has
+to be specified as argument to the option <code>refseq</code></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dist.mostfreq<span class="ot">&lt;-</span><span class="fu">seqdist</span>(partner.child.year.seq, </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method =</span> <span class="st">&quot;OM&quot;</span>, </span>
@@ -2563,27 +2629,34 @@ S/22   14    0.75</code></pre>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sm =</span> <span class="st">&quot;CONSTANT&quot;</span>, </span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">refseq =</span> mostfreq.seq)</span></code></pre></div>
 </div>
-<h2 id="identify-the-medoid-sequence-in-the-data">Identify the medoid sequence in the data</h2>
-<p>First, we have to compute a dissimilarity matrix, here we use OM with constant substitution costs of 2 and <code>indel</code>=1</p>
+<h2 id="identify-the-medoid-sequence-in-the-data">Identify the medoid
+sequence in the data</h2>
+<p>First, we have to compute a dissimilarity matrix, here we use OM with
+constant substitution costs of 2 and <code>indel</code>=1</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>om.s2.i1<span class="ot">&lt;-</span><span class="fu">seqdist</span>(partner.child.year.seq, </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">method =</span> <span class="st">&quot;OM&quot;</span>, </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">indel =</span> <span class="dv">1</span>, </span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sm =</span> <span class="st">&quot;CONSTANT&quot;</span>)</span></code></pre></div>
 </div>
-<p>We can then identify the medoid by using the <code>?disscenter</code> command and specify the <code>medoids.index</code> options as follows</p>
+<p>We can then identify the medoid by using the <code>?disscenter</code>
+command and specify the <code>medoids.index</code> options as
+follows</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>medoid.seq <span class="ot">&lt;-</span> <span class="fu">disscenter</span>(om.s2.i1, </span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">medoids.index=</span><span class="st">&quot;first&quot;</span>)</span></code></pre></div>
 </div>
-<p>The medoid can be also printed directly by using the following code</p>
+<p>The medoid can be also printed directly by using the following
+code</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(partner.child.year.seq[medoid.seq,], </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">format=</span><span class="st">&quot;SPS&quot;</span>)</span></code></pre></div>
 <pre><code>     Sequence                                                        
 1544 (S,2)-(LAT,1)-(S,3)-(LAT,3)-(COH,2)-(MAR,2)-(MARc1,4)-(MARc2+,5)</code></pre>
 </div>
-<p>We can now compute the dissimilarity between the medoid sequence and all sequences in the data. The <code>medoid.seq</code> object has to be specified as argument to the option <code>refseq</code></p>
+<p>We can now compute the dissimilarity between the medoid sequence and
+all sequences in the data. The <code>medoid.seq</code> object has to be
+specified as argument to the option <code>refseq</code></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dist.medoid<span class="ot">&lt;-</span><span class="fu">seqdist</span>(partner.child.year.seq, </span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">method =</span> <span class="st">&quot;OM&quot;</span>, </span>
@@ -2591,8 +2664,10 @@ S/22   14    0.75</code></pre>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sm =</span> <span class="st">&quot;CONSTANT&quot;</span>, </span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">refseq =</span> medoid.seq[<span class="dv">1</span>])</span></code></pre></div>
 </div>
-<h1 id="summary-and-visual-comparison">Summary and visual comparison</h1>
-<p>We display the dissimilarity values for the first three sequences in the sample and the three reference sequences:</p>
+<h1 id="summary-and-visual-comparison">Summary and visual
+comparison</h1>
+<p>We display the dissimilarity values for the first three sequences in
+the sample and the three reference sequences:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dist.theo[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>] </span></code></pre></div>
 <pre><code> 1  2  3 
@@ -2608,7 +2683,8 @@ S/22   14    0.75</code></pre>
 <pre><code> 1  2  3 
 40 16 30 </code></pre>
 </div>
-<p>For a visual comparison, here is the version in colors of Figure 3.3, displayed in black and white in the book:</p>
+<p>For a visual comparison, here is the version in colors of Figure 3.3,
+displayed in black and white in the book:</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/Chapter3/3-7_Fig3-3_allWithIllustrative_color.png" width="1500" /></p>
 </div>

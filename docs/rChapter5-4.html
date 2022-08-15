@@ -84,7 +84,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <!--radix_placeholder_meta_tags-->
   <title>Sequence Analysis - Companion Site: Summation and averaging</title>
 
-  <meta property="description" itemprop="description" content="Chapter 3.4 Combine domain-specific dissimilarities"/>
+  <meta property="description" itemprop="description" content="Chapter 5.4 Combining domain-specific dissimilarities"/>
 
   <link rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/"/>
   <link rel="icon" type="image/png" href="images/QASS.png"/>
@@ -93,20 +93,20 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Sequence Analysis - Companion Site: Summation and averaging"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Chapter 3.4 Combine domain-specific dissimilarities"/>
+  <meta property="og:description" content="Chapter 5.4 Combining domain-specific dissimilarities"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Sequence Analysis - Companion Site"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Sequence Analysis - Companion Site: Summation and averaging"/>
-  <meta property="twitter:description" content="Chapter 3.4 Combine domain-specific dissimilarities"/>
+  <meta property="twitter:description" content="Chapter 5.4 Combining domain-specific dissimilarities"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Summation and averaging"]},{"type":"character","attributes":{},"value":["Chapter 3.4 Combine domain-specific dissimilarities\n"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Summation and averaging"]},{"type":"character","attributes":{},"value":["Chapter 5.4 Combining domain-specific dissimilarities\n"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -1027,10 +1027,6 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1860,6 +1856,12 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1874,6 +1876,31 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1973,6 +2000,8 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1995,7 +2024,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2395,7 +2424,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
   <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
   <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
@@ -2428,7 +2457,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Summation and averaging","description":"Chapter 3.4 Combine domain-specific dissimilarities","authors":[]}
+{"title":"Summation and averaging","description":"Chapter 5.4 Combining domain-specific dissimilarities","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2468,7 +2497,7 @@ Material for R
 <h1>Summation and averaging</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Chapter 3.4 Combine domain-specific dissimilarities</p></p>
+<p><p>Chapter 5.4 Combining domain-specific dissimilarities</p></p>
 </div>
 
 
@@ -2477,9 +2506,10 @@ Material for R
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#summation">Summation</a></li>
-<li><a href="#averaging">Averaging</a></li>
-<li><a href="#inspection-of-the-matrices">Inspection of the matrices</a></li>
+<li><a href="#summation" id="toc-summation">Summation</a></li>
+<li><a href="#averaging" id="toc-averaging">Averaging</a></li>
+<li><a href="#inspection-of-the-matrices"
+id="toc-inspection-of-the-matrices">Inspection of the matrices</a></li>
 </ul>
 </nav>
 </div>
@@ -2491,10 +2521,20 @@ Material for R
 <strong>Click here to get instructions…</strong>
 </summary>
 <ul>
-<li>Please download and unzip the replication files for Chapter 5 (<a href="source/Chapter03.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter04.zip</a>).</li>
-<li>Read <code>readme.html</code> and run <code>5-0_ChapterSetup.R</code>. This will create <code>5-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to produce the plots shown below.</li>
-<li>You also have to add the function <code>legend_large_box</code> to your environment in order to render the tweaked version of the legend described below. You find this file in the <code>source</code> folder of the unzipped Chapter 5 archive.</li>
-<li>We also recommend to load the libraries listed in Chapter 5’s <code>LoadInstallPackages.R</code></li>
+<li>Please download and unzip the replication files for Chapter 5 (<a
+href="source/Chapter05.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0L64-.0001c-35.35 0-64 28.65-64 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h48V64h64V48.13h48.01L224 128c0 17.67 14.33 32 32 32h79.1V448zM176 96h-64v32h64V96zM176 160h-64v32h64V160zM176 224h-64l-30.56 116.5C73.51 379.5 103.7 416 144.3 416c40.26 0 70.45-36.3 62.68-75.15L176 224zM160 368H128c-8.836 0-16-7.164-16-16s7.164-16 16-16h32c8.836 0 16 7.164 16 16S168.8 368 160 368z"/></svg>
+Chapter05.zip</a>).</li>
+<li>Read <code>readme.html</code> and run
+<code>5-0_ChapterSetup.R</code>. This will create
+<code>5-0_ChapterSetup.RData</code> in the sub folder
+<code>data/R</code>. This file contains the data required to produce the
+plots shown below.</li>
+<li>You also have to add the function <code>legend_large_box</code> to
+your environment in order to render the tweaked version of the legend
+described below. You find this file in the <code>source</code> folder of
+the unzipped Chapter 5 archive.</li>
+<li>We also recommend to load the libraries listed in Chapter 5’s
+<code>LoadInstallPackages.R</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming you are working within .Rproj environment</span></span>
@@ -2509,43 +2549,70 @@ Material for R
 </details>
 <p><br />
 </p>
-<p>In chapter 5.3, we introduce another option to account for the parallel unfolding of temporal processes: the clustering on a dissimilarity matrix that results from the summation or the averaging of pairwise dissimilarity matrices computed on separately on two (or more) pools of sequences representing the trajectories in different domains. We are now using the <code>data.frame</code> <code>multidim</code>, which contains both family formation and labour market sequences. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see <a href="https://www.pairfam.de/en/" target="_blank">here</a>.</p>
+<p>In chapter 5.3, we introduce another option to account for the
+parallel unfolding of temporal processes: the clustering on a
+dissimilarity matrix that results from the summation or the averaging of
+pairwise dissimilarity matrices computed on separately on two (or more)
+pools of sequences representing the trajectories in different domains.
+We are now using the <code>data.frame</code> <code>multidim</code>,
+which contains both family formation and labour market sequences. The
+data come from a sub-sample of the German Family Panel - pairfam. For
+further information on the study and on how to access the full
+scientific use file see <a href="https://www.pairfam.de/en/"
+target="_blank">here</a>.</p>
 <h2 id="summation">Summation</h2>
-<p>We first have to construct an object <code>X</code> that contains the dissimilarity matrices in a sequence</p>
+<p>We first have to construct an object <code>X</code> that contains the
+dissimilarity matrices in a sequence</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">list</span>(mc.fam.year.om, mc.act.year.om)</span></code></pre></div>
 </div>
-<p>We then use the <code>?cbind</code> command to combine the <code>X</code> object in rows and columns and generate the object <code>Y</code></p>
+<p>We then use the <code>?cbind</code> command to combine the
+<code>X</code> object in rows and columns and generate the object
+<code>Y</code></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">do.call</span>(cbind, X)</span></code></pre></div>
 </div>
-<p>We overwrite <code>Y</code> by using the <code>?array</code> command to give the right dimensions to the object so that the next steps can be performed</p>
+<p>We overwrite <code>Y</code> by using the <code>?array</code> command
+to give the right dimensions to the object so that the next steps can be
+performed</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">array</span>(Y, <span class="at">dim=</span><span class="fu">c</span>(<span class="fu">dim</span>(X[[<span class="dv">1</span>]]), <span class="fu">length</span>(X)))</span></code></pre></div>
 </div>
-<p>We finally use the <code>?apply</code> command to apply a summation function (option <code>sum</code>) to the two dimensions of the object <code>Y</code> (1 and 2). We store the resulting dissimilarity matrix in an object called <code>mc.summation</code></p>
+<p>We finally use the <code>?apply</code> command to apply a summation
+function (option <code>sum</code>) to the two dimensions of the object
+<code>Y</code> (1 and 2). We store the resulting dissimilarity matrix in
+an object called <code>mc.summation</code></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mc.summation<span class="ot">&lt;-</span><span class="fu">apply</span>(Y, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <h2 id="averaging">Averaging</h2>
-<p>For sake of clarity, we construct another object <code>Z</code> that contains the dissimilarity matrices in a sequence as for the case of summation above</p>
+<p>For sake of clarity, we construct another object <code>Z</code> that
+contains the dissimilarity matrices in a sequence as for the case of
+summation above</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">&lt;-</span> <span class="fu">list</span>(mc.act.year.om, mc.fam.year.om)</span></code></pre></div>
 </div>
-<p>We then use the <code>?cbind</code> command to combine the Z object in rows and columns and generate the object <code>W</code></p>
+<p>We then use the <code>?cbind</code> command to combine the Z object
+in rows and columns and generate the object <code>W</code></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">do.call</span>(cbind, Z)</span></code></pre></div>
 </div>
-<p>We overwrite <code>Y</code> by using the <code>?array</code> command to give the right dimensions to the object so that the next steps can be performed</p>
+<p>We overwrite <code>Y</code> by using the <code>?array</code> command
+to give the right dimensions to the object so that the next steps can be
+performed</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">array</span>(W, <span class="at">dim=</span><span class="fu">c</span>(<span class="fu">dim</span>(X[[<span class="dv">1</span>]]), <span class="fu">length</span>(X)))</span></code></pre></div>
 </div>
-<p>We finally use the <code>?apply</code> command to apply a averaging function (option <code>mean</code>) to the two dimensions of the object <code>W</code> (1 and 2). We store the resulting dissimilarity matrix in an object called <code>mc.summation</code></p>
+<p>We finally use the <code>?apply</code> command to apply a averaging
+function (option <code>mean</code>) to the two dimensions of the object
+<code>W</code> (1 and 2). We store the resulting dissimilarity matrix in
+an object called <code>mc.summation</code></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mc.average<span class="ot">&lt;-</span><span class="fu">apply</span>(W, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <h2 id="inspection-of-the-matrices">Inspection of the matrices</h2>
-<p>Let’s first display the dissimilarity matrix between the first three sequences in the sample</p>
+<p>Let’s first display the dissimilarity matrix between the first three
+sequences in the sample</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mc.fam.year.om[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>   1  2  3
@@ -2560,7 +2627,8 @@ Material for R
 2 28  0 10
 3 26 10  0</code></pre>
 </div>
-<p>We now inspect the dissimilarity matrix between the first three sequences in the sample after summation….</p>
+<p>We now inspect the dissimilarity matrix between the first three
+sequences in the sample after summation….</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mc.summation[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>     [,1] [,2] [,3]

@@ -1027,10 +1027,6 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1860,6 +1856,12 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1874,6 +1876,31 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1973,6 +2000,8 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1995,7 +2024,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2395,7 +2424,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
   <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
   <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
@@ -2477,10 +2506,17 @@ Material for R
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#hierarchical-clustering-wards-linkage">Hierarchical clustering: Ward’s linkage</a></li>
-<li><a href="#partitional-clustering-pam">Partitional clustering: PAM</a></li>
-<li><a href="#visualizing-clustering-options-with-mds">Visualizing clustering options with MDS</a></li>
-<li><a href="#comparison-between-different-time-granularities">Comparison between different time granularities</a></li>
+<li><a href="#hierarchical-clustering-wards-linkage"
+id="toc-hierarchical-clustering-wards-linkage">Hierarchical clustering:
+Ward’s linkage</a></li>
+<li><a href="#partitional-clustering-pam"
+id="toc-partitional-clustering-pam">Partitional clustering: PAM</a></li>
+<li><a href="#visualizing-clustering-options-with-mds"
+id="toc-visualizing-clustering-options-with-mds">Visualizing clustering
+options with MDS</a></li>
+<li><a href="#comparison-between-different-time-granularities"
+id="toc-comparison-between-different-time-granularities">Comparison
+between different time granularities</a></li>
 </ul>
 </nav>
 </div>
@@ -2492,10 +2528,20 @@ Material for R
 <strong>Click here to get instructions…</strong>
 </summary>
 <ul>
-<li>Please download and unzip the replication files for Chapter 4 (<a href="source/Chapter03.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter04.zip</a>).</li>
-<li>Read <code>readme.html</code> and run <code>4-0_ChapterSetup.R</code>. This will create <code>4-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to produce the plots shown below.</li>
-<li>You also have to add the function <code>legend_large_box</code> to your environment in order to render the tweaked version of the legend described below. You find this file in the <code>source</code> folder of the unzipped Chapter 4 archive.</li>
-<li>We also recommend to load the libraries listed in Chapter 4’s <code>LoadInstallPackages.R</code></li>
+<li>Please download and unzip the replication files for Chapter 4 (<a
+href="source/Chapter04.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0L64-.0001c-35.35 0-64 28.65-64 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h48V64h64V48.13h48.01L224 128c0 17.67 14.33 32 32 32h79.1V448zM176 96h-64v32h64V96zM176 160h-64v32h64V160zM176 224h-64l-30.56 116.5C73.51 379.5 103.7 416 144.3 416c40.26 0 70.45-36.3 62.68-75.15L176 224zM160 368H128c-8.836 0-16-7.164-16-16s7.164-16 16-16h32c8.836 0 16 7.164 16 16S168.8 368 160 368z"/></svg>
+Chapter04.zip</a>).</li>
+<li>Read <code>readme.html</code> and run
+<code>4-0_ChapterSetup.R</code>. This will create
+<code>4-0_ChapterSetup.RData</code> in the sub folder
+<code>data/R</code>. This file contains the data required to produce the
+plots shown below.</li>
+<li>You also have to add the function <code>legend_large_box</code> to
+your environment in order to render the tweaked version of the legend
+described below. You find this file in the <code>source</code> folder of
+the unzipped Chapter 4 archive.</li>
+<li>We also recommend to load the libraries listed in Chapter 4’s
+<code>LoadInstallPackages.R</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming you are working within .Rproj environment</span></span>
@@ -2510,15 +2556,33 @@ Material for R
 </details>
 <p><br />
 </p>
-<p>In chapter 4.2, we apply hierarchical and partitional clustering to family formation sequences. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see <a href="https://www.pairfam.de/en/" target="_blank">here</a>.</p>
-<h2 id="hierarchical-clustering-wards-linkage">Hierarchical clustering: Ward’s linkage</h2>
-<p>We apply a hierarchical cluster analysis by using the command <code>?hclust</code> to the dissimilarity matrix <code>partner.child.year.om</code> for the family formation sequences, computed based on OM with <code>indel</code>=1 and <code>sm</code>=2. We use non-squared dissimilarities (see the <code>method</code> option) and weights (see the <code>members</code> option, where we have to specify to which <code>data.frame</code> the vector with the weights belongs to).</p>
+<p>In chapter 4.2, we apply hierarchical and partitional clustering to
+family formation sequences. The data come from a sub-sample of the
+German Family Panel - pairfam. For further information on the study and
+on how to access the full scientific use file see <a
+href="https://www.pairfam.de/en/" target="_blank">here</a>.</p>
+<h2 id="hierarchical-clustering-wards-linkage">Hierarchical clustering:
+Ward’s linkage</h2>
+<p>We apply a hierarchical cluster analysis by using the command
+<code>?hclust</code> to the dissimilarity matrix
+<code>partner.child.year.om</code> for the family formation sequences,
+computed based on OM with <code>indel</code>=1 and <code>sm</code>=2. We
+use non-squared dissimilarities (see the <code>method</code> option) and
+weights (see the <code>members</code> option, where we have to specify
+to which <code>data.frame</code> the vector with the weights belongs
+to).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fam.ward1 <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="fu">as.dist</span>(partner.child.year.om), </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">method =</span> <span class="st">&quot;ward.D&quot;</span>, </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">members =</span> family<span class="sc">$</span>weight40)</span></code></pre></div>
 </div>
-<p>One can combine different heuristics to select the number of clusters. One is the so-called “elbow” method, based on a line graph which can be obtained by using the <code>?fviz_nbclust</code> command. Notice that we specify here the method option (the method to be used for estimating the optimal number of clusters) as <code>wss</code>, that is the total within sum of square. The input of the command is the dissimilarity matrix <code>partner.child.year.om</code>:</p>
+<p>One can combine different heuristics to select the number of
+clusters. One is the so-called “elbow” method, based on a line graph
+which can be obtained by using the <code>?fviz_nbclust</code> command.
+Notice that we specify here the method option (the method to be used for
+estimating the optimal number of clusters) as <code>wss</code>, that is
+the total within sum of square. The input of the command is the
+dissimilarity matrix <code>partner.child.year.om</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(partner.child.year.om, </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">FUN =</span> hcut, </span>
@@ -2531,7 +2595,15 @@ Material for R
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/Chapter4/4-2-1_Fig4-3_lineGraph_gray.png" width="1050" /></p>
 </div>
-<p>As an alternative or to be used in combination with the elbow method (please refer Chapter 4.2 in the book), we can use the <code>?as.clustrange</code> command by using the <code>?hclust</code> results (here stored in the object <code>fam.ward1</code>) as input. <code>?as.clustrange</code> will return a series of cluster quality indicators. Notice that we have to specify the <code>diss</code> option by using the dissimilarity matrix of interest and the number of clusters we want the command to “test” (here 10 in the <code>ncluster</code> option)</p>
+<p>As an alternative or to be used in combination with the elbow method
+(please refer Chapter 4.2 in the book), we can use the
+<code>?as.clustrange</code> command by using the <code>?hclust</code>
+results (here stored in the object <code>fam.ward1</code>) as input.
+<code>?as.clustrange</code> will return a series of cluster quality
+indicators. Notice that we have to specify the <code>diss</code> option
+by using the dissimilarity matrix of interest and the number of clusters
+we want the command to “test” (here 10 in the <code>ncluster</code>
+option)</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fam.ward.test <span class="ot">&lt;-</span> <span class="fu">as.clustrange</span>(fam.ward1, </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">diss =</span> partner.child.year.om,</span>
@@ -2552,7 +2624,8 @@ cluster8  0.53 0.77 0.75 0.18 0.18 169.58 0.34 385.53 0.54 0.15
 cluster9  0.52 0.81 0.79 0.16 0.17 167.33 0.36 390.71 0.57 0.14
 cluster10 0.52 0.83 0.81 0.16 0.17 159.92 0.38 383.55 0.60 0.13</code></pre>
 </div>
-<p>We can also visualize the trends in the indicators. Here some selected cluster quality indicators, visualized as z-scores</p>
+<p>We can also visualize the trends in the indicators. Here some
+selected cluster quality indicators, visualized as z-scores</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fam.ward.test, <span class="at">stat =</span> <span class="fu">c</span>(<span class="st">&quot;ASW&quot;</span>, <span class="st">&quot;HG&quot;</span>, <span class="st">&quot;PBC&quot;</span>, <span class="st">&quot;CH&quot;</span>, <span class="st">&quot;R2&quot;</span>), </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">lty =</span> <span class="dv">1</span>,</span>
@@ -2566,21 +2639,28 @@ cluster10 0.52 0.83 0.81 0.16 0.17 159.92 0.38 383.55 0.60 0.13</code></pre>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/Chapter4/4-2-bonusCQI.png" width="624" /></p>
 </div>
-<p>Based on considerations presented in the book, we extract the 5-cluster solution. This can be done with the <code>?cutree</code> command, specifying the <code>?hclust</code>-generate object and the <code>k</code> number of clusters to be extracted. We store this information into an object called <code>fam.ward.5cl</code></p>
+<p>Based on considerations presented in the book, we extract the
+5-cluster solution. This can be done with the <code>?cutree</code>
+command, specifying the <code>?hclust</code>-generate object and the
+<code>k</code> number of clusters to be extracted. We store this
+information into an object called <code>fam.ward.5cl</code></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fam.ward<span class="fl">.5</span>cl <span class="ot">&lt;-</span><span class="fu">cutree</span>(fam.ward1, <span class="at">k =</span> <span class="dv">5</span>)</span></code></pre></div>
 </div>
-<p>…that we add to the main <code>data.frame</code> <code>family</code>:</p>
+<p>…that we add to the main <code>data.frame</code>
+<code>family</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>family<span class="sc">$</span>fam.ward<span class="fl">.5</span>cl<span class="ot">&lt;-</span>fam.ward<span class="fl">.5</span>cl</span></code></pre></div>
 </div>
-<p>Because we want to illustrate how to compare different cluster solutions, we also extract 4 clusters and repeat the procedure</p>
+<p>Because we want to illustrate how to compare different cluster
+solutions, we also extract 4 clusters and repeat the procedure</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fam.ward<span class="fl">.4</span>cl <span class="ot">&lt;-</span><span class="fu">cutree</span>(fam.ward1, <span class="at">k =</span> <span class="dv">4</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>family<span class="sc">$</span>fam.ward<span class="fl">.4</span>cl<span class="ot">&lt;-</span>fam.ward<span class="fl">.4</span>cl</span></code></pre></div>
 </div>
-<p>We can now cross-tabulate the 4- and 5-cluster solutions storing the table into an object…</p>
+<p>We can now cross-tabulate the 4- and 5-cluster solutions storing the
+table into an object…</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>comp.ward<span class="ot">&lt;-</span><span class="fu">table</span>(fam.ward<span class="fl">.5</span>cl, fam.ward<span class="fl">.4</span>cl)</span></code></pre></div>
 </div>
@@ -2596,14 +2676,20 @@ fam.ward.5cl   1   2   3   4
            5   0   0   0 691</code></pre>
 </div>
 <h2 id="partitional-clustering-pam">Partitional clustering: PAM</h2>
-<p>We use the <code>?wcKMedRange</code> command to obtain the cluster quality indicators for a number of clusters between 2 and 10 (see the <code>kvals</code> option) using the PAM algorithm. We also specify weights (see <code>weights</code> option). Further, we specify the <code>initialclust</code> option by using the <code>?hclust</code>-generated object we used above</p>
+<p>We use the <code>?wcKMedRange</code> command to obtain the cluster
+quality indicators for a number of clusters between 2 and 10 (see the
+<code>kvals</code> option) using the PAM algorithm. We also specify
+weights (see <code>weights</code> option). Further, we specify the
+<code>initialclust</code> option by using the
+<code>?hclust</code>-generated object we used above</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fam.pam.ward <span class="ot">&lt;-</span> <span class="fu">wcKMedRange</span>(partner.child.year.om, </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">weights =</span> family<span class="sc">$</span>weight40, </span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">kvals =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>,</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">initialclust =</span> fam.ward1)</span></code></pre></div>
 </div>
-<p>Let’s consider the cluster quality criteria for this PAM clustering</p>
+<p>Let’s consider the cluster quality criteria for this PAM
+clustering</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fam.pam.ward</span></code></pre></div>
 <pre><code>           PBC   HG HGSD  ASW ASWw     CH   R2   CHsq R2sq   HC
@@ -2621,11 +2707,13 @@ cluster10 0.52 0.87 0.85 0.23 0.24 184.81 0.42 471.62 0.64 0.11</code></pre>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fam.pam.ward<span class="fl">.4</span>cl<span class="ot">&lt;-</span>fam.pam.ward<span class="sc">$</span>clustering<span class="sc">$</span>cluster4</span></code></pre></div>
 </div>
-<p>… attach the vector with the 4-cluster solution to the main <code>data.frame</code>:</p>
+<p>… attach the vector with the 4-cluster solution to the main
+<code>data.frame</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>family<span class="sc">$</span>fam.pam.ward<span class="fl">.4</span>cl<span class="ot">&lt;-</span>fam.pam.ward<span class="fl">.4</span>cl</span></code></pre></div>
 </div>
-<p>… and re-label clusters from 1 to 4 instead of medoid identifier by using the <code>?recode</code> command:</p>
+<p>… and re-label clusters from 1 to 4 instead of medoid identifier by
+using the <code>?recode</code> command:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>family<span class="sc">$</span>fam.pam.ward<span class="fl">.4</span>cl<span class="ot">&lt;-</span>car<span class="sc">::</span><span class="fu">recode</span>(family<span class="sc">$</span>fam.pam.ward<span class="fl">.4</span>cl, </span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">&quot;1532=1; 1664=2; 1643=3; 985=4&quot;</span>)</span></code></pre></div>
@@ -2639,7 +2727,9 @@ cluster10 0.52 0.87 0.85 0.23 0.24 184.81 0.42 471.62 0.64 0.11</code></pre>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>family<span class="sc">$</span>fam.pam.ward<span class="fl">.5</span>cl<span class="ot">&lt;-</span>car<span class="sc">::</span><span class="fu">recode</span>(family<span class="sc">$</span>fam.pam.ward<span class="fl">.5</span>cl, </span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">&quot;982=1; 790=2; 373=3; 1643=4; 985=5&quot;</span>)</span></code></pre></div>
 </div>
-<p>We want to compare the 4 and 5-cluster solutions for PAM+Ward clustering. We can use the <code>?table</code> command and store the table into an object…</p>
+<p>We want to compare the 4 and 5-cluster solutions for PAM+Ward
+clustering. We can use the <code>?table</code> command and store the
+table into an object…</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>comp.pam.ward<span class="ot">&lt;-</span><span class="fu">table</span>(family<span class="sc">$</span>fam.pam.ward<span class="fl">.5</span>cl, family<span class="sc">$</span>fam.pam.ward<span class="fl">.4</span>cl)</span></code></pre></div>
 </div>
@@ -2654,7 +2744,10 @@ cluster10 0.52 0.87 0.85 0.23 0.24 184.81 0.42 471.62 0.64 0.11</code></pre>
   4   2   4 266   0
   5   0  23   0 694</code></pre>
 </div>
-<p>We now compute the average silhouette width by cluster: we can use the <code>?silhouette</code> command and specify the dissimilarity matrix in the <code>dmatrix</code> option. We do that for the 4- and the 5-cluster solutions. As usual, we store the results into an object…</p>
+<p>We now compute the average silhouette width by cluster: we can use
+the <code>?silhouette</code> command and specify the dissimilarity
+matrix in the <code>dmatrix</code> option. We do that for the 4- and the
+5-cluster solutions. As usual, we store the results into an object…</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>silh.pam.ward<span class="fl">.5</span>cl <span class="ot">&lt;-</span> <span class="fu">silhouette</span>(family<span class="sc">$</span>fam.pam.ward<span class="fl">.5</span>cl, </span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">dmatrix =</span> partner.child.year.om)</span>
@@ -2674,7 +2767,10 @@ cluster10 0.52 0.87 0.85 0.23 0.24 184.81 0.42 471.62 0.64 0.11</code></pre>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/Chapter4/4-2-2_Fig4-4_SilhCl4Cl5_gray.png" width="2100" /></p>
 </div>
-<p>We now proceed with the 5-cluster solution and generate substantively meaningful label for the clusters. Notice that to do this, we need to first visualize the clusters and ideally explore each of them with the descriptive tools presented in Chapter 2</p>
+<p>We now proceed with the 5-cluster solution and generate substantively
+meaningful label for the clusters. Notice that to do this, we need to
+first visualize the clusters and ideally explore each of them with the
+descriptive tools presented in Chapter 2</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>fam.pam.ward.lab<span class="fl">.5</span>cl <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Early parenthood in cohabitation&quot;</span>, </span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;LAT and long-lasting cohabitation without children&quot;</span>,</span>
@@ -2682,26 +2778,48 @@ cluster10 0.52 0.87 0.85 0.23 0.24 184.81 0.42 471.62 0.64 0.11</code></pre>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;Long-lasting singleness and childlessness&quot;</span>, </span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;Early marriage with 2+ children&quot;</span>)</span></code></pre></div>
 </div>
-<p>We attach the labels to the clusters by generating a factor variable: beware of the order of the clusters (option <code>levels</code>) and of the labels (option <code>labels</code> which is specified with the object created above), as it has to correspond!</p>
+<p>We attach the labels to the clusters by generating a factor variable:
+beware of the order of the clusters (option <code>levels</code>) and of
+the labels (option <code>labels</code> which is specified with the
+object created above), as it has to correspond!</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>fam.pam.ward.factor<span class="fl">.5</span>cl <span class="ot">&lt;-</span> <span class="fu">factor</span>(family<span class="sc">$</span>fam.pam.ward<span class="fl">.5</span>cl, </span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>), </span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">labels=</span>fam.pam.ward.lab<span class="fl">.5</span>cl)</span></code></pre></div>
 </div>
-<p>We can now attach the cluster-vector (with labels) to the main <code>data.frame</code>:</p>
+<p>We can now attach the cluster-vector (with labels) to the main
+<code>data.frame</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>family<span class="sc">$</span>fam.pam.ward.factor<span class="fl">.5</span>cl<span class="ot">&lt;-</span>fam.pam.ward.factor<span class="fl">.5</span>cl</span></code></pre></div>
 </div>
-<p>To be sure, one might want to confirm that family with the newly attached vectors is a whole data frame</p>
+<p>To be sure, one might want to confirm that family with the newly
+attached vectors is a whole data frame</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>family<span class="ot">&lt;-</span><span class="fu">data.frame</span>(family)</span></code></pre></div>
 </div>
-<p>Among the many options for visualization introduced in Chapter 2, we use the relative frequency plot. The standard <code>?seqplot.rf</code> command for this graph produces a combined figure: the sequences and the distance-to-medoid plot. One can also plot only one of the two by specifying the option <code>which.plot</code>. In the archive Chapter04.zip in the download area of this webpage, you can find a code to efficiently plot only the sequences part of the relative frequency plot especially if you want to plot the clusters in the same figure. Assuming you are working within <code>.Rproj</code> environment, you can use the following code</p>
+<p>Among the many options for visualization introduced in Chapter 2, we
+use the relative frequency plot. The standard <code>?seqplot.rf</code>
+command for this graph produces a combined figure: the sequences and the
+distance-to-medoid plot. One can also plot only one of the two by
+specifying the option <code>which.plot</code>. In the archive
+Chapter04.zip in the download area of this webpage, you can find a code
+to efficiently plot only the sequences part of the relative frequency
+plot especially if you want to plot the clusters in the same figure.
+Assuming you are working within <code>.Rproj</code> environment, you can
+use the following code</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">&quot;source&quot;</span>, <span class="st">&quot;rfplotsleft.R&quot;</span>))</span></code></pre></div>
 </div>
-<p>Notice that we recommend to always display the distance-to-medoid plot for each cluster at least in the appendix of your article: an example of this can be found in <a href="https://doi.org/10.1016/j.ssresearch.2021.102585" target="_blank"><code>Struffolino and Van Winkle 2021</code></a> (open-access version <a href="https://osf.io/preprints/socarxiv/b2qpu/" target="_blank">here</a>).</p>
-<p>For a nice display of the clusters using the sourced code <code>rfplotsleft.R</code>, we first generate separate objects containing the sequences allocated to each clusters:</p>
+<p>Notice that we recommend to always display the distance-to-medoid
+plot for each cluster at least in the appendix of your article: an
+example of this can be found in <a
+href="https://doi.org/10.1016/j.ssresearch.2021.102585"
+target="_blank"><code>Struffolino and Van Winkle 2021</code></a>
+(open-access version <a href="https://osf.io/preprints/socarxiv/b2qpu/"
+target="_blank">here</a>).</p>
+<p>For a nice display of the clusters using the sourced code
+<code>rfplotsleft.R</code>, we first generate separate objects
+containing the sequences allocated to each clusters:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>cl1_5cl<span class="ot">&lt;-</span>(partner.child.year.seq[family<span class="sc">$</span>fam.pam.ward.factor<span class="fl">.5</span>cl<span class="sc">==</span><span class="st">&quot;Early parenthood in cohabitation&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">22</span>])</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2713,7 +2831,8 @@ cluster10 0.52 0.87 0.85 0.23 0.24 184.81 0.42 471.62 0.64 0.11</code></pre>
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>cl5_5cl<span class="ot">&lt;-</span>(partner.child.year.seq[family<span class="sc">$</span>fam.pam.ward.factor<span class="fl">.5</span>cl<span class="sc">==</span><span class="st">&quot;Early marriage with 2+ children&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">22</span>])</span></code></pre></div>
 </div>
-<p>We then compute the dissimilarity matrix for each separate cluster:</p>
+<p>We then compute the dissimilarity matrix for each separate
+cluster:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>cl1_5cl.om<span class="ot">&lt;-</span> <span class="fu">seqdist</span>(cl1_5cl, <span class="at">method=</span><span class="st">&quot;OM&quot;</span>, <span class="at">indel=</span><span class="dv">1</span>, <span class="at">sm=</span> <span class="st">&quot;CONSTANT&quot;</span>)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2725,12 +2844,22 @@ cluster10 0.52 0.87 0.85 0.23 0.24 184.81 0.42 471.62 0.64 0.11</code></pre>
 <span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>cl5_5cl.om<span class="ot">&lt;-</span> <span class="fu">seqdist</span>(cl5_5cl, <span class="at">method=</span><span class="st">&quot;OM&quot;</span>, <span class="at">indel=</span><span class="dv">1</span>, <span class="at">sm=</span> <span class="st">&quot;CONSTANT&quot;</span>)</span></code></pre></div>
 </div>
-<p>In preparation for the graph, we generate labels for x-axis, 22 time-points in steps of 2, labeled with numbers from 18 to 40, that is the age span our sequences cover</p>
+<p>In preparation for the graph, we generate labels for x-axis, 22
+time-points in steps of 2, labeled with numbers from 18 to 40, that is
+the age span our sequences cover</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>count <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">22</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">18</span>, <span class="at">to =</span> <span class="dv">40</span>, <span class="at">by =</span> <span class="dv">2</span>)</span></code></pre></div>
 </div>
-<p>We now code the combined relative frequency plot (only the sequences part) to display all clusters at once: for each cluster, we set 50 medoid sequences. Notice that here we use the <code>seqplot.rf.l</code> command that is included in the sourced code <code>rfplotsleft.R</code>. Note that the line below the x-axis label “Age” of each cluster plot reports the R2 and F-stat values generated by running the standard <code>?seqplot.rf</code> command. It is your choice to report them, but we recommend to do so. Unfortunately, for now our solution is to impute this information manually as you can see in the code below:</p>
+<p>We now code the combined relative frequency plot (only the sequences
+part) to display all clusters at once: for each cluster, we set 50
+medoid sequences. Notice that here we use the <code>seqplot.rf.l</code>
+command that is included in the sourced code <code>rfplotsleft.R</code>.
+Note that the line below the x-axis label “Age” of each cluster plot
+reports the R2 and F-stat values generated by running the standard
+<code>?seqplot.rf</code> command. It is your choice to report them, but
+we recommend to do so. Unfortunately, for now our solution is to impute
+this information manually as you can see in the code below:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>def.par <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">no.readonly =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2803,12 +2932,18 @@ cluster10 0.52 0.87 0.85 0.23 0.24 184.81 0.42 471.62 0.64 0.11</code></pre>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/Chapter4/4-2-2_Fig4-5_5clusterSolution_colors.png" width="1500" /></p>
 </div>
-<h2 id="visualizing-clustering-options-with-mds">Visualizing clustering options with MDS</h2>
-<p>We use the <code>?cmdscale</code> to calculate the multidimensional scaling of the dissimilarity matrix <code>partner.child.year.om</code>. We the <code>k</code> option (the maximum dimension of the space which the data are to be represented in) at 2</p>
+<h2 id="visualizing-clustering-options-with-mds">Visualizing clustering
+options with MDS</h2>
+<p>We use the <code>?cmdscale</code> to calculate the multidimensional
+scaling of the dissimilarity matrix <code>partner.child.year.om</code>.
+We the <code>k</code> option (the maximum dimension of the space which
+the data are to be represented in) at 2</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>mds.year.om<span class="ot">&lt;-</span><span class="fu">cmdscale</span>(partner.child.year.om, <span class="at">k =</span> <span class="dv">2</span>)</span></code></pre></div>
 </div>
-<p>For illustrative purposes, we extract 3 clusters based on the hierarchical clustering (Ward) and the PAM clustering following the procedure presented in detail above</p>
+<p>For illustrative purposes, we extract 3 clusters based on the
+hierarchical clustering (Ward) and the PAM clustering following the
+procedure presented in detail above</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ward</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>mds_ward <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="fu">as.dist</span>(partner.child.year.om), </span>
@@ -2827,7 +2962,10 @@ cluster10 0.52 0.87 0.85 0.23 0.24 184.81 0.42 471.62 0.64 0.11</code></pre>
 <span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Re-label the clusters 1 to 3 instead of medois id </span></span>
 <span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>mds_pam <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(mds_pam, <span class="st">&quot;156=1; 985=2; 1735=3&quot;</span>)</span></code></pre></div>
 </div>
-<p>We can now use the objects <code>mds.year.om</code>, <code>mds_ward</code>, <code>mds_pam</code> to visualize the distribution of the sequences in the samples by cluster (extracted by using two different clustering method) in a bi-dimensional space</p>
+<p>We can now use the objects <code>mds.year.om</code>,
+<code>mds_ward</code>, <code>mds_pam</code> to visualize the
+distribution of the sequences in the samples by cluster (extracted by
+using two different clustering method) in a bi-dimensional space</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2865,9 +3003,12 @@ cluster10 0.52 0.87 0.85 0.23 0.24 184.81 0.42 471.62 0.64 0.11</code></pre>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/Chapter4/4-2-3_Fig4-6_MDS_gray.png" width="3000" /></p>
 </div>
-<h2 id="comparison-between-different-time-granularities">Comparison between different time granularities</h2>
-<p>We adopt the same strategy used above for yearly sequences to the case of monthly sequences.</p>
-<p>Hierarchical cluster analysis, non-squared dissimilarities, weighted</p>
+<h2 id="comparison-between-different-time-granularities">Comparison
+between different time granularities</h2>
+<p>We adopt the same strategy used above for yearly sequences to the
+case of monthly sequences.</p>
+<p>Hierarchical cluster analysis, non-squared dissimilarities,
+weighted</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>fam.ward1.month <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="fu">as.dist</span>(partner.child.month.om), </span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">method =</span> <span class="st">&quot;ward.D&quot;</span>, </span>
@@ -2898,7 +3039,8 @@ cluster10 0.53 0.85 0.85 0.24 0.24 185.71 0.42 474.29 0.65 0.10</code></pre>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>fam.pam.ward.month<span class="fl">.5</span>cl<span class="ot">&lt;-</span>fam.pam.ward.month<span class="sc">$</span>clustering<span class="sc">$</span>cluster5</span></code></pre></div>
 </div>
-<p>Attach the vector with the 5-cluster solution to the main <code>data.frame</code></p>
+<p>Attach the vector with the 5-cluster solution to the main
+<code>data.frame</code></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>family<span class="sc">$</span>fam.pam.ward.month<span class="fl">.5</span>cl<span class="ot">&lt;-</span>fam.pam.ward.month<span class="fl">.5</span>cl</span></code></pre></div>
 </div>
@@ -2907,7 +3049,9 @@ cluster10 0.53 0.85 0.85 0.24 0.24 185.71 0.42 474.29 0.65 0.10</code></pre>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>family<span class="sc">$</span>fam.pam.ward.month<span class="fl">.5</span>cl<span class="ot">&lt;-</span>car<span class="sc">::</span><span class="fu">recode</span>(family<span class="sc">$</span>fam.pam.ward.month<span class="fl">.5</span>cl, </span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>                                           <span class="st">&quot;1652=1; 1032=2; 412=3; 869=4; 927=5&quot;</span>)</span></code></pre></div>
 </div>
-<p>We can now compare the cluster assignment in the case of yearly and monthly data. In both cases we extracted 5 clusters from the PAM+Ward option…</p>
+<p>We can now compare the cluster assignment in the case of yearly and
+monthly data. In both cases we extracted 5 clusters from the PAM+Ward
+option…</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>comp.y.m<span class="ot">&lt;-</span><span class="fu">table</span>(family<span class="sc">$</span>fam.pam.ward<span class="fl">.5</span>cl, family<span class="sc">$</span>fam.pam.ward.month<span class="fl">.5</span>cl)</span></code></pre></div>
 </div>

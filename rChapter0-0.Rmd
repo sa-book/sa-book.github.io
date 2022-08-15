@@ -45,7 +45,7 @@ tibble(`Table of Contents (with link to subpage)` = c("Chapter 1 - Introduction"
                "Chapter 7 - Combining SA With Other Explanatory Methods", 
                "Chapter 8 - Conclusions"),
        `Download link (*.zip)` = c("*No code*", 
-                glue('[{fontawesome::fa("far fa-file-archive")} Chapter0{aux}.zip](source/Chapter0{aux}.zip)'), 
+                glue('[{fontawesome::fa("far fa-file-zipper")} Chapter0{aux}.zip](source/Chapter0{aux}.zip)'), 
                 "*No code*", "*No code*")) %>% 
   mutate(`Download link (*.zip)` = map(`Download link (*.zip)`, md)) %>%
   kable(escape = F) %>%

@@ -1027,10 +1027,6 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1860,6 +1856,12 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1874,6 +1876,31 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1973,6 +2000,8 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1995,7 +2024,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2395,7 +2424,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
   <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
   <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
@@ -2477,9 +2506,13 @@ Material for R
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#create-example-sequences">Create example sequences</a></li>
-<li><a href="#optimal-matching-om">Optimal matching (OM)</a></li>
-<li><a href="#assigning-costs-to-the-alignment-operations">Assigning costs to the alignment operations</a></li>
+<li><a href="#create-example-sequences"
+id="toc-create-example-sequences">Create example sequences</a></li>
+<li><a href="#optimal-matching-om" id="toc-optimal-matching-om">Optimal
+matching (OM)</a></li>
+<li><a href="#assigning-costs-to-the-alignment-operations"
+id="toc-assigning-costs-to-the-alignment-operations">Assigning costs to
+the alignment operations</a></li>
 </ul>
 </nav>
 </div>
@@ -2491,10 +2524,20 @@ Material for R
 <strong>Click here to get instructions…</strong>
 </summary>
 <ul>
-<li>Please download and unzip the replication files for Chapter 3 (<a href="source/Chapter03.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128.3 160v32h32v-32zm64-96h-32v32h32zm-64 32v32h32V96zm64 32h-32v32h32zm177.6-30.1L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM256 51.9l76.1 76.1H256zM336 464H48V48h79.7v16h32V48H208v104c0 13.3 10.7 24 24 24h104zM194.2 265.7c-1.1-5.6-6-9.7-11.8-9.7h-22.1v-32h-32v32l-19.7 97.1C102 385.6 126.8 416 160 416c33.1 0 57.9-30.2 51.5-62.6zm-33.9 124.4c-17.9 0-32.4-12.1-32.4-27s14.5-27 32.4-27 32.4 12.1 32.4 27-14.5 27-32.4 27zm32-198.1h-32v32h32z"/></svg> Chapter03.zip</a>).</li>
-<li>Read <code>readme.html</code> and run <code>3-0_ChapterSetup.R</code>. This will create <code>3-0_ChapterSetup.RData</code> in the sub folder <code>data/R</code>. This file contains the data required to produce the plots shown below.</li>
-<li>You also have to add the function <code>legend_large_box</code> to your environment in order to render the tweaked version of the legend described below. You find this file in the <code>source</code> folder of the unzipped Chapter 3 archive.</li>
-<li>We also recommend to load the libraries listed in Chapter 3’s <code>LoadInstallPackages.R</code></li>
+<li>Please download and unzip the replication files for Chapter 3 (<a
+href="source/Chapter03.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0L64-.0001c-35.35 0-64 28.65-64 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h48V64h64V48.13h48.01L224 128c0 17.67 14.33 32 32 32h79.1V448zM176 96h-64v32h64V96zM176 160h-64v32h64V160zM176 224h-64l-30.56 116.5C73.51 379.5 103.7 416 144.3 416c40.26 0 70.45-36.3 62.68-75.15L176 224zM160 368H128c-8.836 0-16-7.164-16-16s7.164-16 16-16h32c8.836 0 16 7.164 16 16S168.8 368 160 368z"/></svg>
+Chapter03.zip</a>).</li>
+<li>Read <code>readme.html</code> and run
+<code>3-0_ChapterSetup.R</code>. This will create
+<code>3-0_ChapterSetup.RData</code> in the sub folder
+<code>data/R</code>. This file contains the data required to produce the
+plots shown below.</li>
+<li>You also have to add the function <code>legend_large_box</code> to
+your environment in order to render the tweaked version of the legend
+described below. You find this file in the <code>source</code> folder of
+the unzipped Chapter 3 archive.</li>
+<li>We also recommend to load the libraries listed in Chapter 3’s
+<code>LoadInstallPackages.R</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assuming you are working within .Rproj environment</span></span>
@@ -2509,9 +2552,11 @@ Material for R
 </details>
 <p><br />
 </p>
-<p>In chapter 3.2, we introduces techniques to compare whole sequences.</p>
+<p>In chapter 3.2, we introduces techniques to compare whole
+sequences.</p>
 <h2 id="create-example-sequences">Create example sequences</h2>
-<p>We first create two vectors 6-element-long (of equal length). Each element is coded with a letter: A, B, or C.</p>
+<p>We first create two vectors 6-element-long (of equal length). Each
+element is coded with a letter: A, B, or C.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ch3.ex1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A-B-B-C-C-C&quot;</span>, <span class="st">&quot;A-B-B-B-B-B&quot;</span>)</span></code></pre></div>
 </div>
@@ -2531,28 +2576,45 @@ Material for R
 [2] A-B-B-B-B-B</code></pre>
 </div>
 <h2 id="optimal-matching-om">Optimal matching (OM)</h2>
-<p>In this case sequences are short and few in number, so that we immediately recognize that they are not the identical. In case of longer and more complex sequences, one might want to know if two sequences are the identical but doing that visually might not be feasible. The following code allows you to do that as it returns [TRUE] if the sequences are the same and [FALSE] if they are not. In this case we compare sequence 1 and 2 above:</p>
+<p>In this case sequences are short and few in number, so that we
+immediately recognize that they are not the identical. In case of longer
+and more complex sequences, one might want to know if two sequences are
+the identical but doing that visually might not be feasible. The
+following code allows you to do that as it returns [TRUE] if the
+sequences are the same and [FALSE] if they are not. In this case we
+compare sequence 1 and 2 above:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seqcomp</span>(ch3.ex1.seq[<span class="dv">1</span>,],ch3.ex1.seq[<span class="dv">2</span>,])</span></code></pre></div>
 <pre><code>[1] FALSE</code></pre>
 </div>
-<p>However, the two sequences might have some similarity even if they are not exactly the same. To obtain the number of matching positions between the two sequences, we can use the code:</p>
+<p>However, the two sequences might have some similarity even if they
+are not exactly the same. To obtain the number of matching positions
+between the two sequences, we can use the code:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seqmpos</span>(ch3.ex1.seq[<span class="dv">1</span>,],ch3.ex1.seq[<span class="dv">2</span>,])</span></code></pre></div>
 <pre><code>[1] 3</code></pre>
 </div>
-<p>We now know that sequence 1 and sequence 2 share 3 matching positions.</p>
-<p>Alternatively, we can compute the length of the longest common subsequence (elements composed of tokens - states and combinations of subsequent states - that occur in the same order along the sequence) of two sequences:</p>
+<p>We now know that sequence 1 and sequence 2 share 3 matching
+positions.</p>
+<p>Alternatively, we can compute the length of the longest common
+subsequence (elements composed of tokens - states and combinations of
+subsequent states - that occur in the same order along the sequence) of
+two sequences:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seqLLCS</span>(ch3.ex1.seq[<span class="dv">1</span>,],ch3.ex1.seq[<span class="dv">2</span>,])</span></code></pre></div>
 <pre><code>[1] 3</code></pre>
 </div>
-<p>We now know that the longest common subsequence between sequence 1 and sequence 2 is 3-element-long.</p>
-<p>Aligning them pairwise to make them the same. Optimal Matching (OM) does so by changing the order of the states or the length of a spell.</p>
+<p>We now know that the longest common subsequence between sequence 1
+and sequence 2 is 3-element-long.</p>
+<p>Aligning them pairwise to make them the same. Optimal Matching (OM)
+does so by changing the order of the states or the length of a
+spell.</p>
 <!--
 In classical OM applications, alignment can be achieved by conducting two basic operations: insertion/deletion of a state (indel) and substitution of a state with another one. Different combinations of operations are possible to "match" the sequences pairwise. Each operation is assigned a “cost”: the sum of the costs of all operations will be regarded as the degree of dissimilarity between the two sequences. The matching is "optimal" as the algorithm finds the "cheapest" solution to align the sequences given a set of costs for the indel and substitution operations. 
 -->
-<p>In the simplest example possible, both indel and substitution operations can be assigned the same cost of 1 (Levenshtein I). We first generate a substitution costs matrix to be used in the next steps:</p>
+<p>In the simplest example possible, both indel and substitution
+operations can be assigned the same cost of 1 (Levenshtein I). We first
+generate a substitution costs matrix to be used in the next steps:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>costs1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,</span>
@@ -2568,7 +2630,11 @@ In classical OM applications, alignment can be achieved by conducting two basic 
 [2,]    1    0    1
 [3,]    1    1    0</code></pre>
 </div>
-<p>We then use the following code to obtain a summary of the optimal number and costs of operations the OM identifies as the cheapest to align the two sequences. <code>indel</code> and <code>sm</code>) require the indel cost and the substitution cost matrix respectively to be specified. In what follows, we use <code>?seqalign</code> command:</p>
+<p>We then use the following code to obtain a summary of the optimal
+number and costs of operations the OM identifies as the cheapest to
+align the two sequences. <code>indel</code> and <code>sm</code>) require
+the indel cost and the substitution cost matrix respectively to be
+specified. In what follows, we use <code>?seqalign</code> command:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>al.ch3.<span class="fl">1.2</span> <span class="ot">&lt;-</span> <span class="fu">seqalign</span>(ch3.ex1.seq, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">indel=</span><span class="dv">1</span>, <span class="at">sm=</span>costs1)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(al.ch3.<span class="fl">1.2</span>)</span></code></pre></div>
@@ -2580,7 +2646,8 @@ Seq 2      A B B B B B
 
 OM distance between sequences: 3 </code></pre>
 </div>
-<h2 id="assigning-costs-to-the-alignment-operations">Assigning costs to the alignment operations</h2>
+<h2 id="assigning-costs-to-the-alignment-operations">Assigning costs to
+the alignment operations</h2>
 <p>Let’s consider 3 example sequences</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ch3.ex2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A-B-B-C-C-C&quot;</span>, <span class="st">&quot;A-B-B-B-B-B&quot;</span>, <span class="st">&quot;B-C-C-C-B-B&quot;</span>)</span></code></pre></div>
@@ -2597,7 +2664,10 @@ OM distance between sequences: 3 </code></pre>
 [2] A-B-B-B-B-B
 [3] B-C-C-C-B-B</code></pre>
 </div>
-<p>We now generate a substitution costs matrix with the following costs to be used in the next step: <code>indel=1</code>, <code>sm=1</code> - which corresponds to Levenshtein I. Note that in this case the pairwise dissimilarity equals to the number of non-matched positions</p>
+<p>We now generate a substitution costs matrix with the following costs
+to be used in the next step: <code>indel=1</code>, <code>sm=1</code> -
+which corresponds to Levenshtein I. Note that in this case the pairwise
+dissimilarity equals to the number of non-matched positions</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>costsL1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,</span>
@@ -2614,7 +2684,9 @@ OM distance between sequences: 3 </code></pre>
 [2,]    1    0    1
 [3,]    1    1    0</code></pre>
 </div>
-<p>Using the <code>?seqalign</code> command we obtain a summary of the optimal number and costs of operations. The OM identifies the following as the cheapest to align the three sequences pairwise:</p>
+<p>Using the <code>?seqalign</code> command we obtain a summary of the
+optimal number and costs of operations. The OM identifies the following
+as the cheapest to align the three sequences pairwise:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>al1.L1 <span class="ot">&lt;-</span> <span class="fu">seqalign</span>(ch3.ex2.seq, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">indel=</span><span class="dv">1</span>, <span class="at">sm=</span>costsL1)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(al1.L1)</span></code></pre></div>
@@ -2648,7 +2720,11 @@ Seq 2      B C C C B B
 
 OM distance between sequences: 4 </code></pre>
 </div>
-<p>We now generate an alternative substitution costs matrix with <code>sm=4</code>. Combined with <code>indel=1</code> this corresponds to Levenshtein II. Note that indel costs are lower than half of the minimum substitution cost, so that only indel operations will be used by the OM.</p>
+<p>We now generate an alternative substitution costs matrix with
+<code>sm=4</code>. Combined with <code>indel=1</code> this corresponds
+to Levenshtein II. Note that indel costs are lower than half of the
+minimum substitution cost, so that only indel operations will be used by
+the OM.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>costsL2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">4</span>,</span>
@@ -2665,7 +2741,9 @@ OM distance between sequences: 4 </code></pre>
 [2,]    4    0    4
 [3,]    4    4    0</code></pre>
 </div>
-<p>Using the <code>?seqalign</code> command, we obtain a summary of the optimal number and costs of operations. The OM identifies the following as the cheapest to align the three sequences pairwise:</p>
+<p>Using the <code>?seqalign</code> command, we obtain a summary of the
+optimal number and costs of operations. The OM identifies the following
+as the cheapest to align the three sequences pairwise:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>al1.L2  <span class="ot">&lt;-</span> <span class="fu">seqalign</span>(ch3.ex2.seq, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">indel=</span><span class="dv">1</span>, <span class="at">sm=</span>costsL2)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(al1.L2)</span></code></pre></div>
@@ -2699,7 +2777,10 @@ Seq 2      - - - B C C C B B
 
 OM distance between sequences: 6 </code></pre>
 </div>
-<p>The next test corresponds to the Hamming distance setting, that is, only substitution costs are used. The costs setting will be: <code>indel=NA</code>, <code>sm=1</code>. As above, we generate a substitution costs matrix:</p>
+<p>The next test corresponds to the Hamming distance setting, that is,
+only substitution costs are used. The costs setting will be:
+<code>indel=NA</code>, <code>sm=1</code>. As above, we generate a
+substitution costs matrix:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>costsHAM <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,</span>
@@ -2716,7 +2797,12 @@ OM distance between sequences: 6 </code></pre>
 [2,]    1    0    1
 [3,]    1    1    0</code></pre>
 </div>
-<p>Using the <code>?seqalign</code> command, we obtain a summary of the optimal number and costs of operations: the OM identifies the following as the cheapest to align the three sequences pairwise. Note that here we have to specify <code>indel=4</code> (very high) just to make sure that the algorithm does not use them as with <code>seqalign</code> is not possible to specify directly <code>dist=HAM</code></p>
+<p>Using the <code>?seqalign</code> command, we obtain a summary of the
+optimal number and costs of operations: the OM identifies the following
+as the cheapest to align the three sequences pairwise. Note that here we
+have to specify <code>indel=4</code> (very high) just to make sure that
+the algorithm does not use them as with <code>seqalign</code> is not
+possible to specify directly <code>dist=HAM</code></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>al1.HAM <span class="ot">&lt;-</span> <span class="fu">seqalign</span>(ch3.ex2.seq, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">indel=</span><span class="dv">4</span>, <span class="at">sm=</span>costsHAM)</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(al1.HAM)</span></code></pre></div>
@@ -2750,7 +2836,9 @@ Seq 2      B C C C B B
 
 OM distance between sequences: 4 </code></pre>
 </div>
-<p>We now try the option with the following costs: <code>indel=1</code> , <code>substitution=2</code>, generating the substitution costs matrix first:</p>
+<p>We now try the option with the following costs: <code>indel=1</code>
+, <code>substitution=2</code>, generating the substitution costs matrix
+first:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>costsOMcl <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">2</span>,</span>
@@ -2767,7 +2855,9 @@ OM distance between sequences: 4 </code></pre>
 [2,]    2    0    2
 [3,]    2    2    0</code></pre>
 </div>
-<p>Using the <code>?seqalign</code> command, we obtain a summary of the optimal number and costs of operation. The OM identifies the following as the cheapest to align the three sequences pairwise.</p>
+<p>Using the <code>?seqalign</code> command, we obtain a summary of the
+optimal number and costs of operation. The OM identifies the following
+as the cheapest to align the three sequences pairwise.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>al1.OMcl <span class="ot">&lt;-</span> <span class="fu">seqalign</span>(ch3.ex2.seq, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">indel=</span><span class="dv">1</span>, <span class="at">sm=</span>costsOMcl)</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(al1.OMcl)</span></code></pre></div>

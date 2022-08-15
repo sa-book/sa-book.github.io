@@ -1,7 +1,7 @@
 ---
 title: "Summation and averaging"
 description: |
-  Chapter 3.4 Combine domain-specific dissimilarities
+  Chapter 5.4 Combining domain-specific dissimilarities
 output: distill::distill_article
 ---
 
@@ -35,7 +35,7 @@ htmltools::tagList(
 <details><summary>**Click here to get instructions...**</summary>
 
 - Please download and unzip the replication files for Chapter 5
-([`r fontawesome::fa("far fa-file-archive")` Chapter04.zip](source/Chapter03.zip)). 
+([`r fontawesome::fa("far fa-file-zipper")` Chapter05.zip](source/Chapter05.zip)). 
 - Read `readme.html` and run `5-0_ChapterSetup.R`. This will create `5-0_ChapterSetup.RData` in the sub folder `data/R`. This file contains the data required to produce the plots shown below. 
 - You also have to add the function `legend_large_box` to your environment in order to render the tweaked version of the legend described below. You find this file in the `source` folder of the unzipped Chapter 5 archive.
 - We also recommend to load the libraries listed in Chapter 5's `LoadInstallPackages.R`

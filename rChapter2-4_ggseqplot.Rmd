@@ -36,7 +36,7 @@ htmltools::tagList(
 <details><summary>**Click here to get instructions...**</summary>
 
 - Please download and unzip the replication files for Chapter 2
-([`r fontawesome::fa("far fa-file-archive")` Chapter02.zip](source/Chapter02.zip)). 
+([`r fontawesome::fa("far fa-file-zipper")` Chapter02.zip](source/Chapter02.zip)). 
 - Read `readme.html` and run `2-0_ChapterSetup.R`. This will create `2-0_ChapterSetup.RData` in the sub folder `data/R`. This file contains the data required to produce the state distribution plot shown below. 
 - We also recommend to load the libraries listed in the Chapter 2's `LoadInstallPackages.R`
 
@@ -58,7 +58,7 @@ load(here("data", "R", "2-0_ChapterSetup.RData"))
 Virtually all figures shown in the book were rendererd with `TraMineR::seqplot` which uses base R's `plot` function. While there is nothing wrong with that, many R users tend to prefer [`{ggplot2}`](https://ggplot2.tidyverse.org/){target="_blank"} for visualizing their data. 
 
 
-We wrote a little R package named [`{ggseqplot}`](https://github.com/maraab23/ggseqplot) that reproduces some of the sequence plots from [`{TraMineR}`](http://traminer.unige.ch){target="_blank"}’s `seqplot` using [`{ggplot2}`](https://ggplot2.tidyverse.org/){target="_blank"}. These plots are produced on the basis of a sequence object defined with `TraMineR::seqdef`. The package automates the reshaping and plotting of sequence data required to render the plots with [`{ggplot2}`](https://ggplot2.tidyverse.org/){target="_blank"}.
+We wrote a little R package named [`{ggseqplot}`](https://github.com/maraab23/ggseqplot) that reproduces sequence plots from [`{TraMineR}`](http://traminer.unige.ch){target="_blank"}’s `seqplot` using [`{ggplot2}`](https://ggplot2.tidyverse.org/){target="_blank"}. These plots are produced on the basis of a sequence object defined with `TraMineR::seqdef`. The package automates the reshaping and plotting of sequence data required to render the plots with [`{ggplot2}`](https://ggplot2.tidyverse.org/){target="_blank"}.
 
 <aside>
 
@@ -68,17 +68,16 @@ knitr::include_graphics("https://raw.githubusercontent.com/maraab23/ggseqplot/ma
 
 </aside>
 
-[`{ggseqplot}`](https://github.com/maraab23/ggseqplot) is in an early stage of development and will be hopefully complemented by a few additional functions in the near future.
-
-Currently, [`{ggseqplot}`](https://github.com/maraab23/ggseqplot) only contains two functions: - `ggseqiplot` (`TraMineR::seqIplot`) - `ggseqdplot` (`TraMineR::seqdplot`)
-
-The package is stored on [`r fontawesome::fa("github")` GitHub](https://github.com/maraab23/ggseqplot) and you can install and load it with the following commands: 
+[`{ggseqplot}`](https://maraab23.github.io/ggseqplot/index.html) has been written after this book has been published. You can install and load it with the following commands: 
 
 ```{r, eval=FALSE, echo=TRUE}
-devtools::install_github("maraab23/ggseqplot")
+install.packages("ggseqplot")
 library(ggseqplot)
 ```
 
+For further information we refer to the [`{ggseqplot}` website](https://maraab23.github.io/ggseqplot/index.html) and a [blog post](https://sequenceanalysis.org/2022/08/05/ggseqplot-ggplotify-sequence-plots/) on the website of the Sequence Analysis Association (SAA).
+
+The following section briefly illustrates the package by rendering sequence distribution and index plots.
 
 
 \  
@@ -97,8 +96,7 @@ ggseqdplot(partner.child.year.seq)
 
 Note that the default labeling of the x-axis values might produce non-ideal results. The default labeling behavior forces labels to appear at the first and the last position of the sequence data. The states in-between are labeled according to base R's `pretty` function.
 
-Of course, the labels can also be adjusted according to your need using the regular [`{ggplot2}`](https://ggplot2.tidyverse.org/){target="_blank"} functions. If you want to access the value labels for the x-axis, you can either get them from the sequence object you are plotting (`attributes(partner.child.year.seq)$names`) or by saving your `ggseqdplot` as an object
-and then extracting the required information from the `data` column `k`. 
+Of course, the labels can also be adjusted according to your need using the regular [`{ggplot2}`](https://ggplot2.tidyverse.org/){target="_blank"} functions. If you want to access the value labels for the x-axis, you can either get them from the sequence object you are plotting (`attributes(partner.child.year.seq)$names`) or by saving your `ggseqdplot` as an object and then extracting the required information from the `data` column `k`. 
 
 In the following example we utilize `ggplot2::guide_axis` to provide enough space for printing the complete set of values labels for the x-axis. Overlapping labels are avoided by printing the labels in two rows (`n.dodge = 2`):
 
@@ -129,8 +127,7 @@ ggseqdplot(partner.child.year.seq,
   scale_x_discrete()
 ```
 
-Note that it is not possible to obtain the faceted output by *manually* specifying `facet_wrap(~family$sex)`. That is because `ggseqdplot` internally reshapes the sequence data into
-an aggregated format that is suitable for generating the plot. In our example the resulting dataset includes one row for every combination of sequence position $k$ (22 positions in our case) and state of the alphabet $A$ (9 distinct states). With one group this yields a data set with $22*9=198$ rows. The data for the faceted version shown above has 396 rows with 198 for men and women each. The grouping variable `family$sex`, however, is of length 1866 (one row for each case). 
+Note that it is not possible to obtain the faceted output by *manually* specifying `facet_wrap(~family$sex)`. That is because `ggseqdplot` internally reshapes the sequence data into an aggregated format that is suitable for generating the plot. In our example the resulting dataset includes one row for every combination of sequence position $k$ (22 positions in our case) and state of the alphabet $A$ (9 distinct states). With one group this yields a data set with $22*9=198$ rows. The data for the faceted version shown above has 396 rows with 198 for men and women each. The grouping variable `family$sex`, however, is of length 1866 (one row for each case). 
 
 If you want to access the data used for the plot you can save the plot as a list object:
 
@@ -142,10 +139,10 @@ dplot <- ggseqdplot(partner.child.year.seq,
 dplot$data
 ```
 
-Of course, the figures produced with [`{ggseqplot}`](https://github.com/maraab23/ggseqplot)
+Of course, the figures produced with [`{ggseqplot}`](https://maraab23.github.io/ggseqplot/index.html)
 can be adjusted like any other [`{ggplot2}`](https://ggplot2.tidyverse.org/){target="_blank"} figure
 
-```{r, layout="l-body-outset", fig.width=10, fig.height=6.5}
+```{r theming, layout="l-body-outset", fig.width=10, fig.height=6.5}
 library(hrbrthemes)
 
 ggseqdplot(partner.child.year.seq) + 
@@ -179,15 +176,14 @@ ggseqiplot(partner.child.year.seq[subset,],
 
 ```
 
-Note that other than for `ggseqdplot` the x-axis for `ggseqiplot` is on a continuous scale. The following code chunk illustrates how the plot can be fine-tuned in the well-known [`{ggplot2}`](https://ggplot2.tidyverse.org/){target="_blank"} fashion:   
+The following code chunk illustrates how the plot can be fine-tuned in the well-known [`{ggplot2}`](https://ggplot2.tidyverse.org/){target="_blank"} fashion:   
 
 ```{r, layout="l-body-outset", fig.width=10, fig.height=6.5}
 ggseqiplot(partner.child.year.seq[subset,],
            sortv = rowSums(seqistatd(partner.child.year.seq[subset,])[,7:9])) +
   scale_y_continuous(expand = expansion(add = c(.8, 0))) +
-  scale_x_continuous(breaks = seq(0,22,2),
-                     labels = seq(18,40,2),
-                     expand = expansion(add = c(0.2, 0))) +
+  scale_x_discrete(breaks = c(seq(1,21,2),22),
+                     labels = c(seq(18,38,2),39)) +
   labs(title = "Sequence index plot",
        x = "Age", 
        fill = "Alphabet",

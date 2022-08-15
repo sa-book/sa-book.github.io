@@ -36,7 +36,7 @@ htmltools::tagList(
 <details><summary>**Click here to get instructions...**</summary>
 
 - Please download and unzip the replication files for Chapter 6
-([`r fontawesome::fa("far fa-file-archive")` Chapter06.zip](source/Chapter06.zip)). 
+([`r fontawesome::fa("far fa-file-zipper")` Chapter06.zip](source/Chapter06.zip)). 
 - Read `readme.html` and run `6-0_ChapterSetup.R`. This will create `6-0_ChapterSetup.RData` in the sub folder `data/R`. This file contains the data required to produce the table shown at the bottom of this page. 
 - We also recommend to load the libraries listed in the Chapter 6's `LoadInstallPackages.R`
 
@@ -76,7 +76,7 @@ kbl(kbldata,
 ```
 
 
-Like in Chapter 6.1 we wrote a function and several lines of code to extract the results from the [`{TraMineR}`](http://traminer.unige.ch){target="_blank"} functions and to print a nice table using `{knitr}`'s `kable` and the `{kableExtra}` package. You can find the code in the script `6-2_Table_6-2_R2.R`  stored in [`r fontawesome::fa("far fa-file-archive")` Chapter06.zip](source/Chapter06.zip)). 
+Like in Chapter 6.1 we wrote a function and several lines of code to extract the results from the [`{TraMineR}`](http://traminer.unige.ch){target="_blank"} functions and to print a nice table using `{knitr}`'s `kable` and the `{kableExtra}` package. You can find the code in the script `6-2_Table_6-2_R2.R`  stored in [`r fontawesome::fa("far fa-file-zipper")` Chapter06.zip](source/Chapter06.zip)). 
 
 On this page, however, we do not further elaborate on such technicalities and rather focus on briefly showcasing the plain [`{TraMineR}`](http://traminer.unige.ch){target="_blank"} commands required to obtain the results shown in the table. As you see, this does not require a lot of coding:  
 

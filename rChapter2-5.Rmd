@@ -38,7 +38,7 @@ htmltools::tagList(
 <details><summary>**Click here to get instructions...**</summary>
 
 - Please download and unzip the replication files for Chapter 2
-([`r fontawesome::fa("far fa-file-archive")` Chapter02.zip](source/Chapter02.zip)). 
+([`r fontawesome::fa("far fa-file-zipper")` Chapter02.zip](source/Chapter02.zip)). 
 - Read `readme.html` and run `2-0_ChapterSetup.R`. This will create `2-0_ChapterSetup.RData` in the sub folder `data/R`. This file contains the data required to re-produce some of the results shown below. 
 - We also recommend to load the libraries listed in the Chapter 2's `LoadInstallPackages.R`
 

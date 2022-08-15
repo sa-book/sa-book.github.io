@@ -35,7 +35,7 @@ htmltools::tagList(
 <details><summary>**Click here to get instructions...**</summary>
 
 - Please download and unzip the replication files for Chapter 5
-([`r fontawesome::fa("far fa-file-archive")` Chapter04.zip](source/Chapter03.zip)). 
+([`r fontawesome::fa("far fa-file-zipper")` Chapter05.zip](source/Chapter05.zip)). 
 - Read `readme.html` and run `5-0_ChapterSetup.R`. This will create `5-0_ChapterSetup.RData` in the sub folder `data/R`. This file contains the data required to produce the plots shown below. 
 - You also have to add the function `legend_large_box` to your environment in order to render the tweaked version of the legend described below. You find this file in the `source` folder of the unzipped Chapter 5 archive.
 - We also recommend to load the libraries listed in Chapter 5's `LoadInstallPackages.R`
@@ -55,7 +55,7 @@ load(here("data", "R", "5-0_ChapterSetup.RData"))
 
 \
 
-In chapter 5.3, we introduce the so-called multichannel sequence analysis. We are now using the `data.frame` `multidim`, which contains both family formation and labour market sequences. Note that individual 1 in one pool of sequences has to correspond to individual 1 in the other pool of sequences. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see [here](https://www.pairfam.de/en/){target="_blank"}.
+In chapter 5.3, we introduce the so-called multichannel sequence analysis. We are now using the `data.frame` `multidim`, which contains both family formation and labor market sequences. Note that individual 1 in one pool of sequences has to correspond to individual 1 in the other pool of sequences. The data come from a sub-sample of the German Family Panel - pairfam. For further information on the study and on how to access the full scientific use file see [here](https://www.pairfam.de/en/){target="_blank"}.
 
 
 ## Extract R2 and ASW for the MCSA clustering
@@ -476,4 +476,4 @@ dev.off()
 include_graphics("images/Chapter5/5-5_Fig5-2_MCSA_colors_joint.png")
 ```
 
-For the code necessary to order the sequences based on the family trajectories only, see the R-code "5-5_Fig5-2_MCSA_colors_mds_family.R" in the folder "Chapter05.zip" at the download page.
+For the code necessary to order the sequences based on the family trajectories only, see the R-code "5-5_Fig5-2_MCSA_colors_mds_family.R" in the folder "Chapter05.zip" at the download page. There you also find an alternative approach to the plot shown above using `ggseqplot::ggseqiplot` instead of `TraMineR::seqIplot` (see [here for the corresponding tutorial](rChapter5-5_ggseqplot.html))

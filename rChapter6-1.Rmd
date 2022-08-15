@@ -33,7 +33,7 @@ htmltools::tagList(
 <details><summary>**Click here to get instructions...**</summary>
 
 - Please download and unzip the replication files for Chapter 6
-([`r fontawesome::fa("far fa-file-archive")` Chapter06.zip](source/Chapter06.zip)). 
+([`r fontawesome::fa("far fa-file-zipper")` Chapter06.zip](source/Chapter06.zip)). 
 - Read `readme.html` and run `6-0_ChapterSetup.R`. This will create `6-0_ChapterSetup.RData` in the sub folder `data/R`. This file contains the data required to produce the table shown at the bottom of this page. 
 - We also recommend to load the libraries listed in the Chapter 6's `LoadInstallPackages.R`
 
@@ -76,7 +76,7 @@ complex_sex  <- t.test(complex_men, complex_women)
 
 The test indicates that the mean complexity of men (`r complex_sex$estimate[1] %>% round(2)`) is different from the corresponding complexity of women (`r complex_sex$estimate[2] %>% round(2)`). By adding the argument `alternative = "less"` to `t.test` we even could finally prove that (the life courses of) men are less complex than (those of) women... Hence, the within and between sequence variation of women is larger than the corresponding values of men.
 
-**Table 6.1** in the book presents several group differences at once. Instead of re-iterating the code for all group comparisons and two different data sets, we wrote a function named `DiscrCompTest` (defined in `6-1_Table_6-1_Step1_Source.R` in [`r fontawesome::fa("far fa-file-archive")` Chapter06.zip](source/Chapter06.zip)) that can be reused to compute the same group comparisons (group indicators: `east`, `sex`,  `highschool`) using two different sets of input arguments (set 1: `family`, `partner.child.year.seq`, `partner.child.year.om`; set 2: `activity`, `activity.year.seq`, `activity.year.om`). The function's output is a nicely formatted table using `{knitr}`'s `kable` and the `{kableExtra}` package. The function is sourced and called in `6-1_Table_6-1_Step2_Print.R`. 
+**Table 6.1** in the book presents several group differences at once. Instead of re-iterating the code for all group comparisons and two different data sets, we wrote a function named `DiscrCompTest` (defined in `6-1_Table_6-1_Step1_Source.R` in [`r fontawesome::fa("far fa-file-zipper")` Chapter06.zip](source/Chapter06.zip)) that can be reused to compute the same group comparisons (group indicators: `east`, `sex`,  `highschool`) using two different sets of input arguments (set 1: `family`, `partner.child.year.seq`, `partner.child.year.om`; set 2: `activity`, `activity.year.seq`, `activity.year.om`). The function's output is a nicely formatted table using `{knitr}`'s `kable` and the `{kableExtra}` package. The function is sourced and called in `6-1_Table_6-1_Step2_Print.R`. 
 
 On this page we do not further elaborate on the code defining the function because this website's focus is on introducing the functions required to re-produce the results shown in the book. Re-using and adjusting the two simple code chunks shown above would be sufficient to achieve this goal. Admittedly, such a verbose coding strategy wouldn't be very efficient and is also quite error prone, but done correctly would produce all the bits and pieces required to "manually" re-build **Table 6.1**.  
 

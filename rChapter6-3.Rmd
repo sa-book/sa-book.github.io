@@ -35,7 +35,7 @@ htmltools::tagList(
 <details><summary>**Click here to get instructions...**</summary>
 
 - Please download and unzip the replication files for Chapter 6
-([`r fontawesome::fa("far fa-file-archive")` Chapter06.zip](source/Chapter06.zip)). 
+([`r fontawesome::fa("far fa-file-zipper")` Chapter06.zip](source/Chapter06.zip)). 
 - Read `readme.html` and run `6-0_ChapterSetup.R`. This will create `6-0_ChapterSetup.RData` in the sub folder `data/R`. This file contains the data required to produce the table shown at the bottom of this page. 
 - We also recommend to load the libraries listed in the Chapter 6's `LoadInstallPackages.R`
 

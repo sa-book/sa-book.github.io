@@ -82,31 +82,31 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>Sequence Analysis - Companion Site: Crisp clustering algorithms and cluster quality indeces</title>
+  <title>Sequence Analysis - Companion Site: Figure 5-2: the ggseqplot edition</title>
 
-  <meta property="description" itemprop="description" content="Chapter 4.1	Clustering sequences to uncover typologies"/>
+  <meta property="description" itemprop="description" content="Chapter 5.5	Multichannel sequence analysis"/>
 
   <link rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/"/>
   <link rel="icon" type="image/png" href="images/QASS.png"/>
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Sequence Analysis - Companion Site: Crisp clustering algorithms and cluster quality indeces"/>
+  <meta property="og:title" content="Sequence Analysis - Companion Site: Figure 5-2: the ggseqplot edition"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Chapter 4.1	Clustering sequences to uncover typologies"/>
+  <meta property="og:description" content="Chapter 5.5	Multichannel sequence analysis"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Sequence Analysis - Companion Site"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Sequence Analysis - Companion Site: Crisp clustering algorithms and cluster quality indeces"/>
-  <meta property="twitter:description" content="Chapter 4.1	Clustering sequences to uncover typologies"/>
+  <meta property="twitter:title" content="Sequence Analysis - Companion Site: Figure 5-2: the ggseqplot edition"/>
+  <meta property="twitter:description" content="Chapter 5.5	Multichannel sequence analysis"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Crisp clustering algorithms and cluster quality indeces"]},{"type":"character","attributes":{},"value":["Chapter 4.1\tClustering sequences to uncover typologies\n"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Figure 5-2: the ggseqplot edition"]},{"type":"character","attributes":{},"value":["Chapter 5.5\tMultichannel sequence analysis\n"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2457,7 +2457,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Crisp clustering algorithms and cluster quality indeces","description":"Chapter 4.1\tClustering sequences to uncover typologies","authors":[]}
+{"title":"Figure 5-2: the ggseqplot edition","description":"Chapter 5.5\tMultichannel sequence analysis","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2494,10 +2494,10 @@ Material for R
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Crisp clustering algorithms and cluster quality indeces</h1>
+<h1>Figure 5-2: the ggseqplot edition</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Chapter 4.1 Clustering sequences to uncover typologies</p></p>
+<p><p>Chapter 5.5 Multichannel sequence analysis</p></p>
 </div>
 
 
@@ -2506,9 +2506,14 @@ Material for R
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#crisp-or-hard-clustering-algorithms"
-id="toc-crisp-or-hard-clustering-algorithms">Crisp (or hard) clustering
-algorithms</a></li>
+<li><a
+href="#computing-dissimilarity-matrix-and-extracting-cluster-variable"
+id="toc-computing-dissimilarity-matrix-and-extracting-cluster-variable">Computing
+dissimilarity matrix and extracting cluster variable</a></li>
+<li><a href="#multidimensional-scaling"
+id="toc-multidimensional-scaling">Multidimensional Scaling</a></li>
+<li><a href="#composing-the-plot" id="toc-composing-the-plot">Composing
+the plot</a></li>
 </ul>
 </nav>
 </div>
@@ -2520,19 +2525,19 @@ algorithms</a></li>
 <strong>Click here to get instructions…</strong>
 </summary>
 <ul>
-<li>Please download and unzip the replication files for Chapter 4 (<a
-href="source/Chapter04.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0L64-.0001c-35.35 0-64 28.65-64 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h48V64h64V48.13h48.01L224 128c0 17.67 14.33 32 32 32h79.1V448zM176 96h-64v32h64V96zM176 160h-64v32h64V160zM176 224h-64l-30.56 116.5C73.51 379.5 103.7 416 144.3 416c40.26 0 70.45-36.3 62.68-75.15L176 224zM160 368H128c-8.836 0-16-7.164-16-16s7.164-16 16-16h32c8.836 0 16 7.164 16 16S168.8 368 160 368z"/></svg>
-Chapter04.zip</a>).</li>
+<li>Please download and unzip the replication files for Chapter 5 (<a
+href="source/Chapter05.zip"><svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0L64-.0001c-35.35 0-64 28.65-64 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h48V64h64V48.13h48.01L224 128c0 17.67 14.33 32 32 32h79.1V448zM176 96h-64v32h64V96zM176 160h-64v32h64V160zM176 224h-64l-30.56 116.5C73.51 379.5 103.7 416 144.3 416c40.26 0 70.45-36.3 62.68-75.15L176 224zM160 368H128c-8.836 0-16-7.164-16-16s7.164-16 16-16h32c8.836 0 16 7.164 16 16S168.8 368 160 368z"/></svg>
+Chapter05.zip</a>).</li>
 <li>Read <code>readme.html</code> and run
-<code>4-0_ChapterSetup.R</code>. This will create
-<code>4-0_ChapterSetup.RData</code> in the sub folder
+<code>5-0_ChapterSetup.R</code>. This will create
+<code>5-0_ChapterSetup.RData</code> in the sub folder
 <code>data/R</code>. This file contains the data required to produce the
 plots shown below.</li>
 <li>You also have to add the function <code>legend_large_box</code> to
 your environment in order to render the tweaked version of the legend
 described below. You find this file in the <code>source</code> folder of
-the unzipped Chapter 4 archive.</li>
-<li>We also recommend to load the libraries listed in Chapter 4’s
+the unzipped Chapter 5 archive.</li>
+<li>We also recommend to load the libraries listed in Chapter 5’s
 <code>LoadInstallPackages.R</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
@@ -2542,50 +2547,202 @@ the unzipped Chapter 4 archive.</li>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install (if necessary) and load other required packages</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">&quot;source&quot;</span>, <span class="st">&quot;load_libraries.R&quot;</span>))</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># load environment generated in &quot;4-0_ChapterSetup.R&quot;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;R&quot;</span>, <span class="st">&quot;4-0_ChapterSetup.RData&quot;</span>))</span></code></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># load environment generated in &quot;5-0_ChapterSetup.R&quot;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;R&quot;</span>, <span class="st">&quot;5-0_ChapterSetup.RData&quot;</span>))</span></code></pre></div>
 </div>
 </details>
 <p><br />
 </p>
-<p>In chapter 4.1, we introduce crisp/hard clustering algorithms and
-cluster quality indeces to be considered when making decisions on the
-number of clusters to extract from the initial sample. The data come
+<p>In chapter 5.3, we introduce the so-called multichannel sequence
+analysis. We are now using the <code>data.frame</code>
+<code>multidim</code>, which contains both family formation and labor
+market sequences. Note that individual 1 in one pool of sequences has to
+correspond to individual 1 in the other pool of sequences. The data come
 from a sub-sample of the German Family Panel - pairfam. For further
 information on the study and on how to access the full scientific use
 file see <a href="https://www.pairfam.de/en/"
 target="_blank">here</a>.</p>
-<h2 id="crisp-or-hard-clustering-algorithms">Crisp (or hard) clustering
-algorithms</h2>
-<p>We apply a hierarchical cluster analysis by using the command
-<code>?hclust</code> to the dissimilarity matrix
-<code>partner.child.year.om</code> for the family formation sequences,
-computed based on OM with <code>indel</code>=1 and <code>sm</code>=2. We
-use non-squared dissimilarities (see the <code>method</code> option) and
-weights (see the <code>members</code> option, where we have to specify
-to which <code>data.frame</code> the vector with the weights belongs
-to).</p>
+<p>The original companion page for Chapter 5.5 can be found <a
+href="rChapter5-5.html">here</a>. This page only shows how to render
+Figure 5-2 using <code>ggseqplot::ggesqiplot</code> instead of
+<code>TraMineR::seqIplot</code>.</p>
+<h2
+id="computing-dissimilarity-matrix-and-extracting-cluster-variable">Computing
+dissimilarity matrix and extracting cluster variable</h2>
+<p>Here we re-use the code shown and commented on the <a
+href="rChapter5-5.html">tutorial page for Chapter 5.5</a>. We compute
+the dissimilarity matrix, run a cluster analysis and generate a variable
+indicating the cluster membership for each of the persons in our
+data.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fam.ward1 <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="fu">as.dist</span>(partner.child.year.om), </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">method =</span> <span class="st">&quot;ward.D&quot;</span>, </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">members =</span> family<span class="sc">$</span>weight40)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the joint dissimilarity matrix</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mcdist.om <span class="ot">&lt;-</span> <span class="fu">seqdistmc</span>(<span class="at">channels=</span><span class="fu">list</span>(mc.fam.year.seq, mc.act.year.seq),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method=</span><span class="st">&quot;OM&quot;</span>, <span class="at">indel=</span><span class="dv">1</span>, <span class="at">sm=</span><span class="st">&quot;CONSTANT&quot;</span>, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">cweight=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply PAM clustering + Ward starting point</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>mcdist.om.ward<span class="ot">&lt;-</span><span class="fu">hclust</span>(<span class="fu">as.dist</span>(mcdist.om), <span class="at">method=</span><span class="st">&quot;ward.D&quot;</span>, <span class="at">members=</span>multidim<span class="sc">$</span>weight40)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>mcdist.om.pam.ward <span class="ot">&lt;-</span> <span class="fu">wcKMedRange</span>(mcdist.om, <span class="at">weights =</span> multidim<span class="sc">$</span>weight40, <span class="at">kvals =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">initialclust =</span> mcdist.om.ward)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Cut tree at cluster==5</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>mc <span class="ot">&lt;-</span> mcdist.om.pam.ward<span class="sc">$</span>clustering<span class="sc">$</span>cluster5</span></code></pre></div>
 </div>
-<p>The nested structure emerging from the hierarchical clustering
-algorithm can be displayed using a dendrogram:</p>
+<p>We opted for a five cluster solution. A variable
+(<code>cluster</code>) indicating the cluster membership is added to our
+source data (<code>multidim</code>). Note that we also added another
+variable indicating the row number of the observations in
+<code>multidim</code>. We will use this indicator to arrange the cases
+after merging aggregated information on the clusters in the next code
+chunk.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">3</span>))</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fam.ward1, <span class="at">labels =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span><span class="st">&quot;&quot;</span>, </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;&quot;</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;&quot;</span>, <span class="at">sub=</span><span class="st">&quot;&quot;</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.axis=</span><span class="fl">2.5</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.lab=</span><span class="fl">2.5</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">&quot;Dissimilarity threshold&quot;</span>, <span class="at">side =</span> <span class="dv">2</span>, <span class="at">line =</span> <span class="dv">5</span>, <span class="at">cex =</span> <span class="dv">3</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add cluster membership indicator </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>multidim <span class="ot">&lt;-</span> multidim <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cluster =</span> mc,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">id2 =</span> <span class="fu">row_number</span>())</span></code></pre></div>
 </div>
+<p>In the following step, we obtain the weighted relative frequencies of
+each cluster (stored in the variable <code>share</code>), generate a
+factor variable (<code>mc.factor</code>) labeling the cluster according
+to these frequencies, and add this information to our
+<code>multidim</code>data making sure the sorting order of the cases
+remains unaffected (by arranging using the row number indicator
+<code>id2</code> generated in the previous step).</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="images/Chapter4/4-1-2_Fig4-2_dendrogram_gray.png" width="2700" /></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>multidim <span class="ot">&lt;-</span> multidim <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(cluster, <span class="at">wt =</span> weight40) <span class="sc">|&gt;</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">share =</span> n<span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(share) <span class="sc">|&gt;</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mc.factor =</span> <span class="fu">glue</span>(<span class="st">&quot;Cluster {row_number()}</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="st">                            ({round(share*100,1)}%)&quot;</span>),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">mc.factor =</span> <span class="fu">factor</span>(mc.factor)) <span class="sc">|&gt;</span> </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(cluster, mc.factor, share) <span class="sc">|&gt;</span> </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(multidim, <span class="at">by =</span> <span class="st">&quot;cluster&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(id2)</span></code></pre></div>
+</div>
+<h2 id="multidimensional-scaling">Multidimensional Scaling</h2>
+<p>In Figure 2-5 the sequences for each cluster are sorted according to
+the results of cluster-specific multidimensional scaling. The scaling is
+using the distance matrix <code>mcdist.om</code> which corresponds to
+the <code>multidim</code> data frame. That is, the first row of the
+matrix comprises the pairwise dissimilarities of the first case (=row)
+in <code>multidim</code> to every other case. We extract the row index
+of the cases (using the row names of the dissimilarity matrix and store
+them in the variable <code>idx</code> before we arrange the cases
+according to the results of the multidimensional scaling. The resulting
+order of cases is then used to plot the sequences in the desired
+order.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cmd.idx <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="fu">levels</span>(multidim<span class="sc">$</span>mc.factor),</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>               <span class="sc">~</span><span class="fu">cmdscale</span>(mcdist.om[multidim<span class="sc">$</span>mc.factor <span class="sc">==</span> .x,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                   multidim<span class="sc">$</span>mc.factor <span class="sc">==</span> .x],</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">k =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">as_tibble</span>(<span class="at">rownames =</span> <span class="st">&quot;idx&quot;</span>, <span class="at">.name_repair =</span> <span class="st">&quot;unique&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">arrange</span>(<span class="fu">across</span>(<span class="sc">-</span>idx)) <span class="sc">|&gt;</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">pull</span>(idx) <span class="sc">|&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">as.numeric</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unlist</span>()</span></code></pre></div>
+</div>
+<p>Below you can see an extract of the data in their original sorting
+order and in the sorting order based on the results of the
+cluster-specific multidimensional scaling. As we did the scaling
+cluster-wise, the re-arranged data start with the cases of the first
+cluster. Within this cluster, the rows are sorted according to the MDS
+results (as can be indirectly seen by looking at <code>id2</code> which
+shows the original row number of each case; the order obviously
+changed).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>orig.order <span class="ot">&lt;-</span>  multidim <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, id2,mc.factor)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>new.order <span class="ot">&lt;-</span> orig.order[cmd.idx,]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Original sorting order</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>orig.order</span></code></pre></div>
+<pre><code># A tibble: 1,027 × 3
+         id   id2 mc.factor           
+      &lt;dbl&gt; &lt;int&gt; &lt;fct&gt;               
+ 1   111000     1 &quot;Cluster 5\n(25.3%)&quot;
+ 2  2931000     2 &quot;Cluster 4\n(22.1%)&quot;
+ 3  3491000     3 &quot;Cluster 3\n(20.5%)&quot;
+ 4  3902000     4 &quot;Cluster 5\n(25.3%)&quot;
+ 5  4814000     5 &quot;Cluster 5\n(25.3%)&quot;
+ 6  8948000     6 &quot;Cluster 1\n(16%)&quot;  
+ 7  9917000     7 &quot;Cluster 5\n(25.3%)&quot;
+ 8 10208000     8 &quot;Cluster 5\n(25.3%)&quot;
+ 9 10665000     9 &quot;Cluster 3\n(20.5%)&quot;
+10 10789000    10 &quot;Cluster 3\n(20.5%)&quot;
+# … with 1,017 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sorting order used for the plots</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>new.order</span></code></pre></div>
+<pre><code># A tibble: 1,027 × 3
+          id   id2 mc.factor         
+       &lt;dbl&gt; &lt;int&gt; &lt;fct&gt;             
+ 1 382069000   398 &quot;Cluster 1\n(16%)&quot;
+ 2 357454000   369 &quot;Cluster 1\n(16%)&quot;
+ 3 492223000   511 &quot;Cluster 1\n(16%)&quot;
+ 4 343252000   354 &quot;Cluster 1\n(16%)&quot;
+ 5 636188000   671 &quot;Cluster 1\n(16%)&quot;
+ 6 480915000   500 &quot;Cluster 1\n(16%)&quot;
+ 7 434807000   454 &quot;Cluster 1\n(16%)&quot;
+ 8  96098000   105 &quot;Cluster 1\n(16%)&quot;
+ 9  87939000    98 &quot;Cluster 1\n(16%)&quot;
+10 281253000   300 &quot;Cluster 1\n(16%)&quot;
+# … with 1,017 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+<p>Like in the <code>new.order</code> example above we will use
+<code>cmd.idx</code> in the code for the plot for re-arranging our
+sequence data.</p>
+<h2 id="composing-the-plot">Composing the plot</h2>
+<p>Finally, we can start to rebuild Figure 5-2 from the book using
+<code>{ggseqplot}</code>.</p>
+<p>We can now plot the MCSA clusters, here sequences in each sub-graph
+are ordered by multidimensional scaling calculated on both channels</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The left panel: Family trajectories</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggseqiplot</span>(mc.fam.year.seq[cmd.idx,],</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">group =</span> multidim<span class="sc">$</span>mc.factor[cmd.idx],</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">no.n =</span> T, <span class="at">facet_ncol =</span> <span class="dv">1</span>, <span class="at">strip.position =</span> <span class="st">&quot;left&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="dv">18</span><span class="sc">:</span><span class="dv">39</span>, <span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">check.overlap =</span> <span class="cn">TRUE</span>)) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Family formation&quot;</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Age&quot;</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">title=</span><span class="st">&quot;Family Formation&quot;</span>),</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">title=</span><span class="st">&quot;Family Formation&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">force_panelsizes</span>(<span class="at">rows =</span> <span class="fu">sort</span>(<span class="fu">unique</span>(multidim<span class="sc">$</span>share))) <span class="sc">+</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.placement =</span> <span class="st">&quot;outside&quot;</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text.y.left =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>)) </span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co"># The right panel: Labor market trajectories</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggseqiplot</span>(mc.act.year.seq[cmd.idx,],</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">group =</span> multidim<span class="sc">$</span>mc.factor[cmd.idx],</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">no.n =</span> T, <span class="at">facet_ncol =</span> <span class="dv">1</span>, <span class="at">strip.position =</span> <span class="st">&quot;left&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="dv">18</span><span class="sc">:</span><span class="dv">39</span>, <span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">check.overlap =</span> <span class="cn">TRUE</span>)) <span class="sc">+</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Labor market&quot;</span>,</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Age&quot;</span>,</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">title=</span><span class="st">&quot;Labor Market&quot;</span>),</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">title=</span><span class="st">&quot;Labor Market&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">force_panelsizes</span>(<span class="at">rows =</span> <span class="fu">sort</span>(<span class="fu">unique</span>(multidim<span class="sc">$</span>share))) <span class="sc">+</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.placement =</span> <span class="st">&quot;outside&quot;</span>,</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text.y.left =</span> <span class="fu">element_blank</span>()) </span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Compose the final plot using {patchwork}</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2  <span class="sc">+</span> </span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">&#39;collect&#39;</span>) <span class="sc">&amp;</span> </span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>,</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">&quot;lines&quot;</span>),</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> .<span class="dv">5</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>))</span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body-outset">
+<p><img src="images/Chapter5/5-5_Fig5-2_MCSA_colors_joint_gg.png" width="1800" /></p>
 </div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
