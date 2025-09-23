@@ -16,7 +16,6 @@ author:
     affiliation: University of Milan, Department of Social and Political Sciences
     affiliation_url: https://www.unimi.it/en/ugov/ou-structure/department-social-and-political-sciences
     orcid_id: 0000-0002-6635-8748
-
 date: "`r Sys.Date()`"
 bibliography: Companion.bib
 csl: https://www.zotero.org/styles/apa
@@ -24,6 +23,9 @@ csl: https://www.zotero.org/styles/apa
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+
+options(distill.citation = "Raab & Struffolino, 2022")
+
 
 # Load required packages
 library(here)
@@ -75,7 +77,33 @@ Please note that most of the materials on this site are designed to be used in t
 \
 
 </aside>
- 
+
+\ 
+
+<details><summary><strong style="color: red;">📋 Errata & Corrections</strong></summary>
+
+
+We welcome feedback on any errors or improvements. Please use our [issue tracker](https://github.com/sa-book/sa-book.github.io/issues){target="_blank"} to report problems.
+
+#### Known issues
+
+- **p. 40**: "four out of four possible transitions..." should read "three out of three" 
+
+- **p. 41**: The second panel title in Table 2.9 should be "Sequence y = (S,LAT,COH,S); ϕ(y)=15$"
+
+- **p. 69**: The title of Table 3.13 should be "Matrix of property-based substitution costs for family formation trajectories".
+
+- **p. 94**: The title of Table 4.2 should be "A guide for an approximate interpretation of the average silhouette width's values" 
+
+- **p. 108**: The word "perspective" in "retrospective and perspective data" should be "prospective".
+
+- **p. 123**: "Panel a" in the last paragraph should be "Panel b".
+
+- **p. 124**: The sentence starting with "For the joint matrix" should read "For the joint matrix, the R2 and the ASW indicate a three cluster solutions as optimal, but with very small differences across solutions. As expected, the ASW value for this matrix is lower than those in Panels a and b due to the higher complexity of the data. This means that if we strictly follow the recommendation of the ASW (and the R2) and opt for a three-cluster solution, we might overlook some types in both the labor market and the family formation channels that would allow us to maximize the separation between the groups and the within-cluster homogeneity." 
+
+- **p. 131**: The in-line formula $SS_W$ and $SS_T$ are switched. The correct version is: $SS_B=SS_T-SS_W$
+
+</details>
 
 
 
