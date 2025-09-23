@@ -37,15 +37,17 @@ Marcel is Senior Researcher at the State Institute for Family Research at the Un
 
 ### Emanuela Struffolino 
 
-Emanuela is Assistant Professor of Economic Sociology at the University of Milan, Department of Social and Political Sciences. Between 2020 and 2021, she was guest Professor of Macrosociology at the Institute of Sociology at the Freie Universität Berlin and then guest Professor of Social Policy at the Humboldt-Universität zu Berlin. From 2015 to 2019, she was a postdoctoral fellow at the research group “Demography and Inequality” research group at the WZB Berlin Social Science Center. After obtaining her PhD in sociology at the University of Milano-Bicocca, in 2014 she worked as a research fellow at the Swiss National Centre for Competence in Research “LIVES—Overcoming Vulnerability: A Life-Course Perspective” at the University of Lausanne. She is a member of the Executive Board of the Sequence Analysis Association.
+Emanuela is Associate Professor of Economic Sociology at the University of Milan, Department of Social and Political Sciences. Between 2020 and 2021, she was guest Professor of Macrosociology at the Institute of Sociology at the Freie Universität Berlin and then guest Professor of Social Policy at the Humboldt-Universität zu Berlin. From 2015 to 2019, she was a postdoctoral fellow at the research group “Demography and Inequality” research group at the WZB Berlin Social Science Center. After obtaining her PhD in sociology at the University of Milano-Bicocca, in 2014 she worked as a research fellow at the Swiss National Centre for Competence in Research “LIVES—Overcoming Vulnerability: A Life-Course Perspective” at the University of Lausanne. Currently, she President of the Sequence Analysis Association.
 
 <aside>
-<img src="https://emanuela-struffolino.com/authors/admin/avatar_hu0146c0d82728d84db25b52efa873ad86_1267888_250x250_fill_q90_lanczos_center.jpg" class="img-circle" alt="Emanuela Struffolino">
+<img src="https://emastruffolino.github.io/images/struffolino.jpg" 
+     style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%; filter: grayscale(100%);" 
+     alt="Emanuela Struffolino">
 </aside>
 
-**[`r fontawesome::fa("link")` emanuela-struffolino.com](https://emanuela-struffolino.com)**
+**[`r fontawesome::fa("link")` emastruffolino.github.io](https://emastruffolino.github.io/)**
 
 \
 
-Both authors regularly teach courses and workshops on sequence analysis and have conducted several studies using sequence analysis that have been published in Demography, European Journal of Population, Research in Social Stratification and Mobility, Sociological Methodology, Demographic Research, Advances in Life Course Research, and Social Indicators Research.
+Both authors regularly teach courses and workshops on sequence analysis and have conducted several studies using sequence analysis that have been published in *Advances in Life Course Research, Demographic Research, Demography, European Journal of Population, Journal of Marriage and Family, Research in Social Stratification and Mobility, Social Indicators Research, Sociological Methodology, Sociological Methods and Research,* and *Social Science Research*.
 

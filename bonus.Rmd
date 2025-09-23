@@ -1,0 +1,33 @@
+---
+title: "Bonus material"
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    toc_depth: 2
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+This website serves primarily as a companion page for our book, but also aims to provide additional material covering more recent developments. Currently, the bonus content showcases a newly developed R library for generating sequence plots and a new sequence analysis package for Python.
+
+## New plotting option with `{ggseqplot}`
+The `{ggseqplot}` library provides a ggplot2-based alternative to TraMineR's base R plotting functions, offering more flexible and customizable visualization options for sequence data. We briefly introduce the library  [here](rChapter2-4_ggseqplot.html). Moreover, we provide a [tutorial](rChapter5-5_ggseqplot.html) on how to recreate the most complex figure from our book (Figure 2-5) with `{ggseqplot}`. 
+
+For more details, see  **[`r fontawesome::fa("link")` maraab23.github.io/ggseqplot](https://maraab23.github.io/ggseqplot/)**
+
+\
+
+## Performance boost with Python
+The newly developed Python package [Sequenzo](bonus_sequenzo.html) offers significant performance improvements for sequence analysis tasks. Focusing on R user, we illustrate how to utilize
+this package from R by using the very handy `{reticulate}` package (see [here](bonus_sequenzo.html)).
+
+For more details, see **[`r fontawesome::fa("link")` sequenzo.yuqi-liang.tech/en](https://sequenzo.yuqi-liang.tech/en/)**
+ 
+
+
+

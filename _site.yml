@@ -23,6 +23,8 @@ navbar:
           href: rChapter5-0.html
         - text: "Chapter 06"
           href: rChapter6-0.html
+    - text: "Bonus Material"
+      href: bonus.html
     - text: "About the Authors"
       href: about.html
 output: 

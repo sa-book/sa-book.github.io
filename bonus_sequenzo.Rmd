@@ -1,0 +1,259 @@
+---
+title: "SA with Python and sequenzo"
+description: |
+  Running sequenzo from R using reticulate
+output: distill::distill_article
+---
+
+
+```{r setup, include=FALSE}
+# Load required packages
+library(here)
+pacman::p_load(formatR ,icons, kableExtra, reticulate, 
+               scales, tictoc, tidyverse, TraMineR)
+
+# Output options
+knitr::opts_chunk$set(
+  eval=TRUE, 
+  echo=TRUE)
+
+
+options("kableExtra.html.bsTable" = T)
+
+# load family biographies
+family <- readRDS(here("data", "familybio.rds"))
+
+# # Only if necessary: Install Python and required libraries
+# install_python()
+# py_install("sequenzo")
+
+# Import Python modules
+sequenzo <- import("sequenzo")
+
+```
+
+<style>
+pre {
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.sourceCode {
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+}
+
+pre code {
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+}
+</style>
+
+
+```{r, xaringanExtra-clipboard, echo=FALSE}
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clone fa-2x\" style=\"color: #301e64\"></i>",
+    success_text = "<i class=\"fa fa-check fa-2x\" style=\"color: #90BE6D\"></i>",
+    error_text = "<i class=\"fa fa-times fa-2x\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
+After our book was published, [Yuqi Liang](https://www.yuqi-liang.tech/){target="_blank"} and her team developed [`Sequenzo`](https://sequenzo.yuqi-liang.tech/en/){target="_blank"}, a `r fontawesome("python")` package for social sequence analysis. Beyond making sequence analysis more accessible to Python users, this package offers significant advantages due to Python's powerful computing capabilities: it is considerably faster than available R tools and better suited for larger datasets. Since we are not Python users ourselves, this brief introduction is specifically aimed at R users who want to leverage the power of `Sequenzo` from within R (as part of an R script) using the `{reticulate}` package.
+
+
+## Setup   
+
+If you have not installed Python and sequenzo yet you have to run the following two `{reticulate}` functions first:
+
+
+```{r, echo=TRUE, eval=FALSE}
+# use (and install if necessary) pacman package 
+if (!require("pacman")) install.packages("pacman")
+library(pacman)
+
+# load and install (if necessary) required packages for this course
+pacman::p_load(
+  kable,      # Table
+  reticulate, # R interface to Python
+  tictoc,     # for measuring the duration of distance computation
+  tidyverse,  # universal toolkit for data wrangling and plotting 
+  TraMineR    # The sequence analysis toolkit for R
+  )
+
+# Install Python and sequenzo using reticulate
+install_python()
+py_install("sequenzo")
+```
+
+Now you are ready to import the data for example application and `sequenzo`.
+
+```{r, echo=TRUE, eval=FALSE}
+# Import Python modules
+sequenzo <- import("sequenzo")
+
+
+# load example data: family biographies from PAIRFAM
+family <- readRDS("familybio.rds")
+```
+
+## Preparing the data
+
+The imported data frame `family` contains sequence data from `r label_comma()(nrow(family))` respondents of the German Family Panel (pairfam). The 264 sequence variables are numbered and start with the prefix `state`. They provide monthly information on family biographies - a combination of partnership status and parity—from age 18 to 40.
+
+```{r echo=FALSE}
+shortlab.family <- c("S", "Sc", 
+                     "LAT", "LATc", 
+                     "COH", "COHc",
+                     "MAR", "MARc1", "MARc2+")
+
+longlab.family <- 
+  c("Single, no child", "Single, child(ren)",
+    "LAT, no child", "LAT, child(ren)", 
+    "Cohabiting, no child", "Cohabiting, child(ren)", 
+    "Married, no child", "Married, 1 child", "Married, 2+ children")
+
+kable(tibble(num = 1:9,
+             state = longlab.family, 
+             shortlabel = shortlab.family), 
+      col.names = c("#", "State", "Short Label")) %>%
+  kable_styling(bootstrap_options = 
+                  c("striped", "hover", "condensed"),
+                full_width = F)
+```
+
+
+
+### Step 1: Define a sequence object in R
+
+```{r echo=TRUE}
+# define long and short labels for sequence vars
+shortlab.family <- c("S", "Sc", 
+                     "LAT", "LATc", 
+                     "COH", "COHc",
+                     "MAR", "MARc1", "MARc2+")
+
+longlab.family <- 
+  c("Single, no child", "Single, child(ren)",
+    "LAT, no child", "LAT, child(ren)", 
+    "Cohabiting, no child", "Cohabiting, child(ren)", 
+    "Married, no child", "Married, 1 child", "Married, 2+ children")
+
+# define sequence object in TraMineR
+family.seq <- seqdef(data = select(family, starts_with("state")),
+                     states = shortlab.family,
+                     labels = longlab.family, 
+                     alphabet = 1:9,
+                     id = family$id)
+
+```
+
+### Step 2: Define a sequence object with `sequenzo` using `{reticulate}`
+
+```{r echo=TRUE}
+# get data into recommended format
+seqdata <- family |> 
+  mutate(across(everything(), as.character)) |> 
+  rename_with(~ str_remove_all(.x, "state"))
+  
+# sequence data to pyhton 
+df_py <- r_to_py(seqdata)
+
+# set parameters
+time_list <- as.character(1:264)
+states <- as.character(1:9)
+labels <- longlab.family
+
+# define sequence data in sequenzo
+dataset <- sequenzo$SequenceData(
+  df_py,
+  time = time_list,
+  time_type = "age",
+  id_col = "id",
+  states = states,
+  labels = labels
+  )
+```
+
+## Compute dissimilarities & compare performance
+
+Now we are set to compute the dissimilarity matrices. For this example we choose Optimal Matching with indel costs of 1 and constant substitution costs of 2. 
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, results='hide', cache=TRUE}
+# TraMineR ----
+
+tic()
+
+# OM with TraMineR
+om.const<-seqdist(family.seq,
+                  method = "OM", 
+                  indel = 1,
+                  sm = "CONSTANT",
+                  norm = "none")
+
+time_traminer_sec <- toc(quiet = TRUE)
+time_traminer_sec <- time_traminer_sec$toc - time_traminer_sec$tic
+
+
+# sequenzo ----
+
+tic()
+
+# OM with sequenzo
+om.sequenzo <- sequenzo$get_distance_matrix(
+  seqdata = dataset, 
+  method = "OM",
+  sm = "CONSTANT",
+  norm = "none",
+  full_matrix = TRUE
+)
+
+time_sequenzo_sec <- toc(quiet = TRUE)
+time_sequenzo_sec <- time_sequenzo_sec$toc - time_sequenzo_sec$tic
+
+
+min_traminer <- round(time_traminer_sec/60,2)
+min_sequenzo <- round(time_sequenzo_sec/60,2)
+
+```
+
+
+
+```{r eval=FALSE}
+# OM with TraMineR
+om.const<-seqdist(family.seq,
+                  method = "OM", 
+                  indel = 1,
+                  sm = "CONSTANT",
+                  norm = "none")
+
+# OM with sequenzo
+om.sequenzo <- sequenzo$get_distance_matrix(
+  seqdata = dataset, 
+  method = "OM",
+  sm = "CONSTANT",
+  norm = "none",
+  full_matrix = TRUE
+)
+```
+
+As indicated by the developers, `sequenzo`'s `get_distance_matrix` is notably faster `r fontawesome("rocket")` than `TraMineR`'s `seqdist`. On our test machine (Surface Pro 7+, 11th Gen Intel Core i7-1165G7 @ 2.80GHz, 4 cores; 16 GB RAM), `TraMineR` requires **`r min_traminer` minutes**, whereas `sequenzo` needs only **`r min_sequenzo` minutes** (`r label_percent()(min_sequenzo/min_traminer)` of the time) to compute the distances.
+
+## Check results
+
+Finally, we confirm that the results from both packages are identical.
+
+```{r}
+# Visual inspection
+om.sequenzo[1:5,1:5]
+om.const[1:5,1:5]
+
+# Test if distances are the same
+all.equal(as.matrix(om.sequenzo), as.matrix(om.const))
+
+```
