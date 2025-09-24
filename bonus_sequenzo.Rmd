@@ -86,7 +86,7 @@ pacman::p_load(
   TraMineR    # The sequence analysis toolkit for R
   )
 
-# Install Python and sequenzo using reticulate
+# Install Python and sequenzo using reticulate (needs to be done only once)
 install_python()
 py_install("sequenzo")
 ```
@@ -156,7 +156,8 @@ family.seq <- seqdef(data = select(family, starts_with("state")),
 ### Step 2: Define a sequence object with `sequenzo` using `{reticulate}`
 
 ```{r echo=TRUE}
-# get data into recommended format
+# get data into recommended format 
+# see: https://sequenzo.yuqi-liang.tech/en/function-library/sequence-data
 seqdata <- family |> 
   mutate(across(everything(), as.character)) |> 
   rename_with(~ str_remove_all(.x, "state"))
