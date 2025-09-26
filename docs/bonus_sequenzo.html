@@ -2765,18 +2765,18 @@ MARc2+
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> sequenzo<span class="sc">$</span><span class="fu">SequenceData</span>(</span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  df_py,</span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> time_list,</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">time_type =</span> <span class="st">&quot;age&quot;</span>,</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">id_col =</span> <span class="st">&quot;id&quot;</span>,</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">states =</span> states,</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> labels</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">id_col =</span> <span class="st">&quot;id&quot;</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">states =</span> states,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> labels</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>
 [&gt;] SequenceData initialized successfully! Here&#39;s a summary:
 [&gt;] Number of sequences: 1866
 [&gt;] Number of time points: 264
 [&gt;] Min/Max sequence length: 264 / 264
 [&gt;] States: [&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;]
-[&gt;] Labels: [&#39;Single, no child&#39;, &#39;Single, child(ren)&#39;, &#39;LAT, no child&#39;, &#39;LAT, child(ren)&#39;, &#39;Cohabiting, no child&#39;, &#39;Cohabiting, child(ren)&#39;, &#39;Married, no child&#39;, &#39;Married, 1 child&#39;, &#39;Married, 2+ children&#39;]</code></pre>
+[&gt;] Labels: [&#39;Single, no child&#39;, &#39;Single, child(ren)&#39;, &#39;LAT, no child&#39;, &#39;LAT, child(ren)&#39;, &#39;Cohabiting, no child&#39;, &#39;Cohabiting, child(ren)&#39;, &#39;Married, no child&#39;, &#39;Married, 1 child&#39;, &#39;Married, 2+ children&#39;]
+[&gt;] Weights: Not provided</code></pre>
 </div>
 <h2 id="compute-dissimilarities-compare-performance">Compute dissimilarities &amp; compare performance</h2>
 <p>Now we are set to compute the dissimilarity matrices. For this example we choose Optimal Matching with indel costs of 1 and constant substitution costs of 2.</p>

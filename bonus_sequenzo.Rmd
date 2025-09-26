@@ -174,7 +174,6 @@ labels <- longlab.family
 dataset <- sequenzo$SequenceData(
   df_py,
   time = time_list,
-  time_type = "age",
   id_col = "id",
   states = states,
   labels = labels
